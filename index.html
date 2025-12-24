@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Followers India - Premium SMM Services</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f0f0f;
+            color: #ffffff;
+        }
+        .insta-gradient {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+        .shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            // State for Access Gate
+            const [accessCode, setAccessCode] = useState("");
+            const [isLocked, setIsLocked] = useState(true);
+            const [errorMsg, setErrorMsg] = useState("");
+            const [isShaking, setIsShaking] = useState(false);
+            const [loading, setLoading] = useState(false);
+
+            // Access Code Logic
+            const handleUnlock = (e) => {
+                e.preventDefault();
+                setLoading(true);
+                setErrorMsg("");
+
+                // Fake network delay for realism
+                setTimeout(() => {
+                    setLoading(false);
+                    
+                    if (accessCode === "INDIA2025") {
+                        // Condition 1: The specific code requested
+                        setErrorMsg("Error: This access code is already in use on another device.");
+                        triggerShake();
+                    } else if (accessCode === "ENTER") {
+                        // Secret backdoor to see the site
+                        setIsLocked(false);
+                    } else {
+                        // Condition 2: Every other condition
+                        setErrorMsg("Error: Invalid Access Key. Please contact support.");
+                        triggerShake();
+                    }
+                }, 1500);
+            };
+
+            const triggerShake = () => {
+                setIsShaking(true);
+                setTimeout(() => setIsShaking(false), 400);
+            };
+
+            if (isLocked) {
+                return (
+                    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+                        {/* Background Elements */}
+                        <div className="absolute top-0 left-0 w-full h-full opacity-20 z-0">
+                            <div className="absolute top-10 left-10 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow"></div>
+                            <div className="absolute bottom-10 right-10 w-64 h-64 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+                        </div>
+
+                        <div className={`z-10 w-full max-w-md p-8 glass-panel rounded-2xl shadow-2xl mx-4 ${isShaking ? 'shake' : ''}`}>
+                            <div className="text-center mb-8">
+                                <div className="inline-block p-4 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 mb-4 shadow-lg">
+                                    <i className="fa-brands fa-instagram text-4xl text-white"></i>
+                                </div>
+                                <h1 className="text-3xl font-bold mb-2">Followers India</h1>
+                                <p className="text-gray-400 text-sm">Restricted Access Portal</p>
+                            </div>
+
+                            <form onSubmit={handleUnlock} className="space-y-6">
+                                <div>
+                                    <label className="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Access Code</label>
+                                    <input 
+                                        type="text" 
+                                        value={accessCode}
+                                        onChange={(e) => setAccessCode(e.target.value)}
+                                        className="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all font-mono text-center text-lg tracking-widest uppercase"
+                                        placeholder="XXXX-XXXX"
+                                    />
+                                </div>
+
+                                {errorMsg && (
+                                    <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm p-3 rounded-lg flex items-center">
+                                        <i className="fa-solid fa-triangle-exclamation mr-2"></i>
+                                        {errorMsg}
+                                    </div>
+                                )}
+
+                                <button 
+                                    type="submit" 
+                                    disabled={loading}
+                                    className="w-full insta-gradient text-white font-bold py-3 px-4 rounded-lg shadow-lg transform transition hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center"
+                                >
+                                    {loading ? (
+                                        <i className="fa-solid fa-circle-notch fa-spin"></i>
+                                    ) : (
+                                        "Verify Access"
+                                    )}
+                                </button>
+                            </form>
+                            
+                            <div className="mt-6 text-center text-xs text-gray-600">
+                                Protected by SecureGate v4.2
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            return <MainSite />;
+        }
+
+        // The actual website content (Hidden behind the gate)
+        function MainSite() {
+            const [activeTab, setActiveTab] = useState('followers');
+
+            const services = {
+                followers: [
+                    { amount: '100', price: '₹80', popular: false },
+                    { amount: '500', price: '₹250', popular: true },
+                    { amount: '1,000', price: '₹450', popular: false },
+                    { amount: '5,000', price: '₹1,800', popular: false },
+                ],
+                likes: [
+                    { amount: '500', price: '₹50', popular: false },
+                    { amount: '1,000', price: '₹90', popular: true },
+                    { amount: '5,000', price: '₹350', popular: false },
+                    { amount: '10,000', price: '₹600', popular: false },
+                ]
+            };
+
+            return (
+                <div className="min-h-screen bg-black text-white">
+                    {/* Navbar */}
+                    <nav className="border-b border-gray-800 bg-black/80 backdrop-blur-md sticky top-0 z-50">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center h-16">
+                                <div className="flex items-center">
+                                    <span className="text-2xl font-bold text-gradient mr-2">Followers India</span>
+                                    <span className="bg-purple-900/30 text-purple-400 text-xs px-2 py-0.5 rounded border border-purple-500/30">PRO</span>
+                                </div>
+                                <div className="hidden md:flex space-x-8">
+                                    <a href="#" className="text-gray-300 hover:text-white transition">Services</a>
+                                    <a href="#" className="text-gray-300 hover:text-white transition">How it Works</a>
+                                    <a href="#" className="text-gray-300 hover:text-white transition">Support</a>
+                                </div>
+                                <button className="bg-white text-black px-4 py-2 rounded-full font-bold text-sm hover:bg-gray-200 transition">
+                                    Dashboard
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <div className="relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative z-10 text-center">
+                            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
+                                Boost Your <span className="text-gradient">Influence</span>
+                            </h1>
+                            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                                India's #1 trusted platform for authentic social media growth. Instant delivery, non-drop guarantee, and 24/7 support.
+                            </p>
+                            <div className="flex justify-center gap-4">
+                                <button className="insta-gradient px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-purple-500/30 transition transform hover:-translate-y-1">
+                                    Get Started
+                                </button>
+                                <button className="bg-gray-800 border border-gray-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-700 transition">
+                                    View Pricing
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="border-y border-gray-800 bg-black/50">
+                        <div className="max-w-7xl mx-auto px-4 py-8 flex flex-wrap justify-around text-center">
+                            <div className="w-1/2 md:w-auto mb-6 md:mb-0">
+                                <div className="text-3xl font-bold text-white">1M+</div>
+                                <div className="text-gray-500 text-sm">Orders Completed</div>
+                            </div>
+                            <div className="w-1/2 md:w-auto mb-6 md:mb-0">
+                                <div className="text-3xl font-bold text-white">50k+</div>
+                                <div className="text-gray-500 text-sm">Happy Customers</div>
+                            </div>
+                            <div className="w-1/2 md:w-auto">
+                                <div className="text-3xl font-bold text-white">4.9/5</div>
+                                <div className="text-gray-500 text-sm">Average Rating</div>
+                            </div>
+                            <div className="w-1/2 md:w-auto">
+                                <div className="text-3xl font-bold text-white">24/7</div>
+                                <div className="text-gray-500 text-sm">Live Support</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Pricing Section */}
+                    <div className="max-w-7xl mx-auto px-4 py-20">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold mb-4">Choose Your Package</h2>
+                            <div className="inline-flex bg-gray-900 rounded-lg p-1 border border-gray-800">
+                                <button 
+                                    onClick={() => setActiveTab('followers')}
+                                    className={`px-6 py-2 rounded-md text-sm font-medium transition ${activeTab === 'followers' ? 'bg-gray-800 text-white shadow' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    Followers
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('likes')}
+                                    className={`px-6 py-2 rounded-md text-sm font-medium transition ${activeTab === 'likes' ? 'bg-gray-800 text-white shadow' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    Likes
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {services[activeTab].map((pkg, idx) => (
+                                <div key={idx} className={`relative bg-gray-900/50 border ${pkg.popular ? 'border-purple-500' : 'border-gray-800'} rounded-2xl p-6 hover:bg-gray-800/50 transition duration-300 group`}>
+                                    {pkg.popular && (
+                                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                                            Best Value
+                                        </div>
+                                    )}
+                                    <div className="text-center">
+                                        <div className="text-4xl font-bold mb-2">{pkg.amount}</div>
+                                        <div className="text-gray-400 text-sm mb-6">{activeTab === 'followers' ? 'Real Followers' : 'High Quality Likes'}</div>
+                                        <div className="text-3xl font-bold text-gradient mb-6">{pkg.price}</div>
+                                        
+                                        <ul className="text-sm text-gray-400 space-y-3 mb-8 text-left pl-4">
+                                            <li className="flex items-center"><i className="fa-solid fa-check text-green-500 mr-2"></i> Instant Start</li>
+                                            <li className="flex items-center"><i className="fa-solid fa-check text-green-500 mr-2"></i> Non-Drop Guaranteed</li>
+                                            <li className="flex items-center"><i className="fa-solid fa-check text-green-500 mr-2"></i> No Password Required</li>
+                                        </ul>
+
+                                        <button className={`w-full py-3 rounded-lg font-bold transition ${pkg.popular ? 'bg-white text-black hover:bg-gray-200' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>
+                                            Purchase Now
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Features Grid */}
+                    <div className="bg-gray-900/30 py-20">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <h2 className="text-3xl font-bold text-center mb-16">Why Choose Followers India?</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                                <div className="text-center">
+                                    <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-purple-500 text-2xl">
+                                        <i className="fa-solid fa-bolt"></i>
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-3">Instant Delivery</h3>
+                                    <p className="text-gray-400">Our automated systems start processing your order immediately after payment.</p>
+                                </div>
+                                <div className="text-center">
+                                    <div className="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-500 text-2xl">
+                                        <i className="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-3">100% Secure</h3>
+                                    <p className="text-gray-400">We never ask for your password. Your account safety is our top priority.</p>
+                                </div>
+                                <div className="text-center">
+                                    <div className="w-16 h-16 bg-pink-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-pink-500 text-2xl">
+                                        <i className="fa-solid fa-headset"></i>
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-3">24/7 Support</h3>
+                                    <p className="text-gray-400">Our dedicated team is always ready to help you with any questions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Footer */}
+                    <footer className="border-t border-gray-800 py-10 mt-10">
+                        <div className="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+                            <p className="mb-4">&copy; 2025 Followers India. All rights reserved.</p>
+                            <div className="space-x-4">
+                                <a href="#" className="hover:text-white">Privacy Policy</a>
+                                <a href="#" className="hover:text-white">Terms of Service</a>
+                                <a href="#" className="hover:text-white">Refund Policy</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
