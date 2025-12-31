@@ -3,340 +3,615 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Followers India - Premium SMM Services</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Happy New Year Golu</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffc1cc 100%);
+            color: #5d3a3a;
+            overflow-x: hidden;
+            min-height: 100vh; /* Allow scrolling */
         }
-        .insta-gradient {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+
+        .romantic-font {
+            font-family: 'Great Vibes', cursive;
         }
-        .text-gradient {
-            background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        
+        .elegant-font {
+            font-family: 'Playfair Display', serif;
         }
+
+        /* Floating Hearts Particles */
+        .heart-particle {
+            position: absolute;
+            color: rgba(220, 20, 60, 0.4);
+            font-size: 20px;
+            animation: floatUp 8s infinite ease-in;
+            user-select: none;
+            z-index: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.5) rotate(20deg); opacity: 0; }
+        }
+
+        /* Glass Card - Romantic Version */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.15);
+            border-radius: 24px;
         }
-        .animate-pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+        /* 3D Gift Box Animation */
+        .gift-container {
+            perspective: 1000px;
+            cursor: pointer;
+            z-index: 20;
         }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        .box {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            transform-style: preserve-3d;
+            transition: transform 1s;
         }
-        .shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        .box-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c); /* Deep Red */
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #e53935; /* Lighter Red */
+            border: 1px solid #b71c1c;
+            transform: translateZ(1px) translateY(-50%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            border-radius: 8px;
+        }
+        /* Ribbon */
+        .ribbon-vertical {
+            position: absolute;
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(to right, #ffd700, #fdb931); /* Gold */
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .ribbon-horizontal {
+            position: absolute;
+            height: 25px;
+            width: 100%;
+            background: linear-gradient(to bottom, #ffd700, #fdb931); /* Gold */
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        /* Open State */
+        .box.open .box-lid {
+            transform: translateY(-180px) rotateX(40deg) rotateZ(10deg);
+            opacity: 0;
+        }
+        .box.open {
+            transform: translateY(20px);
+        }
+        .box.open .box-body {
+            opacity: 0;
+            transition: opacity 0.5s 0.3s;
+        }
+
+        /* Message Card Pop-up */
+        .message-card {
+            transform: scale(0.5);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .message-card.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Flip Cards for Wishes */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 120px;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flip-card:hover .flip-card-inner, .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 8px 16px rgba(255, 105, 180, 0.15);
+        }
+        .flip-card-front {
+            background-color: white;
+            color: #d32f2f;
+            border: 1px solid #ffc1cc;
+        }
+        .flip-card-back {
+            background: linear-gradient(135deg, #ff4081, #c51162);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .love-text-shadow {
+            text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.2);
+        }
+        
+        .pulse-heart {
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        /* GAME STYLES */
+        .games-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .games-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 1000px; /* Allow expansion */
+            padding-bottom: 50px;
+        }
+
+        .crystal-heart-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.3));
+        }
+        .liquid-fill {
+            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .kiss-target {
+            position: absolute;
+            font-size: 2.5rem;
+            cursor: pointer;
+            animation: floatUpGame 4s linear forwards;
+            user-select: none;
+            z-index: 50;
+        }
+        @keyframes floatUpGame {
+            0% { transform: translateY(150px) scale(0.5); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
-<body>
-    <div id="root"></div>
+<body class="flex flex-col items-center min-h-screen relative pt-10">
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
 
-        function App() {
-            // State for Access Gate
-            const [accessCode, setAccessCode] = useState("");
-            const [isLocked, setIsLocked] = useState(true);
-            const [errorMsg, setErrorMsg] = useState("");
-            const [isShaking, setIsShaking] = useState(false);
-            const [loading, setLoading] = useState(false);
+    <!-- Background Particles -->
+    <div id="particle-container" class="absolute inset-0 pointer-events-none overflow-hidden h-full fixed"></div>
 
-            // Access Code Logic
-            const handleUnlock = (e) => {
-                e.preventDefault();
-                setLoading(true);
-                setErrorMsg("");
+    <!-- Music Toggle -->
+    <button onclick="toggleMusic()" class="fixed top-6 right-6 z-50 text-pink-600 bg-white/60 backdrop-blur rounded-full p-3 hover:bg-white transition shadow-sm border border-pink-200">
+        <span id="music-icon">🎵</span>
+    </button>
 
-                // Fake network delay for realism
-                setTimeout(() => {
-                    setLoading(false);
-                    
-                    if (accessCode === "INDIA2025") {
-                        // Condition 1: The specific code requested
-                        setErrorMsg("Error: This access code is already in use on another device.");
-                        triggerShake();
-                    } else if (accessCode === "ENTER") {
-                        // Secret backdoor to see the site
-                        setIsLocked(false);
-                    } else {
-                        // Condition 2: Every other condition
-                        setErrorMsg("Error: Invalid Access Key. Please contact support.");
-                        triggerShake();
-                    }
-                }, 1500);
-            };
+    <!-- Main Container -->
+    <main class="z-10 w-full max-w-lg px-6 flex flex-col items-center text-center space-y-10 pb-10">
 
-            const triggerShake = () => {
-                setIsShaking(true);
-                setTimeout(() => setIsShaking(false), 400);
-            };
+        <!-- Header -->
+        <header class="animate-fade-in-down space-y-2">
+            <p class="text-red-500 tracking-[0.2em] text-sm uppercase font-bold">My Love, My Life</p>
+            <h1 class="romantic-font text-7xl text-gray-800 love-text-shadow text-[#c62828]">Golu</h1>
+        </header>
 
-            if (isLocked) {
-                return (
-                    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
-                        {/* Background Elements */}
-                        <div className="absolute top-0 left-0 w-full h-full opacity-20 z-0">
-                            <div className="absolute top-10 left-10 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow"></div>
-                            <div className="absolute bottom-10 right-10 w-64 h-64 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-                        </div>
-
-                        <div className={`z-10 w-full max-w-md p-8 glass-panel rounded-2xl shadow-2xl mx-4 ${isShaking ? 'shake' : ''}`}>
-                            <div className="text-center mb-8">
-                                <div className="inline-block p-4 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 mb-4 shadow-lg">
-                                    <i className="fa-brands fa-instagram text-4xl text-white"></i>
-                                </div>
-                                <h1 className="text-3xl font-bold mb-2">Followers India</h1>
-                                <p className="text-gray-400 text-sm">Restricted Access Portal</p>
-                            </div>
-
-                            <form onSubmit={handleUnlock} className="space-y-6">
-                                <div>
-                                    <label className="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Access Code</label>
-                                    <input 
-                                        type="text" 
-                                        value={accessCode}
-                                        onChange={(e) => setAccessCode(e.target.value)}
-                                        className="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all font-mono text-center text-lg tracking-widest uppercase"
-                                        placeholder="XXXX-XXXX"
-                                    />
-                                </div>
-
-                                {errorMsg && (
-                                    <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm p-3 rounded-lg flex items-center">
-                                        <i className="fa-solid fa-triangle-exclamation mr-2"></i>
-                                        {errorMsg}
-                                    </div>
-                                )}
-
-                                <button 
-                                    type="submit" 
-                                    disabled={loading}
-                                    className="w-full insta-gradient text-white font-bold py-3 px-4 rounded-lg shadow-lg transform transition hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center"
-                                >
-                                    {loading ? (
-                                        <i className="fa-solid fa-circle-notch fa-spin"></i>
-                                    ) : (
-                                        "Verify Access"
-                                    )}
-                                </button>
-                            </form>
-                            
-                            <div className="mt-6 text-center text-xs text-gray-600">
-                                Protected by SecureGate v4.2
-                            </div>
-                        </div>
+        <!-- The 3D Gift Box Experience -->
+        <div class="relative w-full h-64 flex items-center justify-center">
+            
+            <!-- The Gift Box -->
+            <div id="gift-box" class="gift-container" onclick="openGift()">
+                <div class="box" id="box-inner">
+                    <div class="box-lid">
+                         <div class="ribbon-vertical"></div>
+                         <div class="ribbon-horizontal"></div>
                     </div>
-                );
-            }
-
-            return <MainSite />;
-        }
-
-        // The actual website content (Hidden behind the gate)
-        function MainSite() {
-            const [activeTab, setActiveTab] = useState('followers');
-
-            const services = {
-                followers: [
-                    { amount: '100', price: '₹80', popular: false },
-                    { amount: '500', price: '₹250', popular: true },
-                    { amount: '1,000', price: '₹450', popular: false },
-                    { amount: '5,000', price: '₹1,800', popular: false },
-                ],
-                likes: [
-                    { amount: '500', price: '₹50', popular: false },
-                    { amount: '1,000', price: '₹90', popular: true },
-                    { amount: '5,000', price: '₹350', popular: false },
-                    { amount: '10,000', price: '₹600', popular: false },
-                ]
-            };
-
-            return (
-                <div className="min-h-screen bg-black text-white">
-                    {/* Navbar */}
-                    <nav className="border-b border-gray-800 bg-black/80 backdrop-blur-md sticky top-0 z-50">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="flex justify-between items-center h-16">
-                                <div className="flex items-center">
-                                    <span className="text-2xl font-bold text-gradient mr-2">Followers India</span>
-                                    <span className="bg-purple-900/30 text-purple-400 text-xs px-2 py-0.5 rounded border border-purple-500/30">PRO</span>
-                                </div>
-                                <div className="hidden md:flex space-x-8">
-                                    <a href="#" className="text-gray-300 hover:text-white transition">Services</a>
-                                    <a href="#" className="text-gray-300 hover:text-white transition">How it Works</a>
-                                    <a href="#" className="text-gray-300 hover:text-white transition">Support</a>
-                                </div>
-                                <button className="bg-white text-black px-4 py-2 rounded-full font-bold text-sm hover:bg-gray-200 transition">
-                                    Dashboard
-                                </button>
-                            </div>
-                        </div>
-                    </nav>
-
-                    {/* Hero Section */}
-                    <div className="relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-b from-purple-900/20 to-transparent"></div>
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative z-10 text-center">
-                            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
-                                Boost Your <span className="text-gradient">Influence</span>
-                            </h1>
-                            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-                                India's #1 trusted platform for authentic social media growth. Instant delivery, non-drop guarantee, and 24/7 support.
-                            </p>
-                            <div className="flex justify-center gap-4">
-                                <button className="insta-gradient px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-purple-500/30 transition transform hover:-translate-y-1">
-                                    Get Started
-                                </button>
-                                <button className="bg-gray-800 border border-gray-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-700 transition">
-                                    View Pricing
-                                </button>
-                            </div>
-                        </div>
+                    <div class="box-body">
+                        <div class="ribbon-vertical"></div>
+                        <div class="ribbon-horizontal"></div>
                     </div>
-
-                    {/* Stats */}
-                    <div className="border-y border-gray-800 bg-black/50">
-                        <div className="max-w-7xl mx-auto px-4 py-8 flex flex-wrap justify-around text-center">
-                            <div className="w-1/2 md:w-auto mb-6 md:mb-0">
-                                <div className="text-3xl font-bold text-white">1M+</div>
-                                <div className="text-gray-500 text-sm">Orders Completed</div>
-                            </div>
-                            <div className="w-1/2 md:w-auto mb-6 md:mb-0">
-                                <div className="text-3xl font-bold text-white">50k+</div>
-                                <div className="text-gray-500 text-sm">Happy Customers</div>
-                            </div>
-                            <div className="w-1/2 md:w-auto">
-                                <div className="text-3xl font-bold text-white">4.9/5</div>
-                                <div className="text-gray-500 text-sm">Average Rating</div>
-                            </div>
-                            <div className="w-1/2 md:w-auto">
-                                <div className="text-3xl font-bold text-white">24/7</div>
-                                <div className="text-gray-500 text-sm">Live Support</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Pricing Section */}
-                    <div className="max-w-7xl mx-auto px-4 py-20">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold mb-4">Choose Your Package</h2>
-                            <div className="inline-flex bg-gray-900 rounded-lg p-1 border border-gray-800">
-                                <button 
-                                    onClick={() => setActiveTab('followers')}
-                                    className={`px-6 py-2 rounded-md text-sm font-medium transition ${activeTab === 'followers' ? 'bg-gray-800 text-white shadow' : 'text-gray-400 hover:text-white'}`}
-                                >
-                                    Followers
-                                </button>
-                                <button 
-                                    onClick={() => setActiveTab('likes')}
-                                    className={`px-6 py-2 rounded-md text-sm font-medium transition ${activeTab === 'likes' ? 'bg-gray-800 text-white shadow' : 'text-gray-400 hover:text-white'}`}
-                                >
-                                    Likes
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {services[activeTab].map((pkg, idx) => (
-                                <div key={idx} className={`relative bg-gray-900/50 border ${pkg.popular ? 'border-purple-500' : 'border-gray-800'} rounded-2xl p-6 hover:bg-gray-800/50 transition duration-300 group`}>
-                                    {pkg.popular && (
-                                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-                                            Best Value
-                                        </div>
-                                    )}
-                                    <div className="text-center">
-                                        <div className="text-4xl font-bold mb-2">{pkg.amount}</div>
-                                        <div className="text-gray-400 text-sm mb-6">{activeTab === 'followers' ? 'Real Followers' : 'High Quality Likes'}</div>
-                                        <div className="text-3xl font-bold text-gradient mb-6">{pkg.price}</div>
-                                        
-                                        <ul className="text-sm text-gray-400 space-y-3 mb-8 text-left pl-4">
-                                            <li className="flex items-center"><i className="fa-solid fa-check text-green-500 mr-2"></i> Instant Start</li>
-                                            <li className="flex items-center"><i className="fa-solid fa-check text-green-500 mr-2"></i> Non-Drop Guaranteed</li>
-                                            <li className="flex items-center"><i className="fa-solid fa-check text-green-500 mr-2"></i> No Password Required</li>
-                                        </ul>
-
-                                        <button className={`w-full py-3 rounded-lg font-bold transition ${pkg.popular ? 'bg-white text-black hover:bg-gray-200' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>
-                                            Purchase Now
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Features Grid */}
-                    <div className="bg-gray-900/30 py-20">
-                        <div className="max-w-7xl mx-auto px-4">
-                            <h2 className="text-3xl font-bold text-center mb-16">Why Choose Followers India?</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-purple-500 text-2xl">
-                                        <i className="fa-solid fa-bolt"></i>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-3">Instant Delivery</h3>
-                                    <p className="text-gray-400">Our automated systems start processing your order immediately after payment.</p>
-                                </div>
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-500 text-2xl">
-                                        <i className="fa-solid fa-shield-halved"></i>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-3">100% Secure</h3>
-                                    <p className="text-gray-400">We never ask for your password. Your account safety is our top priority.</p>
-                                </div>
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-pink-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-pink-500 text-2xl">
-                                        <i className="fa-solid fa-headset"></i>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-3">24/7 Support</h3>
-                                    <p className="text-gray-400">Our dedicated team is always ready to help you with any questions.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Footer */}
-                    <footer className="border-t border-gray-800 py-10 mt-10">
-                        <div className="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
-                            <p className="mb-4">&copy; 2025 Followers India. All rights reserved.</p>
-                            <div className="space-x-4">
-                                <a href="#" className="hover:text-white">Privacy Policy</a>
-                                <a href="#" className="hover:text-white">Terms of Service</a>
-                                <a href="#" className="hover:text-white">Refund Policy</a>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
-            );
+                <div id="tap-hint" class="absolute -bottom-14 w-full flex flex-col items-center text-red-400/80 animate-bounce">
+                    <span class="text-xs tracking-widest uppercase mb-1">Open My Heart</span>
+                    <span class="text-2xl">❤️</span>
+                </div>
+            </div>
+
+            <!-- The Hidden Message Card (Revealed on Click) -->
+            <div id="message-card" class="message-card absolute inset-0 glass-panel p-8 flex flex-col items-center justify-center z-20 hidden">
+                <div class="absolute -top-6 bg-red-500 text-white p-3 rounded-full shadow-lg pulse-heart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <h2 class="elegant-font text-3xl text-red-600 mb-4">Happy New Year!</h2>
+                <p class="text-gray-700 leading-relaxed text-lg italic font-medium">
+                    "Every moment with you is a gift. Here's to another year of loving you, holding you, and making memories together. You are my forever."
+                </p>
+                <div class="mt-6 text-red-500 text-xl font-bold tracking-wider">I Love You</div>
+            </div>
+        </div>
+
+        <!-- Flip Cards Grid -->
+        <div class="w-full grid grid-cols-3 gap-3 opacity-0 translate-y-4 transition-all duration-1000 delay-500" id="wishes-grid">
+            <!-- Card 1 -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="text-3xl mb-1">🥰</span>
+                        <span class="font-bold text-sm uppercase tracking-wide text-red-400">Smiles</span>
+                    </div>
+                    <div class="flip-card-back p-2">
+                        <p class="text-xs font-medium">Your smile is the only sunrise I need.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="text-3xl mb-1">💍</span>
+                        <span class="font-bold text-sm uppercase tracking-wide text-red-400">Promise</span>
+                    </div>
+                    <div class="flip-card-back p-2">
+                        <p class="text-xs font-medium">To always be by your side, no matter what.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="text-3xl mb-1">🌹</span>
+                        <span class="font-bold text-sm uppercase tracking-wide text-red-400">Passion</span>
+                    </div>
+                    <div class="flip-card-back p-2">
+                        <p class="text-xs font-medium">Falling for you more every single day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="border-t border-red-200 pt-6 w-full opacity-80">
+            <p class="text-xs uppercase tracking-widest text-red-400 mb-2">Our Next Chapter Begins In</p>
+            <div class="flex justify-center gap-6 font-mono text-xl text-red-600" id="countdown">
+                <!-- JS will fill this -->
+            </div>
+        </div>
+
+        <!-- GAMES SECTION (Hidden initially) -->
+        <div id="games-container" class="games-section w-full flex flex-col items-center space-y-6">
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-red-300 to-transparent my-4"></div>
+            <h3 class="romantic-font text-5xl text-red-500 drop-shadow-sm">Playful Moments</h3>
+
+            <!-- Game 1: Fill the Heart -->
+            <div class="glass-panel p-6 w-full text-center">
+                <h4 class="elegant-font text-xl text-gray-700 mb-2">Fill My Heart</h4>
+                <p class="text-xs text-red-400 mb-4 uppercase tracking-widest">Tap fast to send love!</p>
+                
+                <div class="crystal-heart-container mb-4">
+                     <svg viewBox="0 0 100 100" class="w-full h-full">
+                         <mask id="game-heart-mask">
+                             <path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 34.2 0L50 20.5l-0.9 0.9 34.2-34.2c9.5-9.5 24.7-9.5 34.2 0s9.5 24.7 0 34.2L50 88.9z" fill="white"/>
+                         </mask>
+                         <rect x="0" y="0" width="100" height="100" fill="rgba(255,255,255,0.3)" mask="url(#game-heart-mask)" />
+                         <rect id="heart-fill-rect" x="0" y="100" width="100" height="100" fill="#d32f2f" mask="url(#game-heart-mask)" class="liquid-fill" />
+                     </svg>
+                     <div id="heart-percent" class="absolute inset-0 flex items-center justify-center font-bold text-white text-lg drop-shadow-md">0%</div>
+                </div>
+                <button id="fill-btn" onclick="fillHeartGame()" class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white px-8 py-3 rounded-full shadow-lg transition transform active:scale-95 font-bold">
+                    Tap Me! ❤️
+                </button>
+            </div>
+
+            <!-- Game 2: Kiss Catcher -->
+            <div class="glass-panel p-6 w-full text-center relative overflow-hidden flex flex-col justify-center" style="height: 250px;">
+                <h4 class="elegant-font text-xl text-gray-700 mb-1 z-10 relative">Catch the Kisses</h4>
+                <p id="kiss-instruction" class="text-xs text-red-400 mb-4 uppercase tracking-widest z-10 relative">Catch 10 kisses to win!</p>
+                
+                <!-- Game Area -->
+                <div id="kiss-game-area" class="absolute inset-0 z-0"></div>
+                
+                <div class="relative z-10">
+                    <div id="kiss-score" class="text-4xl font-bold text-red-600 mb-4 hidden">0 / 10</div>
+                    <div id="kiss-win-msg" class="text-2xl font-bold text-green-600 mb-4 hidden animate-bounce">You Won! 🏆</div>
+                    <button id="start-kiss-btn" onclick="startKissGame()" class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white px-8 py-3 rounded-full shadow-lg transition transform active:scale-95 font-bold">
+                        Start Game 💋
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- 1. FLOATING HEARTS BACKGROUND ---
+        function createParticles() {
+            const container = document.getElementById('particle-container');
+            const count = 20;
+            const colors = ['#ffccd5', '#ffb7b2', '#ff9aa2', '#e2f0cb']; 
+            
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.classList.add('heart-particle');
+                p.innerHTML = '❤';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                p.style.color = colors[Math.floor(Math.random() * colors.length)];
+                p.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // --- 2. GIFT BOX LOGIC ---
+        let isOpen = false;
+        function openGift() {
+            if (isOpen) return;
+            isOpen = true;
+
+            const music = document.getElementById('bg-music');
+            music.volume = 0.4;
+            music.play().catch(e => console.log("Audio requires interaction first"));
+
+            const box = document.getElementById('box-inner');
+            const hint = document.getElementById('tap-hint');
+            const message = document.getElementById('message-card');
+            const grid = document.getElementById('wishes-grid');
+            const games = document.getElementById('games-container');
+
+            // Animate Box
+            box.classList.add('open');
+            hint.style.display = 'none';
+
+            // Explosion of Hearts
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff0000', '#ff69b4', '#ffffff'],
+                shapes: ['circle'],
+                disableForReducedMotion: true
+            });
+
+            // Show Message after delay
+            setTimeout(() => {
+                message.classList.remove('hidden');
+                void message.offsetWidth; 
+                message.classList.add('visible');
+                
+                // Fade in wishes grid
+                grid.classList.remove('opacity-0', 'translate-y-4');
+                
+                // Show Games Section
+                games.classList.add('visible');
+
+                // Auto Scroll slightly to show there is more content
+                setTimeout(() => {
+                    games.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 2000);
+                
+                // Second wave of confetti
+                setTimeout(() => {
+                    const scalar = 2;
+                    if (typeof confetti.shapeFromText === 'function') {
+                        const heart = confetti.shapeFromText({ text: '❤️', scalar });
+                        confetti({ particleCount: 30, spread: 55, origin: { x: 0 }, shapes: [heart], scalar });
+                        confetti({ particleCount: 30, spread: 55, origin: { x: 1 }, shapes: [heart], scalar });
+                    } else {
+                        confetti({ particleCount: 40, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ff69b4'], scalar });
+                        confetti({ particleCount: 40, spread: 55, origin: { x: 1 }, colors: ['#ff0000', '#ff69b4'], scalar });
+                    }
+                }, 500);
+
+            }, 800);
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        // --- 3. GAME 1: FILL HEART ---
+        let loveLevel = 0;
+        function fillHeartGame() {
+            if (loveLevel >= 100) return;
+
+            loveLevel += 10;
+            if (loveLevel > 100) loveLevel = 100;
+
+            const rect = document.getElementById('heart-fill-rect');
+            const text = document.getElementById('heart-percent');
+            
+            // Y moves from 100 down to 0
+            rect.setAttribute('y', 100 - loveLevel);
+            text.innerText = loveLevel + "%";
+
+            if (loveLevel === 100) {
+                text.innerText = "FULL!";
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.7 },
+                    colors: ['#d32f2f', '#ff4081']
+                });
+                
+                // Reset after delay
+                setTimeout(() => {
+                    loveLevel = 0;
+                    rect.setAttribute('y', 100);
+                    text.innerText = "0%";
+                }, 3000);
+            }
+        }
+
+        // --- 4. GAME 2: KISS CATCHER ---
+        let kissScore = 0;
+        let gameActive = false;
+        let gameInterval;
+
+        function startKissGame() {
+            if (gameActive) return;
+            gameActive = true;
+            kissScore = 0;
+            
+            document.getElementById('start-kiss-btn').classList.add('hidden');
+            document.getElementById('kiss-win-msg').classList.add('hidden');
+            document.getElementById('kiss-score').innerText = "0 / 10";
+            document.getElementById('kiss-score').classList.remove('hidden');
+
+            gameInterval = setInterval(spawnKiss, 600);
+        }
+
+        function spawnKiss() {
+            if (kissScore >= 10) return;
+
+            const gameArea = document.getElementById('kiss-game-area');
+            const kiss = document.createElement('div');
+            kiss.innerText = '💋';
+            kiss.classList.add('kiss-target');
+            
+            // Random position
+            const xPos = Math.random() * 80 + 10; // 10% to 90%
+            kiss.style.left = xPos + '%';
+            
+            // Click Event
+            kiss.onclick = function() {
+                if (!gameActive) return;
+                this.remove();
+                kissScore++;
+                document.getElementById('kiss-score').innerText = kissScore + " / 10";
+                
+                // Win Condition
+                if (kissScore >= 10) {
+                    endGame(true);
+                }
+            };
+            
+            // Cleanup if missed
+            kiss.onanimationend = function() {
+                this.remove();
+            };
+
+            gameArea.appendChild(kiss);
+        }
+
+        function endGame(won) {
+            gameActive = false;
+            clearInterval(gameInterval);
+            
+            // Clear remaining kisses
+            const gameArea = document.getElementById('kiss-game-area');
+            gameArea.innerHTML = '';
+
+            if (won) {
+                document.getElementById('kiss-score').classList.add('hidden');
+                document.getElementById('kiss-win-msg').classList.remove('hidden');
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.8 },
+                    colors: ['#ff0000', '#ffffff']
+                });
+                
+                setTimeout(() => {
+                    document.getElementById('kiss-win-msg').classList.add('hidden');
+                    document.getElementById('start-kiss-btn').innerText = "Play Again 💋";
+                    document.getElementById('start-kiss-btn').classList.remove('hidden');
+                }, 3000);
+            }
+        }
+
+        // --- 5. COUNTDOWN LOGIC ---
+        function updateCountdown() {
+            const now = new Date();
+            let target = new Date('January 1, 2026 00:00:00');
+            if (now > target) {
+                target = new Date();
+                target.setHours(24, 0, 0, 0); 
+            }
+            const diff = target - now;
+            
+            const h = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+            const m = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+            const s = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+            document.getElementById('countdown').innerHTML = 
+                `<span>${h}<span class="text-xs ml-1">H</span></span>
+                 <span>${m}<span class="text-xs ml-1">M</span></span>
+                 <span>${s}<span class="text-xs ml-1">S</span></span>`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 6. MUSIC TOGGLE ---
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            if (music.paused) {
+                music.play();
+                icon.innerText = "🎵";
+                icon.parentElement.classList.remove('opacity-50');
+            } else {
+                music.pause();
+                icon.innerText = "🔇";
+                icon.parentElement.classList.add('opacity-50');
+            }
+        }
     </script>
 </body>
 </html>
