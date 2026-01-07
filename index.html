@@ -3,615 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy New Year Golu</title>
+    <title>Vortex SMM | Professional Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Lato', sans-serif;
-            background: linear-gradient(135deg, #fff0f5 0%, #ffc1cc 100%);
-            color: #5d3a3a;
-            overflow-x: hidden;
-            min-height: 100vh; /* Allow scrolling */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #09090b;
         }
-
-        .romantic-font {
-            font-family: 'Great Vibes', cursive;
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
         }
-        
-        .elegant-font {
-            font-family: 'Playfair Display', serif;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #09090b;
         }
-
-        /* Floating Hearts Particles */
-        .heart-particle {
-            position: absolute;
-            color: rgba(220, 20, 60, 0.4);
-            font-size: 20px;
-            animation: floatUp 8s infinite ease-in;
-            user-select: none;
-            z-index: 0;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.5) rotate(20deg); opacity: 0; }
+        .tab-content {
+            display: none;
         }
-
-        /* Glass Card - Romantic Version */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 182, 193, 0.5);
-            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.15);
-            border-radius: 24px;
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
         }
-
-        /* 3D Gift Box Animation */
-        .gift-container {
-            perspective: 1000px;
-            cursor: pointer;
-            z-index: 20;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .box {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            transform-style: preserve-3d;
-            transition: transform 1s;
-        }
-        .box-body {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #d32f2f, #b71c1c); /* Deep Red */
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .box-lid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: #e53935; /* Lighter Red */
-            border: 1px solid #b71c1c;
-            transform: translateZ(1px) translateY(-50%);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 10;
-            border-radius: 8px;
-        }
-        /* Ribbon */
-        .ribbon-vertical {
-            position: absolute;
-            width: 25px;
-            height: 100%;
-            background: linear-gradient(to right, #ffd700, #fdb931); /* Gold */
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-        .ribbon-horizontal {
-            position: absolute;
-            height: 25px;
-            width: 100%;
-            background: linear-gradient(to bottom, #ffd700, #fdb931); /* Gold */
-            top: 50%;
-            transform: translateY(-50%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-
-        /* Open State */
-        .box.open .box-lid {
-            transform: translateY(-180px) rotateX(40deg) rotateZ(10deg);
-            opacity: 0;
-        }
-        .box.open {
-            transform: translateY(20px);
-        }
-        .box.open .box-body {
-            opacity: 0;
-            transition: opacity 0.5s 0.3s;
-        }
-
-        /* Message Card Pop-up */
-        .message-card {
-            transform: scale(0.5);
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .message-card.visible {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        /* Flip Cards for Wishes */
-        .flip-card {
-            background-color: transparent;
-            width: 100%;
-            height: 120px;
-            perspective: 1000px;
-        }
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-        .flip-card:hover .flip-card-inner, .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            box-shadow: 0 8px 16px rgba(255, 105, 180, 0.15);
-        }
-        .flip-card-front {
-            background-color: white;
-            color: #d32f2f;
-            border: 1px solid #ffc1cc;
-        }
-        .flip-card-back {
-            background: linear-gradient(135deg, #ff4081, #c51162);
-            color: white;
-            transform: rotateY(180deg);
-        }
-
-        .love-text-shadow {
-            text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.2);
-        }
-        
-        .pulse-heart {
-            animation: heartbeat 1.5s infinite;
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.1); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.1); }
-            70% { transform: scale(1); }
-        }
-
-        /* GAME STYLES */
-        .games-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease;
-            max-height: 0;
-            overflow: hidden;
-        }
-        .games-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-            max-height: 1000px; /* Allow expansion */
-            padding-bottom: 50px;
-        }
-
-        .crystal-heart-container {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-            filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.3));
-        }
-        .liquid-fill {
-            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .kiss-target {
-            position: absolute;
-            font-size: 2.5rem;
-            cursor: pointer;
-            animation: floatUpGame 4s linear forwards;
-            user-select: none;
-            z-index: 50;
-        }
-        @keyframes floatUpGame {
-            0% { transform: translateY(150px) scale(0.5); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
+        .bg-grid {
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
         }
     </style>
 </head>
-<body class="flex flex-col items-center min-h-screen relative pt-10">
-
-    <!-- Audio -->
-    <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mp3">
-    </audio>
-
-    <!-- Background Particles -->
-    <div id="particle-container" class="absolute inset-0 pointer-events-none overflow-hidden h-full fixed"></div>
-
-    <!-- Music Toggle -->
-    <button onclick="toggleMusic()" class="fixed top-6 right-6 z-50 text-pink-600 bg-white/60 backdrop-blur rounded-full p-3 hover:bg-white transition shadow-sm border border-pink-200">
-        <span id="music-icon">🎵</span>
-    </button>
-
-    <!-- Main Container -->
-    <main class="z-10 w-full max-w-lg px-6 flex flex-col items-center text-center space-y-10 pb-10">
-
-        <!-- Header -->
-        <header class="animate-fade-in-down space-y-2">
-            <p class="text-red-500 tracking-[0.2em] text-sm uppercase font-bold">My Love, My Life</p>
-            <h1 class="romantic-font text-7xl text-gray-800 love-text-shadow text-[#c62828]">Golu</h1>
-        </header>
-
-        <!-- The 3D Gift Box Experience -->
-        <div class="relative w-full h-64 flex items-center justify-center">
-            
-            <!-- The Gift Box -->
-            <div id="gift-box" class="gift-container" onclick="openGift()">
-                <div class="box" id="box-inner">
-                    <div class="box-lid">
-                         <div class="ribbon-vertical"></div>
-                         <div class="ribbon-horizontal"></div>
-                    </div>
-                    <div class="box-body">
-                        <div class="ribbon-vertical"></div>
-                        <div class="ribbon-horizontal"></div>
-                    </div>
+<body class="text-zinc-300 overflow-hidden">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 border-r border-zinc-800/50 p-4 flex flex-col gap-6 bg-[#09090b]">
+            <div class="flex items-center gap-2.5 px-3 py-4">
+                <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg shadow-indigo-600/20">
+                    <i data-lucide="shopping-cart" class="text-white w-5 h-5"></i>
                 </div>
-                <div id="tap-hint" class="absolute -bottom-14 w-full flex flex-col items-center text-red-400/80 animate-bounce">
-                    <span class="text-xs tracking-widest uppercase mb-1">Open My Heart</span>
-                    <span class="text-2xl">❤️</span>
+                <div>
+                    <span class="text-lg font-bold tracking-tight text-white block leading-none">VORTEX<span class="text-indigo-500">SMM</span></span>
+                    <span class="text-[10px] text-zinc-500 font-medium tracking-widest uppercase">Premium Marketing</span>
                 </div>
             </div>
 
-            <!-- The Hidden Message Card (Revealed on Click) -->
-            <div id="message-card" class="message-card absolute inset-0 glass-panel p-8 flex flex-col items-center justify-center z-20 hidden">
-                <div class="absolute -top-6 bg-red-500 text-white p-3 rounded-full shadow-lg pulse-heart">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <h2 class="elegant-font text-3xl text-red-600 mb-4">Happy New Year!</h2>
-                <p class="text-gray-700 leading-relaxed text-lg italic font-medium">
-                    "Every moment with you is a gift. Here's to another year of loving you, holding you, and making memories together. You are my forever."
-                </p>
-                <div class="mt-6 text-red-500 text-xl font-bold tracking-wider">I Love You</div>
-            </div>
-        </div>
-
-        <!-- Flip Cards Grid -->
-        <div class="w-full grid grid-cols-3 gap-3 opacity-0 translate-y-4 transition-all duration-1000 delay-500" id="wishes-grid">
-            <!-- Card 1 -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <span class="text-3xl mb-1">🥰</span>
-                        <span class="font-bold text-sm uppercase tracking-wide text-red-400">Smiles</span>
-                    </div>
-                    <div class="flip-card-back p-2">
-                        <p class="text-xs font-medium">Your smile is the only sunrise I need.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <span class="text-3xl mb-1">💍</span>
-                        <span class="font-bold text-sm uppercase tracking-wide text-red-400">Promise</span>
-                    </div>
-                    <div class="flip-card-back p-2">
-                        <p class="text-xs font-medium">To always be by your side, no matter what.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <span class="text-3xl mb-1">🌹</span>
-                        <span class="font-bold text-sm uppercase tracking-wide text-red-400">Passion</span>
-                    </div>
-                    <div class="flip-card-back p-2">
-                        <p class="text-xs font-medium">Falling for you more every single day.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Countdown -->
-        <div class="border-t border-red-200 pt-6 w-full opacity-80">
-            <p class="text-xs uppercase tracking-widest text-red-400 mb-2">Our Next Chapter Begins In</p>
-            <div class="flex justify-center gap-6 font-mono text-xl text-red-600" id="countdown">
-                <!-- JS will fill this -->
-            </div>
-        </div>
-
-        <!-- GAMES SECTION (Hidden initially) -->
-        <div id="games-container" class="games-section w-full flex flex-col items-center space-y-6">
-            <div class="w-full h-px bg-gradient-to-r from-transparent via-red-300 to-transparent my-4"></div>
-            <h3 class="romantic-font text-5xl text-red-500 drop-shadow-sm">Playful Moments</h3>
-
-            <!-- Game 1: Fill the Heart -->
-            <div class="glass-panel p-6 w-full text-center">
-                <h4 class="elegant-font text-xl text-gray-700 mb-2">Fill My Heart</h4>
-                <p class="text-xs text-red-400 mb-4 uppercase tracking-widest">Tap fast to send love!</p>
+            <nav class="flex-1 flex flex-col gap-1 overflow-y-auto custom-scrollbar" id="sidebar-nav">
+                <p class="text-[10px] uppercase tracking-widest text-zinc-600 font-bold mb-2 px-3 mt-2">Main Navigation</p>
                 
-                <div class="crystal-heart-container mb-4">
-                     <svg viewBox="0 0 100 100" class="w-full h-full">
-                         <mask id="game-heart-mask">
-                             <path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 34.2 0L50 20.5l-0.9 0.9 34.2-34.2c9.5-9.5 24.7-9.5 34.2 0s9.5 24.7 0 34.2L50 88.9z" fill="white"/>
-                         </mask>
-                         <rect x="0" y="0" width="100" height="100" fill="rgba(255,255,255,0.3)" mask="url(#game-heart-mask)" />
-                         <rect id="heart-fill-rect" x="0" y="100" width="100" height="100" fill="#d32f2f" mask="url(#game-heart-mask)" class="liquid-fill" />
-                     </svg>
-                     <div id="heart-percent" class="absolute inset-0 flex items-center justify-center font-bold text-white text-lg drop-shadow-md">0%</div>
+                <button data-tab="dash" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300">
+                    <i data-lucide="layout-dashboard" class="w-[18px] h-[18px]"></i>
+                    <span class="font-medium text-sm">Dashboard</span>
+                </button>
+                
+                <button data-tab="new" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300">
+                    <i data-lucide="plus-circle" class="w-[18px] h-[18px]"></i>
+                    <span class="font-medium text-sm">New Order</span>
+                </button>
+
+                <button data-tab="orders" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 bg-indigo-600/10 text-indigo-400 border border-indigo-500/20 shadow-[0_0_15px_rgba(79,70,229,0.1)]">
+                    <i data-lucide="list-ordered" class="w-[18px] h-[18px] text-indigo-400"></i>
+                    <span class="font-medium text-sm">Orders</span>
+                </button>
+
+                <button data-tab="funds" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300">
+                    <i data-lucide="wallet" class="w-[18px] h-[18px]"></i>
+                    <span class="font-medium text-sm">Add Funds</span>
+                </button>
+
+                <button data-tab="support" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300">
+                    <i data-lucide="life-buoy" class="w-[18px] h-[18px]"></i>
+                    <span class="font-medium text-sm">Support</span>
+                </button>
+
+                <button data-tab="services" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300">
+                    <i data-lucide="help-circle" class="w-[18px] h-[18px]"></i>
+                    <span class="font-medium text-sm">Services List</span>
+                </button>
+                
+                <p class="text-[10px] uppercase tracking-widest text-zinc-600 font-bold mb-2 px-3 mt-6">Settings</p>
+                <button data-tab="settings" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300">
+                    <i data-lucide="settings" class="w-[18px] h-[18px]"></i>
+                    <span class="font-medium text-sm">Account Settings</span>
+                </button>
+            </nav>
+
+            <div class="flex flex-col gap-3">
+                <div class="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 p-4 rounded-xl border border-zinc-800/80">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Total Balance</span>
+                        <i data-lucide="wallet" class="text-indigo-500 w-3 h-3"></i>
+                    </div>
+                    <div class="text-lg font-bold text-white">₹4,520.50</div>
+                    <button class="mt-2 w-full text-[10px] font-bold text-indigo-400 hover:text-indigo-300 py-1 border border-indigo-500/20 rounded bg-indigo-500/5 transition-all">Top Up</button>
                 </div>
-                <button id="fill-btn" onclick="fillHeartGame()" class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white px-8 py-3 rounded-full shadow-lg transition transform active:scale-95 font-bold">
-                    Tap Me! ❤️
+                
+                <button class="flex items-center gap-3 px-3 py-2 text-zinc-500 hover:text-red-400 transition-colors text-sm font-medium mb-2">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                    Logout
                 </button>
             </div>
+        </aside>
 
-            <!-- Game 2: Kiss Catcher -->
-            <div class="glass-panel p-6 w-full text-center relative overflow-hidden flex flex-col justify-center" style="height: 250px;">
-                <h4 class="elegant-font text-xl text-gray-700 mb-1 z-10 relative">Catch the Kisses</h4>
-                <p id="kiss-instruction" class="text-xs text-red-400 mb-4 uppercase tracking-widest z-10 relative">Catch 10 kisses to win!</p>
-                
-                <!-- Game Area -->
-                <div id="kiss-game-area" class="absolute inset-0 z-0"></div>
-                
-                <div class="relative z-10">
-                    <div id="kiss-score" class="text-4xl font-bold text-red-600 mb-4 hidden">0 / 10</div>
-                    <div id="kiss-win-msg" class="text-2xl font-bold text-green-600 mb-4 hidden animate-bounce">You Won! 🏆</div>
-                    <button id="start-kiss-btn" onclick="startKissGame()" class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white px-8 py-3 rounded-full shadow-lg transition transform active:scale-95 font-bold">
-                        Start Game 💋
-                    </button>
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col relative overflow-hidden">
+            <!-- Header -->
+            <header class="h-16 border-b border-zinc-800/50 bg-[#09090b]/80 backdrop-blur-md px-8 flex items-center justify-between z-10 shrink-0">
+                <div class="flex items-center gap-4">
+                    <h2 id="current-tab-title" class="text-sm font-semibold text-zinc-400 capitalize">Orders</h2>
+                    <div class="h-4 w-px bg-zinc-800"></div>
+                    <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
+                        Server Status: <span class="text-emerald-500">Normal</span>
+                    </div>
                 </div>
-            </div>
-        </div>
+                
+                <div class="flex items-center gap-5">
+                    <div class="flex items-center gap-2 bg-zinc-900/50 border border-zinc-800/50 px-3 py-1.5 rounded-lg">
+                        <i data-lucide="search" class="text-zinc-500 w-3.5 h-3.5"></i>
+                        <input type="text" placeholder="Search orders..." class="bg-transparent text-xs outline-none w-32 placeholder:text-zinc-600">
+                    </div>
+                    <div class="relative cursor-pointer">
+                        <i data-lucide="bell" class="text-zinc-500 hover:text-zinc-200 w-4.5 h-4.5"></i>
+                        <span class="absolute -top-1 -right-1 w-1.5 h-1.5 bg-indigo-500 rounded-full border-2 border-[#09090b]"></span>
+                    </div>
+                    <div class="h-8 w-px bg-zinc-800"></div>
+                    <div class="flex items-center gap-2.5 bg-zinc-900/40 p-1 pr-3 rounded-full border border-zinc-800/50">
+                        <div class="h-7 w-7 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-zinc-700">AS</div>
+                        <span class="text-xs font-bold text-zinc-300">Aryan</span>
+                    </div>
+                </div>
+            </header>
 
-    </main>
+            <!-- Dynamic Views -->
+            <div class="p-8 overflow-y-auto flex-1 bg-grid custom-scrollbar">
+                
+                <!-- Dashboard View -->
+                <div id="dash-tab" class="tab-content max-w-6xl mx-auto space-y-6">
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Account Overview</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-zinc-900/40 p-5 rounded-xl border border-zinc-800/50">
+                            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">Total Orders</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">142</h3>
+                            <p class="text-[10px] text-zinc-600 font-medium mt-1">+12 this week</p>
+                        </div>
+                        <div class="bg-zinc-900/40 p-5 rounded-xl border border-zinc-800/50">
+                            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">Pending Orders</p>
+                            <h3 class="text-2xl font-bold text-amber-500 mt-1">01</h3>
+                            <p class="text-[10px] text-zinc-600 font-medium mt-1">Action required</p>
+                        </div>
+                        <div class="bg-zinc-900/40 p-5 rounded-xl border border-zinc-800/50">
+                            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">Total Spent</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">₹24,500</h3>
+                            <p class="text-[10px] text-zinc-600 font-medium mt-1">Lifetime value</p>
+                        </div>
+                        <div class="bg-zinc-900/40 p-5 rounded-xl border border-zinc-800/50">
+                            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">Open Tickets</p>
+                            <h3 class="text-2xl font-bold text-indigo-400 mt-1">01</h3>
+                            <p class="text-[10px] text-zinc-600 font-medium mt-1">Awaiting reply</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders View (Default) -->
+                <div id="orders-tab" class="tab-content active max-w-6xl mx-auto space-y-6">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h1 class="text-2xl font-bold text-white tracking-tight">Orders History</h1>
+                            <p class="text-zinc-500 text-xs mt-1">Review and manage your marketing campaign progress.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="flex items-center gap-2 px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-xs font-bold text-zinc-400 hover:text-white transition-all">
+                                <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
+                            </button>
+                            <button class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 transition-all active:scale-95">
+                                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh Status
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 p-1 bg-zinc-900/50 rounded-lg border border-zinc-800/50 w-fit">
+                        <button class="px-4 py-1.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-zinc-800 text-white shadow-sm">All</button>
+                        <button class="px-4 py-1.5 rounded-md text-[10px] font-black uppercase tracking-wider text-zinc-500 hover:text-zinc-300">Pending</button>
+                        <button class="px-4 py-1.5 rounded-md text-[10px] font-black uppercase tracking-wider text-zinc-500 hover:text-zinc-300">In Progress</button>
+                        <button class="px-4 py-1.5 rounded-md text-[10px] font-black uppercase tracking-wider text-zinc-500 hover:text-zinc-300">Completed</button>
+                    </div>
+
+                    <div class="bg-[#09090b] border border-zinc-800/60 rounded-xl overflow-hidden shadow-2xl">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-zinc-900/30 text-zinc-500 text-[10px] uppercase font-bold tracking-widest border-b border-zinc-800/50">
+                                    <th className="px-6 py-4">ID</th>
+                                    <th className="px-6 py-4">Date & Time</th>
+                                    <th className="px-6 py-4">Service Details</th>
+                                    <th className="px-6 py-4">Charge</th>
+                                    <th className="px-6 py-4">Status</th>
+                                    <th className="px-6 py-4 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-800/30">
+                                <!-- The Specific Order Requested -->
+                                <tr class="bg-indigo-500/[0.02] hover:bg-indigo-500/[0.04] transition-colors group">
+                                    <td class="px-6 py-5">
+                                        <span class="text-xs font-mono font-bold text-indigo-400">ORD-992147</span>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span class="text-[11px] text-zinc-500 block leading-none">Jan 07, 2026</span>
+                                        <span class="text-[10px] text-zinc-600 block mt-1">10:15 AM</span>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="max-w-md">
+                                            <div class="flex items-center gap-2 mb-1">
+                                                <i data-lucide="youtube" class="text-red-500 w-3.5 h-3.5"></i>
+                                                <p class="text-xs font-bold text-zinc-200 line-clamp-1">Youtube Subscribers [Refill: 30D] [Max: 100K] [Start Time: 0 - 3 Hrs] [Speed: Up to 100/D] 💧⛔</p>
+                                            </div>
+                                            <div class="flex items-center gap-2 text-[10px]">
+                                                <span class="bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">Qty: 500</span>
+                                                <span class="text-indigo-500 flex items-center gap-1 hover:underline cursor-pointer truncate max-w-[200px]">
+                                                    https://www.youtube.com/@Biharboardrankers <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span class="text-xs font-bold text-white">₹1,057.00</span>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20 w-fit">
+                                            <i data-lucide="clock" class="w-2.5 h-2.5 animate-pulse"></i>
+                                            <span class="text-[9px] font-black uppercase tracking-tighter">Pending</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex justify-center gap-2">
+                                            <button onclick="switchTab('support')" class="p-1.5 rounded-md hover:bg-zinc-800 text-zinc-500 hover:text-zinc-200 transition-all">
+                                                <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Placeholder Mock Row -->
+                                <tr class="hover:bg-zinc-800/20 transition-colors">
+                                    <td class="px-6 py-5 text-xs font-mono font-medium text-zinc-500">ORD-991204</td>
+                                    <td class="px-6 py-5 text-[11px] text-zinc-600">Jan 05, 2026 09:15 AM</td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-xs text-zinc-400 line-clamp-1">Instagram Premium Followers Pack [Instant Start]</p>
+                                        <span class="text-[10px] text-zinc-600">https://instagram.com/user_profile</span>
+                                    </td>
+                                    <td class="px-6 py-5 text-xs text-zinc-400 font-medium">₹145.20</td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 border border-emerald-500/10 w-fit">
+                                            <i data-lucide="check-circle-2" class="w-2.5 h-2.5"></i>
+                                            <span class="text-[9px] font-black uppercase tracking-tighter">Completed</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5 text-center text-zinc-700">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Support View -->
+                <div id="support-tab" class="tab-content max-w-4xl mx-auto space-y-6">
+                    <div class="flex justify-between items-end mb-8">
+                        <div>
+                            <h1 class="text-2xl font-bold text-white tracking-tight">Support Center</h1>
+                            <p class="text-zinc-500 text-xs mt-1">Direct communication with our technical support team.</p>
+                        </div>
+                        <button class="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-500 shadow-xl shadow-indigo-600/20 flex items-center gap-2">
+                            <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> Create New Ticket
+                        </button>
+                    </div>
+
+                    <div class="bg-[#0c0c0e] border border-zinc-800/80 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="px-6 py-4 bg-zinc-900/50 border-b border-zinc-800 flex justify-between items-center">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-amber-500/20 p-2 rounded-lg">
+                                    <i data-lucide="message-square" class="text-amber-500 w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-zinc-200">Order Status Update Request</h3>
+                                    <p class="text-[10px] font-mono text-zinc-500">#TCK-8812 • Order: ORD-992147</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-[9px] font-black border border-indigo-500/20 uppercase tracking-widest">High Priority</span>
+                                <span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 text-[9px] font-black border border-amber-500/20 uppercase tracking-widest">Open</span>
+                            </div>
+                        </div>
+
+                        <div class="p-8 space-y-8" id="chat-messages">
+                            <!-- User Message -->
+                            <div class="flex gap-4">
+                                <div class="h-10 w-10 shrink-0 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400">
+                                    <i data-lucide="user" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="text-xs font-bold text-zinc-200">Aryan Sharma</span>
+                                        <span class="text-[10px] text-zinc-600 uppercase font-black tracking-tighter">JAN 07 • 11:30</span>
+                                    </div>
+                                    <div class="bg-zinc-900/80 p-5 rounded-2xl rounded-tl-none border border-zinc-800 text-sm text-zinc-300 leading-relaxed shadow-lg">
+                                        I've placed the order ORD-992147 for Youtube Subscribers (₹1057), but the status is still showing as pending. Could you please check the estimated start time for this service? The quantity is 500.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Admin Message -->
+                            <div class="flex gap-4 flex-row-reverse">
+                                <div class="h-10 w-10 shrink-0 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
+                                    <i data-lucide="life-buoy" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 text-right">
+                                    <div class="flex items-center gap-2 mb-2 justify-end">
+                                        <span class="text-[10px] text-zinc-600 uppercase font-black tracking-tighter">JAN 07 • 11:42</span>
+                                        <span class="text-xs font-bold text-indigo-400">Support Specialist (Alex)</span>
+                                    </div>
+                                    <div class="bg-indigo-600/10 p-5 rounded-2xl rounded-tr-none border border-indigo-500/20 text-sm text-zinc-300 leading-relaxed shadow-lg inline-block max-w-lg text-left">
+                                        Hello Aryan, thank you for reaching out. I've personally checked order <span class="text-indigo-400 font-mono">ORD-992147</span>. 
+                                        The YouTube Subscriber server is currently in a "Warm-up" phase which is normal for high-retention services like this.
+                                        <br /><br />
+                                        The start time for this service is usually 0-3 hours as mentioned in the description. Your order is safely in the queue and will start being delivered shortly.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-zinc-900/30 border-t border-zinc-800 flex gap-3">
+                            <div class="flex-1 relative">
+                                <input id="ticket-input" type="text" placeholder="Type your reply here..." class="w-full bg-zinc-950 border border-zinc-800/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-all placeholder:text-zinc-700">
+                            </div>
+                            <button onclick="sendReply()" class="bg-zinc-800 hover:bg-zinc-700 px-6 py-3 rounded-xl text-xs font-bold text-zinc-300 transition-all active:scale-95">Send Reply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services List View -->
+                <div id="services-tab" class="tab-content max-w-6xl mx-auto space-y-6">
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Available Services</h1>
+                    <div class="bg-[#09090b] border border-zinc-800/60 rounded-xl overflow-hidden shadow-2xl">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-zinc-900/30 text-zinc-500 text-[10px] uppercase font-bold tracking-widest border-b border-zinc-800/50">
+                                    <th class="px-6 py-4">ID</th>
+                                    <th class="px-6 py-4">Service Name</th>
+                                    <th class="px-6 py-4">Rate per 1k</th>
+                                    <th class="px-6 py-4">Min/Max</th>
+                                    <th class="px-6 py-4">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-800/30">
+                                <tr class="hover:bg-zinc-800/20 transition-colors">
+                                    <td class="px-6 py-4 text-xs font-mono text-zinc-500">101</td>
+                                    <td class="px-6 py-4 text-xs font-bold text-zinc-200">YouTube Subscribers [Real]</td>
+                                    <td class="px-6 py-4 text-xs text-indigo-400 font-bold">₹2,114.00</td>
+                                    <td class="px-6 py-4 text-[10px] text-zinc-500">50 / 100k</td>
+                                    <td class="px-6 py-4 text-[10px] text-zinc-600 italic">High quality, 30-day refill guaranteed.</td>
+                                </tr>
+                                <tr class="hover:bg-zinc-800/20 transition-colors">
+                                    <td class="px-6 py-4 text-xs font-mono text-zinc-500">205</td>
+                                    <td class="px-6 py-4 text-xs font-bold text-zinc-200">Instagram Likes [HQ]</td>
+                                    <td class="px-6 py-4 text-xs text-indigo-400 font-bold">₹45.00</td>
+                                    <td class="px-6 py-4 text-[10px] text-zinc-500">100 / 1M</td>
+                                    <td class="px-6 py-4 text-[10px] text-zinc-600 italic">Instant start, worldwide users.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Account Settings View -->
+                <div id="settings-tab" class="tab-content max-w-2xl mx-auto py-12">
+                    <div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl space-y-6">
+                        <h2 class="text-xl font-bold text-white">Profile Settings</h2>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-[10px] font-bold text-zinc-600 uppercase mb-1 block">Full Name</label>
+                                    <input type="text" value="Aryan Sharma" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-sm focus:outline-none focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-bold text-zinc-600 uppercase mb-1 block">Email Address</label>
+                                    <input type="email" value="aryan@vortexsmm.com" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-sm focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-zinc-600 uppercase mb-1 block">Timezone</label>
+                                <select class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-sm focus:outline-none">
+                                    <option>(GMT+05:30) India Standard Time</option>
+                                    <option>(GMT+00:00) UTC</option>
+                                </select>
+                            </div>
+                            <button class="w-full bg-zinc-800 hover:bg-zinc-700 py-3 rounded-xl text-sm font-bold text-white transition-all">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Order Form -->
+                <div id="new-tab" class="tab-content max-w-2xl mx-auto py-12 text-center">
+                    <div class="bg-zinc-900/50 border border-zinc-800 p-12 rounded-3xl">
+                        <i data-lucide="plus-circle" class="w-12 h-12 text-zinc-700 mx-auto mb-4"></i>
+                        <h2 class="text-xl font-bold text-white mb-2">New Order Form</h2>
+                        <p class="text-zinc-500 text-sm mb-8">Select a service and enter your details to start a new campaign.</p>
+                        <div class="space-y-4 text-left">
+                            <div>
+                                <label class="text-[10px] font-bold text-zinc-600 uppercase mb-1 block">Category</label>
+                                <select class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-sm focus:outline-none">
+                                    <option>Youtube - Subscribers [High Quality]</option>
+                                    <option>Instagram - Likes [Instant]</option>
+                                    <option>TikTok - Views [Non-Drop]</option>
+                                </select>
+                            </div>
+                            <button class="w-full bg-indigo-600 py-3 rounded-xl text-sm font-bold text-white shadow-lg shadow-indigo-600/20">Submit Order</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Funds View -->
+                <div id="funds-tab" class="tab-content max-w-2xl mx-auto py-12 text-center">
+                    <div class="bg-zinc-900/50 border border-zinc-800 p-12 rounded-3xl">
+                        <i data-lucide="wallet" class="w-12 h-12 text-indigo-500/50 mx-auto mb-4"></i>
+                        <h2 class="text-xl font-bold text-white mb-2">Add Funds</h2>
+                        <p class="text-zinc-500 text-sm mb-8">Securely add balance to your account using major payment methods.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl hover:border-indigo-500 transition-all">Razorpay</button>
+                            <button class="p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl hover:border-indigo-500 transition-all">Paytm</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
 
     <script>
-        // --- 1. FLOATING HEARTS BACKGROUND ---
-        function createParticles() {
-            const container = document.getElementById('particle-container');
-            const count = 20;
-            const colors = ['#ffccd5', '#ffb7b2', '#ff9aa2', '#e2f0cb']; 
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Update Title
+            const titleMap = {
+                'dash': 'Dashboard Overview',
+                'new': 'New Order',
+                'orders': 'Orders Management',
+                'funds': 'Deposit Funds',
+                'support': 'Support Tickets',
+                'services': 'Services List',
+                'settings': 'Account Settings'
+            };
             
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('div');
-                p.classList.add('heart-particle');
-                p.innerHTML = '❤';
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.animationDuration = (Math.random() * 5 + 8) + 's';
-                p.style.animationDelay = (Math.random() * 5) + 's';
-                p.style.color = colors[Math.floor(Math.random() * colors.length)];
-                p.style.fontSize = (Math.random() * 15 + 10) + 'px';
-                container.appendChild(p);
-            }
-        }
-        createParticles();
+            const titleEl = document.getElementById('current-tab-title');
+            if (titleEl) titleEl.textContent = titleMap[tabId] || tabId;
 
-        // --- 2. GIFT BOX LOGIC ---
-        let isOpen = false;
-        function openGift() {
-            if (isOpen) return;
-            isOpen = true;
-
-            const music = document.getElementById('bg-music');
-            music.volume = 0.4;
-            music.play().catch(e => console.log("Audio requires interaction first"));
-
-            const box = document.getElementById('box-inner');
-            const hint = document.getElementById('tap-hint');
-            const message = document.getElementById('message-card');
-            const grid = document.getElementById('wishes-grid');
-            const games = document.getElementById('games-container');
-
-            // Animate Box
-            box.classList.add('open');
-            hint.style.display = 'none';
-
-            // Explosion of Hearts
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff0000', '#ff69b4', '#ffffff'],
-                shapes: ['circle'],
-                disableForReducedMotion: true
+            // Update Tab Visibility
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
             });
-
-            // Show Message after delay
-            setTimeout(() => {
-                message.classList.remove('hidden');
-                void message.offsetWidth; 
-                message.classList.add('visible');
-                
-                // Fade in wishes grid
-                grid.classList.remove('opacity-0', 'translate-y-4');
-                
-                // Show Games Section
-                games.classList.add('visible');
-
-                // Auto Scroll slightly to show there is more content
-                setTimeout(() => {
-                    games.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 2000);
-                
-                // Second wave of confetti
-                setTimeout(() => {
-                    const scalar = 2;
-                    if (typeof confetti.shapeFromText === 'function') {
-                        const heart = confetti.shapeFromText({ text: '❤️', scalar });
-                        confetti({ particleCount: 30, spread: 55, origin: { x: 0 }, shapes: [heart], scalar });
-                        confetti({ particleCount: 30, spread: 55, origin: { x: 1 }, shapes: [heart], scalar });
-                    } else {
-                        confetti({ particleCount: 40, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ff69b4'], scalar });
-                        confetti({ particleCount: 40, spread: 55, origin: { x: 1 }, colors: ['#ff0000', '#ff69b4'], scalar });
-                    }
-                }, 500);
-
-            }, 800);
-        }
-
-        // --- 3. GAME 1: FILL HEART ---
-        let loveLevel = 0;
-        function fillHeartGame() {
-            if (loveLevel >= 100) return;
-
-            loveLevel += 10;
-            if (loveLevel > 100) loveLevel = 100;
-
-            const rect = document.getElementById('heart-fill-rect');
-            const text = document.getElementById('heart-percent');
             
-            // Y moves from 100 down to 0
-            rect.setAttribute('y', 100 - loveLevel);
-            text.innerText = loveLevel + "%";
-
-            if (loveLevel === 100) {
-                text.innerText = "FULL!";
-                confetti({
-                    particleCount: 80,
-                    spread: 60,
-                    origin: { y: 0.7 },
-                    colors: ['#d32f2f', '#ff4081']
-                });
-                
-                // Reset after delay
-                setTimeout(() => {
-                    loveLevel = 0;
-                    rect.setAttribute('y', 100);
-                    text.innerText = "0%";
-                }, 3000);
-            }
-        }
-
-        // --- 4. GAME 2: KISS CATCHER ---
-        let kissScore = 0;
-        let gameActive = false;
-        let gameInterval;
-
-        function startKissGame() {
-            if (gameActive) return;
-            gameActive = true;
-            kissScore = 0;
-            
-            document.getElementById('start-kiss-btn').classList.add('hidden');
-            document.getElementById('kiss-win-msg').classList.add('hidden');
-            document.getElementById('kiss-score').innerText = "0 / 10";
-            document.getElementById('kiss-score').classList.remove('hidden');
-
-            gameInterval = setInterval(spawnKiss, 600);
-        }
-
-        function spawnKiss() {
-            if (kissScore >= 10) return;
-
-            const gameArea = document.getElementById('kiss-game-area');
-            const kiss = document.createElement('div');
-            kiss.innerText = '💋';
-            kiss.classList.add('kiss-target');
-            
-            // Random position
-            const xPos = Math.random() * 80 + 10; // 10% to 90%
-            kiss.style.left = xPos + '%';
-            
-            // Click Event
-            kiss.onclick = function() {
-                if (!gameActive) return;
-                this.remove();
-                kissScore++;
-                document.getElementById('kiss-score').innerText = kissScore + " / 10";
-                
-                // Win Condition
-                if (kissScore >= 10) {
-                    endGame(true);
-                }
-            };
-            
-            // Cleanup if missed
-            kiss.onanimationend = function() {
-                this.remove();
-            };
-
-            gameArea.appendChild(kiss);
-        }
-
-        function endGame(won) {
-            gameActive = false;
-            clearInterval(gameInterval);
-            
-            // Clear remaining kisses
-            const gameArea = document.getElementById('kiss-game-area');
-            gameArea.innerHTML = '';
-
-            if (won) {
-                document.getElementById('kiss-score').classList.add('hidden');
-                document.getElementById('kiss-win-msg').classList.remove('hidden');
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.8 },
-                    colors: ['#ff0000', '#ffffff']
-                });
-                
-                setTimeout(() => {
-                    document.getElementById('kiss-win-msg').classList.add('hidden');
-                    document.getElementById('start-kiss-btn').innerText = "Play Again 💋";
-                    document.getElementById('start-kiss-btn').classList.remove('hidden');
-                }, 3000);
-            }
-        }
-
-        // --- 5. COUNTDOWN LOGIC ---
-        function updateCountdown() {
-            const now = new Date();
-            let target = new Date('January 1, 2026 00:00:00');
-            if (now > target) {
-                target = new Date();
-                target.setHours(24, 0, 0, 0); 
-            }
-            const diff = target - now;
-            
-            const h = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-            const m = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
-            const s = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-
-            document.getElementById('countdown').innerHTML = 
-                `<span>${h}<span class="text-xs ml-1">H</span></span>
-                 <span>${m}<span class="text-xs ml-1">M</span></span>
-                 <span>${s}<span class="text-xs ml-1">S</span></span>`;
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // --- 6. MUSIC TOGGLE ---
-        function toggleMusic() {
-            const music = document.getElementById('bg-music');
-            const icon = document.getElementById('music-icon');
-            if (music.paused) {
-                music.play();
-                icon.innerText = "🎵";
-                icon.parentElement.classList.remove('opacity-50');
+            const targetTab = document.getElementById(`${tabId}-tab`);
+            if (targetTab) {
+                targetTab.classList.add('active');
             } else {
-                music.pause();
-                icon.innerText = "🔇";
-                icon.parentElement.classList.add('opacity-50');
+                console.error(`Tab content with ID ${tabId}-tab not found.`);
+            }
+
+            // Update Sidebar UI
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                const isMatch = btn.getAttribute('data-tab') === tabId;
+                const icon = btn.querySelector('i');
+                
+                if (isMatch) {
+                    btn.classList.add('bg-indigo-600/10', 'text-indigo-400', 'border', 'border-indigo-500/20', 'shadow-[0_0_15px_rgba(79,70,229,0.1)]');
+                    btn.classList.remove('text-zinc-500', 'hover:bg-zinc-800/50', 'hover:text-zinc-300');
+                    if (icon) icon.classList.add('text-indigo-400');
+                } else {
+                    btn.classList.remove('bg-indigo-600/10', 'text-indigo-400', 'border', 'border-indigo-500/20', 'shadow-[0_0_15px_rgba(79,70,229,0.1)]');
+                    btn.classList.add('text-zinc-500', 'hover:bg-zinc-800/50', 'hover:text-zinc-300');
+                    if (icon) icon.classList.remove('text-indigo-400');
+                }
+            });
+        }
+
+        // Sidebar Event Listeners
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.getAttribute('data-tab');
+                if (tab) switchTab(tab);
+            });
+        });
+
+        // Ticket Logic
+        function sendReply() {
+            const input = document.getElementById('ticket-input');
+            const chat = document.getElementById('chat-messages');
+            if (!input || !chat) return;
+            
+            const message = input.value.trim();
+            if (!message) return;
+
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const userMsg = `
+                <div class="flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <div class="h-10 w-10 shrink-0 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-bold text-zinc-200">Aryan Sharma</span>
+                            <span class="text-[10px] text-zinc-600 uppercase font-black tracking-tighter">JAN 07 • ${time}</span>
+                        </div>
+                        <div class="bg-zinc-900/80 p-5 rounded-2xl rounded-tl-none border border-zinc-800 text-sm text-zinc-300 leading-relaxed shadow-lg">
+                            ${message}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            chat.insertAdjacentHTML('beforeend', userMsg);
+            input.value = '';
+            lucide.createIcons();
+            
+            // Auto scroll to bottom
+            const mainContent = chat.closest('.overflow-y-auto');
+            if (mainContent) {
+                mainContent.scrollTop = mainContent.scrollHeight;
             }
         }
+
+        // Initialize with Orders tab
+        switchTab('orders');
     </script>
 </body>
 </html>
