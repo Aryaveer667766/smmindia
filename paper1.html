@@ -3,368 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>झारखंड माध्यमिक आचार्य - पेपर 1 (सामान्य ज्ञान)</title>
+    <title>JSSC CBT Mock Test</title>
+    <!-- Added Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --primary: #1a73e8; /* Changed to Blue for General Paper */
-            --success: #0f9d58;
-            --danger: #d93025;
-            --warning: #f4b400;
-            --light: #f1f3f4;
-            --dark: #202124;
-            --border: #dadce0;
+            --header-bg: #2d3e50;
+            --header-text: #ffffff;
+            --q-panel-bg: #f5f9fa;
+            --primary-btn: #007bff; /* Blue for Save & Next usually or Green depending on agency. Going with Blue/Green hybrid logic */
+            --save-next: #28a745; /* Green */
+            --clear-btn: #ffffff;
+            --review-btn: #ffc107; /* Or Purple */
+            --mark-review: #6f42c1;
+            --border: #ccc;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Nirmala UI', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: Arial, sans-serif; /* Standard exam font */
             margin: 0;
             background-color: #fff;
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            font-size: 14px;
+            user-select: none; /* Disables text selection like real exam */
         }
 
-        /* Top Header */
+        /* --- HEADER --- */
         header {
-            background: #fff;
-            border-bottom: 1px solid var(--border);
-            padding: 0 20px;
-            height: 60px;
+            background: #232f3e;
+            color: white;
+            height: 50px;
+            padding: 0 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
-            z-index: 10;
+            border-bottom: 2px solid #000;
         }
 
-        h3 { margin: 0; font-size: 1.1rem; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .exam-title { font-weight: bold; font-size: 16px; }
+        .system-name { font-size: 12px; font-weight: bold; }
 
-        .timer-display {
-            background: var(--dark);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        /* Main Layout */
-        .layout {
+        /* --- MAIN CONTAINER --- */
+        .main-container {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
 
-        /* Left: Question Area */
-        .q-container {
+        /* --- LEFT: QUESTION AREA --- */
+        .q-area {
             flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #ccc;
         }
 
-        .q-info-bar {
+        /* Question Header Strip */
+        .q-header-strip {
+            background: #fff;
+            padding: 8px 15px;
+            border-bottom: 1px solid #ccc;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            color: #5f6368;
-            font-weight: 500;
-        }
-
-        .q-text {
-            font-size: 1.15rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #202124;
-        }
-
-        .options-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .option-item {
-            display: flex;
             align-items: center;
-            padding: 12px 20px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
         }
 
-        .option-item:hover { background: #f8f9fa; }
+        .q-sections {
+            display: flex;
+            gap: 5px;
+        }
+
+        .sec-tab {
+            background: #337ab7;
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 3px 3px 0 0;
+            cursor: default;
+        }
+
+        /* Specific Question Info */
+        .q-info-bar {
+            border-bottom: 1px solid #ccc;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            font-weight: bold;
+            color: #d0021b; /* Red for marks */
+        }
+
+        .q-scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #fff;
+            font-size: 16px; /* Larger font for readability */
+        }
+
+        .q-text { margin-bottom: 20px; font-weight: 600; line-height: 1.5; }
         
-        .option-item input {
-            margin-right: 15px;
-            width: 18px; 
-            height: 18px;
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            cursor: pointer;
         }
 
-        /* Right: Sidebar */
+        .option-row input { margin-top: 5px; margin-right: 10px; transform: scale(1.3); }
+        .option-text { line-height: 1.4; }
+
+        /* --- RIGHT: SIDEBAR --- */
         .sidebar {
             width: 320px;
-            background: #fff;
-            border-left: 1px solid var(--border);
+            background: #eef3f7;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
 
-        .profile-sec {
-            padding: 15px;
-            background: #e8f0fe;
+        .profile-box {
+            background: #fff;
+            padding: 10px;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid #ccc;
             gap: 10px;
-            border-bottom: 1px solid var(--border);
         }
-        
-        .legend {
+
+        .profile-img {
+            width: 50px; height: 50px; background: #ddd; border: 1px solid #999;
+            display: flex; justify-content: center; align-items: center; font-size: 10px; color: #666;
+        }
+
+        .candidate-name { font-weight: bold; font-size: 13px; }
+
+        .timer-strip {
+            background: #ffecb3; /* Light yellow typically */
+            color: #000;
+            padding: 8px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .palette-legend {
             padding: 10px;
-            font-size: 0.8rem;
+            background: #fff;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5px;
-            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+            border-bottom: 1px solid #ccc;
         }
-        
-        .legend-item { display: flex; align-items: center; gap: 5px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 
-        .palette-area {
+        .leg-item { display: flex; align-items: center; gap: 5px; }
+        .leg-icon { 
+            width: 25px; height: 25px; 
+            display: flex; justify-content: center; align-items: center; 
+            border: 1px solid #ccc; font-size: 10px; 
+        }
+
+        /* Palette Colors mimicking TCS iON */
+        .p-ans { background-color: #5cb85c; color: white; border-radius: 50% 50% 0 0; clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); } /* Green shape approx */
+        .p-ans { background-color: #28a745; color: white; border-radius: 0; clip-path: none; } /* Simpler Rect */
+        
+        /* Exact Shapes often used */
+        .shape { width: 22px; height: 20px; text-align: center; color: white; line-height: 20px; font-size: 10px; display: inline-block;}
+        .s-green { background: #28a745; border-radius: 15px 15px 0 0; } /* Answered */
+        .s-red { background: #dc3545; border-radius: 15px 15px 0 0; } /* Not Answered */
+        .s-grey { background: #e0e0e0; color: black; border-radius: 2px; border: 1px solid #999; } /* Not Visited */
+        .s-purple { background: #6f42c1; border-radius: 50%; } /* Marked for Review */
+        .s-pur-green { background: #6f42c1; border-radius: 50%; position: relative; } /* Ans + Review */
+        .s-pur-green::after { content:''; position: absolute; bottom: -2px; right: -2px; width: 8px; height: 8px; background: #28a745; border-radius: 50%; border: 1px solid white;}
+
+        .q-palette-grid {
             flex: 1;
-            padding: 15px;
             overflow-y: auto;
+            padding: 10px;
+            background: #eef3f7;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: 40px;
+            grid-template-columns: repeat(4, 1fr);
             gap: 8px;
             align-content: start;
         }
 
-        .pal-btn {
-            border: 1px solid #dadce0;
+        .q-btn {
+            height: 30px;
             background: #fff;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border: 1px solid #ccc;
             cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
+        
+        /* Real Palette States */
+        .q-btn.visited { background: #dc3545; color: white; border-radius: 15px 15px 0 0; border: none; } /* Red (Not Answered but visited) */
+        .q-btn.answered { background: #28a745; color: white; border-radius: 15px 15px 0 0; border: none; } /* Green */
+        .q-btn.review { background: #6f42c1; color: white; border-radius: 50%; border: none; } /* Purple */
+        .q-btn.ans-review { background: #6f42c1; color: white; border-radius: 50%; border: none; }
+        .q-btn.ans-review::after { content: '✔'; position: absolute; bottom: 0; right: 0; font-size: 8px; background: #28a745; border-radius: 50%; padding: 1px; }
 
-        .pal-btn:hover { background: #f1f3f4; }
-        .pal-btn.current { border: 2px solid var(--primary); }
-        .pal-btn.answered { background: var(--success); color: white; border-color: var(--success); }
-        .pal-btn.not-answered { background: var(--danger); color: white; border-color: var(--danger); }
-        .pal-btn.review { background: #5f259f; color: white; border-color: #5f259f; border-radius: 50%; }
-        .pal-btn.ans-review { background: #5f259f; color: white; border-color: #5f259f; border-radius: 50%; }
-        .pal-btn.ans-review::after { content: '✔'; font-size: 8px; position: absolute; bottom: 2px; right: 2px; }
+        .q-btn:hover { opacity: 0.8; }
+        
+        /* Current Question Highlight */
+        .q-btn.current { border: 2px solid #000 !important; }
 
-        /* Footer */
-        .footer {
-            height: 70px;
-            border-top: 1px solid var(--border);
-            background: #fff;
+        /* --- FOOTER --- */
+        footer {
+            height: 50px;
+            background: #f8f9fa;
+            border-top: 1px solid #ccc;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
-            z-index: 10;
+            padding: 0 15px;
         }
 
         .btn {
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-weight: 500;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: bold;
             cursor: pointer;
-            border: none;
-            font-size: 14px;
-            text-transform: uppercase;
+            border: 1px solid #ccc;
+            border-radius: 2px;
         }
 
-        .btn-secondary { background: #fff; border: 1px solid var(--border); color: #3c4043; }
-        .btn-secondary:hover { background: #f8f9fa; }
-        
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: #1765cc; }
+        .btn-clear { background: #fff; color: #000; }
+        .btn-review { background: #ffc107; color: #000; border-color: #e0a800; }
+        .btn-save { background: #28a745; color: #fff; border-color: #218838; } /* TCS Style Save is often Green */
+        .btn-submit { background: #007bff; color: white; border: none; }
 
-        .btn-submit { background: var(--success); color: white; width: 100%; margin-top: 10px; padding: 12px; }
-        .btn-review { background: var(--warning); color: #202124; }
-        
-        .finish-btn {
-            background-color: var(--danger); 
-            color: white; 
-            padding: 8px 16px; 
-            border-radius: 4px; 
-            font-weight: bold; 
-            border: none; 
-            cursor: pointer;
-        }
-
-        /* Modal */
-        .modal-overlay {
+        /* --- MODAL --- */
+        .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
             z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center; align-items: center;
         }
-
-        .modal-box {
-            background: white;
-            width: 80%;
-            max-width: 900px;
-            height: 90%;
-            border-radius: 8px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .score-summary {
-            display: flex;
-            justify-content: space-around;
+        .modal-content {
+            background: #fff;
             padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: auto;
+            border-radius: 5px;
         }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f2f2f2; }
 
-        .stat-box { text-align: center; }
-        .stat-val { font-size: 2rem; font-weight: bold; display: block; }
-        .stat-label { color: #5f6368; font-size: 0.9rem; }
-
-        .results-table-container {
-            flex: 1;
-            overflow-y: auto;
-            border: 1px solid var(--border);
+        /* --- CELEBRATION ANIMATION STYLES --- */
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
-
-        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #f8f9fa; position: sticky; top: 0; }
-        
-        .status-correct { color: var(--success); font-weight: bold; }
-        .status-wrong { color: var(--danger); font-weight: bold; }
-        .status-un { color: #999; }
+        .success-msg {
+            color: #28a745;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
 
     </style>
 </head>
 <body>
 
     <header>
-        <h3>झारखंड माध्यमिक आचार्य - पेपर 1 (GK और झारखंड)</h3>
-        <div style="display:flex; gap:10px; align-items:center;">
-             <button class="finish-btn" onclick="submitQuiz(false)">टेस्ट समाप्त करें</button>
-             <div class="timer-display" id="timer">03:00:00</div>
+        <div class="exam-title">Jharkhand Madhyamik Acharya (Paper 1)</div>
+        <div style="display:flex; align-items:center; gap: 20px;">
+            <div style="text-align: right;">
+                <div class="system-name">System Name: <span style="color:yellow">C001</span></div>
+                <button onclick="submitQuiz(false)" style="background:transparent; border:1px solid #fff; color:#fff; cursor:pointer; font-size:10px; padding:2px 5px; margin-top:2px;">Finish Exam</button>
+            </div>
         </div>
     </header>
 
-    <div class="layout">
-        <div class="q-container">
+    <div class="main-container">
+        <!-- LEFT: QUESTION -->
+        <div class="q-area">
+            <div class="q-header-strip">
+                <div class="q-sections">
+                    <div class="sec-tab">General Knowledge</div>
+                </div>
+                <!-- Fake Dropdown -->
+                <div style="font-size:12px;">
+                    View In: 
+                    <select style="padding:2px;">
+                        <option>Hindi</option>
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="q-info-bar">
-                <span id="q-num-display">प्रश्न 1</span>
-                <span>एकल सही विकल्प • <strong>+1, 0</strong></span>
+                <span id="q-num">Question No. 1</span>
+                <span>Marks: +1.00, -0.00</span>
             </div>
-            <div id="q-content">
-                <!-- Dynamic Content -->
+
+            <div class="q-scroll-area" id="q-display">
+                <!-- Question loads here -->
             </div>
+
+            <footer>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-clear" onclick="clearResponse()">Clear Response</button>
+                    <button class="btn btn-review" onclick="markReviewNext()">Mark for Review & Next</button>
+                </div>
+                <button class="btn btn-save" onclick="saveNext()">Save & Next</button>
+            </footer>
         </div>
 
+        <!-- RIGHT: SIDEBAR -->
         <div class="sidebar">
-            <div class="profile-sec">
-                <div>अभ्यर्थी का नाम</div>
+            <div class="profile-box">
+                <div class="profile-img">Photo</div>
+                <div>
+                    <div class="candidate-name">Kumari Sadhna Pathak</div>
+                    <div style="font-size:11px; color:#555;">Roll No: 12345678</div>
+                </div>
             </div>
-            <div class="legend">
-                <div class="legend-item"><span class="dot" style="background:var(--success)"></span> उत्तर दिया</div>
-                <div class="legend-item"><span class="dot" style="background:var(--danger)"></span> उत्तर नहीं दिया</div>
-                <div class="legend-item"><span class="dot" style="background:#fff; border:1px solid #ccc"></span> नहीं देखा</div>
-                <div class="legend-item"><span class="dot" style="background:#5f259f"></span> समीक्षा</div>
+
+            <div class="timer-strip">
+                Time Left: <span id="timer">03:00:00</span>
             </div>
-            <div class="palette-area" id="palette">
-                <!-- Grid -->
+
+            <div class="palette-legend">
+                <div class="leg-item"><div class="shape s-green">0</div> Answered</div>
+                <div class="leg-item"><div class="shape s-red">0</div> Not Answered</div>
+                <div class="leg-item"><div class="shape s-grey">0</div> Not Visited</div>
+                <div class="leg-item"><div class="shape s-purple">0</div> Marked for Review</div>
+                <div class="leg-item" style="grid-column: span 2;"><div class="shape s-pur-green">0</div> Ans & Marked for Review (Will be evaluated)</div>
             </div>
-            <div style="padding: 15px; border-top: 1px solid var(--border)">
-                <button class="btn btn-submit" onclick="submitQuiz(false)">टेस्ट जमा करें</button>
+
+            <div style="padding: 10px; background: #337ab7; color: white; font-weight: bold; font-size: 12px;">
+                Question Palette
+            </div>
+
+            <div class="q-palette-grid" id="palette-grid">
+                <!-- Buttons generate here -->
+            </div>
+
+            <div style="padding:10px; background:#fff; text-align:center; border-top:1px solid #ccc;">
+                <button class="btn btn-submit" onclick="submitQuiz(false)">Submit</button>
             </div>
         </div>
     </div>
 
-    <div class="footer">
-        <div>
-            <button class="btn btn-secondary" onclick="changeQ(-1)">पिछला</button>
-            <button class="btn btn-review" onclick="markReview()">समीक्षा और अगला</button>
-        </div>
-        <button class="btn btn-primary" onclick="saveNext()">सहेजें और अगला</button>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div class="modal-overlay" id="confirm-modal" style="z-index: 1100;">
-        <div class="modal-box" style="height: auto; max-width: 500px; text-align: center;">
-            <h3 style="margin-top: 0;">टेस्ट जमा करें?</h3>
-            <p>आपने <strong id="confirm-total">0</strong> में से <strong id="confirm-att">0</strong> प्रश्नों के उत्तर दिए हैं।</p>
-            <p>क्या आप सुनिश्चित हैं कि आप समाप्त करना और अपना स्कोर देखना चाहते हैं?</p>
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-                <button class="btn btn-secondary" onclick="closeConfirm()">रद्द करें</button>
-                <button class="btn btn-submit" style="width: auto; margin-top: 0;" onclick="submitQuiz(true)">हाँ, जमा करें</button>
+    <!-- Modals -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content" style="width: 400px; text-align:center;">
+            <h3>Submit Exam?</h3>
+            <p>Are you sure you want to submit?</p>
+            <div style="margin-top:20px; display:flex; justify-content:center; gap:10px;">
+                <button class="btn btn-clear" onclick="closeModal('confirmModal')">No</button>
+                <button class="btn btn-save" onclick="submitQuiz(true)">Yes</button>
             </div>
         </div>
     </div>
 
-    <!-- Result Modal -->
-    <div class="modal-overlay" id="resultModal">
-        <div class="modal-box">
-            <h2 style="margin-top:0">टेस्ट परिणाम विश्लेषण</h2>
-            <div class="score-summary">
-                <div class="stat-box">
-                    <span class="stat-val" style="color:var(--primary)" id="res-score">0</span>
-                    <span class="stat-label">कुल अंक</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-val" style="color:var(--success)" id="res-correct">0</span>
-                    <span class="stat-label">सही</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-val" style="color:var(--danger)" id="res-wrong">0</span>
-                    <span class="stat-label">गलत</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-val" id="res-att">0</span>
-                    <span class="stat-label">प्रयास किया</span>
-                </div>
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div id="result-header-container">
+                <h2>Exam Summary</h2>
             </div>
-            <div class="results-table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>प्र.सं.</th>
-                            <th>प्रश्न पूर्वावलोकन</th>
-                            <th>आपका उत्तर</th>
-                            <th>सही उत्तर</th>
-                            <th>परिणाम</th>
-                        </tr>
-                    </thead>
-                    <tbody id="res-table-body"></tbody>
-                </table>
+            <div style="display:flex; justify-content:space-around; background:#f9f9f9; padding:15px; margin-bottom:15px;">
+                <div style="text-align:center"><b>Score</b><br><span id="r-score" style="font-size:20px; color:blue"></span></div>
+                <div style="text-align:center"><b>Correct</b><br><span id="r-correct" style="font-size:20px; color:green"></span></div>
+                <div style="text-align:center"><b>Wrong</b><br><span id="r-wrong" style="font-size:20px; color:red"></span></div>
             </div>
-            <button class="btn btn-primary" style="margin-top:20px; width:200px; align-self: flex-end;" onclick="location.reload()">फिर से टेस्ट दें</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Q.No</th>
+                        <th>Question</th>
+                        <th>Your Answer</th>
+                        <th>Correct Answer</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="result-body"></tbody>
+            </table>
+            <div style="margin-top:20px; text-align:right;">
+                <button class="btn btn-save" onclick="location.reload()">Close</button>
+            </div>
         </div>
     </div>
 
 <script>
-    // --- DATABASE OF 100 GK & JHARKHAND QUESTIONS (HINDI) ---
-    // Section Breakdown:
-    // 1-40: Jharkhand GK
-    // 41-70: General Studies (History, Geo, Polity)
-    // 71-90: General Science
-    // 91-100: Computer & Misc
-    
+    // --- DATABASE: 100 QUESTIONS ---
     const questions = [
         // --- JHARKHAND GK (1-40) ---
         { q: "झारखंड राज्य का गठन कब हुआ था?", o: ["1 नवंबर 2000", "15 नवंबर 2000", "15 अगस्त 1947", "26 जनवरी 1950"], a: 1 },
@@ -475,106 +520,130 @@
         { q: "WWW का आविष्कार किसने किया?", o: ["टिम बर्नर्स ली", "मार्क जुकरबर्ग", "लैरी पेज", "स्टीव जॉब्स"], a: 0 }
     ];
 
-    // --- STATE MANAGEMENT ---
+    // --- STATE ---
     let currentQ = 0;
-    let answers = [];
-    let visited = [];
-    let markedReview = [];
-    let timeLeft = 3 * 3600; // 3 hours
+    let answers = new Array(questions.length).fill(null);
+    let status = new Array(questions.length).fill(0); // 0: Not Visited, 1: Not Answered (Visited), 2: Answered, 3: Mark Review, 4: Ans & Mark Review
+    let timeLeft = 3 * 3600;
     let timerInterval;
 
-    // --- INITIALIZATION ---
     window.onload = function() {
-        const totalQ = questions.length;
-        answers = new Array(totalQ).fill(null);
-        visited = new Array(totalQ).fill(false);
-        markedReview = new Array(totalQ).fill(false);
-        
         renderPalette();
         loadQuestion(0);
         startTimer();
-    };
+    }
 
-    // --- CORE FUNCTIONS ---
+    // --- LOGIC ---
     function loadQuestion(index) {
-        if (index < 0 || index >= questions.length) return;
+        if(index < 0 || index >= questions.length) return;
         
+        // Update previous status if it was "Not Visited"
+        if (status[currentQ] === 0) status[currentQ] = 1; // Mark visited
+
         currentQ = index;
-        visited[index] = true;
         
-        document.getElementById('q-num-display').innerText = `प्रश्न ${index + 1} / ${questions.length}`;
+        // If current is "Not Visited", mark as "Not Answered"
+        if (status[currentQ] === 0) status[currentQ] = 1;
+
+        document.getElementById('q-num').innerText = `Question No. ${index + 1}`;
         
         const qData = questions[index];
         const html = `
             <div class="q-text">${qData.q}</div>
-            <div class="options-list">
+            <div>
                 ${qData.o.map((opt, i) => `
-                    <label class="option-item">
-                        <input type="radio" name="opt" value="${i}" 
-                            ${answers[index] === i ? 'checked' : ''} 
-                            onclick="selectOption(${i})">
-                        ${opt}
+                    <label class="option-row">
+                        <input type="radio" name="opt" value="${i}" ${answers[index] === i ? 'checked' : ''} onclick="selectOption(${i})">
+                        <span class="option-text">${opt}</span>
                     </label>
                 `).join('')}
             </div>
         `;
-        document.getElementById('q-content').innerHTML = html;
+        document.getElementById('q-display').innerHTML = html;
         
         updatePalette();
     }
 
-    function selectOption(optIndex) {
-        answers[currentQ] = optIndex;
-        updatePalette();
+    function selectOption(optIdx) {
+        answers[currentQ] = optIdx;
+        // Don't change status to Green yet, wait for Save & Next
     }
 
     function saveNext() {
+        if (answers[currentQ] !== null) {
+            status[currentQ] = 2; // Answered
+        } else {
+            status[currentQ] = 1; // Not Answered
+        }
         if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
+        else updatePalette();
     }
 
-    function changeQ(diff) {
-        const newIndex = currentQ + diff;
-        if (newIndex >= 0 && newIndex < questions.length) loadQuestion(newIndex);
+    function markReviewNext() {
+        if (answers[currentQ] !== null) {
+            status[currentQ] = 4; // Ans & Review
+        } else {
+            status[currentQ] = 3; // Review
+        }
+        if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
+        else updatePalette();
     }
 
-    function markReview() {
-        markedReview[currentQ] = true;
-        saveNext();
+    function clearResponse() {
+        answers[currentQ] = null;
+        status[currentQ] = 1; // Back to Not Answered
+        loadQuestion(currentQ); // Reload to clear radio
     }
 
     function jumpTo(index) {
+        saveNext(); // Auto save state of current before jumping
         loadQuestion(index);
     }
 
-    // --- PALETTE UI ---
+    // --- PALETTE ---
     function renderPalette() {
-        const p = document.getElementById('palette');
-        p.innerHTML = questions.map((_, i) => 
-            `<button id="btn-${i}" class="pal-btn" onclick="jumpTo(${i})">${i + 1}</button>`
+        const grid = document.getElementById('palette-grid');
+        grid.innerHTML = questions.map((_, i) => 
+            `<button id="btn-${i}" class="q-btn" onclick="jumpTo(${i})">${i+1}</button>`
         ).join('');
+        updatePalette();
     }
 
     function updatePalette() {
         questions.forEach((_, i) => {
             const btn = document.getElementById(`btn-${i}`);
-            btn.className = 'pal-btn';
+            btn.className = 'q-btn';
             
+            // Apply Status Class
+            if (status[i] === 1) btn.classList.add('visited'); // Red
+            else if (status[i] === 2) btn.classList.add('answered'); // Green
+            else if (status[i] === 3) btn.classList.add('review'); // Purple
+            else if (status[i] === 4) btn.classList.add('ans-review'); // Purple + Green Dot
+            // 0 is default white
+
             if (i === currentQ) btn.classList.add('current');
-            
-            if (markedReview[i]) {
-                if (answers[i] !== null) btn.classList.add('ans-review');
-                else btn.classList.add('review');
-            } else if (answers[i] !== null) {
-                btn.classList.add('answered');
-            } else if (visited[i] && i !== currentQ) {
-                btn.classList.add('not-answered');
-            }
         });
+        updateCounts();
+    }
+
+    function updateCounts() {
+        // Count statuses
+        const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
+        status.forEach(s => counts[s]++);
+        
+        const legends = document.querySelectorAll('.palette-legend .shape');
+        legends[0].innerText = counts[2] + counts[4]; // Green (Answered + Ans&Rev) - usually purely Answered count in legend depends on exam
+        // Strict mapping:
+        legends[0].innerText = counts[2]; // Answered
+        legends[1].innerText = counts[1]; // Not Answered
+        legends[2].innerText = counts[0]; // Not Visited
+        legends[3].innerText = counts[3]; // Review
+        legends[4].innerText = counts[4]; // Ans & Review
     }
 
     // --- TIMER ---
     function startTimer() {
-        const display = document.getElementById('timer');
+        const el = document.getElementById('timer');
         timerInterval = setInterval(() => {
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
@@ -585,91 +654,107 @@
             const h = Math.floor(timeLeft / 3600);
             const m = Math.floor((timeLeft % 3600) / 60);
             const s = timeLeft % 60;
-            display.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            el.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
         }, 1000);
     }
 
-    // --- SUBMISSION LOGIC ---
-    function closeConfirm() {
-        document.getElementById('confirm-modal').style.display = 'none';
-    }
-
-    function submitQuiz(force = false) {
+    // --- MODALS ---
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    
+    function submitQuiz(force) {
         if (!force) {
-            const attempts = answers.filter(a => a !== null).length;
-            document.getElementById('confirm-att').innerText = attempts;
-            document.getElementById('confirm-total').innerText = questions.length;
-            document.getElementById('confirm-modal').style.display = 'flex';
+            document.getElementById('confirmModal').style.display = 'flex';
             return;
         }
-        
-        document.getElementById('confirm-modal').style.display = 'none';
+        document.getElementById('confirmModal').style.display = 'none';
         clearInterval(timerInterval);
-        
-        let score = 0, correct = 0, wrong = 0, attempted = 0;
-        let tbody = document.getElementById('res-table-body');
+
+        // Calc Result
+        let score = 0, correct = 0, wrong = 0;
+        let tbody = document.getElementById('result-body');
         tbody.innerHTML = '';
 
         questions.forEach((q, i) => {
-            const userAns = answers[i];
-            const isAtt = userAns !== null;
-            let resText = "उत्तर नहीं दिया";
-            let resClass = "status-un";
-            let rowStyle = "";
+            const myAns = answers[i];
+            let rowColor = "";
+            let statusText = "Unattempted";
 
-            if (isAtt) {
-                attempted++;
-                if (userAns === q.a) {
+            if (myAns !== null) {
+                if (myAns === q.a) {
                     score += 1;
                     correct++;
-                    resText = "सही (+1)";
-                    resClass = "status-correct";
-                    rowStyle = "background: #e6fffa";
+                    statusText = "Correct";
+                    rowColor = "#e8f5e9";
                 } else {
-                    // No negative marking for this exam
                     wrong++;
-                    resText = "गलत (0)";
-                    resClass = "status-wrong";
-                    rowStyle = "background: #fff5f5";
+                    statusText = "Wrong";
+                    rowColor = "#ffebee";
                 }
             }
 
-            const correctOptText = q.o[q.a];
-            const userAnsText = isAtt ? q.o[userAns] : '-';
-
             tbody.innerHTML += `
-                <tr style="${rowStyle}">
+                <tr style="background:${rowColor}">
                     <td>${i+1}</td>
                     <td>${q.q}</td>
-                    <td style="${userAns === q.a ? 'color:green;font-weight:bold' : (isAtt ? 'color:red' : '')}">${userAnsText}</td>
-                    <td style="color:green; font-weight:bold">${correctOptText}</td>
-                    <td class="${resClass}">${resText}</td>
+                    <td>${myAns !== null ? q.o[myAns] : '-'}</td>
+                    <td>${q.o[q.a]}</td>
+                    <td>${statusText}</td>
                 </tr>
             `;
         });
 
-        document.getElementById('res-score').innerText = score + "/" + questions.length;
-        document.getElementById('res-correct').innerText = correct;
-        document.getElementById('res-wrong').innerText = wrong;
-        document.getElementById('res-att').innerText = attempted;
-        
-        document.querySelector('.layout').style.display = 'none';
-        document.querySelector('.footer').style.display = 'none';
-        document.querySelector('header').style.display = 'none';
+        document.getElementById('r-score').innerText = score;
+        document.getElementById('r-correct').innerText = correct;
+        document.getElementById('r-wrong').innerText = wrong;
 
-        const modal = document.getElementById('resultModal');
-        modal.style.display = 'flex';
-        modal.style.position = 'static';
-        modal.style.background = 'white';
-        modal.style.height = 'auto';
+        // Check for Qualification (Score >= 66)
+        const headerContainer = document.getElementById('result-header-container');
+        if (score >= 66) {
+            headerContainer.innerHTML = `
+                <div class="success-msg">
+                    🎉 Congratulations! You Qualified! 🎉<br>
+                    <span style="font-size:16px; color:#555;">Great job clearing the cutoff!</span>
+                </div>
+            `;
+            triggerConfetti();
+        } else {
+            headerContainer.innerHTML = `<h2>Exam Summary</h2>`;
+        }
+
+        // Hide main UI
+        document.querySelector('.main-container').style.display = 'none';
+        document.querySelector('header').style.display = 'none';
+        document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    function triggerConfetti() {
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
         
-        const modalBox = modal.querySelector('.modal-box');
-        modalBox.style.width = '100%';
-        modalBox.style.maxWidth = '1000px';
-        modalBox.style.boxShadow = 'none';
-        modalBox.style.height = 'auto';
-        
-        document.body.style.overflow = 'auto';
+        // Also fire a big burst at the start
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            zIndex: 10001
+        });
     }
 
 </script>
