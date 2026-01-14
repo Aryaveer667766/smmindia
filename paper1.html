@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>झारखंड माध्यमिक आचार्य - पेपर 1 (सामान्य ज्ञान)</title>
+    <style>
+        :root {
+            --primary: #1a73e8; /* Changed to Blue for General Paper */
+            --success: #0f9d58;
+            --danger: #d93025;
+            --warning: #f4b400;
+            --light: #f1f3f4;
+            --dark: #202124;
+            --border: #dadce0;
+        }
+
+        body {
+            font-family: 'Nirmala UI', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        h3 { margin: 0; font-size: 1.1rem; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .timer-display {
+            background: var(--dark);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Left: Question Area */
+        .q-container {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .q-info-bar {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            color: #5f6368;
+            font-weight: 500;
+        }
+
+        .q-text {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #202124;
+        }
+
+        .options-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-item:hover { background: #f8f9fa; }
+        
+        .option-item input {
+            margin-right: 15px;
+            width: 18px; 
+            height: 18px;
+        }
+
+        /* Right: Sidebar */
+        .sidebar {
+            width: 320px;
+            background: #fff;
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .profile-sec {
+            padding: 15px;
+            background: #e8f0fe;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .legend {
+            padding: 10px;
+            font-size: 0.8rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+        .palette-area {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: 40px;
+            gap: 8px;
+            align-content: start;
+        }
+
+        .pal-btn {
+            border: 1px solid #dadce0;
+            background: #fff;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .pal-btn:hover { background: #f1f3f4; }
+        .pal-btn.current { border: 2px solid var(--primary); }
+        .pal-btn.answered { background: var(--success); color: white; border-color: var(--success); }
+        .pal-btn.not-answered { background: var(--danger); color: white; border-color: var(--danger); }
+        .pal-btn.review { background: #5f259f; color: white; border-color: #5f259f; border-radius: 50%; }
+        .pal-btn.ans-review { background: #5f259f; color: white; border-color: #5f259f; border-radius: 50%; }
+        .pal-btn.ans-review::after { content: '✔'; font-size: 8px; position: absolute; bottom: 2px; right: 2px; }
+
+        /* Footer */
+        .footer {
+            height: 70px;
+            border-top: 1px solid var(--border);
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 10;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .btn-secondary { background: #fff; border: 1px solid var(--border); color: #3c4043; }
+        .btn-secondary:hover { background: #f8f9fa; }
+        
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: #1765cc; }
+
+        .btn-submit { background: var(--success); color: white; width: 100%; margin-top: 10px; padding: 12px; }
+        .btn-review { background: var(--warning); color: #202124; }
+        
+        .finish-btn {
+            background-color: var(--danger); 
+            color: white; 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            border: none; 
+            cursor: pointer;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: white;
+            width: 80%;
+            max-width: 900px;
+            height: 90%;
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .score-summary {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box { text-align: center; }
+        .stat-val { font-size: 2rem; font-weight: bold; display: block; }
+        .stat-label { color: #5f6368; font-size: 0.9rem; }
+
+        .results-table-container {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; position: sticky; top: 0; }
+        
+        .status-correct { color: var(--success); font-weight: bold; }
+        .status-wrong { color: var(--danger); font-weight: bold; }
+        .status-un { color: #999; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h3>झारखंड माध्यमिक आचार्य - पेपर 1 (GK और झारखंड)</h3>
+        <div style="display:flex; gap:10px; align-items:center;">
+             <button class="finish-btn" onclick="submitQuiz(false)">टेस्ट समाप्त करें</button>
+             <div class="timer-display" id="timer">03:00:00</div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <div class="q-container">
+            <div class="q-info-bar">
+                <span id="q-num-display">प्रश्न 1</span>
+                <span>एकल सही विकल्प • <strong>+1, 0</strong></span>
+            </div>
+            <div id="q-content">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="profile-sec">
+                <div>अभ्यर्थी का नाम</div>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><span class="dot" style="background:var(--success)"></span> उत्तर दिया</div>
+                <div class="legend-item"><span class="dot" style="background:var(--danger)"></span> उत्तर नहीं दिया</div>
+                <div class="legend-item"><span class="dot" style="background:#fff; border:1px solid #ccc"></span> नहीं देखा</div>
+                <div class="legend-item"><span class="dot" style="background:#5f259f"></span> समीक्षा</div>
+            </div>
+            <div class="palette-area" id="palette">
+                <!-- Grid -->
+            </div>
+            <div style="padding: 15px; border-top: 1px solid var(--border)">
+                <button class="btn btn-submit" onclick="submitQuiz(false)">टेस्ट जमा करें</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>
+            <button class="btn btn-secondary" onclick="changeQ(-1)">पिछला</button>
+            <button class="btn btn-review" onclick="markReview()">समीक्षा और अगला</button>
+        </div>
+        <button class="btn btn-primary" onclick="saveNext()">सहेजें और अगला</button>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirm-modal" style="z-index: 1100;">
+        <div class="modal-box" style="height: auto; max-width: 500px; text-align: center;">
+            <h3 style="margin-top: 0;">टेस्ट जमा करें?</h3>
+            <p>आपने <strong id="confirm-total">0</strong> में से <strong id="confirm-att">0</strong> प्रश्नों के उत्तर दिए हैं।</p>
+            <p>क्या आप सुनिश्चित हैं कि आप समाप्त करना और अपना स्कोर देखना चाहते हैं?</p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="closeConfirm()">रद्द करें</button>
+                <button class="btn btn-submit" style="width: auto; margin-top: 0;" onclick="submitQuiz(true)">हाँ, जमा करें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-box">
+            <h2 style="margin-top:0">टेस्ट परिणाम विश्लेषण</h2>
+            <div class="score-summary">
+                <div class="stat-box">
+                    <span class="stat-val" style="color:var(--primary)" id="res-score">0</span>
+                    <span class="stat-label">कुल अंक</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-val" style="color:var(--success)" id="res-correct">0</span>
+                    <span class="stat-label">सही</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-val" style="color:var(--danger)" id="res-wrong">0</span>
+                    <span class="stat-label">गलत</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-val" id="res-att">0</span>
+                    <span class="stat-label">प्रयास किया</span>
+                </div>
+            </div>
+            <div class="results-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>प्र.सं.</th>
+                            <th>प्रश्न पूर्वावलोकन</th>
+                            <th>आपका उत्तर</th>
+                            <th>सही उत्तर</th>
+                            <th>परिणाम</th>
+                        </tr>
+                    </thead>
+                    <tbody id="res-table-body"></tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary" style="margin-top:20px; width:200px; align-self: flex-end;" onclick="location.reload()">फिर से टेस्ट दें</button>
+        </div>
+    </div>
+
+<script>
+    // --- DATABASE OF 100 GK & JHARKHAND QUESTIONS (HINDI) ---
+    // Section Breakdown:
+    // 1-40: Jharkhand GK
+    // 41-70: General Studies (History, Geo, Polity)
+    // 71-90: General Science
+    // 91-100: Computer & Misc
+    
+    const questions = [
+        // --- JHARKHAND GK (1-40) ---
+        { q: "झारखंड राज्य का गठन कब हुआ था?", o: ["1 नवंबर 2000", "15 नवंबर 2000", "15 अगस्त 1947", "26 जनवरी 1950"], a: 1 },
+        { q: "झारखंड की राजधानी क्या है?", o: ["जमशेदपुर", "धनबाद", "रांची", "बोकारो"], a: 2 },
+        { q: "झारखंड की उप-राजधानी कौन सी है?", o: ["दुमका", "हजारीबाग", "देवघर", "गिरिडीह"], a: 0 },
+        { q: "झारखंड के प्रथम मुख्यमंत्री कौन थे?", o: ["शिबू सोरेन", "अर्जुन मुंडा", "बाबूलाल मरांडी", "हेमंत सोरेन"], a: 2 },
+        { q: "झारखंड में कुल कितने जिले हैं?", o: ["18", "22", "24", "26"], a: 2 },
+        { q: "'सोहराई' और 'कोहबर' चित्रकला किस राज्य से संबंधित है?", o: ["बिहार", "झारखंड", "ओडिशा", "पश्चिम बंगाल"], a: 1 },
+        { q: "बिरसा मुंडा का जन्म किस स्थान पर हुआ था?", o: ["उलिहातू", "खूंटी", "रांची", "चाईबासा"], a: 0 },
+        { q: "संथाल विद्रोह (Santhal Rebellion) कब हुआ था?", o: ["1831-32", "1855-56", "1895-1900", "1914"], a: 1 },
+        { q: "झारखंड का राजकीय पशु (State Animal) क्या है?", o: ["बाघ", "हाथी", "हिरण", "बैल"], a: 1 },
+        { q: "झारखंड का राजकीय फूल (State Flower) क्या है?", o: ["कमल", "पलाश", "गुलाब", "गेंदा"], a: 1 },
+        { q: "दामोदर नदी का उद्गम स्थल कहां है?", o: ["त्रिकूट पहाड़ी", "छोटानागपुर का पठार (टोरी)", "पारसनाथ", "अमरकंटक"], a: 1 },
+        { q: "झारखंड की सबसे ऊंची चोटी कौन सी है?", o: ["नेतरहाट", "पारसनाथ (सम्मेद शिखर)", "राजमहल", "टैगोर हिल"], a: 1 },
+        { q: "बेतला राष्ट्रीय उद्यान (Betla National Park) किस जिले में स्थित है?", o: ["पलामू", "लातेहार", "हजारीबाग", "गुमला"], a: 1 },
+        { q: "झारखंड का 'शिमला' किसे कहा जाता है?", o: ["नेतरहाट", "रांची", "हजारीबाग", "जमशेदपुर"], a: 1 },
+        { q: "टाना भगत आंदोलन की शुरुआत किसने की थी?", o: ["बिरसा मुंडा", "जतरा उरांव", "तिलका मांझी", "सिधू-कान्हू"], a: 1 },
+        { q: "झारखंड में 'लौह इस्पात' (Iron & Steel) का पहला कारखाना कहां खुला?", o: ["बोकारो", "जमशेदपुर (साकची)", "धनबाद", "रांची"], a: 1 },
+        { q: "हुंडरू जलप्रपात (Hundru Falls) किस नदी पर स्थित है?", o: ["दामोदर", "स्वर्णरेखा", "शंख", "कोयल"], a: 1 },
+        { q: "झारखंड की मुख्य फसल क्या है?", o: ["गेहूं", "मक्का", "धान (चावल)", "गन्ना"], a: 2 },
+        { q: "छोटानागपुर काश्तकारी अधिनियम (CNT Act) कब लागू हुआ?", o: ["1905", "1908", "1912", "1932"], a: 1 },
+        { q: "संथाल परगना काश्तकारी अधिनियम (SPT Act) कब बना?", o: ["1949", "1908", "1950", "2000"], a: 0 },
+        { q: "झारखंड के प्रथम राज्यपाल कौन थे?", o: ["वेद मारवाह", "प्रभात कुमार", "सैयद सिब्ते रजी", "द्रौपदी मुर्मू"], a: 1 },
+        { q: "मैथन डैम (Maithon Dam) किस नदी पर बना है?", o: ["दामोदर", "बराकर", "स्वर्णरेखा", "मयूराक्षी"], a: 1 },
+        { q: "झारखंड में 'अभ्रक' (Mica) की राजधानी किसे कहा जाता है?", o: ["कोडरमा", "गिरिडीह", "हजारीबाग", "धनबाद"], a: 0 },
+        { q: "सरहुल (Sarhul) किस जनजाति का प्रमुख त्योहार है?", o: ["संथाल", "मुंडा", "उरांव", "उपरोक्त सभी"], a: 3 },
+        { q: "अल्बर्ट एक्का को कौन सा वीरता पुरस्कार मिला था?", o: ["महावीर चक्र", "परमवीर चक्र", "वीर चक्र", "शौर्य चक्र"], a: 1 },
+        { q: "महेंद्र सिंह धोनी को 'खेल रत्न' पुरस्कार किस वर्ष मिला था?", o: ["2005", "2007-08", "2011", "2013"], a: 1 },
+        { q: "झारखंड में यूरेनियम की खान कहां स्थित है?", o: ["जादूगोड़ा", "झरिया", "नोवामुंडी", "चिरिया"], a: 0 },
+        { q: "झारखंड उच्च न्यायालय (High Court) देश का कौन सा उच्च न्यायालय है?", o: ["18वां", "20वां", "21वां", "24वां"], a: 2 },
+        { q: "दीपिका कुमारी किस खेल से संबंधित हैं?", o: ["हॉकी", "क्रिकेट", "तीरंदाजी (Archery)", "फुटबॉल"], a: 2 },
+        { q: "झारखंड में 1857 के विद्रोह की शुरुआत कहां से हुई थी?", o: ["रांची", "हजारीबाग", "रोहिणी (देवघर)", "डोरंडा"], a: 2 },
+        { q: "दामोदर घाटी निगम (DVC) की स्थापना कब हुई?", o: ["1945", "1948", "1950", "1952"], a: 1 },
+        { q: "झारखंड का क्षेत्रफल भारत के कुल क्षेत्रफल का कितना प्रतिशत है?", o: ["2.42%", "3.5%", "4.1%", "1.8%"], a: 0 },
+        { q: "'ओल चिकी' (Ol Chiki) लिपि किस भाषा की है?", o: ["मुंडारी", "नागपुरी", "संथाली", "कुड़ुख"], a: 2 },
+        { q: "छिन्नमस्तिका मंदिर कहां स्थित है?", o: ["रजरप्पा", "देवघर", "बासुकीनाथ", "इटखोरी"], a: 0 },
+        { q: "उसरी जलप्रपात (Usri Falls) किस जिले में है?", o: ["रांची", "गिरिडीह", "धनबाद", "खूंटी"], a: 1 },
+        { q: "झारखंड में सर्वाधिक कौन सी मिट्टी पाई जाती है?", o: ["काली मिट्टी", "लाल मिट्टी", "जलोढ़ मिट्टी", "लेटराइट मिट्टी"], a: 1 },
+        { q: "झारखंड की 'कोयला राजधानी' किसे कहते हैं?", o: ["बोकारो", "धनबाद", "रामगढ़", "रांची"], a: 1 },
+        { q: "हेवी इंजीनियरिंग कॉर्पोरेशन (HEC) कहां स्थित है?", o: ["जमशेदपुर", "बोकारो", "हटिया (रांची)", "सिंदरी"], a: 2 },
+        { q: "कीनन स्टेडियम (Keenan Stadium) कहां स्थित है?", o: ["रांची", "जमशेदपुर", "धनबाद", "बोकारो"], a: 1 },
+        { q: "महुआडांड़ अभयारण्य (Mahuadanr Sanctuary) किसके संरक्षण के लिए प्रसिद्ध है?", o: ["बाघ", "हाथी", "भेड़िया", "हिरण"], a: 2 },
+
+        // --- GENERAL STUDIES (41-70) ---
+        { q: "सिंधु घाटी सभ्यता की खोज किसने की थी?", o: ["दयाराम साहनी", "राखालदास बनर्जी", "जॉन मार्शल", "वुलर"], a: 0 },
+        { q: "वेद कितने हैं?", o: ["3", "4", "5", "6"], a: 1 },
+        { q: "मौर्य वंश के संस्थापक कौन थे?", o: ["अशोक", "बिन्दुसार", "चंद्रगुप्त मौर्य", "चाणक्य"], a: 2 },
+        { q: "पानीपत की पहली लड़ाई कब हुई थी?", o: ["1526", "1556", "1761", "1857"], a: 0 },
+        { q: "भारतीय राष्ट्रीय कांग्रेस की स्थापना कब हुई?", o: ["1880", "1885", "1905", "1920"], a: 1 },
+        { q: "जलियांवाला बाग हत्याकांड कब हुआ था?", o: ["1915", "1919", "1920", "1922"], a: 1 },
+        { q: "भारत का संविधान कब लागू हुआ?", o: ["15 अगस्त 1947", "26 नवंबर 1949", "26 जनवरी 1950", "2 अक्टूबर 1950"], a: 2 },
+        { q: "भारतीय संविधान में मौलिक अधिकार किस देश से लिए गए हैं?", o: ["ब्रिटेन", "अमेरिका (USA)", "रूस", "कनाडा"], a: 1 },
+        { q: "भारत का राष्ट्रपति बनने के लिए न्यूनतम आयु क्या है?", o: ["25 वर्ष", "30 वर्ष", "35 वर्ष", "40 वर्ष"], a: 2 },
+        { q: "लोकसभा का सदस्य बनने के लिए न्यूनतम आयु क्या है?", o: ["25 वर्ष", "30 वर्ष", "35 वर्ष", "21 वर्ष"], a: 0 },
+        { q: "नीति आयोग (NITI Aayog) का अध्यक्ष कौन होता है?", o: ["राष्ट्रपति", "प्रधानमंत्री", "वित्त मंत्री", "गृह मंत्री"], a: 1 },
+        { q: "भारत में 'श्वेत क्रांति' (White Revolution) का संबंध किससे है?", o: ["दुग्ध उत्पादन", "अंडा उत्पादन", "मछली उत्पादन", "गेहूं उत्पादन"], a: 0 },
+        { q: "सौरमंडल का सबसे बड़ा ग्रह कौन सा है?", o: ["पृथ्वी", "शनि", "बृहस्पति (Jupiter)", "मंगल"], a: 2 },
+        { q: "भारत की सबसे लंबी नदी कौन सी है?", o: ["यमुना", "गोदावरी", "गंगा", "नर्मदा"], a: 2 },
+        { q: "क्षेत्रफल की दृष्टि से भारत का विश्व में कौन सा स्थान है?", o: ["5वां", "6ठा", "7वां", "8वां"], a: 2 },
+        { q: "रबी की फसल कब बोई जाती है?", o: ["जून-जुलाई", "अक्टूबर-नवंबर", "मार्च-अप्रैल", "जनवरी-फरवरी"], a: 1 },
+        { q: "काजीरंगा राष्ट्रीय उद्यान किस राज्य में है?", o: ["असम", "बंगाल", "मध्य प्रदेश", "उत्तराखंड"], a: 0 },
+        { q: "भारत का सर्वोच्च नागरिक सम्मान कौन सा है?", o: ["पद्म विभूषण", "पद्म भूषण", "भारत रत्न", "परमवीर चक्र"], a: 2 },
+        { q: "RBI (भारतीय रिजर्व बैंक) का मुख्यालय कहां है?", o: ["दिल्ली", "मुंबई", "कोलकाता", "चेन्नई"], a: 1 },
+        { q: "आनंदमठ के रचयिता कौन हैं?", o: ["रविंद्रनाथ टैगोर", "बंकिम चंद्र चटर्जी", "प्रेमचंद", "शरद चंद्र"], a: 1 },
+        { q: "कथकली (Kathakali) किस राज्य का शास्त्रीय नृत्य है?", o: ["तमिलनाडु", "केरल", "आंध्र प्रदेश", "ओडिशा"], a: 1 },
+        { q: "संयुक्त राष्ट्र संघ (UN) का मुख्यालय कहां है?", o: ["जेनेवा", "न्यूयार्क", "लंदन", "पेरिस"], a: 1 },
+        { q: "वायुमंडल की सबसे निचली परत कौन सी है?", o: ["समताप मंडल", "क्षोभ मंडल (Troposphere)", "आयन मंडल", "बाह्य मंडल"], a: 1 },
+        { q: "भारत का मानक समय (IST) ग्रीनविच समय (GMT) से कितना आगे है?", o: ["5 घंटे", "5:30 घंटे", "6 घंटे", "4:30 घंटे"], a: 1 },
+        { q: "जीएसटी (GST) भारत में कब लागू हुआ?", o: ["1 अप्रैल 2017", "1 जुलाई 2017", "1 जनवरी 2018", "8 नवंबर 2016"], a: 1 },
+        { q: "संसद के संयुक्त सत्र को कौन बुलाता है?", o: ["प्रधानमंत्री", "लोकसभा अध्यक्ष", "राष्ट्रपति", "उपराष्ट्रपति"], a: 2 },
+        { q: "बंगाल का विभाजन कब हुआ था?", o: ["1905", "1907", "1911", "1919"], a: 0 },
+        { q: "सूर्य के सबसे निकट का ग्रह कौन सा है?", o: ["शुक्र", "बुध (Mercury)", "पृथ्वी", "मंगल"], a: 1 },
+        { q: "भारत में पंचायती राज व्यवस्था सबसे पहले किस राज्य में लागू हुई?", o: ["राजस्थान", "बिहार", "उत्तर प्रदेश", "महाराष्ट्र"], a: 0 },
+        { q: "अंतर्राष्ट्रीय योग दिवस कब मनाया जाता है?", o: ["21 जून", "5 जून", "8 मार्च", "1 दिसंबर"], a: 0 },
+
+        // --- GENERAL SCIENCE (71-90) ---
+        { q: "बल (Force) का SI मात्रक क्या है?", o: ["जूल", "न्यूटन", "पास्कल", "वाट"], a: 1 },
+        { q: "प्रकाश की चाल सबसे अधिक किसमें होती है?", o: ["जल", "कांच", "निर्वात (Vacuum)", "हवा"], a: 2 },
+        { q: "ध्वनि (Sound) किसमें यात्रा नहीं कर सकती?", o: ["ठोस", "द्रव", "गैस", "निर्वात (Vacuum)"], a: 3 },
+        { q: "पानी का रासायनिक सूत्र क्या है?", o: ["H2O", "D2O", "HO", "O2"], a: 0 },
+        { q: "खाने वाला नमक (Common Salt) का रासायनिक नाम क्या है?", o: ["सोडियम कार्बोनेट", "सोडियम बाइकार्बोनेट", "सोडियम क्लोराइड (NaCl)", "पोटेशियम क्लोराइड"], a: 2 },
+        { q: "नींबू में कौन सा अम्ल पाया जाता है?", o: ["एसिटिक अम्ल", "साइट्रिक अम्ल", "लैक्टिक अम्ल", "टार्टरिक अम्ल"], a: 1 },
+        { q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", o: ["स्टेप्स", "फीमर (जांघ)", "ह्यूमरस", "टिबिया"], a: 1 },
+        { q: "कोशिका का 'पावर हाउस' (Power House) किसे कहते हैं?", o: ["न्यूक्लियस", "माइटोकॉन्ड्रिया", "राइबोसोम", "लाइसोसोम"], a: 1 },
+        { q: "पौधों में भोजन बनाने की प्रक्रिया क्या कहलाती है?", o: ["श्वसन", "प्रकाश संश्लेषण (Photosynthesis)", "वाष्पोत्सर्जन", "परागण"], a: 1 },
+        { q: "विटामिन C की कमी से कौन सा रोग होता है?", o: ["रतौंधी", "बेरी-बेरी", "स्कर्वी", "रिकेट्स"], a: 2 },
+        { q: "मानव रक्त का pH मान कितना होता है?", o: ["6.0", "7.4", "8.0", "5.5"], a: 1 },
+        { q: "विद्युत धारा (Current) मापने का यंत्र है:", o: ["वोल्टमीटर", "अमीटर", "बैरोमीटर", "लैक्टोमीटर"], a: 1 },
+        { q: "गुरुत्वाकर्षण (Gravity) का नियम किसने दिया?", o: ["आइंस्टीन", "न्यूटन", "गैलिलियो", "डाल्टन"], a: 1 },
+        { q: "सबसे हल्की गैस कौन सी है?", o: ["ऑक्सीजन", "नाइट्रोजन", "हाइड्रोजन", "हीलियम"], a: 2 },
+        { q: "रक्त समूह (Blood Group) की खोज किसने की?", o: ["लैंडस्टीनर", "हार्वे", "पाश्चर", "फ्लेमिंग"], a: 0 },
+        { q: "पीतल (Brass) किसका मिश्रण है?", o: ["तांबा और जस्ता (Cu+Zn)", "तांबा और टिन", "लोहा और कार्बन", "सीसा और टिन"], a: 0 },
+        { q: "मानव शरीर में कुल कितनी हड्डियां होती हैं?", o: ["206", "300", "208", "210"], a: 0 },
+        { q: "आग बुझाने के लिए किस गैस का प्रयोग होता है?", o: ["ऑक्सीजन", "नाइट्रोजन", "कार्बन डाइऑक्साइड (CO2)", "हाइड्रोजन"], a: 2 },
+        { q: "पेनिसिलिन की खोज किसने की?", o: ["अलेक्जेंडर फ्लेमिंग", "एडवर्ड जेनर", "लुई पाश्चर", "रॉबर्ट हुक"], a: 0 },
+        { q: "विद्युत बल्ब का फिलामेंट किसका बना होता है?", o: ["तांबा", "लोहा", "टंगस्टन", "एल्युमीनियम"], a: 2 },
+
+        // --- COMPUTER & REASONING (91-100) ---
+        { q: "कम्प्यूटर का जनक (Father of Computer) किसे कहा जाता है?", o: ["बिल गेट्स", "चार्ल्स बैबेज", "एलन ट्यूरिंग", "पास्कल"], a: 1 },
+        { q: "CPU का पूरा नाम क्या है?", o: ["Central Processing Unit", "Central Program Unit", "Control Processing Unit", "Computer Power Unit"], a: 0 },
+        { q: "निम्न में से कौन इनपुट डिवाइस है?", o: ["मॉनिटर", "प्रिंटर", "कीबोर्ड", "स्पीकर"], a: 2 },
+        { q: "1 Kilobyte (KB) में कितने बाइट होते हैं?", o: ["1000", "1024", "100", "512"], a: 1 },
+        { q: "RAM का पूर्ण रूप क्या है?", o: ["Read Access Memory", "Random Access Memory", "Read Any Memory", "Run Any Memory"], a: 1 },
+        { q: "श्रृंखला पूरी करें: 2, 4, 8, 16, ...?", o: ["20", "24", "32", "30"], a: 2 },
+        { q: "विषम शब्द चुनें (Odd one out):", o: ["कार", "बस", "ट्रक", "साइकिल"], a: 3 },
+        { q: "यदि A=1, B=2 है, तो PEN का मान क्या होगा? (P=16, E=5, N=14)", o: ["30", "35", "32", "40"], a: 1 },
+        { q: "दिशा परीक्षण: एक व्यक्ति उत्तर की ओर 5 किमी चला, फिर दाएं मुड़ा। अब वह किस दिशा में है?", o: ["उत्तर", "दक्षिण", "पूर्व", "पश्चिम"], a: 2 },
+        { q: "WWW का आविष्कार किसने किया?", o: ["टिम बर्नर्स ली", "मार्क जुकरबर्ग", "लैरी पेज", "स्टीव जॉब्स"], a: 0 }
+    ];
+
+    // --- STATE MANAGEMENT ---
+    let currentQ = 0;
+    let answers = [];
+    let visited = [];
+    let markedReview = [];
+    let timeLeft = 3 * 3600; // 3 hours
+    let timerInterval;
+
+    // --- INITIALIZATION ---
+    window.onload = function() {
+        const totalQ = questions.length;
+        answers = new Array(totalQ).fill(null);
+        visited = new Array(totalQ).fill(false);
+        markedReview = new Array(totalQ).fill(false);
+        
+        renderPalette();
+        loadQuestion(0);
+        startTimer();
+    };
+
+    // --- CORE FUNCTIONS ---
+    function loadQuestion(index) {
+        if (index < 0 || index >= questions.length) return;
+        
+        currentQ = index;
+        visited[index] = true;
+        
+        document.getElementById('q-num-display').innerText = `प्रश्न ${index + 1} / ${questions.length}`;
+        
+        const qData = questions[index];
+        const html = `
+            <div class="q-text">${qData.q}</div>
+            <div class="options-list">
+                ${qData.o.map((opt, i) => `
+                    <label class="option-item">
+                        <input type="radio" name="opt" value="${i}" 
+                            ${answers[index] === i ? 'checked' : ''} 
+                            onclick="selectOption(${i})">
+                        ${opt}
+                    </label>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('q-content').innerHTML = html;
+        
+        updatePalette();
+    }
+
+    function selectOption(optIndex) {
+        answers[currentQ] = optIndex;
+        updatePalette();
+    }
+
+    function saveNext() {
+        if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
+    }
+
+    function changeQ(diff) {
+        const newIndex = currentQ + diff;
+        if (newIndex >= 0 && newIndex < questions.length) loadQuestion(newIndex);
+    }
+
+    function markReview() {
+        markedReview[currentQ] = true;
+        saveNext();
+    }
+
+    function jumpTo(index) {
+        loadQuestion(index);
+    }
+
+    // --- PALETTE UI ---
+    function renderPalette() {
+        const p = document.getElementById('palette');
+        p.innerHTML = questions.map((_, i) => 
+            `<button id="btn-${i}" class="pal-btn" onclick="jumpTo(${i})">${i + 1}</button>`
+        ).join('');
+    }
+
+    function updatePalette() {
+        questions.forEach((_, i) => {
+            const btn = document.getElementById(`btn-${i}`);
+            btn.className = 'pal-btn';
+            
+            if (i === currentQ) btn.classList.add('current');
+            
+            if (markedReview[i]) {
+                if (answers[i] !== null) btn.classList.add('ans-review');
+                else btn.classList.add('review');
+            } else if (answers[i] !== null) {
+                btn.classList.add('answered');
+            } else if (visited[i] && i !== currentQ) {
+                btn.classList.add('not-answered');
+            }
+        });
+    }
+
+    // --- TIMER ---
+    function startTimer() {
+        const display = document.getElementById('timer');
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitQuiz(true);
+                return;
+            }
+            timeLeft--;
+            const h = Math.floor(timeLeft / 3600);
+            const m = Math.floor((timeLeft % 3600) / 60);
+            const s = timeLeft % 60;
+            display.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        }, 1000);
+    }
+
+    // --- SUBMISSION LOGIC ---
+    function closeConfirm() {
+        document.getElementById('confirm-modal').style.display = 'none';
+    }
+
+    function submitQuiz(force = false) {
+        if (!force) {
+            const attempts = answers.filter(a => a !== null).length;
+            document.getElementById('confirm-att').innerText = attempts;
+            document.getElementById('confirm-total').innerText = questions.length;
+            document.getElementById('confirm-modal').style.display = 'flex';
+            return;
+        }
+        
+        document.getElementById('confirm-modal').style.display = 'none';
+        clearInterval(timerInterval);
+        
+        let score = 0, correct = 0, wrong = 0, attempted = 0;
+        let tbody = document.getElementById('res-table-body');
+        tbody.innerHTML = '';
+
+        questions.forEach((q, i) => {
+            const userAns = answers[i];
+            const isAtt = userAns !== null;
+            let resText = "उत्तर नहीं दिया";
+            let resClass = "status-un";
+            let rowStyle = "";
+
+            if (isAtt) {
+                attempted++;
+                if (userAns === q.a) {
+                    score += 1;
+                    correct++;
+                    resText = "सही (+1)";
+                    resClass = "status-correct";
+                    rowStyle = "background: #e6fffa";
+                } else {
+                    // No negative marking for this exam
+                    wrong++;
+                    resText = "गलत (0)";
+                    resClass = "status-wrong";
+                    rowStyle = "background: #fff5f5";
+                }
+            }
+
+            const correctOptText = q.o[q.a];
+            const userAnsText = isAtt ? q.o[userAns] : '-';
+
+            tbody.innerHTML += `
+                <tr style="${rowStyle}">
+                    <td>${i+1}</td>
+                    <td>${q.q}</td>
+                    <td style="${userAns === q.a ? 'color:green;font-weight:bold' : (isAtt ? 'color:red' : '')}">${userAnsText}</td>
+                    <td style="color:green; font-weight:bold">${correctOptText}</td>
+                    <td class="${resClass}">${resText}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById('res-score').innerText = score + "/" + questions.length;
+        document.getElementById('res-correct').innerText = correct;
+        document.getElementById('res-wrong').innerText = wrong;
+        document.getElementById('res-att').innerText = attempted;
+        
+        document.querySelector('.layout').style.display = 'none';
+        document.querySelector('.footer').style.display = 'none';
+        document.querySelector('header').style.display = 'none';
+
+        const modal = document.getElementById('resultModal');
+        modal.style.display = 'flex';
+        modal.style.position = 'static';
+        modal.style.background = 'white';
+        modal.style.height = 'auto';
+        
+        const modalBox = modal.querySelector('.modal-box');
+        modalBox.style.width = '100%';
+        modalBox.style.maxWidth = '1000px';
+        modalBox.style.boxShadow = 'none';
+        modalBox.style.height = 'auto';
+        
+        document.body.style.overflow = 'auto';
+    }
+
+</script>
+</body>
+</html>
