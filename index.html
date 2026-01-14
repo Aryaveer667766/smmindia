@@ -1,664 +1,345 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>झारखंड माध्यमिक आचार्य - गृह विज्ञान मॉक टेस्ट 2026</title>
+    <title>JSSC Madhyamik Acharya Exam Portal</title>
     <style>
         :root {
-            --primary: #673ab7;
-            --success: #0f9d58;
-            --danger: #d93025;
-            --warning: #f4b400;
-            --light: #f1f3f4;
-            --dark: #202124;
-            --border: #dadce0;
+            --primary: #2d3e50;
+            --accent: #007bff;
+            --light-bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-light: #666;
+            --success: #28a745;
+            --warning: #ffc107;
+            --disabled: #e9ecef;
         }
 
         body {
-            font-family: 'Nirmala UI', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #fff;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 { margin: 0; font-size: 1.8rem; }
+        .subtitle { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Grid Layout */
+        .paper-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 5px solid var(--accent);
+            position: relative;
             overflow: hidden;
         }
 
-        /* Top Header */
-        header {
-            background: #fff;
-            border-bottom: 1px solid var(--border);
-            padding: 0 20px;
-            height: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-shrink: 0;
-            z-index: 10;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        h3 { margin: 0; font-size: 1.1rem; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card.disabled {
+            border-left-color: #ccc;
+            background: #fafafa;
+            cursor: not-allowed;
+        }
 
-        .timer-display {
-            background: var(--dark);
-            color: #fff;
-            padding: 8px 16px;
+        .card.disabled:hover {
+            transform: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
+        .card p { margin: 0 0 20px 0; color: var(--text-light); font-size: 0.9rem; }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
             border-radius: 4px;
-            font-family: monospace;
-            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover { background-color: #0056b3; }
+
+        .btn-retake {
+            background-color: white;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        .btn-retake:hover { background-color: #e3f2fd; }
+
+        .btn-resume {
+            background-color: var(--warning);
+            color: #333;
+        }
+        .btn-resume:hover { background-color: #e0a800; }
+
+        .btn-disabled {
+            background-color: #ccc;
+            color: #666;
+            pointer-events: none;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e1f5fe;
+            color: var(--accent);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: bold;
         }
 
-        /* Main Layout */
-        .layout {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
+        .status-new { background: #e8f5e9; color: var(--success); }
+        .status-soon { background: #eee; color: #888; }
+        .status-attempted { background: #fff3cd; color: #856404; }
+        .status-completed { background: #cce5ff; color: #004085; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
         }
-
-        /* Left: Question Area */
-        .q-container {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .q-info-bar {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            color: #5f6368;
-            font-weight: 500;
-        }
-
-        .q-text {
-            font-size: 1.15rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #202124;
-        }
-
-        .options-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .option-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .option-item:hover { background: #f8f9fa; }
-        
-        .option-item input {
-            margin-right: 15px;
-            width: 18px; 
-            height: 18px;
-        }
-
-        /* Right: Sidebar */
-        .sidebar {
-            width: 320px;
-            background: #fff;
-            border-left: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
-
-        .profile-sec {
-            padding: 15px;
-            background: #e8f0fe;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .legend {
-            padding: 10px;
-            font-size: 0.8rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .legend-item { display: flex; align-items: center; gap: 5px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-
-        .palette-area {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: 40px;
-            gap: 8px;
-            align-content: start;
-        }
-
-        .pal-btn {
-            border: 1px solid #dadce0;
-            background: #fff;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .pal-btn:hover { background: #f1f3f4; }
-        .pal-btn.current { border: 2px solid var(--primary); }
-        .pal-btn.answered { background: var(--success); color: white; border-color: var(--success); }
-        .pal-btn.not-answered { background: var(--danger); color: white; border-color: var(--danger); }
-        .pal-btn.review { background: #5f259f; color: white; border-color: #5f259f; border-radius: 50%; }
-        .pal-btn.ans-review { background: #5f259f; color: white; border-color: #5f259f; border-radius: 50%; }
-        .pal-btn.ans-review::after { content: '✔'; font-size: 8px; position: absolute; bottom: 2px; right: 2px; }
-
-        /* Footer */
-        .footer {
-            height: 70px;
-            border-top: 1px solid var(--border);
-            background: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
-            z-index: 10;
-        }
-
-        .btn {
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-
-        .btn-secondary { background: #fff; border: 1px solid var(--border); color: #3c4043; }
-        .btn-secondary:hover { background: #f8f9fa; }
-        
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: #512da8; }
-
-        .btn-submit { background: var(--success); color: white; width: 100%; margin-top: 10px; padding: 12px; }
-        .btn-review { background: var(--warning); color: #202124; }
-        
-        .finish-btn {
-            background-color: var(--danger); 
-            color: white; 
-            padding: 8px 16px; 
-            border-radius: 4px; 
-            font-weight: bold; 
-            border: none; 
-            cursor: pointer;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-box {
-            background: white;
-            width: 80%;
-            max-width: 900px;
-            height: 90%;
-            border-radius: 8px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .score-summary {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .stat-box { text-align: center; }
-        .stat-val { font-size: 2rem; font-weight: bold; display: block; }
-        .stat-label { color: #5f6368; font-size: 0.9rem; }
-
-        .results-table-container {
-            flex: 1;
-            overflow-y: auto;
-            border: 1px solid var(--border);
-        }
-
-        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #f8f9fa; position: sticky; top: 0; }
-        
-        .status-correct { color: var(--success); font-weight: bold; }
-        .status-wrong { color: var(--danger); font-weight: bold; }
-        .status-un { color: #999; }
-
     </style>
 </head>
 <body>
 
     <header>
-        <h3>झारखंड माध्यमिक आचार्य - गृह विज्ञान</h3>
-        <div style="display:flex; gap:10px; align-items:center;">
-             <button class="finish-btn" onclick="submitQuiz(false)">टेस्ट समाप्त करें</button>
-             <div class="timer-display" id="timer">03:00:00</div>
-        </div>
+        <h1>Jharkhand Madhyamik Acharya Exam 2026</h1>
+        <div class="subtitle">Official Mock Test Portal</div>
+        <button onclick="clearProgress()" style="margin-top:10px; padding:5px 10px; font-size:0.8rem; cursor:pointer; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.5); color:white; border-radius:4px;">Reset All Progress</button>
     </header>
 
-    <div class="layout">
-        <div class="q-container">
-            <div class="q-info-bar">
-                <span id="q-num-display">प्रश्न 1</span>
-                <span>एकल सही विकल्प • <strong>+1, 0</strong></span>
-            </div>
-            <div id="q-content">
-                <!-- Dynamic Content -->
+    <div class="container">
+
+        <!-- PAPER 1 SECTION -->
+        <div class="paper-section">
+            <h2 class="section-title">Paper 1: General Knowledge & Jharkhand</h2>
+            <div class="grid">
+                
+                <!-- P1 Set 1 -->
+                <div class="card" id="card-p1s1">
+                    <span class="badge status-new" id="badge-p1s1">New</span>
+                    <h3>Practice Set 1</h3>
+                    <p>100 Questions • GK & Science</p>
+                    <button class="btn" id="btn-p1s1" onclick="handleStart(event, 'p1s1', 'p1s1.html')">Start Test</button>
+                </div>
+
+                <!-- P1 Set 2 -->
+                <div class="card" id="card-p1s2">
+                    <span class="badge status-new" id="badge-p1s2">New</span>
+                    <h3>Practice Set 2</h3>
+                    <p>100 Questions • Jharkhand Spl.</p>
+                    <button class="btn" id="btn-p1s2" onclick="handleStart(event, 'p1s2', 'p1s2.html')">Start Test</button>
+                </div>
+
+                <!-- P1 Set 3 -->
+                <div class="card" id="card-p1s3">
+                    <span class="badge status-new" id="badge-p1s3">New</span>
+                    <h3>Practice Set 3</h3>
+                    <p>100 Questions • Full Syllabus</p>
+                    <button class="btn" id="btn-p1s3" onclick="handleStart(event, 'p1s3', 'p1s3.html')">Start Test</button>
+                </div>
+
+                <!-- P1 Set 4 (Locked) -->
+                <div class="card disabled">
+                    <span class="badge status-soon">Locked</span>
+                    <h3>Practice Set 4</h3>
+                    <p>Practice Set</p>
+                    <button class="btn btn-disabled">Coming Soon</button>
+                </div>
+
             </div>
         </div>
 
-        <div class="sidebar">
-            <div class="profile-sec">
-                <div>अभ्यर्थी का नाम</div>
-            </div>
-            <div class="legend">
-                <div class="legend-item"><span class="dot" style="background:var(--success)"></span> उत्तर दिया</div>
-                <div class="legend-item"><span class="dot" style="background:var(--danger)"></span> उत्तर नहीं दिया</div>
-                <div class="legend-item"><span class="dot" style="background:#fff; border:1px solid #ccc"></span> नहीं देखा</div>
-                <div class="legend-item"><span class="dot" style="background:#5f259f"></span> समीक्षा</div>
-            </div>
-            <div class="palette-area" id="palette">
-                <!-- Grid -->
-            </div>
-            <div style="padding: 15px; border-top: 1px solid var(--border)">
-                <button class="btn btn-submit" onclick="submitQuiz(false)">टेस्ट जमा करें</button>
+        <!-- PAPER 2 SECTION -->
+        <div class="paper-section">
+            <h2 class="section-title">Paper 2: Home Science (गृह विज्ञान)</h2>
+            <div class="grid">
+
+                <!-- P2 Set 1 -->
+                <div class="card" id="card-p2s1">
+                    <span class="badge status-new" id="badge-p2s1">New</span>
+                    <h3>Practice Set 1</h3>
+                    <p>100 Questions • Fundamentals</p>
+                    <button class="btn" id="btn-p2s1" onclick="handleStart(event, 'p2s1', 'p2s1.html')">Start Test</button>
+                </div>
+
+                <!-- P2 Set 2 -->
+                <div class="card" id="card-p2s2">
+                    <span class="badge status-new" id="badge-p2s2">New</span>
+                    <h3>Practice Set 2</h3>
+                    <p>150 Questions • Advanced</p>
+                    <button class="btn" id="btn-p2s2" onclick="handleStart(event, 'p2s2', 'p2s2.html')">Start Test</button>
+                </div>
+
+                <!-- P2 Set 3 -->
+                <div class="card" id="card-p2s3">
+                    <span class="badge status-new" id="badge-p2s3">New</span>
+                    <h3>Practice Set 3</h3>
+                    <p>150 Questions • Full Mock</p>
+                    <button class="btn" id="btn-p2s3" onclick="handleStart(event, 'p2s3', 'p2s3.html')">Start Test</button>
+                </div>
+
+                <!-- P2 Set 4 (Locked) -->
+                <div class="card disabled">
+                    <span class="badge status-soon">Locked</span>
+                    <h3>Practice Set 4</h3>
+                    <p>Practice Set</p>
+                    <button class="btn btn-disabled">Coming Soon</button>
+                </div>
+
+                <!-- P2 Set 5 (Locked) -->
+                <div class="card disabled">
+                    <span class="badge status-soon">Locked</span>
+                    <h3>Practice Set 5</h3>
+                    <p>Practice Set</p>
+                    <button class="btn btn-disabled">Coming Soon</button>
+                </div>
+
             </div>
         </div>
+
     </div>
 
-    <div class="footer">
-        <div>
-            <button class="btn btn-secondary" onclick="changeQ(-1)">पिछला</button>
-            <button class="btn btn-review" onclick="markReview()">समीक्षा और अगला</button>
-        </div>
-        <button class="btn btn-primary" onclick="saveNext()">सहेजें और अगला</button>
-    </div>
+    <footer style="text-align: center; padding: 20px; color: #888; font-size: 0.8rem;">
+        &copy; 2026 JSSC Mock Portal. All rights reserved.
+    </footer>
 
-    <!-- Confirmation Modal -->
-    <div class="modal-overlay" id="confirm-modal" style="z-index: 1100;">
-        <div class="modal-box" style="height: auto; max-width: 500px; text-align: center;">
-            <h3 style="margin-top: 0;">टेस्ट जमा करें?</h3>
-            <p>आपने <strong id="confirm-total">0</strong> में से <strong id="confirm-att">0</strong> प्रश्नों के उत्तर दिए हैं।</p>
-            <p>क्या आप सुनिश्चित हैं कि आप समाप्त करना और अपना स्कोर देखना चाहते हैं?</p>
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-                <button class="btn btn-secondary" onclick="closeConfirm()">रद्द करें</button>
-                <button class="btn btn-submit" style="width: auto; margin-top: 0;" onclick="submitQuiz(true)">हाँ, जमा करें</button>
-            </div>
-        </div>
-    </div>
+    <script>
+        // --- CORE LOGIC TO SAVE DATA FROM INDEX ONLY ---
 
-    <!-- Result Modal -->
-    <div class="modal-overlay" id="resultModal">
-        <div class="modal-box">
-            <h2 style="margin-top:0">टेस्ट परिणाम विश्लेषण</h2>
-            <div class="score-summary">
-                <div class="stat-box">
-                    <span class="stat-val" style="color:var(--primary)" id="res-score">0</span>
-                    <span class="stat-label">कुल अंक</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-val" style="color:var(--success)" id="res-correct">0</span>
-                    <span class="stat-label">सही</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-val" style="color:var(--danger)" id="res-wrong">0</span>
-                    <span class="stat-label">गलत</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-val" id="res-att">0</span>
-                    <span class="stat-label">प्रयास किया</span>
-                </div>
-            </div>
-            <div class="results-table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>प्र.सं.</th>
-                            <th>प्रश्न पूर्वावलोकन</th>
-                            <th>आपका उत्तर</th>
-                            <th>सही उत्तर</th>
-                            <th>परिणाम</th>
-                        </tr>
-                    </thead>
-                    <tbody id="res-table-body"></tbody>
-                </table>
-            </div>
-            <button class="btn btn-primary" style="margin-top:20px; width:200px; align-self: flex-end;" onclick="location.reload()">फिर से टेस्ट दें</button>
-        </div>
-    </div>
-
-<script>
-    // --- DATABASE OF 100 HOME SCIENCE QUESTIONS (HINDI) ---
-    const questions = [
-        { q: "मानव शरीर में जल का प्रतिशत लगभग कितना होता है?", o: ["40-50%", "60-70%", "80-90%", "20-30%"], a: 1 },
-        { q: "कौन सा विटामिन जल में घुलनशील है?", o: ["विटामिन A", "विटामिन D", "विटामिन C", "विटामिन K"], a: 2 },
-        { q: "प्रोटीन की आधारभूत इकाई क्या है?", o: ["ग्लूकोज", "अमीनो अम्ल", "फैटी एसिड", "ग्लिसरॉल"], a: 1 },
-        { q: "रिकेट्स (Rickets) किस विटामिन की कमी से होता है?", o: ["विटामिन A", "विटामिन B", "विटामिन D", "विटामिन E"], a: 2 },
-        { q: "बच्चों में 'क्वाशियोरकर' (Kwashiorkor) रोग किसकी कमी से होता है?", o: ["कार्बोहाइड्रेट", "वसा", "प्रोटीन", "खनिज"], a: 2 },
-        { q: "गृह विज्ञान का मुख्य उद्देश्य क्या है?", o: ["केवल खाना पकाना", "गृह प्रबंधन और पारिवारिक जीवन की गुणवत्ता में सुधार", "कपड़े सिलाई करना", "नौकरी प्राप्त करना"], a: 1 },
-        { q: "रेशम (Silk) का रेशा प्राप्त होता है:", o: ["पौधों से", "कोकून से", "जानवरों के बालों से", "कृत्रिम रसायनों से"], a: 1 },
-        { q: "निम्न में से कौन सा मानव निर्मित रेशा (Synthetic fiber) है?", o: ["कपास", "ऊनी", "नायलॉन", "जूट"], a: 2 },
-        { q: "नवजात शिशु के लिए सबसे उत्तम आहार क्या है?", o: ["गाय का दूध", "भैंस का दूध", "माँ का दूध", "डिब्बाबंद दूध"], a: 2 },
-        { q: "भोजन पकाने की किस विधि में पोषक तत्व सबसे अधिक सुरक्षित रहते हैं?", o: ["तलना", "उबालना", "भाप में पकाना (Steaming)", "भूनना"], a: 2 },
-        { q: " आयोडीन की कमी से कौन सा रोग होता है?", o: ["रतौंधी", "घेंघा (Goitre)", "स्कर्वी", "बेरी-बेरी"], a: 1 },
-        { q: "ऊर्जा (Energy) का मुख्य स्रोत क्या है?", o: ["प्रोटीन", "विटामिन", "कार्बोहाइड्रेट", "खनिज लवण"], a: 2 },
-        { q: "पारिवारिक बजट (Family Budget) क्या है?", o: ["आय और व्यय का संतुलन", "केवल खर्च का विवरण", "केवल बचत का विवरण", "सरकारी योजना"], a: 0 },
-        { q: "विकास (Development) का क्या अर्थ है?", o: ["केवल ऊँचाई बढ़ना", "केवल वजन बढ़ना", "गुणात्मक परिवर्तन", "संख्यात्मक परिवर्तन"], a: 2 },
-        { q: "किशोरावस्था (Adolescence) की आयु सीमा मानी जाती है:", o: ["0-5 वर्ष", "6-12 वर्ष", "13-18 वर्ष", "19-25 वर्ष"], a: 2 },
-        { q: "टीकाकरण (Vaccination) क्यों महत्वपूर्ण है?", o: ["सुंदर दिखने के लिए", "वजन बढ़ाने के लिए", "रोग प्रतिरोधक क्षमता बढ़ाने के लिए", "भूख बढ़ाने के लिए"], a: 2 },
-        { q: "वस्त्रों की धुलाई में 'ब्लूइंग' (Neel) का उपयोग क्यों किया जाता है?", o: ["कपड़े मुलायम करने के लिए", "कीटाणु मारने के लिए", "सफेदी और चमक लाने के लिए", "दाग हटाने के लिए"], a: 2 },
-        { q: "निम्न में से कौन सा गृह सज्जा (Home Decoration) का तत्व है?", o: ["रंग", "बनावट", "प्रकाश", "उपरोक्त सभी"], a: 3 },
-        { q: "उपभोक्ता संरक्षण अधिनियम (Consumer Protection Act) किस वर्ष लागू हुआ?", o: ["1980", "1986", "1990", "1995"], a: 1 },
-        { q: "समय प्रबंधन (Time Management) का एक महत्वपूर्ण साधन है:", o: ["कार्य सरलीकरण (Work Simplification)", "देर से उठना", "अत्यधिक विश्राम", "काम टालना"], a: 0 },
-        { q: "प्रसार शिक्षा (Extension Education) का मुख्य उद्देश्य क्या है?", o: ["ग्रामीण विकास और लोगों के जीवन स्तर में सुधार", "शहरीकरण", "केवल कृषि उत्पादन", "राजनीतिक जागरूकता"], a: 0 },
-        { q: "बालक का प्रथम समाजीकरण (Socialization) कहाँ होता है?", o: ["स्कूल में", "मित्रों के साथ", "परिवार में", "खेल के मैदान में"], a: 2 },
-        { q: "आहार आयोजन (Meal Planning) को प्रभावित करने वाला कारक कौन सा है?", o: ["आयु", "लिंग", "व्यवसाय", "उपरोक्त सभी"], a: 3 },
-        { q: "लोहा (Iron) प्रचुर मात्रा में पाया जाता है:", o: ["दूध में", "हरी पत्तेदार सब्जियों में", "चावल में", "चीनी में"], a: 1 },
-        { q: "कौन सा रंग 'गर्म रंग' (Warm Colour) की श्रेणी में आता है?", o: ["नीला", "हरा", "लाल", "बैंगनी"], a: 2 },
-        { q: "दाग धब्बे छुड़ाने की विधियाँ हैं:", o: ["घोलक विधि", "रासायनिक विधि", "अवशोषक विधि", "उपरोक्त सभी"], a: 3 },
-        { q: "गर्भावस्था (Pregnancy) की सामान्य अवधि कितनी होती है?", o: ["250 दिन", "280 दिन", "300 दिन", "365 दिन"], a: 1 },
-        { q: "परिवार के लिए निर्णय लेने की प्रक्रिया का पहला चरण है:", o: ["समस्या को परिभाषित करना", "विकल्पों का मूल्यांकन", "निर्णय लेना", "परिणाम स्वीकारना"], a: 0 },
-        { q: "बचत (Savings) का मुख्य उद्देश्य क्या है?", o: ["भविष्य की सुरक्षा", "अधिक खर्च करना", "दिखावा करना", "कर चोरी"], a: 0 },
-        { q: "वसा में घुलनशील विटामिन कौन से हैं?", o: ["B और C", "A, D, E, और K", "केवल A और B", "केवल C और D"], a: 1 },
-        { q: "मानव विकास सूचकांक (HDI) के घटक हैं:", o: ["जीवन प्रत्याशा", "शिक्षा", "प्रति व्यक्ति आय", "उपरोक्त सभी"], a: 3 },
-        { q: "रसोई घर में कार्य त्रिकोण (Work Triangle) किन उपकरणों के बीच बनता है?", o: ["सिंक, फ्रिज, गैस स्टोव", "सिंक, ओवन, डाइनिंग टेबल", "फ्रिज, मिक्सी, टोस्टर", "स्टोव, सिंक, वाशिंग मशीन"], a: 0 },
-        { q: "मिलावट (Adulteration) का क्या अर्थ है?", o: ["खाद्य पदार्थ की गुणवत्ता बढ़ाना", "खाद्य पदार्थ में निम्न स्तर के पदार्थ मिलाना", "पोषक तत्व जोड़ना", "भोजन पकाना"], a: 1 },
-        { q: "ऊन (Wool) जलने पर कैसी गंध देता है?", o: ["कागज जलने जैसी", "बाल जलने जैसी", "प्लास्टिक जलने जैसी", "कोई गंध नहीं"], a: 1 },
-        { q: "गृह विज्ञान एक विषय है:", o: ["केवल कला", "केवल विज्ञान", "कला और विज्ञान दोनों", "वाणिज्य"], a: 2 },
-        { q: "प्राथमिक चिकित्सा (First Aid) बॉक्स में क्या होना आवश्यक है?", o: ["मिठाई", "खिलौने", "एंटीसेप्टिक क्रीम और पट्टी", "किताबें"], a: 2 },
-        { q: "भोजन में रेशे (Fiber) का क्या महत्व है?", o: ["ऊर्जा देता है", "पाचन क्रिया को ठीक रखता है", "वजन बढ़ाता है", "हड्डियाँ मजबूत करता है"], a: 1 },
-        { q: "कैल्शियम (Calcium) का मुख्य कार्य है:", o: ["आंखों की रोशनी बढ़ाना", "हड्डियों और दांतों का निर्माण", "खून बनाना", "बाल काले करना"], a: 1 },
-        { q: "मानव शरीर की सबसे छोटी इकाई है:", o: ["ऊतक (Tissue)", "अंग (Organ)", "कोशिका (Cell)", "प्रणाली (System)"], a: 2 },
-        { q: "जल शुद्धिकरण की सबसे सरल घरेलू विधि है:", o: ["छानना", "उबालना", "क्लोरीन डालना", "आसवन"], a: 1 },
-        { q: "बचपन अवस्था (Childhood) को कितने भागों में बांटा गया है?", o: ["एक", "दो (पूर्व और उत्तर बाल्यकाल)", "तीन", "चार"], a: 1 },
-        { q: "इनमें से कौन सा प्राकृतिक रेशा (Natural Fiber) नहीं है?", o: ["कपास", "रेशम", "पॉलिएस्टर", "लीनन"], a: 2 },
-        { q: "गृह व्यवस्था (Home Management) क्या है?", o: ["साधनों का उपयोग करके लक्ष्यों की प्राप्ति", "केवल सफाई करना", "केवल खाना बनाना", "पैसे कमाना"], a: 0 },
-        { q: "संचार (Communication) की प्रक्रिया में 'फीडबैक' क्या है?", o: ["संदेश भेजना", "प्रतिक्रिया प्राप्त करना", "माध्यम चुनना", "शोर मचाना"], a: 1 },
-        { q: "बाल विवाह निरोधक अधिनियम कब पारित हुआ?", o: ["1929", "1955", "1976", "2006"], a: 3 }, // Prohibition of Child Marriage Act 2006
-        { q: "सिलाई मशीन में सुई टूटने का कारण हो सकता है:", o: ["सुई का गलत लगना", "कपड़ा खींचना", "सुई का मुड़ा होना", "उपरोक्त सभी"], a: 3 },
-        { q: "कपास (Cotton) का रेशा पौधे के किस भाग से प्राप्त होता है?", o: ["जड़", "तना", "पत्ती", "बीज (कोया)"], a: 3 },
-        { q: "संतुलित आहार (Balanced Diet) का क्या अर्थ है?", o: ["पेट भर खाना", "महंगा खाना", "सभी पोषक तत्वों का उचित अनुपात में होना", "केवल फल खाना"], a: 2 },
-        { q: "कौन सा पारिवारिक आय (Family Income) का प्रकार है?", o: ["मौद्रिक आय", "वास्तविक आय", "मानसिक आय", "उपरोक्त सभी"], a: 3 },
-        { q: "प्रेशर कुकर में खाना जल्दी क्यों पकता है?", o: ["भाप का दबाव बढ़ने से क्वथनांक बढ़ जाता है", "गर्मी बाहर नहीं निकलती", "बर्तन मोटा होता है", "इनमें से कोई नहीं"], a: 0 },
-        { q: "एनीमिया (Anemia) रोग किसकी कमी से होता है?", o: ["कैल्शियम", "आयोडीन", "लौह तत्व (Iron)", "सोडियम"], a: 2 },
-        { q: "गृह विज्ञान शिक्षा किस स्तर से शुरू की जा सकती है?", o: ["प्राथमिक", "माध्यमिक", "स्नातक", "कभी भी"], a: 1 },
-        { q: "बंधेज (Tie and Dye) कला किस राज्य से संबंधित है?", o: ["पंजाब", "राजस्थान और गुजरात", "केरल", "पश्चिम बंगाल"], a: 1 },
-        { q: "फर्नीचर खरीदते समय क्या ध्यान रखना चाहिए?", o: ["मजबूती", "उपयोगिता", "आराम", "उपरोक्त सभी"], a: 3 },
-        { q: "मानसिक आय (Psychic Income) क्या है?", o: ["वेतन", "किराया", "संतोष और खुशी", "ब्याज"], a: 2 },
-        { q: "बच्चों में भाषा विकास (Language Development) का पहला चरण है:", o: ["शब्द बोलना", "रोना (Crying)", "वाक्य बनाना", "गाना"], a: 1 },
-        { q: "खाद्य संरक्षण (Food Preservation) का उद्देश्य है:", o: ["भोजन को खराब होने से बचाना", "भविष्य के लिए सुरक्षित रखना", "विविधता लाना", "उपरोक्त सभी"], a: 3 },
-        { q: "जेली (Jelly) बनाने के लिए सबसे उपयुक्त फल है:", o: ["केला", "अमरूद", "पपीता", "आम"], a: 1 },
-        { q: "साबुन बनाने में मुख्य रूप से किसका प्रयोग होता है?", o: ["वसा और क्षार (Alkali)", "एसिड", "नमक", "चीनी"], a: 0 },
-        { q: "ग्रामीण महिलाओं के लिए चलाए जाने वाले स्वयं सहायता समूह (SHG) का मुख्य उद्देश्य है:", o: ["बचत और ऋण सुविधा", "राजनीति", "मनोरंजन", "धार्मिक कार्य"], a: 0 },
-        { q: "बालक का संवेगात्मक विकास (Emotional Development) प्रभावित होता है:", o: ["परिवार से", "स्वास्थ्य से", "वातावरण से", "उपरोक्त सभी से"], a: 3 },
-        { q: "कुपोषण (Malnutrition) का कारण है:", o: ["गरीबी", "अज्ञानता", "भोजन की कमी", "उपरोक्त सभी"], a: 3 },
-        { q: "वस्त्रों पर परिसज्जा (Finishing) का क्या उद्देश्य है?", o: ["आकर्षक बनाना", "मजबूती देना", "उपयोगिता बढ़ाना", "उपरोक्त सभी"], a: 3 },
-        { q: "रेशमी वस्त्रों की धुलाई के लिए सबसे अच्छा है:", o: ["गर्म पानी", "कास्टिक सोडा", "रीठा या माइल्ड डिटर्जेंट", "ब्लीच"], a: 2 },
-        { q: "गृह विज्ञान का ज्ञान उपयोगी है:", o: ["केवल महिलाओं के लिए", "केवल पुरुषों के लिए", "परिवार के सभी सदस्यों के लिए", "केवल बच्चों के लिए"], a: 2 },
-        { q: "चेचक (Smallpox) का टीका किसने खोजा?", o: ["लुई पाश्चर", "एडवर्ड जेनर", "अलेक्जेंडर फ्लेमिंग", "रॉबर्ट कोच"], a: 1 },
-        { q: "जल का रासायनिक सूत्र क्या है?", o: ["HO", "H2O", "H2O2", "O2"], a: 1 },
-        { q: "गर्भवती महिला के आहार में किसकी मात्रा बढ़ानी चाहिए?", o: ["वसा", "प्रोटीन और आयरन", "चीनी", "मसाले"], a: 1 },
-        { q: "मानव जीवन की किस अवस्था को 'तूफान और तनाव' (Storm and Stress) की अवस्था कहा जाता है?", o: ["शैशवावस्था", "बाल्यावस्था", "किशोरावस्था", "प्रौढ़ावस्था"], a: 2 },
-        { q: "उपभोक्ता के अधिकार (Rights of Consumer) में शामिल है:", o: ["सुरक्षा का अधिकार", "सूचना का अधिकार", "चयन का अधिकार", "उपरोक्त सभी"], a: 3 },
-        { q: "फ्लोर कवरिंग (Floor Covering) का उदाहरण है:", o: ["पर्दा", "कालीन (Carpet)", "कुशन", "चादर"], a: 1 },
-        { q: "विटामिन C का सबसे अच्छा स्रोत है:", o: ["अनाज", "दाले", "खट्टे फल (आंवला, संतरा)", "दूध"], a: 2 },
-        { q: "शरीर में रक्त का थक्का (Blood Clotting) जमने में मदद करता है:", o: ["विटामिन A", "विटामिन K", "विटामिन E", "विटामिन D"], a: 1 },
-        { q: "आईसीडीएस (ICDS) का पूरा नाम क्या है?", o: ["एकीकृत बाल विकास सेवा", "अंतर्राष्ट्रीय बाल विकास सेवा", "भारतीय बाल विकास सेवा", "इनमें से कोई नहीं"], a: 0 },
-        { q: "किचड़ या चाय के धब्बे किस वर्ग में आते हैं?", o: ["जान्तव धब्बे", "वानस्पतिक धब्बे", "खनिज धब्बे", "चिकनाई वाले धब्बे"], a: 1 },
-        { q: "गृह व्यवस्थापन के चरण हैं:", o: ["आयोजन, नियंत्रण, मूल्यांकन", "खरीदना, पकाना, खाना", "सोना, जागना, खेलना", "पढ़ना, लिखना, याद करना"], a: 0 },
-        { q: "कसूती (Kasuti) कढ़ाई किस राज्य की है?", o: ["पंजाब", "उत्तर प्रदेश", "कर्नाटक", "बंगाल"], a: 2 },
-        { q: "ऊर्जा संरक्षण (Energy Conservation) का तरीका है:", o: ["सोलर कुकर का प्रयोग", "प्रेशर कुकर का प्रयोग", "आवश्यकता न होने पर बत्ती बुझाना", "उपरोक्त सभी"], a: 3 },
-        { q: "डब्ल्यूएचओ (WHO) का मुख्यालय कहां है?", o: ["न्यूयार्क", "जेनेवा", "पेरिस", "लंदन"], a: 1 },
-        { q: "मलेरिया रोग फैलता है:", o: ["मक्खी से", "मादा एनाफिलीज मच्छर से", "तिलचट्टा से", "कुत्ते से"], a: 1 },
-        { q: "ओआरएस (ORS) का घोल किस बीमारी में दिया जाता है?", o: ["बुखार", "खांसी", "निर्जलीकरण (Dehydration/Diarrhea)", "सिरदर्द"], a: 2 },
-        { q: "पारिवारिक जीवन चक्र की पहली अवस्था है:", o: ["विस्तारित अवस्था", "प्रारंभिक अवस्था (Beginning Stage)", "संकुचित अवस्था", "सेवानिवृत्ति"], a: 1 },
-        { q: "रंग चक्र (Color Wheel) में प्राथमिक रंग कौन से हैं?", o: ["लाल, पीला, नीला", "हरा, नारंगी, बैंगनी", "काला, सफेद, ग्रे", "लाल, हरा, नीला"], a: 0 },
-        { q: "वस्त्रों में 'कैलेंडरिंग' (Calendering) क्यों की जाती है?", o: ["रंगने के लिए", "चमक और चिकनापन लाने के लिए", "सुखाने के लिए", "धोने के लिए"], a: 1 },
-        { q: "खाद्य अपमिश्रण निवारण अधिनियम (PFA Act) कब बना?", o: ["1954", "1960", "1972", "1980"], a: 0 },
-        { q: "बालक के समाजीकरण में बाधा है:", o: ["गरीबी", "असुरक्षा", "माता-पिता का कठोर व्यवहार", "उपरोक्त सभी"], a: 3 },
-        { q: "विटामिन A की कमी से कौन सा रोग होता है?", o: ["स्कर्वी", "रतौंधी (Night Blindness)", "रिकेट्स", "बेरी-बेरी"], a: 1 },
-        { q: "भोजन परोसने की शैलियाँ हैं:", o: ["बुफे शैली", "भारतीय शैली", "पाश्चात्य शैली", "उपरोक्त सभी"], a: 3 },
-        { q: "गृह वाटिका (Kitchen Garden) का लाभ है:", o: ["ताजी सब्जियां मिलना", "धन की बचत", "व्यायाम और मनोरंजन", "उपरोक्त सभी"], a: 3 },
-        { q: "मानव शरीर में कुल कितनी हड्डियाँ होती हैं?", o: ["200", "206", "210", "300"], a: 1 },
-        { q: "इस्त्री (Ironing) करने से वस्त्र:", o: ["गंदे हो जाते हैं", "सिकुड़न मुक्त और आकर्षक बनते हैं", "कमजोर हो जाते हैं", "रंग छोड़ देते हैं"], a: 1 },
-        { q: "कार्बोहाइड्रेट का पाचन कहाँ से शुरू होता है?", o: ["अमाशय से", "मुंह से (लार से)", "छोटी आंत से", "बड़ी आंत से"], a: 1 },
-        { q: "मधुमेह (Diabetes) रोगी को किस पोषक तत्व का सेवन कम करना चाहिए?", o: ["प्रोटीन", "वसा", "कार्बोहाइड्रेट (चीनी/स्टार्च)", "विटामिन"], a: 2 },
-        { q: "पुष्प सज्जा (Flower Arrangement) का उपयोग किया जाता है:", o: ["घर की सुंदरता बढ़ाने के लिए", "वातावरण को खुशनुमा बनाने के लिए", "आत्म-संतुष्टि के लिए", "उपरोक्त सभी"], a: 3 },
-        { q: "बाल श्रमिकों (Child Labour) की समस्या का कारण है:", o: ["गरीबी", "अशिक्षा", "जनसंख्या वृद्धि", "उपरोक्त सभी"], a: 3 },
-        { q: "कन्था (Kantha) कढ़ाई प्रसिद्ध है:", o: ["बंगाल की", "पंजाब की", "बिहार की", "गुजरात की"], a: 0 },
-        { q: "गृह विज्ञान में प्रसार शिक्षा का माध्यम है:", o: ["रेडियो", "टेलीविजन", "पोस्टर और चार्ट", "उपरोक्त सभी"], a: 3 },
-        { q: "पर्यावरण प्रदूषण का मुख्य कारण है:", o: ["वृक्षारोपण", "औद्योगीकरण और वाहनों का धुआं", "वर्षा", "स्वच्छता"], a: 1 },
-        { q: "थर्मामीटर का उपयोग क्या मापने के लिए किया जाता है?", o: ["रक्तचाप", "शरीर का तापमान", "हृदय की धड़कन", "वजन"], a: 1 },
-        { q: "वस्त्रों को कीड़ों से बचाने के लिए किसका प्रयोग करते हैं?", o: ["नेफ्थलीन की गोलियां", "नीम की पत्तियां", "लौंग", "उपरोक्त सभी"], a: 3 }
-    ];
-
-    // --- STATE MANAGEMENT ---
-    let currentQ = 0;
-    let answers = [];
-    let visited = [];
-    let markedReview = [];
-    let timeLeft = 3 * 3600; // 3 hours
-    let timerInterval;
-
-    // --- INITIALIZATION ---
-    window.onload = function() {
-        const totalQ = questions.length;
-        answers = new Array(totalQ).fill(null);
-        visited = new Array(totalQ).fill(false);
-        markedReview = new Array(totalQ).fill(false);
-        
-        renderPalette();
-        loadQuestion(0);
-        startTimer();
-    };
-
-    // --- CORE FUNCTIONS ---
-    function loadQuestion(index) {
-        if (index < 0 || index >= questions.length) return;
-        
-        currentQ = index;
-        visited[index] = true;
-        
-        document.getElementById('q-num-display').innerText = `प्रश्न ${index + 1} / ${questions.length}`;
-        
-        const qData = questions[index];
-        const html = `
-            <div class="q-text">${qData.q}</div>
-            <div class="options-list">
-                ${qData.o.map((opt, i) => `
-                    <label class="option-item">
-                        <input type="radio" name="opt" value="${i}" 
-                            ${answers[index] === i ? 'checked' : ''} 
-                            onclick="selectOption(${i})">
-                        ${opt}
-                    </label>
-                `).join('')}
-            </div>
-        `;
-        document.getElementById('q-content').innerHTML = html;
-        
-        updatePalette();
-    }
-
-    function selectOption(optIndex) {
-        answers[currentQ] = optIndex;
-        updatePalette();
-    }
-
-    function saveNext() {
-        if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
-    }
-
-    function changeQ(diff) {
-        const newIndex = currentQ + diff;
-        if (newIndex >= 0 && newIndex < questions.length) loadQuestion(newIndex);
-    }
-
-    function markReview() {
-        markedReview[currentQ] = true;
-        saveNext();
-    }
-
-    function jumpTo(index) {
-        loadQuestion(index);
-    }
-
-    // --- PALETTE UI ---
-    function renderPalette() {
-        const p = document.getElementById('palette');
-        p.innerHTML = questions.map((_, i) => 
-            `<button id="btn-${i}" class="pal-btn" onclick="jumpTo(${i})">${i + 1}</button>`
-        ).join('');
-    }
-
-    function updatePalette() {
-        questions.forEach((_, i) => {
-            const btn = document.getElementById(`btn-${i}`);
-            btn.className = 'pal-btn';
+        // 1. Handle "Start Test" Click
+        function handleStart(event, testId, url) {
+            // Check if data already exists
+            const existingData = localStorage.getItem('jssc_test_' + testId);
             
-            if (i === currentQ) btn.classList.add('current');
-            
-            if (markedReview[i]) {
-                if (answers[i] !== null) btn.classList.add('ans-review');
-                else btn.classList.add('review');
-            } else if (answers[i] !== null) {
-                btn.classList.add('answered');
-            } else if (visited[i] && i !== currentQ) {
-                btn.classList.add('not-answered');
+            if (!existingData) {
+                // Determine total questions based on set type (Paper 2 Set 2/3 are 150, others 100)
+                let totalQ = 100; 
+                if(testId === 'p2s2' || testId === 'p2s3') totalQ = 150;
+
+                // Create initial data structure
+                const initialData = {
+                    status: 'in-progress',
+                    score: null,
+                    totalQuestions: totalQ,
+                    answers: new Array(totalQ).fill(null), // Initialize empty answers array
+                    visited: new Array(totalQ).fill(0),
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Save to Local Storage immediately
+                localStorage.setItem('jssc_test_' + testId, JSON.stringify(initialData));
             }
-        });
-    }
 
-    // --- TIMER ---
-    function startTimer() {
-        const display = document.getElementById('timer');
-        timerInterval = setInterval(() => {
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                submitQuiz(true);
-                return;
-            }
-            timeLeft--;
-            const h = Math.floor(timeLeft / 3600);
-            const m = Math.floor((timeLeft % 3600) / 60);
-            const s = timeLeft % 60;
-            display.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-        }, 1000);
-    }
+            // Update UI immediately for visual feedback before redirect
+            updateCardUI(testId, 'in-progress');
 
-    // --- SUBMISSION LOGIC ---
-    function closeConfirm() {
-        document.getElementById('confirm-modal').style.display = 'none';
-    }
-
-    function submitQuiz(force = false) {
-        if (!force) {
-            const attempts = answers.filter(a => a !== null).length;
-            document.getElementById('confirm-att').innerText = attempts;
-            document.getElementById('confirm-total').innerText = questions.length;
-            document.getElementById('confirm-modal').style.display = 'flex';
-            return;
+            // Redirect to the test page after a short delay
+            setTimeout(() => {
+                window.location.href = url;
+            }, 100);
         }
-        
-        document.getElementById('confirm-modal').style.display = 'none';
-        clearInterval(timerInterval);
-        
-        let score = 0, correct = 0, wrong = 0, attempted = 0;
-        let tbody = document.getElementById('res-table-body');
-        tbody.innerHTML = '';
 
-        questions.forEach((q, i) => {
-            const userAns = answers[i];
-            const isAtt = userAns !== null;
-            let resText = "उत्तर नहीं दिया";
-            let resClass = "status-un";
-            let rowStyle = "";
-
-            if (isAtt) {
-                attempted++;
-                if (userAns === q.a) {
-                    score += 1;
-                    correct++;
-                    resText = "सही (+1)";
-                    resClass = "status-correct";
-                    rowStyle = "background: #e6fffa";
-                } else {
-                    // No negative marking for this exam
-                    wrong++;
-                    resText = "गलत (0)";
-                    resClass = "status-wrong";
-                    rowStyle = "background: #fff5f5";
-                }
+        // 2. Clear All Progress
+        function clearProgress() {
+            if(confirm('Are you sure you want to reset all progress?')) {
+                localStorage.clear();
+                location.reload();
             }
+        }
 
-            const correctOptText = q.o[q.a];
-            const userAnsText = isAtt ? q.o[userAns] : '-';
+        // 3. Helper to Update UI Elements
+        function updateCardUI(testId, status, score = null) {
+            const badge = document.getElementById('badge-' + testId);
+            const btn = document.getElementById('btn-' + testId);
 
-            tbody.innerHTML += `
-                <tr style="${rowStyle}">
-                    <td>${i+1}</td>
-                    <td>${q.q}</td>
-                    <td style="${userAns === q.a ? 'color:green;font-weight:bold' : (isAtt ? 'color:red' : '')}">${userAnsText}</td>
-                    <td style="color:green; font-weight:bold">${correctOptText}</td>
-                    <td class="${resClass}">${resText}</td>
-                </tr>
-            `;
+            if (!badge || !btn) return;
+
+            if (status === 'completed') {
+                badge.className = 'badge status-completed';
+                badge.innerText = 'Completed';
+                
+                btn.className = 'btn btn-retake';
+                btn.innerText = `Retake (Score: ${score})`;
+                // Note: The onclick event remains, allowing retake
+            } 
+            else if (status === 'in-progress') {
+                badge.className = 'badge status-attempted';
+                badge.innerText = 'Attempted';
+                
+                btn.className = 'btn btn-resume';
+                btn.innerText = 'Resume Test';
+            }
+        }
+
+        // 4. On Page Load: Check Storage and Render Correct State
+        document.addEventListener("DOMContentLoaded", function() {
+            const testIds = ['p1s1', 'p1s2', 'p1s3', 'p2s1', 'p2s2', 'p2s3'];
+
+            testIds.forEach(id => {
+                const storedData = localStorage.getItem('jssc_test_' + id);
+                if (storedData) {
+                    const data = JSON.parse(storedData);
+                    updateCardUI(id, data.status, data.score);
+                }
+            });
         });
+    </script>
 
-        document.getElementById('res-score').innerText = score + "/" + questions.length;
-        document.getElementById('res-correct').innerText = correct;
-        document.getElementById('res-wrong').innerText = wrong;
-        document.getElementById('res-att').innerText = attempted;
-        
-        document.querySelector('.layout').style.display = 'none';
-        document.querySelector('.footer').style.display = 'none';
-        document.querySelector('header').style.display = 'none';
-
-        const modal = document.getElementById('resultModal');
-        modal.style.display = 'flex';
-        modal.style.position = 'static';
-        modal.style.background = 'white';
-        modal.style.height = 'auto';
-        
-        const modalBox = modal.querySelector('.modal-box');
-        modalBox.style.width = '100%';
-        modalBox.style.maxWidth = '1000px';
-        modalBox.style.boxShadow = 'none';
-        modalBox.style.height = 'auto';
-        
-        document.body.style.overflow = 'auto';
-    }
-
-</script>
 </body>
 </html>
