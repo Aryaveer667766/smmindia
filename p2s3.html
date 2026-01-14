@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSSC CBT Mock Test (Home Science Set 3)</title>
+    <style>
+        :root {
+            --header-bg: #2d3e50;
+            --header-text: #ffffff;
+            --q-panel-bg: #f5f9fa;
+            --primary-btn: #007bff;
+            --save-next: #28a745;
+            --clear-btn: #ffffff;
+            --review-btn: #ffc107;
+            --mark-review: #6f42c1;
+            --border: #ccc;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: #232f3e;
+            color: white;
+            height: 50px;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+        }
+
+        .exam-title { font-weight: bold; font-size: 16px; }
+        .system-name { font-size: 12px; font-weight: bold; }
+
+        /* --- MAIN CONTAINER --- */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* --- LEFT: QUESTION AREA --- */
+        .q-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #ccc;
+        }
+
+        .q-header-strip {
+            background: #fff;
+            padding: 8px 15px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .q-sections { display: flex; gap: 5px; }
+        .sec-tab {
+            background: #337ab7;
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 3px 3px 0 0;
+            cursor: default;
+        }
+
+        .q-info-bar {
+            border-bottom: 1px solid #ccc;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            font-weight: bold;
+            color: #d0021b;
+        }
+
+        .q-scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #fff;
+            font-size: 16px;
+        }
+
+        .q-text { margin-bottom: 20px; font-weight: 600; line-height: 1.5; }
+        
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .option-row input { margin-top: 5px; margin-right: 10px; transform: scale(1.3); }
+        .option-text { line-height: 1.4; }
+
+        /* --- RIGHT: SIDEBAR --- */
+        .sidebar {
+            width: 320px;
+            background: #eef3f7;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .profile-box {
+            background: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            gap: 10px;
+        }
+
+        .profile-img {
+            width: 50px; height: 50px; background: #ddd; border: 1px solid #999;
+            display: flex; justify-content: center; align-items: center; font-size: 10px; color: #666;
+        }
+
+        .candidate-name { font-weight: bold; font-size: 13px; }
+
+        .timer-strip {
+            background: #ffecb3;
+            color: #000;
+            padding: 8px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .palette-legend {
+            padding: 10px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            font-size: 11px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .leg-item { display: flex; align-items: center; gap: 5px; }
+
+        .shape { width: 22px; height: 20px; text-align: center; color: white; line-height: 20px; font-size: 10px; display: inline-block;}
+        .s-green { background: #28a745; border-radius: 15px 15px 0 0; }
+        .s-red { background: #dc3545; border-radius: 15px 15px 0 0; }
+        .s-grey { background: #e0e0e0; color: black; border-radius: 2px; border: 1px solid #999; }
+        .s-purple { background: #6f42c1; border-radius: 50%; }
+        .s-pur-green { background: #6f42c1; border-radius: 50%; position: relative; }
+        .s-pur-green::after { content:''; position: absolute; bottom: -2px; right: -2px; width: 8px; height: 8px; background: #28a745; border-radius: 50%; border: 1px solid white;}
+
+        .q-palette-grid {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: #eef3f7;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            align-content: start;
+        }
+
+        .q-btn {
+            height: 30px;
+            background: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .q-btn.visited { background: #dc3545; color: white; border-radius: 15px 15px 0 0; border: none; }
+        .q-btn.answered { background: #28a745; color: white; border-radius: 15px 15px 0 0; border: none; }
+        .q-btn.review { background: #6f42c1; color: white; border-radius: 50%; border: none; }
+        .q-btn.ans-review { background: #6f42c1; color: white; border-radius: 50%; border: none; }
+        .q-btn.ans-review::after { content: '✔'; position: absolute; bottom: 0; right: 0; font-size: 8px; background: #28a745; border-radius: 50%; padding: 1px; }
+        .q-btn:hover { opacity: 0.8; }
+        .q-btn.current { border: 2px solid #000 !important; }
+
+        /* --- FOOTER --- */
+        footer {
+            height: 50px;
+            background: #f8f9fa;
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+
+        .btn-clear { background: #fff; color: #000; }
+        .btn-review { background: #ffc107; color: #000; border-color: #e0a800; }
+        .btn-save { background: #28a745; color: #fff; border-color: #218838; }
+        .btn-submit { background: #007bff; color: white; border: none; }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: auto;
+            border-radius: 5px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f2f2f2; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="exam-title">Jharkhand Home Science (Paper 2) - Set 3</div>
+        <div style="display:flex; align-items:center; gap: 20px;">
+            <div style="text-align: right;">
+                <div class="system-name">System Name: <span style="color:yellow">C002</span></div>
+                <button onclick="submitQuiz(false)" style="background:transparent; border:1px solid #fff; color:#fff; cursor:pointer; font-size:10px; padding:2px 5px; margin-top:2px;">Finish Exam</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- LEFT: QUESTION -->
+        <div class="q-area">
+            <div class="q-header-strip">
+                <div class="q-sections">
+                    <div class="sec-tab">Home Science</div>
+                </div>
+                <div style="font-size:12px;">
+                    View In: 
+                    <select style="padding:2px;">
+                        <option>Hindi</option>
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="q-info-bar">
+                <span id="q-num">Question No. 1</span>
+                <span>Marks: +1.00, -0.00</span>
+            </div>
+
+            <div class="q-scroll-area" id="q-display">
+                <!-- Question loads here -->
+            </div>
+
+            <footer>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-clear" onclick="clearResponse()">Clear Response</button>
+                    <button class="btn btn-review" onclick="markReviewNext()">Mark for Review & Next</button>
+                </div>
+                <button class="btn btn-save" onclick="saveNext()">Save & Next</button>
+            </footer>
+        </div>
+
+        <!-- RIGHT: SIDEBAR -->
+        <div class="sidebar">
+            <div class="profile-box">
+                <div class="profile-img">Photo</div>
+                <div>
+                    <div class="candidate-name">Candidate Name</div>
+                    <div style="font-size:11px; color:#555;">Roll No: 2026002</div>
+                </div>
+            </div>
+
+            <div class="timer-strip">
+                Time Left: <span id="timer">03:00:00</span>
+            </div>
+
+            <div class="palette-legend">
+                <div class="leg-item"><div class="shape s-green">0</div> Answered</div>
+                <div class="leg-item"><div class="shape s-red">0</div> Not Answered</div>
+                <div class="leg-item"><div class="shape s-grey">0</div> Not Visited</div>
+                <div class="leg-item"><div class="shape s-purple">0</div> Marked for Review</div>
+                <div class="leg-item" style="grid-column: span 2;"><div class="shape s-pur-green">0</div> Ans & Marked for Review</div>
+            </div>
+
+            <div style="padding: 10px; background: #337ab7; color: white; font-weight: bold; font-size: 12px;">
+                Question Palette
+            </div>
+
+            <div class="q-palette-grid" id="palette-grid">
+                <!-- Buttons generate here -->
+            </div>
+
+            <div style="padding:10px; background:#fff; text-align:center; border-top:1px solid #ccc;">
+                <button class="btn btn-submit" onclick="submitQuiz(false)">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content" style="width: 400px; text-align:center;">
+            <h3>Submit Exam?</h3>
+            <p>Are you sure you want to submit?</p>
+            <div style="margin-top:20px; display:flex; justify-content:center; gap:10px;">
+                <button class="btn btn-clear" onclick="closeModal('confirmModal')">No</button>
+                <button class="btn btn-save" onclick="submitQuiz(true)">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div id="result-header-container">
+                <h2>Exam Summary</h2>
+            </div>
+            <div style="display:flex; justify-content:space-around; background:#f9f9f9; padding:15px; margin-bottom:15px;">
+                <div style="text-align:center"><b>Score</b><br><span id="r-score" style="font-size:20px; color:blue"></span></div>
+                <div style="text-align:center"><b>Correct</b><br><span id="r-correct" style="font-size:20px; color:green"></span></div>
+                <div style="text-align:center"><b>Wrong</b><br><span id="r-wrong" style="font-size:20px; color:red"></span></div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Q.No</th>
+                        <th>Question</th>
+                        <th>Your Answer</th>
+                        <th>Correct Answer</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="result-body"></tbody>
+            </table>
+            <div style="margin-top:20px; text-align:right;">
+                <button class="btn btn-save" onclick="location.reload()">Close</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // --- HOME SCIENCE SYLLABUS BASED QUESTIONS (Set 3: 150 Q) ---
+    const questions = [
+        // --- Food & Nutrition (1-35) ---
+        { q: "उपचारात्मक आहार (Therapeutic Diet) किसे दिया जाता है?", o: ["खिलाड़ियों को", "गर्भवती महिलाओं को", "रोगियों को", "बच्चों को"], a: 2 },
+        { q: "उच्च रक्तचाप (Hypertension) में किस तत्व की मात्रा कम करनी चाहिए?", o: ["पोटेशियम", "सोडियम", "कैल्शियम", "आयरन"], a: 1 },
+        { q: "पीलिया (Jaundice) रोग में कौन सा अंग प्रभावित होता है?", o: ["गुर्दा", "हृदय", "यकृत (Liver)", "फेफड़े"], a: 2 },
+        { q: "कब्ज के रोगी को आहार में क्या बढ़ाना चाहिए?", o: ["रेशेदार पदार्थ (Fiber)", "वसा", "प्रोटीन", "शर्करा"], a: 0 },
+        { q: "टाइफाइड (Typhoid) में किस प्रकार का आहार देना चाहिए?", o: ["उच्च वसा युक्त", "उच्च रेशेदार", "उच्च कैलोरी और प्रोटीन युक्त तरल/नरम आहार", "मसालेदार"], a: 2 },
+        { q: "ओआरएस (ORS) में मुख्य रूप से क्या होता है?", o: ["चीनी और तेल", "नमक और चीनी", "दूध और पानी", "फलों का रस"], a: 1 },
+        { q: "विटामिन डी की कमी से वयस्कों में कौन सा रोग होता है?", o: ["रिकेट्स", "ऑस्टियोमलेशिया (Osteomalacia)", "स्कर्वी", "रतौंधी"], a: 1 },
+        { q: "शाकाहारी भोजन में विटामिन B12 का मुख्य स्रोत क्या है?", o: ["दालें", "दूध और दुग्ध उत्पाद", "हरी सब्जियां", "फल"], a: 1 },
+        { q: "अंकुरित अनाज में कौन सा विषैला तत्व कम हो जाता है?", o: ["टैनिन", "फाइटिक एसिड", "ऑक्सालेट", "उपरोक्त सभी"], a: 3 },
+        { q: "भोजन को फ्रिज में रखने से क्या होता है?", o: ["जीवाणु मर जाते हैं", "जीवाणुओं की वृद्धि धीमी हो जाती है", "स्वाद बढ़ता है", "पोषक तत्व बढ़ते हैं"], a: 1 },
+        { q: "प्रेशर कुकिंग में तापमान कितना होता है?", o: ["100°C", "100°C से अधिक (लगभग 121°C)", "80°C", "150°C"], a: 1 },
+        { q: "संतुलित आहार (Balanced Diet) में ऊर्जा का कितना प्रतिशत कार्बोहाइड्रेट से मिलना चाहिए?", o: ["20-30%", "40-50%", "60-70%", "80-90%"], a: 2 },
+        { q: "ग्लूटेन (Gluten) किस अनाज में पाया जाता है?", o: ["चावल", "मक्का", "गेहूं", "बाजरा"], a: 2 },
+        { q: "सीलिएक रोग (Celiac Disease) में किस चीज से परहेज करना चाहिए?", o: ["दूध", "चीनी", "ग्लूटेन युक्त अनाज (गेहूं)", "वसा"], a: 2 },
+        { q: "खाद्य अपमिश्रण (Adulteration) से हो सकता है:", o: ["कुपोषण", "विषाक्तता", "आर्थिक हानि", "उपरोक्त सभी"], a: 3 },
+        { q: "खेसारी दाल के सेवन से कौन सा रोग होता है?", o: ["लैथिरिज्म (Lathyrism)", "ड्रॉप्सी", "फ्लोरोसिस", "एनीमिया"], a: 0 },
+        { q: "सरसों के तेल में अर्जीमोन तेल की मिलावट से कौन सा रोग होता है?", o: ["ड्रॉप्सी (Dropsy)", "रतौंधी", "बेरी-बेरी", "स्कर्वी"], a: 0 },
+        { q: "भोजन में लोहे (Iron) के अवशोषण को बढ़ाने के लिए क्या आवश्यक है?", o: ["कैल्शियम", "विटामिन C", "प्रोटीन", "वसा"], a: 1 },
+        { q: "फलों को पकाने के लिए किस गैस का प्रयोग होता है?", o: ["मीथेन", "एथिलीन (Ethylene)", "ब्यूटेन", "प्रोपेन"], a: 1 },
+        { q: "मां के दूध में कौन सा इम्युनोग्लोबुलिन (Immunoglobulin) पाया जाता है?", o: ["IgA", "IgG", "IgM", "IgE"], a: 0 },
+        { q: "बेसल मेटाबोलिक रेट (BMR) किस अवस्था में सबसे अधिक होता है?", o: ["वृद्धावस्था", "वयस्कता", "बढ़ते हुए बच्चों में", "सोते समय"], a: 2 },
+        { q: "वसा के पाचन में कौन सा एंजाइम सहायक है?", o: ["एमाइलेज", "पेप्सिन", "लाइपेज (Lipase)", "ट्रिप्सिन"], a: 2 },
+        { q: "प्रोटीन की कमी से यकृत में क्या जमा हो जाता है?", o: ["पानी", "वसा (Fatty Liver)", "खनिज", "विटामिन"], a: 1 },
+        { q: "भोजन पिरामिड (Food Pyramid) का आधार क्या है?", o: ["वसा और तेल", "अनाज और दालें", "फल और सब्जियां", "दूध और मांस"], a: 1 },
+        { q: "नमक में आयोडीन मिलाने की प्रक्रिया क्या कहलाती है?", o: ["फोर्टिफिकेशन (Fortification)", "किण्वन", "पाश्चुरीकरण", "शुद्धिकरण"], a: 0 },
+        { q: "अंडाशयी कैंसर (Ovarian Cancer) के जोखिम को कम करता है:", o: ["मोटापा", "गर्भनिरोधक गोलियां", "धूम्रपान", "वसा युक्त आहार"], a: 1 }, // Oral contraceptives reduce risk
+        { q: "मधुमेह में 'ग्लाइसेमिक इंडेक्स' (GI) का क्या महत्व है?", o: ["कम GI वाले खाद्य पदार्थ अच्छे हैं", "अधिक GI वाले खाद्य पदार्थ अच्छे हैं", "GI का कोई महत्व नहीं", "GI केवल स्वाद बताता है"], a: 0 },
+        { q: "विटामिन A का रासायनिक नाम क्या है?", o: ["रेटिनॉल", "थायमिन", "राइबोफ्लेविन", "कैल्सिफेरॉल"], a: 0 },
+        { q: "जल का विसंक्रमण (Disinfection) करने के लिए क्या प्रयोग करते हैं?", o: ["ब्लीचिंग पाउडर", "नमक", "चीनी", "सोडा"], a: 0 },
+        { q: "शरीर में रक्त शर्करा (Blood Sugar) को कौन नियंत्रित करता है?", o: ["इंसुलिन", "ग्लूकागन", "थायरोक्सिन", "इंसुलिन और ग्लूकागन दोनों"], a: 3 },
+        { q: "कुपोषण निवारण के लिए भारत सरकार का कार्यक्रम है:", o: ["मध्याह्न भोजन (Mid-day Meal)", "पोषण अभियान", "एनआरएचएम", "उपरोक्त सभी"], a: 3 },
+        { q: "मक्खन में कौन सा विटामिन प्रचुर मात्रा में होता है?", o: ["विटामिन A", "विटामिन C", "विटामिन B", "विटामिन K"], a: 0 },
+        { q: "खाद्य सुरक्षा और मानक अधिनियम (FSSAI) कब लागू हुआ?", o: ["2006", "2011", "2000", "2015"], a: 0 }, // Act passed in 2006
+        { q: "अधिक नमक खाने से क्या होता है?", o: ["निम्न रक्तचाप", "उच्च रक्तचाप और जल प्रतिधारण (Water Retention)", "वजन कम होना", "हड्डियां मजबूत होना"], a: 1 },
+        { q: "चाय में कौन सा उत्तेजक पदार्थ होता है?", o: ["कैफीन और टैनिन", "निकोटिन", "अफीम", "कोकीन"], a: 0 },
+
+        // --- Human Development (36-70) ---
+        { q: "किशोरावस्था (Adolescence) शब्द लैटिन भाषा के किस शब्द से बना है?", o: ["Adolescere", "Adultus", "Child", "Mature"], a: 0 },
+        { q: "जीन पियाजे के अनुसार 'मूर्त संक्रियात्मक अवस्था' (Concrete Operational Stage) की आयु क्या है?", o: ["0-2 वर्ष", "2-7 वर्ष", "7-11 वर्ष", "11 वर्ष से ऊपर"], a: 2 },
+        { q: "फ्रायड के अनुसार व्यक्तित्व के तीन घटक कौन से हैं?", o: ["इड, ईगो, सुपर ईगो", "मन, शरीर, आत्मा", "चेतन, अचेतन, अर्धचेतन", "बचपन, जवानी, बुढ़ापा"], a: 0 },
+        { q: "शिशु का वजन जन्म के वजन का दोगुना कब हो जाता है?", o: ["3 महीने में", "5-6 महीने में", "1 साल में", "2 साल में"], a: 1 },
+        { q: "डीपीटी (DPT) का बूस्टर टीका कब लगता है?", o: ["9 महीने", "16-24 महीने", "5 साल", "10 साल"], a: 1 },
+        { q: "बच्चे में स्थायी दांत (Permanent Teeth) निकलना कब शुरू होते हैं?", o: ["2-3 वर्ष", "6-7 वर्ष", "10 वर्ष", "12 वर्ष"], a: 1 },
+        { q: "प्रसव पूर्व विकास (Prenatal Development) की अवस्थाएं हैं:", o: ["डिंबावस्था, भ्रूणावस्था, गर्भस्थ शिशु अवस्था", "शैशवावस्था, बाल्यावस्था", "गर्भावस्था, प्रसव", "इनमें से कोई नहीं"], a: 0 },
+        { q: "नवजात शिशु की औसत लंबाई कितनी होती है?", o: ["18-20 इंच", "10-12 इंच", "25-30 इंच", "15 इंच"], a: 0 },
+        { q: "बच्चों में 'अंधापन' (Blindness) का मुख्य कारण क्या है?", o: ["विटामिन A की कमी", "चोट लगना", "मोतियाबिंद", "आनुवंशिकता"], a: 0 },
+        { q: "भाषा विकास में 'टेलीग्राफिक स्पीच' (Telegraphic Speech) क्या है?", o: ["दो शब्दों के वाक्य बोलना", "पूरा वाक्य बोलना", "रोना", "हंसना"], a: 0 },
+        { q: "समाजीकरण की प्रक्रिया में 'सहकर्मी समूह' (Peer Group) का क्या महत्व है?", o: ["नकारात्मक प्रभाव", "सामाजिक कौशल और सहयोग सीखना", "कोई प्रभाव नहीं", "केवल खेलना"], a: 1 },
+        { q: "बच्चों में 'अंगूठा चूसना' (Thumb Sucking) क्या दर्शाता है?", o: ["भूख", "असुरक्षा या आदत", "खुशी", "गुस्सा"], a: 1 },
+        { q: "विशेष आवश्यकता वाले बच्चों के लिए शिक्षा का कौन सा मॉडल सबसे उपयुक्त है?", o: ["समावेशी शिक्षा (Inclusive Education)", "विशेष स्कूल", "घर पर शिक्षा", "शिक्षा की आवश्यकता नहीं"], a: 0 },
+        { q: "गर्भावस्था में 'मॉर्निंग सिकनेस' (Morning Sickness) क्या है?", o: ["बुखार", "जी मिचलाना और उल्टी", "सिरदर्द", "कमर दर्द"], a: 1 },
+        { q: "प्रसव के कितने चरण (Stages of Labour) होते हैं?", o: ["2", "3", "4", "5"], a: 1 }, // 3 stages: Dilation, Expulsion, Placental
+        { q: "नवजात शिशु के सिर पर नरम स्थान को क्या कहते हैं?", o: ["फोंटानेल (Fontanelle)", "कपाल", "तालु", "खोपड़ी"], a: 0 },
+        { q: "बच्चों में 'एडीएचडी' (ADHD) क्या है?", o: ["ध्यान की कमी और अतिसक्रियता विकार", "सुनने की समस्या", "बोलने की समस्या", "चलने की समस्या"], a: 0 },
+        { q: "बाल श्रम निषेध और विनियमन अधिनियम कब पारित हुआ?", o: ["1986", "1990", "2000", "2010"], a: 0 },
+        { q: "संयुक्त राष्ट्र बाल अधिकार कन्वेंशन (UNCRC) के अनुसार बच्चे की परिभाषा क्या है?", o: ["18 वर्ष से कम आयु का व्यक्ति", "14 वर्ष से कम", "16 वर्ष से कम", "21 वर्ष से कम"], a: 0 },
+        { q: "मां-बाप और बच्चों के बीच के रिश्ते को क्या कहते हैं?", o: ["पेरेंटिंग (Parenting)", "टीचिंग", "काउंसलिंग", "फ्रेंडशिप"], a: 0 },
+        { q: "बच्चों में डर (Fear) का संवेग कब उत्पन्न होता है?", o: ["जन्म के समय", "3 महीने", "6 महीने के आसपास", "2 साल"], a: 2 },
+        { q: "हेपेटाइटिस बी (Hepatitis B) का टीका किस अंग की सुरक्षा करता है?", o: ["यकृत (Liver)", "हृदय", "फेफड़े", "गुर्दा"], a: 0 },
+        { q: "शिशु मृत्यु दर (Infant Mortality Rate) क्या है?", o: ["1000 जीवित जन्मों पर 1 वर्ष से कम आयु के बच्चों की मृत्यु", "100 जन्मों पर मृत्यु", "5 वर्ष से कम आयु की मृत्यु", "मातृ मृत्यु"], a: 0 },
+        { q: "पूर्व-स्कूली शिक्षा (Pre-school Education) का उद्देश्य है:", o: ["पढ़ना-लिखना सिखाना", "सर्वांगीण विकास और स्कूल के लिए तैयार करना", "परीक्षा पास करना", "अनुशासन सिखाना"], a: 1 },
+        { q: "वृद्धावस्था में हड्डियों के कमजोर होने को क्या कहते हैं?", o: ["ऑस्टियोपोरोसिस", "आर्थराइटिस", "गाउट", "रिकेट्स"], a: 0 },
+        { q: "परिवार नियोजन (Family Planning) का स्थायी तरीका है:", o: ["कंडोम", "गोलियां", "नसबंदी (Sterilization)", "कॉपर-टी"], a: 2 },
+        { q: "किशोरावस्था में पहचान का संकट (Identity Crisis) किसने प्रतिपादित किया?", o: ["एरिक इरिक्सन", "फ्रायड", "पियाजे", "कोहलबर्ग"], a: 0 },
+        { q: "नैतिक विकास (Moral Development) का सिद्धांत किसने दिया?", o: ["लॉरेंस कोहलबर्ग", "स्किनर", "पावलोव", "वॉटसन"], a: 0 },
+        { q: "बच्चों के लिए 'पोक्सो एक्ट' (POCSO Act) कब लागू हुआ?", o: ["2012", "2015", "2010", "2018"], a: 0 },
+        { q: "स्तनपान कराने वाली मां को प्रतिदिन कितनी अतिरिक्त कैलोरी की आवश्यकता होती है?", o: ["300 kcal", "500-600 kcal", "1000 kcal", "200 kcal"], a: 1 },
+        { q: "बच्चों में 'क्रिटिनिज्म' (Cretinism) किसकी कमी से होता है?", o: ["थायरोक्सिन (आयोडीन कमी)", "इंसुलिन", "ग्रोथ हार्मोन", "एड्रेनालाईन"], a: 0 },
+        { q: "डाउन सिंड्रोम (Down Syndrome) क्या है?", o: ["गुणसूत्र विकार (21वां ट्राइसोमी)", "संक्रामक रोग", "विटामिन की कमी", "जीवाणु रोग"], a: 0 },
+        { q: "प्लेसेंटा (Placenta) का कार्य है:", o: ["भ्रूण को पोषण और ऑक्सीजन देना", "उत्सर्जी पदार्थ निकालना", "हार्मोन बनाना", "उपरोक्त सभी"], a: 3 },
+        { q: "गर्भस्थ शिशु के हृदय की धड़कन कब सुनी जा सकती है?", o: ["पहले महीने", "चौथे-पांचवें महीने", "नौवें महीने", "सुनी नहीं जा सकती"], a: 1 },
+        { q: "कंगारू मदर केयर (KMC) किसके लिए जरूरी है?", o: ["कम वजन वाले और समय पूर्व जन्मे बच्चे", "मोटे बच्चे", "बीमार बच्चे", "सभी बच्चे"], a: 0 },
+
+        // --- Textiles (71-105) ---
+        { q: "रेशों की रानी (Queen of Fibers) किसे कहा जाता है?", o: ["रेशम (Silk)", "कपास", "ऊन", "नायलॉन"], a: 0 },
+        { q: "ऐस्बेस्टस (Asbestos) कैसा रेशा है?", o: ["वानस्पतिक", "जान्तव", "खनिज (Mineral)", "कृत्रिम"], a: 2 },
+        { q: "कपास की खेती के लिए कौन सी मिट्टी उपयुक्त है?", o: ["काली मिट्टी", "लाल मिट्टी", "रेतीली मिट्टी", "दोमट मिट्टी"], a: 0 },
+        { q: "बाने (Weft) के धागे को और क्या कहते हैं?", o: ["पिक (Pick) या फिलिंग", "वार्प", "सेल्वेज", "लूम"], a: 0 },
+        { q: "वस्त्र की सबसे मजबूत बुनाई कौन सी मानी जाती है?", o: ["ट्विल (Twill) बुनाई", "सादी (Plain) बुनाई", "साटन बुनाई", "पाइल बुनाई"], a: 0 }, // Twill (like denim) is very durable
+        { q: "फेल्टिंग (Felting) द्वारा वस्त्र कैसे बनता है?", o: ["ताप, नमी और दबाव से रेशों को जमाकर", "बुनाई करके", "गांठ लगाकर", "सिलाई करके"], a: 0 },
+        { q: "ऊन का प्रोटीन क्या कहलाता है?", o: ["केराटिन (Keratin)", "फाइब्रोइन", "सेरिसिन", "कोलेजन"], a: 0 },
+        { q: "रेशम का गोंद (Gum) क्या कहलाता है?", o: ["सेरिसिन", "फाइब्रोइन", "पेक्टिन", "लिग्निन"], a: 0 },
+        { q: "वस्त्रों को कड़ा करने के लिए (Stiffening) किसका प्रयोग होता है?", o: ["स्टार्च (मांड) या गोंद", "ब्लीच", "नील", "साबुन"], a: 0 },
+        { q: "ब्लीचिंग (Bleaching) का उद्देश्य क्या है?", o: ["वस्त्र को सफेद करना", "रंगना", "चमक लाना", "नरम करना"], a: 0 },
+        { q: "क्रेप (Crepe) कपड़ा कैसा होता है?", o: ["सिकुड़न युक्त सतह वाला", "चिकना", "चमकदार", "जालीदार"], a: 0 },
+        { q: "पॉलिएस्टर रेशा किस रसायन से बनता है?", o: ["पेट्रोलियम उत्पाद", "सेल्यूलोज", "प्रोटीन", "रबर"], a: 0 },
+        { q: "वस्त्रों पर 'कैलिको प्रिंटिंग' (Calico Printing) कहां प्रसिद्ध है?", o: ["इंग्लैंड", "भारत (बंगाल/केरल)", "चीन", "जापान"], a: 1 }, // Originally India
+        { q: "सिलाई में 'हेमिंग' (Hemming) क्या है?", o: ["तुरपाई (हाथ से सिलाई)", "मशीन सिलाई", "कढ़ाई", "बटन लगाना"], a: 0 },
+        { q: "वस्त्रों की धुलाई में 'सक्शन वाशर' (Suction Washer) किस सिद्धांत पर काम करता है?", o: ["चूषण (Suction) और दबाव", "रगड़", "अपकेंद्रीय बल", "घर्षण"], a: 0 },
+        { q: "साबुन और डिटर्जेंट में क्या अंतर है?", o: ["डिटर्जेंट खारे पानी में भी काम करता है", "साबुन सस्ता है", "डिटर्जेंट प्राकृतिक है", "कोई अंतर नहीं"], a: 0 },
+        { q: "वस्त्रों को कीड़ों से बचाने के लिए किस प्राकृतिक चीज का उपयोग होता है?", o: ["नीम की पत्तियां", "लौंग", "काली मिर्च", "हल्दी"], a: 0 },
+        { q: "रेडिमेड कपड़ों पर 'XL' का क्या अर्थ है?", o: ["Extra Large", "Extra Long", "Extra Loose", "X-Large"], a: 0 },
+        { q: "कश्मीरी कढ़ाई को क्या कहते हैं?", o: ["कसीदा (Kashida)", "कन्था", "फुलकारी", "चिकनकारी"], a: 0 },
+        { q: "महेश्वरी साड़ियाँ कहां की प्रसिद्ध हैं?", o: ["मध्य प्रदेश", "महाराष्ट्र", "कर्नाटक", "तमिलनाडु"], a: 0 },
+        { q: "वस्त्रों पर 'साइजिंग' (Sizing) क्यों की जाती है?", o: ["सतह को चिकना और दोष छिपाने के लिए", "रंगने के लिए", "धोने के लिए", "सिकुड़न रोकने के लिए"], a: 0 },
+        { q: "अग्निरोधक (Fire Proof) परिसज्जा में किस रसायन का प्रयोग होता है?", o: ["बोरेक्स और बोरिक एसिड", "स्टार्च", "नील", "वैक्स"], a: 0 },
+        { q: "ड्राई क्लीनिंग (Dry Cleaning) में पानी की जगह क्या इस्तेमाल होता है?", o: ["पेट्रोल, बेंजीन या परक्लोरोएथिलीन", "दूध", "तेल", "एसिड"], a: 0 },
+        { q: "रेशों का 'माइक्रोस्कोपिक टेस्ट' (Microscopic Test) क्या बताता है?", o: ["रेशे की संरचना और पहचान", "रंग", "मजबूती", "लंबाई"], a: 0 },
+        { q: "टेरीकॉट (Terrycot) किसका मिश्रण है?", o: ["टेरिलीन और कॉटन", "टेरिलीन और वूल", "कॉटन और सिल्क", "नायलॉन और कॉटन"], a: 0 },
+        { q: "वस्त्रों में 'इलास्टिसिटी' (Elasticity) का क्या गुण है?", o: ["खिंचने के बाद पुनः अपनी स्थिति में आना", "बढ़ जाना", "टूट जाना", "सिकुड़ना"], a: 0 },
+        { q: "बंधेज (Bandhani) के लिए कौन सा राज्य प्रसिद्ध है?", o: ["राजस्थान और गुजरात", "केरल", "असम", "पंजाब"], a: 0 },
+        { q: "मलमल (Muslin) का मूल स्थान कहां था?", o: ["ढाका", "सूरत", "मद्रास", "कालीकट"], a: 0 },
+        { q: "वस्त्रों पर 'इम्बोसिंग' (Embossing) क्या है?", o: ["उभरा हुआ डिजाइन बनाना", "रंगना", "छपाई", "सिलाई"], a: 0 },
+        { q: "स्पिनिंग जेनी (Spinning Jenny) का आविष्कार किसने किया?", o: ["जेम्स हारग्रीव्स", "कार्टराइट", "वाट्स", "एडिसन"], a: 0 },
+        { q: "सिलाई मशीन में 'टेंशन डिस्क' का क्या कार्य है?", o: ["धागे के तनाव को नियंत्रित करना", "सुई पकड़ना", "कपड़ा आगे बढ़ाना", "धागा काटना"], a: 0 },
+        { q: "पर्दे (Curtains) लगाने का मुख्य उद्देश्य क्या है?", o: ["एकांतता (Privacy) और प्रकाश नियंत्रण", "केवल सजावट", "दीवार छिपाना", "हवा रोकना"], a: 0 },
+        { q: "रग (Rug) और कालीन (Carpet) में क्या अंतर है?", o: ["रग छोटा होता है और फर्श पूरा नहीं ढकता", "कालीन सस्ता होता है", "रग दीवार पर लगता है", "कोई अंतर नहीं"], a: 0 },
+        { q: "सबसे लंबा प्राकृतिक रेशा कौन सा है?", o: ["रेशम (Silk)", "कपास", "ऊन", "जूट"], a: 0 }, // Silk is a filament fiber
+        { q: "कालीकट (Calico) नाम किस शहर से आया?", o: ["कालीकट (Calicut/Kozhikode)", "कलकत्ता", "काहिरा", "कैलिफोर्निया"], a: 0 },
+
+        // --- Resource Management (106-130) ---
+        { q: "गृह प्रबंधन का 'हृदय' किसे कहा जाता है?", o: ["निर्णय प्रक्रिया (Decision Making)", "आयोजन", "नियंत्रण", "मूल्यांकन"], a: 0 },
+        { q: "पारिवारिक जीवन चक्र की किस अवस्था में धन की मांग सबसे अधिक होती है?", o: ["विस्तारित अवस्था (Expanding Stage)", "प्रारंभिक अवस्था", "संकुचित अवस्था", "सेवानिवृत्ति"], a: 0 },
+        { q: "बजट के प्रकार हैं:", o: ["संतुलित, अधिशेष (Surplus), घाटे का बजट", "अच्छा, बुरा", "लंबा, छोटा", "सरकारी, निजी"], a: 0 },
+        { q: "ऊर्जा प्रबंधन में 'पीक लोड' (Peak Load) को कैसे कम करें?", o: ["कार्य वितरण और समय परिवर्तन द्वारा", "काम बंद करके", "मशीनें बेचकर", "नौकर हटाकर"], a: 0 },
+        { q: "रसोईघर के लिए सबसे अच्छा फर्श कौन सा है?", o: ["धोने योग्य और फिसलन रहित", "कालीन", "लकड़ी", "मिट्टी"], a: 0 },
+        { q: "प्रकाश व्यवस्था (Lighting) कितने प्रकार की होती है?", o: ["प्रत्यक्ष और अप्रत्यक्ष (Direct & Indirect)", "लाल और नीली", "सस्ती और महंगी", "दिन और रात"], a: 0 },
+        { q: "फूलदान में फूलों को ताजा रखने के लिए क्या डालें?", o: ["थोड़ा चीनी और सिरका/ब्लीच", "नमक", "गर्म पानी", "तेल"], a: 0 },
+        { q: "फर्नीचर व्यवस्था में 'बैलेंस' (Balance) का क्या अर्थ है?", o: ["वस्तुओं का समान वितरण और स्थिरता", "महंगा फर्नीचर", "रंग बिरंगा", "भीड़भाड़"], a: 0 },
+        { q: "चेक बाउंस होने का क्या कारण हो सकता है?", o: ["खाते में अपर्याप्त राशि", "हस्ताक्षर मेल न खाना", "तारीख गलत होना", "उपरोक्त सभी"], a: 3 },
+        { q: "डेबिट कार्ड (Debit Card) क्या है?", o: ["आपके खाते से तुरंत पैसा कटता है", "उधार मिलता है", "केवल जमा होता है", "बीमा पॉलिसी"], a: 0 },
+        { q: "उपभोक्ता शिकायत निवारण के कितने स्तर हैं?", o: ["तीन (जिला, राज्य, राष्ट्रीय)", "दो", "चार", "एक"], a: 0 },
+        { q: "जिला फोरम में कितनी राशि तक की शिकायत की जा सकती है? (नए नियम अनुसार)", o: ["1 करोड़ तक", "20 लाख तक", "10 लाख तक", "5 करोड़ तक"], a: 0 }, // Changed in 2019 Act
+        { q: "समय प्रबंधन में 'डोवटेलिंग' (Dovetailing) का अर्थ है:", o: ["दो या अधिक कार्यों को एक साथ करना", "काम टालना", "काम छोड़ना", "आराम करना"], a: 0 },
+        { q: "कार्य सरलीकरण में 'पेन और पेंसिल' तकनीक का उदाहरण है:", o: ["पाथवे चार्ट (Pathway Chart)", "साइकिल ग्राफ", "स्टॉप वॉच", "फिल्म"], a: 0 },
+        { q: "घरेलू उपकरणों में 'थर्मोस्टेट' का क्या कार्य है?", o: ["तापमान नियंत्रित करना", "बिजली बचाना", "पानी गर्म करना", "टाइमर लगाना"], a: 0 },
+        { q: "रेफ्रिजरेटर में भोजन खराब क्यों नहीं होता?", o: ["कम तापमान पर जीवाणु निष्क्रिय हो जाते हैं", "बर्फ जम जाती है", "रोशनी नहीं होती", "हवा नहीं होती"], a: 0 },
+        { q: "कालीन की सफाई के लिए सबसे अच्छा उपकरण है:", o: ["वैक्यूम क्लीनर", "झाड़ू", "गीला पोछा", "ब्रश"], a: 0 },
+        { q: "वेंटिलेशन (Ventilation) क्यों आवश्यक है?", o: ["ताजी हवा के लिए और दूषित हवा निकालने के लिए", "रोशनी के लिए", "ठंडक के लिए", "सजावट के लिए"], a: 0 },
+        { q: "रंगों का मानसिक प्रभाव: हरा रंग क्या दर्शाता है?", o: ["शांति और शीतलता", "गुस्सा", "उदास", "उत्तेजना"], a: 0 },
+        { q: "डिजाइन के सिद्धांत (Principles of Design) हैं:", o: ["संतुलन, अनुपात, लय, अनुरूपता, दबाव", "रंग, रेखा, आकार", "लकड़ी, लोहा, प्लास्टिक", "सस्ता, महंगा"], a: 0 },
+        { q: "मानवीय साधन (Human Resources) कौन से हैं?", o: ["ज्ञान, कौशल, ऊर्जा, समय", "धन, घर, कार", "स्कूल, पार्क", "बिजली, पानी"], a: 0 },
+        { q: "निर्णय लेने में 'समझौता' (Compromise) क्या है?", o: ["सबकी बात मानकर बीच का रास्ता निकालना", "अपनी बात मनवाना", "झगड़ा करना", "निर्णय टालना"], a: 0 },
+        { q: "उपभोक्ता शिक्षा का लाभ है:", o: ["सही चुनाव करना और ठगी से बचना", "दुकानदार से लड़ना", "सामान बेचना", "दुकान खोलना"], a: 0 },
+        { q: "लेबल (Label) पर क्या जानकारी होनी चाहिए?", o: ["निर्माण तिथि, समाप्ति तिथि, सामग्री, मूल्य", "दुकानदार का फोटो", "केवल नाम", "केवल रंग"], a: 0 },
+        { q: "वाशिंग मशीन का उपयोग किस संसाधन की बचत करता है?", o: ["समय और ऊर्जा (मानवीय)", "पैसा", "साबुन", "पानी"], a: 0 },
+
+        // --- Extension Education (131-150) ---
+        { q: "प्रसार शिक्षा (Extension Education) किस प्रकार की शिक्षा है?", o: ["अनौपचारिक (Informal/Non-formal)", "औपचारिक", "दूरी शिक्षा", "तकनीकी"], a: 0 },
+        { q: "प्रसार शिक्षा का सिद्धांत है:", o: ["अपनी मदद आप (Self-help)", "जबरदस्ती थोपना", "किताबी ज्ञान", "केवल भाषण"], a: 0 },
+        { q: "भारत में सामुदायिक विकास कार्यक्रम (CDP) कब शुरू हुआ?", o: ["1952", "1947", "1960", "1975"], a: 0 },
+        { q: "गृह विज्ञान प्रसार का लक्ष्य समूह कौन है?", o: ["ग्रामीण महिलाएं और परिवार", "शहरी डॉक्टर", "इंजीनियर", "केवल बच्चे"], a: 0 },
+        { q: "संचार (Communication) में 'शोर' (Noise) क्या है?", o: ["बाधा (Barrier)", "संगीत", "तेज आवाज", "फीडबैक"], a: 0 },
+        { q: "प्रदर्शन (Demonstration) के प्रकार हैं:", o: ["विधि प्रदर्शन और परिणाम प्रदर्शन", "अच्छा और बुरा", "लंबा और छोटा", "भीड़ और अकेला"], a: 0 },
+        { q: "पोस्टर (Poster) का मुख्य उद्देश्य क्या है?", o: ["ध्यान आकर्षित करना और एक विचार देना", "पूरी कहानी बताना", "मनोरंजन", "सजावट"], a: 0 },
+        { q: "प्रसार कार्यकर्ता (Extension Worker) को कैसा होना चाहिए?", o: ["विनम्र, सादगीपूर्ण और विषय का ज्ञानी", "घमंडी", "आलसी", "केवल शहरी"], a: 0 },
+        { q: "प्रसार शिक्षण की 'व्यक्तिगत संपर्क' विधि है:", o: ["घर-घर जाना (Home Visit)", "रेडियो", "मेला", "प्रदर्शनी"], a: 0 },
+        { q: "जनसंचार (Mass Communication) का माध्यम है:", o: ["अखबार, टीवी, रेडियो", "पत्र", "बैठक", "टेलीफोन"], a: 0 },
+        { q: "प्रौढ़ शिक्षा (Adult Education) किसके लिए है?", o: ["निरक्षर वयस्कों के लिए", "स्कूल के बच्चों के लिए", "कॉलेज छात्रों के लिए", "शिशुओं के लिए"], a: 0 },
+        { q: "भारत में 'गुड़गांव परियोजना' किसने शुरू की थी?", o: ["एफ.एल. ब्रायन", "रवींद्रनाथ टैगोर", "गांधीजी", "विनोबा भावे"], a: 0 },
+        { q: "मनरेगा (MGNREGA) का मुख्य उद्देश्य क्या है?", o: ["ग्रामीण रोजगार की गारंटी", "शहर विकास", "सड़क बनाना", "बिजली देना"], a: 0 },
+        { q: "स्वयं सहायता समूह (SHG) में बचत की आदत से क्या लाभ होता है?", o: ["आर्थिक आत्मनिर्भरता", "बैंक का फायदा", "सरकार को टैक्स", "खर्च बढ़ना"], a: 0 },
+        { q: "प्रसार शिक्षा में 'मूल्यांकन' (Evaluation) कब किया जाता है?", o: ["कार्यक्रम के शुरू, बीच और अंत में", "केवल अंत में", "कभी नहीं", "केवल शुरू में"], a: 0 },
+        { q: "लीफ्लेट (Leaflet) क्या है?", o: ["एक पन्ने का मुद्रित साहित्य", "किताब", "पोस्टर", "होर्डिंग"], a: 0 },
+        { q: "नुक्कड़ नाटक (Street Play) का उपयोग क्यों करते हैं?", o: ["जागरूकता फैलाने के लिए", "पैसे कमाने के लिए", "समय बिताने के लिए", "शोर मचाने के लिए"], a: 0 },
+        { q: "कृषि विज्ञान केंद्र (KVK) का क्या कार्य है?", o: ["किसानों को प्रशिक्षण देना", "फसल बेचना", "लोन देना", "बीमा करना"], a: 0 },
+        { q: "प्रसार शिक्षा का दर्शन (Philosophy) किस पर आधारित है?", o: ["मानव विकास और व्यक्ति का महत्व", "लाभ कमाना", "राजनीति", "धर्म"], a: 0 },
+        { q: "संचार का सबसे प्रभावी माध्यम कौन सा है?", o: ["करके दिखाना (Demonstration)", "केवल सुनना", "पढ़ना", "भाषण"], a: 0 }
+    ];
+
+    // --- STATE ---
+    let currentQ = 0;
+    let answers = new Array(questions.length).fill(null);
+    let status = new Array(questions.length).fill(0); 
+    let timeLeft = 3 * 3600;
+    let timerInterval;
+
+    window.onload = function() {
+        renderPalette();
+        loadQuestion(0);
+        startTimer();
+    }
+
+    // --- LOGIC ---
+    function loadQuestion(index) {
+        if(index < 0 || index >= questions.length) return;
+        if (status[currentQ] === 0) status[currentQ] = 1; 
+        currentQ = index;
+        if (status[currentQ] === 0) status[currentQ] = 1;
+        document.getElementById('q-num').innerText = `Question No. ${index + 1}`;
+        const qData = questions[index];
+        const html = `
+            <div class="q-text">${qData.q}</div>
+            <div>
+                ${qData.o.map((opt, i) => `
+                    <label class="option-row">
+                        <input type="radio" name="opt" value="${i}" ${answers[index] === i ? 'checked' : ''} onclick="selectOption(${i})">
+                        <span class="option-text">${opt}</span>
+                    </label>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('q-display').innerHTML = html;
+        updatePalette();
+    }
+
+    function selectOption(optIdx) { answers[currentQ] = optIdx; }
+
+    function saveNext() {
+        if (answers[currentQ] !== null) status[currentQ] = 2;
+        else status[currentQ] = 1;
+        if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
+        else updatePalette();
+    }
+
+    function markReviewNext() {
+        if (answers[currentQ] !== null) status[currentQ] = 4;
+        else status[currentQ] = 3;
+        if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
+        else updatePalette();
+    }
+
+    function clearResponse() {
+        answers[currentQ] = null;
+        status[currentQ] = 1;
+        loadQuestion(currentQ);
+    }
+
+    function jumpTo(index) {
+        saveNext();
+        loadQuestion(index);
+    }
+
+    function renderPalette() {
+        const grid = document.getElementById('palette-grid');
+        grid.innerHTML = questions.map((_, i) => 
+            `<button id="btn-${i}" class="q-btn" onclick="jumpTo(${i})">${i+1}</button>`
+        ).join('');
+        updatePalette();
+    }
+
+    function updatePalette() {
+        questions.forEach((_, i) => {
+            const btn = document.getElementById(`btn-${i}`);
+            btn.className = 'q-btn';
+            if (status[i] === 1) btn.classList.add('visited');
+            else if (status[i] === 2) btn.classList.add('answered');
+            else if (status[i] === 3) btn.classList.add('review');
+            else if (status[i] === 4) btn.classList.add('ans-review');
+            if (i === currentQ) btn.classList.add('current');
+        });
+        updateCounts();
+    }
+
+    function updateCounts() {
+        const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
+        status.forEach(s => counts[s]++);
+        const legends = document.querySelectorAll('.palette-legend .shape');
+        legends[0].innerText = counts[2]; 
+        legends[1].innerText = counts[1]; 
+        legends[2].innerText = counts[0]; 
+        legends[3].innerText = counts[3]; 
+        legends[4].innerText = counts[4]; 
+    }
+
+    function startTimer() {
+        const el = document.getElementById('timer');
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitQuiz(true);
+                return;
+            }
+            timeLeft--;
+            const h = Math.floor(timeLeft / 3600);
+            const m = Math.floor((timeLeft % 3600) / 60);
+            const s = timeLeft % 60;
+            el.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        }, 1000);
+    }
+
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    
+    function submitQuiz(force) {
+        if (!force) {
+            document.getElementById('confirmModal').style.display = 'flex';
+            return;
+        }
+        document.getElementById('confirmModal').style.display = 'none';
+        clearInterval(timerInterval);
+
+        let score = 0, correct = 0, wrong = 0;
+        let tbody = document.getElementById('result-body');
+        tbody.innerHTML = '';
+
+        questions.forEach((q, i) => {
+            const myAns = answers[i];
+            let rowColor = "";
+            let statusText = "Unattempted";
+
+            if (myAns !== null) {
+                if (myAns === q.a) {
+                    score += 1;
+                    correct++;
+                    statusText = "Correct";
+                    rowColor = "#e8f5e9";
+                } else {
+                    wrong++;
+                    statusText = "Wrong";
+                    rowColor = "#ffebee";
+                }
+            }
+
+            tbody.innerHTML += `
+                <tr style="background:${rowColor}">
+                    <td>${i+1}</td>
+                    <td>${q.q}</td>
+                    <td>${myAns !== null ? q.o[myAns] : '-'}</td>
+                    <td>${q.o[q.a]}</td>
+                    <td>${statusText}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById('r-score').innerText = score;
+        document.getElementById('r-correct').innerText = correct;
+        document.getElementById('r-wrong').innerText = wrong;
+
+        const headerContainer = document.getElementById('result-header-container');
+        headerContainer.innerHTML = `<h2>Exam Summary</h2>`;
+
+        document.querySelector('.main-container').style.display = 'none';
+        document.querySelector('header').style.display = 'none';
+        document.getElementById('resultModal').style.display = 'flex';
+    }
+</script>
+</body>
+</html>
