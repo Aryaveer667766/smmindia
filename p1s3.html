@@ -247,7 +247,7 @@
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background: #f2f2f2; }
 
-        /* --- ANIMATION --- */
+        /* --- CELEBRATION ANIMATION STYLES --- */
         @keyframes popIn {
             0% { transform: scale(0); opacity: 0; }
             80% { transform: scale(1.1); opacity: 1; }
@@ -316,7 +316,7 @@
             <div class="profile-box">
                 <div class="profile-img">Photo</div>
                 <div>
-                    <div class="candidate-name">John Doe</div>
+                    <div class="candidate-name">Kumari Sadhna Pathak</div>
                     <div style="font-size:11px; color:#555;">Roll No: 12345678</div>
                 </div>
             </div>
@@ -388,7 +388,7 @@
     </div>
 
 <script>
-    // --- DATABASE: 100 NEW QUESTIONS (SET 3) ---
+    // --- DATABASE: 200 QUESTIONS ---
     const questions = [
         // --- JHARKHAND GK (1-40) ---
         { q: "दालमा वन्यजीव अभयारण्य किस जिले में स्थित है?", o: ["पूर्वी सिंहभूम", "हजारीबाग", "पलामू", "चतरा"], a: 0 },
@@ -428,8 +428,6 @@
         { q: "झारखंड के किस जिले में 'त्रिकूट पहाड़ी' स्थित है?", o: ["देवघर", "दुमका", "गोड्डा", "पाकुड़"], a: 0 },
         { q: "झारखंड राज्य गंगा नदी संरक्षण प्राधिकरण का गठन कब हुआ?", o: ["2008", "2009", "2010", "2011"], a: 1 },
         { q: "झारखंड में 'मुख्यमंत्री कन्यादान योजना' किस वर्ष शुरू हुई?", o: ["2004", "2005", "2006", "2007"], a: 0 },
-        { q: "झारखंड का एकमात्र जिला जहां से कर्क रेखा (Tropic of Cancer) नहीं गुजरती?", o: ["रांची", "गुमला", "लोहरदगा", "धनबाद"], a: 3 }, // Note: Cancer passes through Ranchi, Gumla, Lohardaga, Ramgarh, Bokaro. Dhanbad is slightly off usually considered. But here easiest "Not" is none of above or complex. Let's fix Question. 
-        // Better Q:
         { q: "कर्क रेखा झारखंड के किस स्थान से होकर गुजरती है?", o: ["नेतरहाट", "कांके (रांची)", "हजारीबाग", "चाईबासा"], a: 1 },
         { q: "झारखंड में 'डोमकच' क्या है?", o: ["लोक नृत्य", "जनजाति", "त्योहार", "भाषा"], a: 0 },
         { q: "झारखंड के किस जिले में 'पालकोट अभयारण्य' स्थित है?", o: ["गुमला", "सिमडेगा", "खूंटी", "रांची"], a: 0 },
@@ -495,32 +493,191 @@
         { q: "निम्न में से कौन सा ऑपरेटिंग सिस्टम नहीं है?", o: ["MS Word", "Windows", "Linux", "Android"], a: 0 },
         { q: "LAN का पूर्ण रूप क्या है?", o: ["Local Area Network", "Large Area Network", "Long Area Network", "Local Access Network"], a: 0 },
         { q: "श्रृंखला पूरी करें: 3, 6, 12, 24, ...?", o: ["48", "36", "30", "40"], a: 0 },
-        { q: "कोडिंग: यदि A=26, Z=1 है, तो GO = ?", o: ["20 + 12 = 32", "20 + 15 = 35", "7 + 15 = 22", "20 + 13 = 33"], a: 0 }, // G is 7 from start, 20 from end. O is 15 from start, 12 from end. 20+12=32
+        { q: "कोडिंग: यदि A=26, Z=1 है, तो GO = ?", o: ["20 + 12 = 32", "20 + 15 = 35", "7 + 15 = 22", "20 + 13 = 33"], a: 0 }, 
         { q: "रक्त संबंध: एक तस्वीर की ओर इशारा करते हुए राम ने कहा, 'वह मेरे पिता की इकलौती बेटी का बेटा है।' तस्वीर में कौन है?", o: ["राम का भांजा", "राम का भाई", "राम का बेटा", "राम का पिता"], a: 0 },
-        { q: "कैलेंडर: यदि आज सोमवार है, तो 61 दिन बाद कौन सा दिन होगा?", o: ["शनिवार", "रविवार", "शुक्रवार", "मंगलवार"], a: 0 }, // 61/7 = 8 weeks + 5 days. Mon+5 = Sat
-        { q: "वाई-फाई (Wi-Fi) का पूर्ण रूप क्या है?", o: ["Wireless Fidelity", "Wireless Find", "Wired Fidelity", "Wireless Fix"], a: 0 }
+        { q: "कैलेंडर: यदि आज सोमवार है, तो 61 दिन बाद कौन सा दिन होगा?", o: ["शनिवार", "रविवार", "शुक्रवार", "मंगलवार"], a: 0 }, 
+        { q: "वाई-फाई (Wi-Fi) का पूर्ण रूप क्या है?", o: ["Wireless Fidelity", "Wireless Find", "Wired Fidelity", "Wireless Fix"], a: 0 },
+
+        // --- PART 2: JHARKHAND GK (101-130) ---
+        { q: "झारखंड में स्वर्णरेखा नदी का उद्गम स्थल कहां है?", o: ["नगड़ी (रांची)", "हजारीबाग", "त्रिकूट पहाड़ी", "नेतरहाट"], a: 0 },
+        { q: "हुंडरू जलप्रपात की ऊंचाई लगभग कितनी है?", o: ["98 मीटर (322 फीट)", "45 मीटर", "75 मीटर", "150 मीटर"], a: 0 },
+        { q: "झारखंड का राजकीय पशु क्या है?", o: ["हाथी", "बाघ", "बैल", "हिरण"], a: 0 },
+        { q: "सरहुल पर्व किस ऋतु में मनाया जाता है?", o: ["वसंत ऋतु", "वर्षा ऋतु", "शीत ऋतु", "ग्रीष्म ऋतु"], a: 0 },
+        { q: "जादूगोड़ा की खानें किस खनिज के लिए प्रसिद्ध हैं?", o: ["यूरेनियम", "कोयला", "लौह अयस्क", "बॉक्साइट"], a: 0 },
+        { q: "छोटानागपुर काश्तकारी अधिनियम (CNT Act) कब बना था?", o: ["1908", "1905", "1910", "1932"], a: 0 },
+        { q: "संथाल परगना काश्तकारी अधिनियम (SPT Act) कब बना?", o: ["1949", "1908", "1950", "1955"], a: 0 },
+        { q: "भगवान बिरसा मुंडा की मृत्यु किस तिथि को हुई थी?", o: ["9 जून 1900", "15 नवंबर 1900", "2 अक्टूबर 1899", "25 दिसंबर 1899"], a: 0 },
+        { q: "झारखंड राज्य का गठन कब हुआ?", o: ["15 नवंबर 2000", "1 नवंबर 2000", "15 अगस्त 2000", "26 जनवरी 2001"], a: 0 },
+        { q: "झारखंड की राजधानी कौन सी है?", o: ["रांची", "दुमका", "जमशेदपुर", "धनबाद"], a: 0 },
+        { q: "पारसनाथ पहाड़ी की ऊंचाई कितनी है?", o: ["1365 मीटर", "1250 मीटर", "1100 मीटर", "1500 मीटर"], a: 0 },
+        { q: "बोकारो इस्पात संयंत्र किस देश की मदद से बना था?", o: ["रूस (सोवियत संघ)", "अमेरिका", "जर्मनी", "ब्रिटेन"], a: 0 },
+        { q: "हिरणी जलप्रपात (Hirni Falls) किस जिले में है?", o: ["पश्चिमी सिंहभूम", "रांची", "हजारीबाग", "खूंटी"], a: 0 },
+        { q: "रजरप्पा का छिन्नमस्तिका मंदिर किस नदी के संगम पर है?", o: ["दामोदर और भेड़ा (भैरवी)", "स्वर्णरेखा और खरकई", "दामोदर और बराकर", "कोयल और कारो"], a: 0 },
+        { q: "झारखंड में अभ्रक (Mica) की राजधानी किसे कहा जाता है?", o: ["कोडरमा", "गिरिडीह", "हजारीबाग", "झुमरी तिलैया"], a: 0 },
+        { q: "घाटशिला किस खनिज के लिए प्रसिद्ध है?", o: ["तांबा (Copper)", "युरेनियम", "लोहा", "सोना"], a: 0 },
+        { q: "झारखंड के प्रथम मुख्यमंत्री कौन थे?", o: ["बाबूलाल मरांडी", "अर्जुन मुंडा", "शिबू सोरेन", "मधु कोड़ा"], a: 0 },
+        { q: "झारखंड के प्रथम राज्यपाल कौन थे?", o: ["प्रभात कुमार", "वेद मारवाह", "सैयद सिब्ते रजी", "एम.ओ.एच. फारूक"], a: 0 },
+        { q: "झारखंड में कुल कितने जिले हैं (वर्तमान में)?", o: ["24", "22", "18", "26"], a: 0 },
+        { q: "झारखंड का राजकीय पुष्प (Flower) कौन सा है?", o: ["पलाश", "कमल", "गुलाब", "गेंदा"], a: 0 },
+        { q: "दामोदर घाटी निगम (DVC) की स्थापना किस वर्ष हुई?", o: ["1948", "1950", "1952", "1945"], a: 0 },
+        { q: "हेवी इंजीनियरिंग कॉर्पोरेशन (HEC) कहां स्थित है?", o: ["हटिया (रांची)", "बोकारो", "जमशेदपुर", "धनबाद"], a: 0 },
+        { q: "नेतरहाट (छोटानागपुर की रानी) किस जिले में है?", o: ["लातेहार", "पलामू", "लोहरदगा", "गुमला"], a: 0 },
+        { q: "बेतला राष्ट्रीय उद्यान (Betla National Park) किस जिले में है?", o: ["लातेहार (पलामू प्रमंडल)", "हजारीबाग", "चतरा", "कोडरमा"], a: 0 },
+        { q: "उसरी जलप्रपात किस जिले में स्थित है?", o: ["गिरिडीह", "धनबाद", "हजारीबाग", "रांची"], a: 0 },
+        { q: "घाघरी जलप्रपात किस जिले में है?", o: ["लातेहार", "नेतरहाट के पास", "लोहरदगा", "गुमला"], a: 0 },
+        { q: "कोनार बांध किस नदी पर बना है?", o: ["कोनार नदी", "दामोदर", "बराकर", "बोकारो"], a: 0 },
+        { q: "तिलैया बांध किस नदी पर स्थित है?", o: ["बराकर", "दामोदर", "कोनार", "स्वर्णरेखा"], a: 0 },
+        { q: "मैथन बांध किस नदी पर स्थित है?", o: ["बराकर", "दामोदर", "अजय", "मयूरक्षी"], a: 0 },
+        { q: "पंचेत बांध किस नदी पर है?", o: ["दामोदर", "बराकर", "स्वर्णरेखा", "सोन"], a: 0 },
+
+        // --- PART 2: GENERAL STUDIES (131-160) ---
+        { q: "वेदों की संख्या कितनी है?", o: ["4", "3", "5", "6"], a: 0 },
+        { q: "आर्य भारत में सबसे पहले कहां आए थे?", o: ["सप्त सिंधु प्रदेश", "गंगा घाटी", "दक्कन", "मगध"], a: 0 },
+        { q: "बौद्ध धर्म के त्रिपिटक किस भाषा में लिखे गए हैं?", o: ["पाली", "संस्कृत", "प्राकृत", "हिन्दी"], a: 0 },
+        { q: "जैन धर्म के 24वें तीर्थंकर कौन थे?", o: ["महावीर स्वामी", "पार्श्वनाथ", "ऋषभदेव", "नेमिनाथ"], a: 0 },
+        { q: "मगध की प्रारंभिक राजधानी कौन सी थी?", o: ["राजगृह (गिरिव्रज)", "पाटलिपुत्र", "वैशाली", "चंपा"], a: 0 },
+        { q: "कलिंग युद्ध किस मौर्य शासक के समय हुआ था?", o: ["अशोक", "चंद्रगुप्त", "बिन्दुसार", "दशरथ"], a: 0 },
+        { q: "गुप्त काल में सोने के सिक्कों को क्या कहा जाता था?", o: ["दीनार", "रूपक", "टका", "पण"], a: 0 },
+        { q: "हर्षवर्धन ने अपनी राजधानी कहां स्थानांतरित की थी?", o: ["कन्नौज", "थानेश्वर", "पाटलिपुत्र", "उज्जैन"], a: 0 },
+        { q: "गुलाम वंश का संस्थापक कौन था?", o: ["कुतुबुद्दीन ऐबक", "इल्तुतमिश", "बलबन", "रजिया सुल्तान"], a: 0 },
+        { q: "बाजार नियंत्रण प्रणाली किस सुल्तान ने लागू की?", o: ["अलाउद्दीन खिलजी", "बलबन", "फिरोज तुगलक", "मुहम्मद बिन तुगलक"], a: 0 },
+        { q: "मुहम्मद बिन तुगलक ने अपनी राजधानी दिल्ली से कहां ले गया?", o: ["दौलताबाद (देवगिरी)", "आगरा", "लाहौर", "जौनपुर"], a: 0 },
+        { q: "पानीपत का प्रथम युद्ध कब हुआ?", o: ["1526", "1556", "1761", "1527"], a: 0 },
+        { q: "पानीपत का द्वितीय युद्ध कब हुआ?", o: ["1556", "1526", "1761", "1576"], a: 0 },
+        { q: "पानीपत का तृतीय युद्ध कब हुआ?", o: ["1761", "1526", "1556", "1857"], a: 0 },
+        { q: "प्लासी का युद्ध कब लड़ा गया?", o: ["1757", "1764", "1857", "1761"], a: 0 },
+        { q: "बक्सर का युद्ध कब हुआ?", o: ["1764", "1757", "1761", "1857"], a: 0 },
+        { q: "1857 के विद्रोह में बिहार से नेतृत्व किसने किया?", o: ["कुंवर सिंह", "नाना साहब", "तंत्या टोपे", "बेगम हजरत महल"], a: 0 },
+        { q: "भारतीय राष्ट्रीय कांग्रेस का प्रथम अधिवेशन कहां हुआ?", o: ["बॉम्बे (मुंबई)", "कलकत्ता", "मद्रास", "इलाहाबाद"], a: 0 },
+        { q: "बंगाल का विभाजन किस वर्ष हुआ?", o: ["1905", "1907", "1911", "1906"], a: 0 },
+        { q: "कांग्रेस का सूरत विभाजन कब हुआ?", o: ["1907", "1905", "1916", "1920"], a: 0 },
+        { q: "लखनऊ समझौता (Lucknow Pact) कब हुआ?", o: ["1916", "1907", "1919", "1920"], a: 0 },
+        { q: "जलियांवाला बाग हत्याकांड कब हुआ?", o: ["13 अप्रैल 1919", "1920", "1922", "1917"], a: 0 },
+        { q: "असहयोग आंदोलन (Non-Cooperation Movement) कब शुरू हुआ?", o: ["1920", "1919", "1922", "1930"], a: 0 },
+        { q: "सविनय अवज्ञा आंदोलन (Civil Disobedience) कब शुरू हुआ?", o: ["1930", "1920", "1942", "1940"], a: 0 },
+        { q: "कैबिनेट मिशन भारत कब आया?", o: ["1946", "1942", "1945", "1947"], a: 0 },
+        { q: "माउंटबेटन योजना (विभाजन योजना) कब आई?", o: ["3 जून 1947", "15 अगस्त 1947", "26 जनवरी 1950", "1946"], a: 0 },
+        { q: "भारतीय संविधान की प्रस्तावना किस देश से प्रभावित है?", o: ["अमेरिका (USA)", "ब्रिटेन", "कनाडा", "आयरलैंड"], a: 0 },
+        { q: "मौलिक अधिकार (Fundamental Rights) किस देश से लिए गए हैं?", o: ["अमेरिका", "रूस", "ब्रिटेन", "फ्रांस"], a: 0 },
+        { q: "राष्ट्रपति का चुनाव किस अनुच्छेद के तहत होता है?", o: ["अनुच्छेद 54/55", "अनुच्छेद 72", "अनुच्छेद 61", "अनुच्छेद 123"], a: 0 },
+        { q: "उपराष्ट्रपति पदेन अध्यक्ष होता है:", o: ["राज्यसभा का", "लोकसभा का", "योजना आयोग का", "NDC का"], a: 0 },
+
+        // --- PART 2: GENERAL SCIENCE (161-180) ---
+        { q: "बल (Force) का SI मात्रक क्या है?", o: ["न्यूटन", "जूल", "पास्कल", "वाट"], a: 0 },
+        { q: "कार्य (Work) का मात्रक क्या है?", o: ["जूल", "न्यूटन", "वाट", "हर्ट्ज"], a: 0 },
+        { q: "ऊर्जा (Energy) का SI मात्रक क्या है?", o: ["जूल", "वाट", "वोल्ट", "एम्पीयर"], a: 0 },
+        { q: "शक्ति (Power) का मात्रक क्या है?", o: ["वाट (Watt)", "जूल", "वोल्ट", "ओम"], a: 0 },
+        { q: "दाब (Pressure) का SI मात्रक क्या है?", o: ["पास्कल", "न्यूटन", "जूल", "वाट"], a: 0 },
+        { q: "आवृत्ति (Frequency) का मात्रक क्या है?", o: ["हर्ट्ज (Hz)", "डेसिबल", "मीटर", "सेकंड"], a: 0 },
+        { q: "विद्युत आवेश (Charge) का मात्रक क्या है?", o: ["कूलम्ब", "एम्पीयर", "वोल्ट", "ओम"], a: 0 },
+        { q: "विभवांतर (Potential Difference) का मात्रक क्या है?", o: ["वोल्ट", "एम्पीयर", "ओम", "वाट"], a: 0 },
+        { q: "चुंबकीय क्षेत्र (Magnetic Field) की तीव्रता का मात्रक क्या है?", o: ["टेस्ला", "वेबर", "गॉस", "हेनरी"], a: 0 },
+        { q: "पृथ्वी पर गुरुत्वीय त्वरण 'g' का मान क्या है?", o: ["9.8 m/s²", "10 m/s²", "9.8 km/s²", "6.67 m/s²"], a: 0 },
+        { q: "पृथ्वी का पलायन वेग (Escape Velocity) कितना है?", o: ["11.2 km/s", "8 km/s", "11.2 m/s", "2.4 km/s"], a: 0 },
+        { q: "पृष्ठ तनाव (Surface Tension) के कारण क्या होता है?", o: ["वर्षा की बूंदें गोल होती हैं", "जहाज तैरता है", "इंद्रधनुष बनता है", "आकाश नीला दिखता है"], a: 0 },
+        { q: "श्यानता (Viscosity) किसमें पाई जाती है?", o: ["द्रव और गैस", "केवल ठोस", "केवल गैस", "निर्वात"], a: 0 },
+        { q: "ऊष्मा (Heat) का SI मात्रक क्या है?", o: ["जूल", "कैलोरी", "केल्विन", "सेल्सियस"], a: 0 },
+        { q: "तापमान का SI मात्रक क्या है?", o: ["केल्विन", "सेल्सियस", "फारेनहाइट", "रैमुर"], a: 0 },
+        { q: "प्रकाश की चाल निर्वात में कितनी होती है?", o: ["3 x 10^8 m/s", "3 x 10^5 km/s", "332 m/s", "अनंत"], a: 0 },
+        { q: "समतल दर्पण में बना प्रतिबिंब कैसा होता है?", o: ["आभासी और सीधा", "वास्तविक और उल्टा", "वास्तविक और सीधा", "आभासी और उल्टा"], a: 0 },
+        { q: "तारों का टिमटिमाना किसका उदाहरण है?", o: ["प्रकाश का अपवर्तन", "परावर्तन", "प्रकीर्णन", "विवर्तन"], a: 0 },
+        { q: "दंत चिकित्सक किस दर्पण का उपयोग करते हैं?", o: ["अवतल दर्पण (Concave)", "उत्तल दर्पण", "समतल दर्पण", "बेलनाकार"], a: 0 },
+        { q: "मानव नेत्र में प्रतिबिंब कहां बनता है?", o: ["रेटिना पर", "कॉर्निया पर", "लेंस पर", "पुतली पर"], a: 0 },
+
+        // --- PART 2: COMPUTER & REASONING (181-200) ---
+        { q: "CPU का पूर्ण रूप क्या है?", o: ["Central Processing Unit", "Central Program Unit", "Computer Processing Unit", "Common Processing Unit"], a: 0 },
+        { q: "ALU का कार्य क्या है?", o: ["Arithmetic & Logic Operations", "Application Loading", "Access Logic Unit", "Array Logic Unit"], a: 0 },
+        { q: "कंप्यूटर की 'मस्तिष्क' (Brain) किसे कहते हैं?", o: ["CPU", "RAM", "Hard Disk", "Monitor"], a: 0 },
+        { q: "RAM किस प्रकार की मेमोरी है?", o: ["Volatile (अस्थायी)", "Non-Volatile", "External", "Secondary"], a: 0 },
+        { q: "ROM का पूर्ण रूप क्या है?", o: ["Read Only Memory", "Random Only Memory", "Read On Memory", "Run Only Memory"], a: 0 },
+        { q: "इनमें से कौन इनपुट डिवाइस है?", o: ["कीबोर्ड", "मॉनिटर", "प्रिंटर", "स्पीकर"], a: 0 },
+        { q: "माउस किस प्रकार का डिवाइस है?", o: ["इनपुट डिवाइस", "आउटपुट डिवाइस", "स्टोरेज", "प्रोसेसिंग"], a: 0 },
+        { q: "स्कैनर (Scanner) का कार्य क्या है?", o: ["हार्ड कॉपी को सॉफ्ट कॉपी में बदलना", "प्रिंट निकालना", "आवाज रिकॉर्ड करना", "वीडियो दिखाना"], a: 0 },
+        { q: "मॉनिटर (Monitor) किस प्रकार का डिवाइस है?", o: ["आउटपुट डिवाइस", "इनपुट डिवाइस", "स्टोरेज", "प्रोसेसिंग"], a: 0 },
+        { q: "सॉफ्टवेयर के दो मुख्य प्रकार कौन से हैं?", o: ["सिस्टम और एप्लीकेशन सॉफ्टवेयर", "इनपुट और आउटपुट", "हार्डवेयर और सॉफ्टवेयर", "रैम और रोम"], a: 0 },
+        { q: "विंडोज (Windows) क्या है?", o: ["ऑपरेटिंग सिस्टम (OS)", "एप्लीकेशन सॉफ्टवेयर", "हार्डवेयर", "एंटीवायरस"], a: 0 },
+        { q: "LAN का पूर्ण रूप क्या है?", o: ["Local Area Network", "Large Area Network", "Long Area Network", "Local Access Network"], a: 0 },
+        { q: "WWW का आविष्कार किसने किया?", o: ["टिम बर्नर्स ली", "बिल गेट्स", "स्टीव जॉब्स", "मार्क जुकरबर्ग"], a: 0 },
+        { q: "HTTP का उपयोग कहां होता है?", o: ["वेब पेज ट्रांसफर में", "फाइल डिलीट करने में", "ईमेल भेजने में", "प्रिंट करने में"], a: 0 },
+        { q: "ईमेल में '@' के बाद वाला भाग क्या कहलाता है?", o: ["डोमेन नेम", "यूजर नेम", "पासवर्ड", "प्रोटोकॉल"], a: 0 },
+        { q: "कंप्यूटर वायरस क्या है?", o: ["एक द्वेषपूर्ण प्रोग्राम (Malicious Program)", "हार्डवेयर खराबी", "बैक्टीरिया", "धूल"], a: 0 },
+        { q: "Ctrl + C का उपयोग किसके लिए होता है?", o: ["कॉपी (Copy)", "कट (Cut)", "पेस्ट (Paste)", "अंड़ू (Undo)"], a: 0 },
+        { q: "Ctrl + V का उपयोग किसके लिए होता है?", o: ["पेस्ट (Paste)", "कॉपी", "कट", "सेव"], a: 0 },
+        { q: "बाइनरी सिस्टम (Binary System) का आधार (Base) क्या है?", o: ["2", "10", "8", "16"], a: 0 },
+        { q: "1 किलोबाइट (KB) में कितने बाइट होते हैं?", o: ["1024", "1000", "100", "8"], a: 0 }
     ];
+
+    // --- STORAGE ---
+    const TEST_KEY = 'jssc_test_p1s3';
 
     // --- STATE ---
     let currentQ = 0;
     let answers = new Array(questions.length).fill(null);
-    let status = new Array(questions.length).fill(0); 
+    let status = new Array(questions.length).fill(0); // 0: Not Visited, 1: Not Answered (Visited), 2: Answered, 3: Mark Review, 4: Ans & Mark Review
     let timeLeft = 3 * 3600;
     let timerInterval;
 
     window.onload = function() {
+        loadProgress(); // Load saved state first
         renderPalette();
-        loadQuestion(0);
+        loadQuestion(currentQ); // Load specific question if saved, else 0
         startTimer();
+    }
+
+    // --- LOCAL STORAGE LOGIC ---
+    function loadProgress() {
+        const saved = localStorage.getItem(TEST_KEY);
+        if (saved) {
+            const data = JSON.parse(saved);
+            
+            // Restore Answers
+            if (data.answers && Array.isArray(data.answers)) {
+                answers = data.answers;
+            }
+            
+            // Restore Question Status (Colors)
+            if (data.questionStatus && Array.isArray(data.questionStatus)) {
+                status = data.questionStatus;
+            } else if (data.visited && Array.isArray(data.visited)) {
+                status = data.visited; 
+            }
+
+            // Restore Timer
+            if (data.timeLeft) timeLeft = data.timeLeft;
+            
+            // Restore Current Question
+            if (data.currentQ) currentQ = data.currentQ;
+        }
+    }
+
+    function saveProgress() {
+        const data = {
+            status: 'in-progress',
+            score: null, 
+            answers: answers,
+            questionStatus: status, 
+            timeLeft: timeLeft,
+            currentQ: currentQ,
+            totalQuestions: questions.length,
+            timestamp: new Date().toISOString()
+        };
+        localStorage.setItem(TEST_KEY, JSON.stringify(data));
     }
 
     // --- LOGIC ---
     function loadQuestion(index) {
         if(index < 0 || index >= questions.length) return;
-        if (status[currentQ] === 0) status[currentQ] = 1; 
+        
+        if (status[index] === 0) {
+            status[index] = 1; 
+            saveProgress(); 
+        }
+
         currentQ = index;
-        if (status[currentQ] === 0) status[currentQ] = 1;
+        saveProgress(); 
+
         document.getElementById('q-num').innerText = `Question No. ${index + 1}`;
+        
         const qData = questions[index];
         const html = `
             <div class="q-text">${qData.q}</div>
@@ -534,36 +691,55 @@
             </div>
         `;
         document.getElementById('q-display').innerHTML = html;
+        
         updatePalette();
     }
 
-    function selectOption(optIdx) { answers[currentQ] = optIdx; }
+    function selectOption(optIdx) {
+        answers[currentQ] = optIdx;
+        saveProgress();
+    }
 
     function saveNext() {
-        if (answers[currentQ] !== null) status[currentQ] = 2;
-        else status[currentQ] = 1;
+        if (answers[currentQ] !== null) {
+            status[currentQ] = 2; // Answered
+        } else {
+            status[currentQ] = 1; // Not Answered
+        }
+        
+        saveProgress(); 
+
         if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
         else updatePalette();
     }
 
     function markReviewNext() {
-        if (answers[currentQ] !== null) status[currentQ] = 4;
-        else status[currentQ] = 3;
+        if (answers[currentQ] !== null) {
+            status[currentQ] = 4; // Ans & Review
+        } else {
+            status[currentQ] = 3; // Review
+        }
+        
+        saveProgress(); 
+
         if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
         else updatePalette();
     }
 
     function clearResponse() {
         answers[currentQ] = null;
-        status[currentQ] = 1;
-        loadQuestion(currentQ);
+        status[currentQ] = 1; 
+        saveProgress(); 
+        loadQuestion(currentQ); 
     }
 
     function jumpTo(index) {
-        saveNext();
+        if (status[currentQ] === 0) status[currentQ] = 1;
+        saveProgress();
         loadQuestion(index);
     }
 
+    // --- PALETTE ---
     function renderPalette() {
         const grid = document.getElementById('palette-grid');
         grid.innerHTML = questions.map((_, i) => 
@@ -576,10 +752,12 @@
         questions.forEach((_, i) => {
             const btn = document.getElementById(`btn-${i}`);
             btn.className = 'q-btn';
-            if (status[i] === 1) btn.classList.add('visited');
-            else if (status[i] === 2) btn.classList.add('answered');
-            else if (status[i] === 3) btn.classList.add('review');
-            else if (status[i] === 4) btn.classList.add('ans-review');
+            
+            if (status[i] === 1) btn.classList.add('visited'); 
+            else if (status[i] === 2) btn.classList.add('answered'); 
+            else if (status[i] === 3) btn.classList.add('review'); 
+            else if (status[i] === 4) btn.classList.add('ans-review'); 
+            
             if (i === currentQ) btn.classList.add('current');
         });
         updateCounts();
@@ -588,6 +766,7 @@
     function updateCounts() {
         const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
         status.forEach(s => counts[s]++);
+        
         const legends = document.querySelectorAll('.palette-legend .shape');
         legends[0].innerText = counts[2]; 
         legends[1].innerText = counts[1]; 
@@ -596,6 +775,7 @@
         legends[4].innerText = counts[4]; 
     }
 
+    // --- TIMER ---
     function startTimer() {
         const el = document.getElementById('timer');
         timerInterval = setInterval(() => {
@@ -612,6 +792,7 @@
         }, 1000);
     }
 
+    // --- MODALS ---
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     
     function submitQuiz(force) {
@@ -659,6 +840,17 @@
         document.getElementById('r-correct').innerText = correct;
         document.getElementById('r-wrong').innerText = wrong;
 
+        const finalData = {
+            status: 'completed',
+            score: score,
+            answers: answers,
+            questionStatus: status,
+            timeLeft: timeLeft,
+            totalQuestions: questions.length,
+            timestamp: new Date().toISOString()
+        };
+        localStorage.setItem(TEST_KEY, JSON.stringify(finalData));
+
         const headerContainer = document.getElementById('result-header-container');
         if (score >= 66) {
             headerContainer.innerHTML = `
@@ -682,18 +874,30 @@
         var animationEnd = Date.now() + duration;
         var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
 
-        function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
 
         var interval = setInterval(function() {
           var timeLeft = animationEnd - Date.now();
-          if (timeLeft <= 0) return clearInterval(interval);
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
           var particleCount = 50 * (timeLeft / duration);
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
         }, 250);
         
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, zIndex: 10001 });
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            zIndex: 10001
+        });
     }
+
 </script>
 </body>
 </html>
