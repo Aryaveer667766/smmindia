@@ -11,10 +11,10 @@
             --header-bg: #2d3e50;
             --header-text: #ffffff;
             --q-panel-bg: #f5f9fa;
-            --primary-btn: #007bff; /* Blue for Save & Next usually or Green depending on agency. Going with Blue/Green hybrid logic */
-            --save-next: #28a745; /* Green */
+            --primary-btn: #007bff;
+            --save-next: #28a745;
             --clear-btn: #ffffff;
-            --review-btn: #ffc107; /* Or Purple */
+            --review-btn: #ffc107;
             --mark-review: #6f42c1;
             --border: #ccc;
         }
@@ -22,7 +22,7 @@
         * { box-sizing: border-box; }
 
         body {
-            font-family: Arial, sans-serif; /* Standard exam font */
+            font-family: Arial, sans-serif;
             margin: 0;
             background-color: #fff;
             height: 100vh;
@@ -30,7 +30,7 @@
             flex-direction: column;
             overflow: hidden;
             font-size: 14px;
-            user-select: none; /* Disables text selection like real exam */
+            user-select: none;
         }
 
         /* --- HEADER --- */
@@ -63,7 +63,6 @@
             border-right: 1px solid #ccc;
         }
 
-        /* Question Header Strip */
         .q-header-strip {
             background: #fff;
             padding: 8px 15px;
@@ -73,11 +72,7 @@
             align-items: center;
         }
 
-        .q-sections {
-            display: flex;
-            gap: 5px;
-        }
-
+        .q-sections { display: flex; gap: 5px; }
         .sec-tab {
             background: #337ab7;
             color: white;
@@ -88,7 +83,6 @@
             cursor: default;
         }
 
-        /* Specific Question Info */
         .q-info-bar {
             border-bottom: 1px solid #ccc;
             padding: 5px 15px;
@@ -97,7 +91,7 @@
             align-items: center;
             background: #fff;
             font-weight: bold;
-            color: #d0021b; /* Red for marks */
+            color: #d0021b;
         }
 
         .q-scroll-area {
@@ -105,7 +99,7 @@
             overflow-y: auto;
             padding: 20px;
             background: #fff;
-            font-size: 16px; /* Larger font for readability */
+            font-size: 16px;
         }
 
         .q-text { margin-bottom: 20px; font-weight: 600; line-height: 1.5; }
@@ -146,7 +140,7 @@
         .candidate-name { font-weight: bold; font-size: 13px; }
 
         .timer-strip {
-            background: #ffecb3; /* Light yellow typically */
+            background: #ffecb3;
             color: #000;
             padding: 8px;
             font-weight: bold;
@@ -165,23 +159,13 @@
         }
 
         .leg-item { display: flex; align-items: center; gap: 5px; }
-        .leg-icon { 
-            width: 25px; height: 25px; 
-            display: flex; justify-content: center; align-items: center; 
-            border: 1px solid #ccc; font-size: 10px; 
-        }
 
-        /* Palette Colors mimicking TCS iON */
-        .p-ans { background-color: #5cb85c; color: white; border-radius: 50% 50% 0 0; clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); } /* Green shape approx */
-        .p-ans { background-color: #28a745; color: white; border-radius: 0; clip-path: none; } /* Simpler Rect */
-        
-        /* Exact Shapes often used */
         .shape { width: 22px; height: 20px; text-align: center; color: white; line-height: 20px; font-size: 10px; display: inline-block;}
-        .s-green { background: #28a745; border-radius: 15px 15px 0 0; } /* Answered */
-        .s-red { background: #dc3545; border-radius: 15px 15px 0 0; } /* Not Answered */
-        .s-grey { background: #e0e0e0; color: black; border-radius: 2px; border: 1px solid #999; } /* Not Visited */
-        .s-purple { background: #6f42c1; border-radius: 50%; } /* Marked for Review */
-        .s-pur-green { background: #6f42c1; border-radius: 50%; position: relative; } /* Ans + Review */
+        .s-green { background: #28a745; border-radius: 15px 15px 0 0; }
+        .s-red { background: #dc3545; border-radius: 15px 15px 0 0; }
+        .s-grey { background: #e0e0e0; color: black; border-radius: 2px; border: 1px solid #999; }
+        .s-purple { background: #6f42c1; border-radius: 50%; }
+        .s-pur-green { background: #6f42c1; border-radius: 50%; position: relative; }
         .s-pur-green::after { content:''; position: absolute; bottom: -2px; right: -2px; width: 8px; height: 8px; background: #28a745; border-radius: 50%; border: 1px solid white;}
 
         .q-palette-grid {
@@ -208,16 +192,12 @@
             position: relative;
         }
         
-        /* Real Palette States */
-        .q-btn.visited { background: #dc3545; color: white; border-radius: 15px 15px 0 0; border: none; } /* Red (Not Answered but visited) */
-        .q-btn.answered { background: #28a745; color: white; border-radius: 15px 15px 0 0; border: none; } /* Green */
-        .q-btn.review { background: #6f42c1; color: white; border-radius: 50%; border: none; } /* Purple */
+        .q-btn.visited { background: #dc3545; color: white; border-radius: 15px 15px 0 0; border: none; }
+        .q-btn.answered { background: #28a745; color: white; border-radius: 15px 15px 0 0; border: none; }
+        .q-btn.review { background: #6f42c1; color: white; border-radius: 50%; border: none; }
         .q-btn.ans-review { background: #6f42c1; color: white; border-radius: 50%; border: none; }
         .q-btn.ans-review::after { content: '✔'; position: absolute; bottom: 0; right: 0; font-size: 8px; background: #28a745; border-radius: 50%; padding: 1px; }
-
         .q-btn:hover { opacity: 0.8; }
-        
-        /* Current Question Highlight */
         .q-btn.current { border: 2px solid #000 !important; }
 
         /* --- FOOTER --- */
@@ -242,7 +222,7 @@
 
         .btn-clear { background: #fff; color: #000; }
         .btn-review { background: #ffc107; color: #000; border-color: #e0a800; }
-        .btn-save { background: #28a745; color: #fff; border-color: #218838; } /* TCS Style Save is often Green */
+        .btn-save { background: #28a745; color: #fff; border-color: #218838; }
         .btn-submit { background: #007bff; color: white; border: none; }
 
         /* --- MODAL --- */
@@ -337,7 +317,7 @@
             <div class="profile-box">
                 <div class="profile-img">Photo</div>
                 <div>
-                    <div class="candidate-name">John Doe</div>
+                    <div class="candidate-name">Kumari Sadhna Pathak</div>
                     <div style="font-size:11px; color:#555;">Roll No: 12345678</div>
                 </div>
             </div>
@@ -351,7 +331,7 @@
                 <div class="leg-item"><div class="shape s-red">0</div> Not Answered</div>
                 <div class="leg-item"><div class="shape s-grey">0</div> Not Visited</div>
                 <div class="leg-item"><div class="shape s-purple">0</div> Marked for Review</div>
-                <div class="leg-item" style="grid-column: span 2;"><div class="shape s-pur-green">0</div> Ans & Marked for Review (Will be evaluated)</div>
+                <div class="leg-item" style="grid-column: span 2;"><div class="shape s-pur-green">0</div> Ans & Marked for Review</div>
             </div>
 
             <div style="padding: 10px; background: #337ab7; color: white; font-weight: bold; font-size: 12px;">
@@ -409,7 +389,7 @@
     </div>
 
 <script>
-    // --- DATABASE: 100 NEW QUESTIONS (SET 2) ---
+    // --- DATABASE: 200 QUESTIONS (SET 2) ---
     const questions = [
         // --- JHARKHAND GK (1-40) ---
         { q: "पारसनाथ पहाड़ी की ऊंचाई लगभग कितनी है?", o: ["1365 मीटर", "1250 मीटर", "1500 मीटर", "1100 मीटर"], a: 0 },
@@ -427,7 +407,7 @@
         { q: "राजमहल की पहाड़ियां किस जिले में मुख्य रूप से स्थित हैं?", o: ["साहिबगंज", "दुमका", "गोड्डा", "देवघर"], a: 0 },
         { q: "झारखंड का कौन सा जिला तीन राज्यों की सीमा को छूता है?", o: ["गढ़वा", "सिमडेगा", "साहिबगंज", "दुमका"], a: 0 },
         { q: "झारखंड के किस जिले की सीमा किसी अन्य राज्य को नहीं छूती है?", o: ["खूंटी", "लोहरदगा", "उपरोक्त दोनों", "रामगढ़"], a: 2 },
-        { q: "'झूमर' (Jhumair) क्या है?", o: ["एक लोक नृत्य", "एक लोक गीत", "एक चित्रकला", "एक वाद्य यंत्र"], a: 1 }, // Can be both song and dance, but mostly referred to as song form in options usually
+        { q: "'झूमर' (Jhumair) क्या है?", o: ["एक लोक नृत्य", "एक लोक गीत", "एक चित्रकला", "एक वाद्य यंत्र"], a: 1 },
         { q: "छऊ नृत्य का उद्गम स्थल झारखंड का कौन सा जिला है?", o: ["सरायकेला-खरसावां", "पूर्वी सिंहभूम", "रांची", "धनबाद"], a: 0 },
         { q: "पद्म भूषण से सम्मानित प्रथम आदिवासी व्यक्ति कौन थे?", o: ["जुआल लकड़ा", "कार्तिक उरांव", "ठेबले उरांव", "जस्टिन रिचर्ड"], a: 0 },
         { q: "झारखंड मुक्ति मोर्चा (JMM) का गठन कब हुआ?", o: ["1970", "1972", "1973", "1980"], a: 1 },
@@ -516,9 +496,120 @@
         { q: "श्रृंखला पूरी करें: 5, 10, 15, 20, ...?", o: ["22", "25", "30", "35"], a: 1 },
         { q: "कोडिंग: यदि CAT = 24 है (C=3, A=1, T=20), तो DOG = ?", o: ["25", "26", "24", "30"], a: 1 },
         { q: "रक्त संबंध: A, B का भाई है। B, C की बहन है। तो A का C से क्या संबंध है?", o: ["पिता", "भाई", "चाचा", "पुत्र"], a: 1 },
-        { q: "दिशा: एक व्यक्ति दक्षिण की ओर चला, फिर बाएं मुड़ा। अब वह किस दिशा में है?", o: ["पश्चिम", "पूर्व", "उत्तर", "दक्षिण"], a: 1 },
-        { q: "ईमेल (Email) के आविष्कारक कौन माने जाते हैं?", o: ["रे टॉमलिंसन", "बिल गेट्स", "स्टीव जॉब्स", "मार्क जुकरबर्ग"], a: 0 }
+        { q: "दिशा परीक्षण: एक व्यक्ति उत्तर की ओर 5 किमी चला, फिर दाएं मुड़ा। अब वह किस दिशा में है?", o: ["उत्तर", "दक्षिण", "पूर्व", "पश्चिम"], a: 2 },
+        { q: "WWW का आविष्कार किसने किया?", o: ["टिम बर्नर्स ली", "मार्क जुकरबर्ग", "लैरी पेज", "स्टीव जॉब्स"], a: 0 },
+
+        // --- NEW QUESTIONS: JHARKHAND GK (101-130) ---
+        { q: "दामोदर नदी का मुहाना (Mouth) कहां है?", o: ["हुगली नदी", "स्वर्णरेखा नदी", "सोन नदी", "गंगा नदी"], a: 0 },
+        { q: "झारखंड का कौन सा जिला 'कोयला राजधानी' कहलाता है?", o: ["धनबाद", "बोकारो", "हजारीबाग", "रामगढ़"], a: 0 },
+        { q: "दलमा अभयारण्य किसके संरक्षण के लिए प्रसिद्ध है?", o: ["हाथी", "बाघ", "हिरण", "पक्षी"], a: 0 },
+        { q: "बिरसा मुंडा का जन्म स्थान 'उलिहातू' किस जिले में है?", o: ["खूंटी", "रांची", "गुमला", "लोहरदगा"], a: 0 },
+        { q: "झारखंड में 'सरहुल' पर्व को उरांव जनजाति किस नाम से जानती है?", o: ["खद्दी", "बाहा", "जकोर", "सोहराई"], a: 0 },
+        { q: "मैथन डेम किस नदी पर स्थित है?", o: ["बराकर", "दामोदर", "स्वर्णरेखा", "मयूराक्षी"], a: 0 },
+        { q: "झारखंड में 'तांबा' उत्पादन का मुख्य केंद्र कौन सा है?", o: ["घाटशिला", "जादूगोड़ा", "झरिया", "नोवामुंडी"], a: 0 },
+        { q: "संथाल परगना में 'हूल दिवस' कब मनाया जाता है?", o: ["30 जून", "15 नवंबर", "9 जून", "2 अक्टूबर"], a: 0 },
+        { q: "झारखंड की उप-राजधानी दुमका किस प्रमंडल में है?", o: ["संथाल परगना", "कोल्हान", "पलामू", "उत्तरी छोटानागपुर"], a: 0 },
+        { q: "1857 के विद्रोह में रांची का नेतृत्व किसने किया था?", o: ["ठाकुर विश्वनाथ शाहदेव", "पांडे गणपत राय", "शेख भिखारी", "उपरोक्त सभी"], a: 3 },
+        { q: "झारखंड का राजकीय पक्षी 'कोयल' का वैज्ञानिक नाम क्या है?", o: ["Eudynamys scolopaceus", "Pavo cristatus", "Corvus splendens", "Passer domesticus"], a: 0 },
+        { q: "झारखंड में 'मुख्यमंत्री सुकन्या योजना' की शुरुआत कब हुई?", o: ["2019", "2018", "2020", "2017"], a: 0 },
+        { q: "महुआडांड़ भेड़िया अभयारण्य किस जिले में है?", o: ["लातेहार", "पलामू", "गुमला", "लोहरदगा"], a: 0 },
+        { q: "झारखंड का सबसे ऊंचा जलप्रपात कौन सा है?", o: ["बूढ़ा घाघ (लोध)", "हुंडरू", "दशम", "जोन्हा"], a: 0 },
+        { q: "रांची विश्वविद्यालय की स्थापना कब हुई थी?", o: ["1960", "1955", "1970", "1980"], a: 0 },
+        { q: "झारखंड में 'असुर' जनजाति किस कार्य में निपुण मानी जाती है?", o: ["लोहा गलाने में", "कृषि", "शिकार", "बुनाई"], a: 0 },
+        { q: "छोटानागपुर का पठार किस चट्टान से बना है?", o: ["ग्रेनाइट और नीस", "बेसाल्ट", "चूना पत्थर", "बलुआ पत्थर"], a: 0 },
+        { q: "झारखंड की एकमात्र नौगम्य (Navigable) नदी कौन सी है?", o: ["मयूराक्षी", "दामोदर", "स्वर्णरेखा", "सोन"], a: 0 },
+        { q: "झारखंड में 'हरित क्रांति' मुख्य रूप से किस जिले में प्रभावी रही?", o: ["पलामू", "रांची", "हजारीबाग", "धनबाद"], a: 0 }, // Wheat production increased in Palamu
+        { q: "झारखंड का कौन सा शहर 'इस्पात नगरी' (Steel City) कहलाता है?", o: ["जमशेदपुर", "बोकारो", "धनबाद", "रांची"], a: 0 },
+        { q: "झारखंड में 'लाह' का सर्वाधिक उत्पादन किस जिले में होता है?", o: ["खूंटी", "रांची", "पलामू", "गुमला"], a: 0 }, // Often Khunti or Ranchi depending on data year, usually Khunti is famous
+        { q: "झारखंड विधानसभा के प्रथम अध्यक्ष कौन थे?", o: ["इंदर सिंह नामधारी", "बागुन सुंब्रई", "मृगेंद्र प्रताप सिंह", "कड़िया मुंडा"], a: 0 },
+        { q: "झारखंड में 'पाइका' (Paika) क्या है?", o: ["एक लोक नृत्य", "एक लोक गीत", "एक चित्रकला", "एक वाद्य यंत्र"], a: 0 },
+        { q: "झारखंड के किस जिले में 'पालकोट का किला' स्थित है?", o: ["गुमला", "सिमडेगा", "खूंटी", "रांची"], a: 0 },
+        { q: "झारखंड का कौन सा जिला 'अबरख' (Mica) के लिए प्रसिद्ध है?", o: ["कोडरमा", "गिरिडीह", "हजारीबाग", "चतरा"], a: 0 },
+        { q: "झारखंड में 'बिरसा जैविक उद्यान' कहां स्थित है?", o: ["ओरमांझी (रांची)", "कालामाटी", "हजारीबाग", "बोकारो"], a: 0 },
+        { q: "झारखंड का सबसे छोटा जिला (क्षेत्रफल में) कौन सा है?", o: ["रामगढ़", "लोहरदगा", "पाकुड़", "जामताड़ा"], a: 0 },
+        { q: "झारखंड में 'धोकलो-सोहोर' शासन व्यवस्था किस जनजाति की है?", o: ["खड़िया", "मुंडा", "संथाल", "हो"], a: 0 },
+        { q: "झारखंड का 'शिमला' किसे कहा जाता है?", o: ["रांची", "नेतरहाट", "हजारीबाग", "जमशेदपुर"], a: 0 },
+        { q: "झारखंड में 'टेल्को' (TELCO) कहां स्थित है?", o: ["जमशेदपुर", "बोकारो", "रांची", "धनबाद"], a: 0 },
+
+        // --- NEW QUESTIONS: GENERAL STUDIES (131-160) ---
+        { q: "भारत का राष्ट्रीय गान 'जन गण मन' किसने लिखा?", o: ["रविंद्रनाथ टैगोर", "बंकिम चंद्र चटर्जी", "इकबाल", "सरोजिनी नायडू"], a: 0 },
+        { q: "भारतीय संविधान का अनुच्छेद 368 किससे संबंधित है?", o: ["संविधान संशोधन", "आपातकाल", "वित्त आयोग", "निर्वाचन आयोग"], a: 0 },
+        { q: "पानीपत का द्वितीय युद्ध (1556) किसके बीच हुआ?", o: ["अकबर और हेमू", "बाबर और लोदी", "मराठा और अब्दाली", "अकबर और राणा प्रताप"], a: 0 },
+        { q: "ताजमहल का निर्माण किसने करवाया था?", o: ["शाहजहां", "अकबर", "जहांगीर", "औरंगजेब"], a: 0 },
+        { q: "'विंग्स ऑफ फायर' पुस्तक के लेखक कौन हैं?", o: ["ए.पी.जे. अब्दुल कलाम", "जवाहरलाल नेहरू", "चेतन भगत", "अरुंधति रॉय"], a: 0 },
+        { q: "भारत का सबसे बड़ा राज्य (क्षेत्रफल में) कौन सा है?", o: ["राजस्थान", "मध्य प्रदेश", "महाराष्ट्र", "उत्तर प्रदेश"], a: 0 },
+        { q: "विश्व का सबसे बड़ा महासागर कौन सा है?", o: ["प्रशांत महासागर", "अटलांटिक महासागर", "हिंद महासागर", "आर्कटिक महासागर"], a: 0 },
+        { q: "फ्रांस की राजधानी क्या है?", o: ["पेरिस", "लंदन", "बर्लिन", "रोम"], a: 0 },
+        { q: "डब्ल्यूटीओ (WTO) का मुख्यालय कहां है?", o: ["जेनेवा", "न्यूयार्क", "पेरिस", "वाशिंगटन"], a: 0 },
+        { q: "भारत के वर्तमान मुख्य चुनाव आयुक्त कौन हैं? (Current)", o: ["राजीव कुमार", "सुनील अरोड़ा", "टी.एन. शेषन", "सुकुमार सेन"], a: 0 }, // Assume static GK context or update as needed
+        { q: "भारत का राष्ट्रीय फूल कौन सा है?", o: ["कमल", "गुलाब", "चमेली", "सूरजमुखी"], a: 0 },
+        { q: "मोहिनीअट्टम किस राज्य का नृत्य है?", o: ["केरल", "तमिलनाडु", "कर्नाटक", "आंध्र प्रदेश"], a: 0 },
+        { q: "भारत में पहली रेलगाड़ी कब चली थी?", o: ["1853", "1850", "1857", "1900"], a: 0 },
+        { q: "राज्यसभा का पदेन सभापति कौन होता है?", o: ["उपराष्ट्रपति", "राष्ट्रपति", "प्रधानमंत्री", "लोकसभा अध्यक्ष"], a: 0 },
+        { q: "संयुक्त राष्ट्र सुरक्षा परिषद में कितने स्थायी सदस्य हैं?", o: ["5", "10", "15", "7"], a: 0 },
+        { q: "माउंट एवरेस्ट किस देश में स्थित है?", o: ["नेपाल", "भारत", "चीन", "भूटान"], a: 0 },
+        { q: "प्रार्थना समाज की स्थापना किसने की?", o: ["आत्माराम पांडुरंग", "राजा राममोहन राय", "दयानंद सरस्वती", "विवेकानंद"], a: 0 },
+        { q: "रामकृष्ण मिशन की स्थापना किसने की?", o: ["विवेकानंद", "रामकृष्ण परमहंस", "दयानंद सरस्वती", "राजा राममोहन राय"], a: 0 },
+        { q: "स्वतंत्र भारत के प्रथम गवर्नर जनरल कौन थे?", o: ["लॉर्ड माउंटबेटन", "सी. राजगोपालाचारी", "राजेंद्र प्रसाद", "नेहरू"], a: 0 },
+        { q: "संविधान की प्रारूप समिति के अध्यक्ष कौन थे?", o: ["भीमराव अंबेडकर", "राजेंद्र प्रसाद", "नेहरू", "पटेल"], a: 0 },
+        { q: "भारत में 'श्वेत क्रांति' के जनक कौन थे?", o: ["वर्गीज कुरियन", "एम.एस. स्वामीनाथन", "सैम पित्रोदा", "अरुण कृष्णन"], a: 0 },
+        { q: "भारत का वित्त मंत्री बजट कहां पेश करता है?", o: ["लोकसभा", "राज्यसभा", "राष्ट्रपति भवन", "लाल किला"], a: 0 },
+        { q: "नीति आयोग का गठन कब हुआ?", o: ["1 जनवरी 2015", "15 अगस्त 2014", "26 जनवरी 2015", "1 अप्रैल 2015"], a: 0 },
+        { q: "विश्व स्वास्थ्य संगठन (WHO) का मुख्यालय कहां है?", o: ["जेनेवा", "न्यूयार्क", "लंदन", "पेरिस"], a: 0 },
+        { q: "सहारा मरुस्थल किस महाद्वीप में है?", o: ["अफ्रीका", "एशिया", "ऑस्ट्रेलिया", "दक्षिण अमेरिका"], a: 0 },
+        { q: "कर्क रेखा भारत के किस राज्य से नहीं गुजरती?", o: ["ओडिशा", "गुजरात", "मध्य प्रदेश", "झारखंड"], a: 0 },
+        { q: "भारतीय मानक समय रेखा (82.5° E) कहां से गुजरती है?", o: ["नैनी (प्रयागराज)", "दिल्ली", "कोलकाता", "मुंबई"], a: 0 },
+        { q: "भारत का राष्ट्रीय पक्षी क्या है?", o: ["मोर", "तोता", "कबूतर", "बाज"], a: 0 },
+        { q: "भारत में 'शिक्षा का अधिकार' (RTE) अधिनियम कब लागू हुआ?", o: ["2010", "2009", "2005", "2002"], a: 0 }, // Act 2009, implemented 2010
+        { q: "लोकसभा में अधिकतम सदस्यों की संख्या कितनी हो सकती है?", o: ["552", "545", "500", "250"], a: 0 },
+
+        // --- NEW QUESTIONS: GENERAL SCIENCE (161-180) ---
+        { q: "त्वरण (Acceleration) का मात्रक क्या है?", o: ["m/s²", "m/s", "kg/m", "N/m"], a: 0 },
+        { q: "कोशिका की खोज किसने की थी?", o: ["रॉबर्ट हुक", "रॉबर्ट ब्राउन", "ल्यूवेनहॉक", "श्लाइडेन"], a: 0 },
+        { q: "मानव रक्त का लाल रंग किसके कारण होता है?", o: ["हीमोग्लोबिन", "मायोग्लोबिन", "क्लोरोफिल", "प्लाज्मा"], a: 0 },
+        { q: "सूर्य से पृथ्वी तक प्रकाश आने में कितना समय लगता है?", o: ["8 मिनट 20 सेकंड", "5 मिनट", "10 मिनट", "2 मिनट"], a: 0 },
+        { q: "विटामिन D का रासायनिक नाम क्या है?", o: ["कैल्सिफेरॉल", "रेटिनॉल", "एस्कॉर्बिक एसिड", "थायमिन"], a: 0 },
+        { q: "आवृत्ति (Frequency) को किसमें मापा जाता है?", o: ["हर्ट्ज (Hz)", "डेसिबल", "मीटर", "सेकंड"], a: 0 },
+        { q: "मानव शरीर की सबसे छोटी हड्डी कौन सी है?", o: ["स्टेप्स (कान)", "फीमर", "टिबीया", "रेडियस"], a: 0 },
+        { q: "पित्त (Bile) का निर्माण कहां होता है?", o: ["यकृत (Liver)", "पित्ताशय", "अग्नाशय", "तिल्ली"], a: 0 },
+        { q: "विद्युत शक्ति का मात्रक क्या है?", o: ["वाट (Watt)", "वोल्ट", "जूल", "ओम"], a: 0 },
+        { q: "वातावरण में सबसे अधिक मात्रा में कौन सी अक्रिय गैस है?", o: ["आर्गन", "हीलिअम", "नियन", "क्रिप्टन"], a: 0 },
+        { q: "विद्युत बल्ब में कौन सी गैस भरी जाती है?", o: ["आर्गन या नाइट्रोजन", "ऑक्सीजन", "हाइड्रोजन", "कार्बन डाइऑक्साइड"], a: 0 },
+        { q: "मार्श गैस (Marsh Gas) किसे कहते हैं?", o: ["मीथेन (CH4)", "एथेन", "प्रोपेन", "ब्यूटेन"], a: 0 },
+        { q: "शुद्ध जल का pH मान कितना होता है?", o: ["7", "6", "8", "5"], a: 0 },
+        { q: "विटामिन B1 की कमी से कौन सा रोग होता है?", o: ["बेरी-बेरी", "स्कर्वी", "रतौंधी", "रिकेट्स"], a: 0 },
+        { q: "मानव शरीर में यूरिया का निर्माण कहां होता है?", o: ["यकृत (Liver)", "गुर्दा", "फेफड़े", "त्वचा"], a: 0 },
+        { q: "नमक का रासायनिक सूत्र क्या है?", o: ["NaCl", "KCl", "HCl", "NaOH"], a: 0 },
+        { q: "इलेक्ट्रॉन पर कैसा आवेश होता है?", o: ["ऋणात्मक (-)", "धनात्मक (+)", "उदासीन", "कोई नहीं"], a: 0 },
+        { q: "डायनेमो (Dynamo) क्या करता है?", o: ["यांत्रिक ऊर्जा को विद्युत ऊर्जा में बदलता है", "विद्युत को यांत्रिक में", "ताप को विद्युत में", "प्रकाश को विद्युत में"], a: 0 },
+        { q: "एक्स-रे (X-Ray) की खोज किसने की?", o: ["रॉन्टजन", "क्यूरी", "बेकरेल", "डाल्टन"], a: 0 },
+        { q: "गति के नियम किसने दिए?", o: ["न्यूटन", "गैलिलियो", "केप्लर", "पास्कल"], a: 0 },
+
+        // --- NEW QUESTIONS: COMPUTER & REASONING (181-200) ---
+        { q: "कम्प्यूटर में 'सेव' (Save) करने की शॉर्टकट की क्या है?", o: ["Ctrl+S", "Ctrl+A", "Ctrl+X", "Ctrl+V"], a: 0 },
+        { q: "एएलयू (ALU) किसका हिस्सा है?", o: ["CPU", "Memory", "Input Device", "Output Device"], a: 0 },
+        { q: "प्रिंटर की गुणवत्ता किसमें मापी जाती है?", o: ["DPI (Dots Per Inch)", "PPM", "MB", "Hz"], a: 0 },
+        { q: "1 TB (टेराबाइट) में कितने GB होते हैं?", o: ["1024", "1000", "100", "8"], a: 0 },
+        { q: "HTML का पूर्ण रूप क्या है?", o: ["Hyper Text Markup Language", "High Text Markup Language", "Hyper Tech Makeup Language", "Hyper Text Made Language"], a: 0 },
+        { q: "गूगल (Google) क्या है?", o: ["सर्च इंजन", "ब्राउज़र", "वायरस", "हार्डवेयर"], a: 0 },
+        { q: "हेक्साडेसिमल नंबर सिस्टम का आधार क्या है?", o: ["16", "10", "8", "2"], a: 0 },
+        { q: "रीजनिंग: 2, 4, 8, 16, ... अगली संख्या?", o: ["32", "20", "24", "30"], a: 0 },
+        { q: "रीजनिंग: यदि RAT = 39 (R=18, A=1, T=20), तो BAT = ?", o: ["23 (2+1+20)", "22", "24", "25"], a: 0 },
+        { q: "रीजनिंग: विषम शब्द चुनें:", o: ["कुर्सी", "मेज", "सोफा", "लकड़ी"], a: 3 }, // Furniture items vs Material
+        { q: "रीजनिंग: दिशा - सुबह सूर्य की ओर मुंह करके चलने पर परछाई किस ओर होगी?", o: ["पश्चिम (पीछे)", "दाएं", "बाएं", "सामने"], a: 0 },
+        { q: "कम्प्यूटर में 'प्रिंट' करने की शॉर्टकट की क्या है?", o: ["Ctrl+P", "Ctrl+O", "Ctrl+I", "Ctrl+U"], a: 0 },
+        { q: "यूआरएल (URL) क्या है?", o: ["वेबसाइट का पता", "ईमेल पता", "हार्डवेयर", "सॉफ्टवेयर"], a: 0 },
+        { q: "पहला इलेक्ट्रॉनिक कंप्यूटर कौन सा था?", o: ["ENIAC", "UNIVAC", "EDSAC", "IBM PC"], a: 0 },
+        { q: "WAN का पूर्ण रूप क्या है?", o: ["Wide Area Network", "World Area Network", "Web Area Network", "Wide Access Network"], a: 0 },
+        { q: "रीजनिंग: कोडिंग - A=1, Z=26, तो B=?", o: ["2", "3", "25", "1"], a: 0 },
+        { q: "रीजनिंग: घड़ी में 3 बजे दर्पण प्रतिबिंब क्या होगा?", o: ["9 बजे", "3 बजे", "6 बजे", "12 बजे"], a: 0 },
+        { q: "कम्प्यूटर का जनक किसे कहा जाता है?", o: ["चार्ल्स बैबेज", "एलन ट्यूरिंग", "ब्लेज पास्कल", "बिल गेट्स"], a: 0 },
+        { q: "एमएस वर्ड (MS Word) किस प्रकार का सॉफ्टवेयर है?", o: ["एप्लीकेशन सॉफ्टवेयर", "सिस्टम सॉफ्टवेयर", "यूटिलिटी", "हार्डवेयर"], a: 0 },
+        { q: "भारत की सिलिकॉन वैली किसे कहा जाता है?", o: ["बंगलुरु", "पुणे", "हैदराबाद", "चेन्नई"], a: 0 }
     ];
+
+    // --- STORAGE ---
+    const TEST_KEY = 'jssc_test_p1s2'; // Key matches index.html tracking
 
     // --- STATE ---
     let currentQ = 0;
@@ -528,22 +619,65 @@
     let timerInterval;
 
     window.onload = function() {
+        loadProgress(); // Load saved state first
         renderPalette();
-        loadQuestion(0);
+        loadQuestion(currentQ); // Load specific question if saved, else 0
         startTimer();
+    }
+
+    // --- LOCAL STORAGE LOGIC ---
+    function loadProgress() {
+        const saved = localStorage.getItem(TEST_KEY);
+        if (saved) {
+            const data = JSON.parse(saved);
+            
+            // Restore Answers
+            if (data.answers && Array.isArray(data.answers)) {
+                answers = data.answers;
+            }
+            
+            // Restore Question Status (Colors)
+            if (data.questionStatus && Array.isArray(data.questionStatus)) {
+                status = data.questionStatus;
+            } else if (data.visited && Array.isArray(data.visited)) {
+                // Fallback from Index initialization
+                status = data.visited; 
+            }
+
+            // Restore Timer
+            if (data.timeLeft) timeLeft = data.timeLeft;
+            
+            // Restore Current Question
+            if (data.currentQ) currentQ = data.currentQ;
+        }
+    }
+
+    function saveProgress() {
+        const data = {
+            status: 'in-progress',
+            score: null, 
+            answers: answers,
+            questionStatus: status, 
+            timeLeft: timeLeft,
+            currentQ: currentQ,
+            totalQuestions: questions.length,
+            timestamp: new Date().toISOString()
+        };
+        localStorage.setItem(TEST_KEY, JSON.stringify(data));
     }
 
     // --- LOGIC ---
     function loadQuestion(index) {
         if(index < 0 || index >= questions.length) return;
         
-        // Update previous status if it was "Not Visited"
-        if (status[currentQ] === 0) status[currentQ] = 1; // Mark visited
+        // Mark as Visited (Red) if currently 'Not Visited' (White/Grey)
+        if (status[index] === 0) {
+            status[index] = 1; 
+            saveProgress(); 
+        }
 
         currentQ = index;
-        
-        // If current is "Not Visited", mark as "Not Answered"
-        if (status[currentQ] === 0) status[currentQ] = 1;
+        saveProgress(); // Save current question position
 
         document.getElementById('q-num').innerText = `Question No. ${index + 1}`;
         
@@ -566,7 +700,7 @@
 
     function selectOption(optIdx) {
         answers[currentQ] = optIdx;
-        // Don't change status to Green yet, wait for Save & Next
+        saveProgress();
     }
 
     function saveNext() {
@@ -575,6 +709,9 @@
         } else {
             status[currentQ] = 1; // Not Answered
         }
+        
+        saveProgress(); 
+
         if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
         else updatePalette();
     }
@@ -585,6 +722,9 @@
         } else {
             status[currentQ] = 3; // Review
         }
+        
+        saveProgress(); 
+
         if (currentQ < questions.length - 1) loadQuestion(currentQ + 1);
         else updatePalette();
     }
@@ -592,11 +732,13 @@
     function clearResponse() {
         answers[currentQ] = null;
         status[currentQ] = 1; // Back to Not Answered
-        loadQuestion(currentQ); // Reload to clear radio
+        saveProgress(); 
+        loadQuestion(currentQ); 
     }
 
     function jumpTo(index) {
-        saveNext(); // Auto save state of current before jumping
+        if (status[currentQ] === 0) status[currentQ] = 1;
+        saveProgress();
         loadQuestion(index);
     }
 
@@ -632,13 +774,11 @@
         status.forEach(s => counts[s]++);
         
         const legends = document.querySelectorAll('.palette-legend .shape');
-        legends[0].innerText = counts[2] + counts[4]; // Green (Answered + Ans&Rev) - usually purely Answered count in legend depends on exam
-        // Strict mapping:
-        legends[0].innerText = counts[2]; // Answered
-        legends[1].innerText = counts[1]; // Not Answered
-        legends[2].innerText = counts[0]; // Not Visited
-        legends[3].innerText = counts[3]; // Review
-        legends[4].innerText = counts[4]; // Ans & Review
+        legends[0].innerText = counts[2]; 
+        legends[1].innerText = counts[1]; 
+        legends[2].innerText = counts[0]; 
+        legends[3].innerText = counts[3]; 
+        legends[4].innerText = counts[4]; 
     }
 
     // --- TIMER ---
@@ -706,6 +846,18 @@
         document.getElementById('r-score').innerText = score;
         document.getElementById('r-correct').innerText = correct;
         document.getElementById('r-wrong').innerText = wrong;
+
+        // SAVE FINAL RESULT TO LOCAL STORAGE
+        const finalData = {
+            status: 'completed',
+            score: score,
+            answers: answers,
+            questionStatus: status,
+            timeLeft: timeLeft,
+            totalQuestions: questions.length,
+            timestamp: new Date().toISOString()
+        };
+        localStorage.setItem(TEST_KEY, JSON.stringify(finalData));
 
         // Check for Qualification (Score >= 66)
         const headerContainer = document.getElementById('result-header-container');
