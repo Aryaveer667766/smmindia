@@ -1,345 +1,706 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSSC Madhyamik Acharya Exam Portal</title>
+    <title>JET Home Science Mock Test</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #2d3e50;
-            --accent: #007bff;
-            --light-bg: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-main: #333;
-            --text-light: #666;
-            --success: #28a745;
-            --warning: #ffc107;
-            --disabled: #e9ecef;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: var(--light-bg);
-            color: var(--text-main);
-        }
-
-        /* Header */
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        h1 { margin: 0; font-size: 1.8rem; }
-        .subtitle { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        /* Grid Layout */
-        .paper-section {
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--primary);
-            border-bottom: 3px solid var(--accent);
-            display: inline-block;
-            margin-bottom: 20px;
-            padding-bottom: 5px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border-left: 5px solid var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .card.disabled {
-            border-left-color: #ccc;
-            background: #fafafa;
-            cursor: not-allowed;
-        }
-
-        .card.disabled:hover {
-            transform: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .card h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
-        .card p { margin: 0 0 20px 0; color: var(--text-light); font-size: 0.9rem; }
-
-        /* Buttons */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            background-color: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: background 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn:hover { background-color: #0056b3; }
-
-        .btn-retake {
-            background-color: white;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-        .btn-retake:hover { background-color: #e3f2fd; }
-
-        .btn-resume {
-            background-color: var(--warning);
-            color: #333;
-        }
-        .btn-resume:hover { background-color: #e0a800; }
-
-        .btn-disabled {
-            background-color: #ccc;
-            color: #666;
-            pointer-events: none;
-        }
-
-        .badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #e1f5fe;
-            color: var(--accent);
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .status-new { background: #e8f5e9; color: var(--success); }
-        .status-soon { background: #eee; color: #888; }
-        .status-attempted { background: #fff3cd; color: #856404; }
-        .status-completed { background: #cce5ff; color: #004085; }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
-        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased bg-slate-50 text-slate-800">
 
-    <header>
-        <h1>Jharkhand Madhyamik Acharya Exam 2026</h1>
-        <div class="subtitle">Official Mock Test Portal</div>
-        <button onclick="clearProgress()" style="margin-top:10px; padding:5px 10px; font-size:0.8rem; cursor:pointer; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.5); color:white; border-radius:4px;">Reset All Progress</button>
-    </header>
-
-    <div class="container">
-
-        <!-- PAPER 1 SECTION -->
-        <div class="paper-section">
-            <h2 class="section-title">Paper 1: General Knowledge & Jharkhand</h2>
-            <div class="grid">
-                
-                <!-- P1 Set 1 -->
-                <div class="card" id="card-p1s1">
-                    <span class="badge status-new" id="badge-p1s1">New</span>
-                    <h3>Practice Set 1</h3>
-                    <p>100 Questions • GK & Science</p>
-                    <button class="btn" id="btn-p1s1" onclick="handleStart(event, 'p1s1', 'p1s1.html')">Start Test</button>
-                </div>
-
-                <!-- P1 Set 2 -->
-                <div class="card" id="card-p1s2">
-                    <span class="badge status-new" id="badge-p1s2">New</span>
-                    <h3>Practice Set 2</h3>
-                    <p>100 Questions • Jharkhand Spl.</p>
-                    <button class="btn" id="btn-p1s2" onclick="handleStart(event, 'p1s2', 'p1s2.html')">Start Test</button>
-                </div>
-
-                <!-- P1 Set 3 -->
-                <div class="card" id="card-p1s3">
-                    <span class="badge status-new" id="badge-p1s3">New</span>
-                    <h3>Practice Set 3</h3>
-                    <p>100 Questions • Full Syllabus</p>
-                    <button class="btn" id="btn-p1s3" onclick="handleStart(event, 'p1s3', 'p1s3.html')">Start Test</button>
-                </div>
-
-                <!-- P1 Set 4 (Locked) -->
-                <div class="card disabled">
-                    <span class="badge status-soon">Locked</span>
-                    <h3>Practice Set 4</h3>
-                    <p>Practice Set</p>
-                    <button class="btn btn-disabled">Coming Soon</button>
-                </div>
-
+    <!-- ==================== HOME VIEW ==================== -->
+    <div id="home-view" class="min-h-screen flex flex-col">
+        <nav class="bg-indigo-900 text-white px-6 py-4 shadow-md flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-graduation-cap text-indigo-300 text-3xl"></i>
+                <span class="text-xl font-bold tracking-wide">JPSC JET तैयारी</span>
             </div>
-        </div>
+            <button onclick="showView('instructions-view')" class="bg-white text-indigo-900 px-5 py-2 rounded-lg font-bold hover:bg-indigo-50 transition">
+                मॉक टेस्ट दें
+            </button>
+        </nav>
 
-        <!-- PAPER 2 SECTION -->
-        <div class="paper-section">
-            <h2 class="section-title">Paper 2: Home Science (गृह विज्ञान)</h2>
-            <div class="grid">
-
-                <!-- P2 Set 1 -->
-                <div class="card" id="card-p2s1">
-                    <span class="badge status-new" id="badge-p2s1">New</span>
-                    <h3>Practice Set 1</h3>
-                    <p>100 Questions • Fundamentals</p>
-                    <button class="btn" id="btn-p2s1" onclick="handleStart(event, 'p2s1', 'p2s1.html')">Start Test</button>
-                </div>
-
-                <!-- P2 Set 2 -->
-                <div class="card" id="card-p2s2">
-                    <span class="badge status-new" id="badge-p2s2">New</span>
-                    <h3>Practice Set 2</h3>
-                    <p>150 Questions • Advanced</p>
-                    <button class="btn" id="btn-p2s2" onclick="handleStart(event, 'p2s2', 'p2s2.html')">Start Test</button>
-                </div>
-
-                <!-- P2 Set 3 -->
-                <div class="card" id="card-p2s3">
-                    <span class="badge status-new" id="badge-p2s3">New</span>
-                    <h3>Practice Set 3</h3>
-                    <p>150 Questions • Full Mock</p>
-                    <button class="btn" id="btn-p2s3" onclick="handleStart(event, 'p2s3', 'p2s3.html')">Start Test</button>
-                </div>
-
-                <!-- P2 Set 4 (Locked) -->
-                <div class="card disabled">
-                    <span class="badge status-soon">Locked</span>
-                    <h3>Practice Set 4</h3>
-                    <p>Practice Set</p>
-                    <button class="btn btn-disabled">Coming Soon</button>
-                </div>
-
-                <!-- P2 Set 5 (Locked) -->
-                <div class="card disabled">
-                    <span class="badge status-soon">Locked</span>
-                    <h3>Practice Set 5</h3>
-                    <p>Practice Set</p>
-                    <button class="btn btn-disabled">Coming Soon</button>
-                </div>
-
+        <main class="max-w-6xl mx-auto p-6 mt-8 space-y-12 w-full">
+            <div class="text-center py-16 bg-white rounded-3xl shadow-sm border border-slate-200 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">झारखंड पात्रता परीक्षा (JET)</h1>
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-6">गृह विज्ञान मॉक परीक्षा (Home Science)</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto mb-10 text-lg">
+                    असिस्टेंट प्रोफेसर भर्ती परीक्षा की तैयारी करें। हमारा यह मॉक टेस्ट पूरी तरह से वास्तविक JET/UGC NET पाठ्यक्रम पर आधारित है, जिसमें 150 अद्वितीय प्रश्न (हिंदी माध्यम) शामिल हैं।
+                </p>
+                <button onclick="showView('instructions-view')" class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-indigo-700 shadow-lg hover:shadow-xl transition-all flex items-center justify-center mx-auto gap-3">
+                    <i class="fas fa-play-circle text-2xl"></i>
+                    150 प्रश्नों का मॉक टेस्ट शुरू करें
+                </button>
             </div>
-        </div>
 
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-bookmark text-indigo-600 text-2xl"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">परीक्षा पैटर्न</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex justify-between items-center pb-2 border-b border-slate-100">
+                            <span class="font-semibold">पेपर I (सामान्य अभिक्षमता)</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-bold">50 प्रश्न / 100 अंक</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 border-b border-slate-100">
+                            <span class="font-semibold">पेपर II (गृह विज्ञान)</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-bold">100 प्रश्न / 200 अंक</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 border-b border-slate-100">
+                            <span class="font-semibold">कुल समय</span>
+                            <span class="font-bold text-slate-800">3 घंटे (180 मिनट)</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="font-semibold">नकारात्मक अंकन (Negative Marking)</span>
+                            <span class="text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-full text-sm">नहीं (सही उत्तर के लिए +2)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-list text-indigo-600 text-2xl"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">पाठ्यक्रम अवलोकन</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-slate-600">
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> आहार विज्ञान और पोषण</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> शिक्षण एवं शोध अभिक्षमता</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> वस्त्र एवं परिधान निर्माण</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> तार्किक और गणितीय तर्क</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> पारिवारिक संसाधन प्रबंधन</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> डेटा व्याख्या (DI)</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> मानव विकास और बाल मनोविज्ञान</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> पर्यावरण और ICT</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> प्रसार शिक्षा एवं संचार</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> उच्च शिक्षा प्रणाली</div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <footer style="text-align: center; padding: 20px; color: #888; font-size: 0.8rem;">
-        &copy; 2026 JSSC Mock Portal. All rights reserved.
-    </footer>
+    <!-- ==================== INSTRUCTIONS VIEW ==================== -->
+    <div id="instructions-view" class="hidden min-h-screen p-6 flex items-center justify-center bg-slate-50">
+        <div class="max-w-3xl w-full bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div class="bg-indigo-600 text-white px-8 py-6">
+                <h2 class="text-2xl font-bold">JET मॉक टेस्ट के लिए सामान्य निर्देश</h2>
+            </div>
+            <div class="p-8">
+                <ul class="space-y-4 text-slate-700 mb-8">
+                    <li class="flex gap-3"><span class="font-bold text-indigo-600">1.</span> परीक्षा की कुल अवधि 180 मिनट है।</li>
+                    <li class="flex gap-3"><span class="font-bold text-indigo-600">2.</span> स्क्रीन के ऊपर दाईं ओर उलटी गिनती (टाइमर) प्रदर्शित होगी जो परीक्षा पूरी करने के लिए शेष समय दिखाएगी।</li>
+                    <li class="flex gap-3"><span class="font-bold text-indigo-600">3.</span> स्क्रीन के दाईं ओर प्रदर्शित प्रश्न पैलेट निम्नलिखित रंगों का उपयोग करके प्रत्येक प्रश्न की स्थिति दिखाएगा:</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-8 text-sm">
+                   <div class="flex items-center gap-3"><div class="w-6 h-6 rounded border border-slate-300 bg-white"></div> आपने अभी तक प्रश्न नहीं देखा है।</div>
+                   <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-red-500"></div> आपने प्रश्न का उत्तर नहीं दिया है।</div>
+                   <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-green-500"></div> आपने प्रश्न का उत्तर दे दिया है।</div>
+                   <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-purple-600"></div> आपने प्रश्न को समीक्षा के लिए चिह्नित किया है।</div>
+                </div>
 
-    <script>
-        // --- CORE LOGIC TO SAVE DATA FROM INDEX ONLY ---
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 text-yellow-800 text-sm rounded-r-lg">
+                    <p class="font-bold mb-1">नोट:</p>
+                    <p>कोई नकारात्मक अंकन (Negative marking) नहीं है। सभी 150 प्रश्नों का उत्तर देने का प्रयास करें। समीक्षा के लिए चिह्नित प्रश्नों का मूल्यांकन किया जाएगा यदि उनका उत्तर दिया गया है।</p>
+                </div>
 
-        // 1. Handle "Start Test" Click
-        function handleStart(event, testId, url) {
-            // Check if data already exists
-            const existingData = localStorage.getItem('jssc_test_' + testId);
+                <div class="flex justify-end gap-4">
+                   <button onclick="showView('home-view')" class="px-6 py-3 font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">रद्द करें</button>
+                   <button onclick="startTest()" class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition">मैं परीक्षा के लिए तैयार हूँ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TEST/REVIEW VIEW ==================== -->
+    <div id="test-view" class="hidden flex-col h-screen bg-slate-100">
+        <!-- Top Navbar -->
+        <div class="bg-white shadow-sm border-b border-slate-200 px-6 py-3 flex justify-between items-center z-10 shrink-0">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-book-open text-indigo-600 text-xl"></i>
+                <h1 id="test-title" class="font-bold text-lg text-slate-800">JET गृह विज्ञान</h1>
+            </div>
+            <div id="timer-badge" class="flex items-center gap-2 text-rose-600 font-mono text-xl bg-rose-50 px-4 py-1.5 rounded-lg border border-rose-100">
+                <i class="far fa-clock"></i> <span id="timer-display">03:00:00</span>
+            </div>
+            <button id="back-to-score-btn" onclick="showView('result-view')" class="hidden text-indigo-600 font-bold hover:bg-indigo-50 px-4 py-2 rounded-lg">
+                स्कोर पर वापस जाएं
+            </button>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Left Panel -->
+            <div class="flex-1 flex flex-col p-6 overflow-y-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col">
+                    <div class="px-8 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl shrink-0">
+                        <span id="question-section" class="text-sm font-bold text-indigo-600 uppercase tracking-wider"></span>
+                        <span id="question-counter" class="text-sm font-semibold text-slate-500"></span>
+                    </div>
+                    
+                    <div class="p-8 flex-1 overflow-y-auto">
+                        <h2 id="question-text" class="text-xl font-medium text-slate-800 mb-8 leading-relaxed"></h2>
+                        <div id="options-container" class="space-y-4"></div>
+                        <div id="review-explanation" class="hidden mt-8 p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-600 font-medium"></div>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div id="test-action-bar" class="flex gap-4 mt-6 items-center flex-wrap shrink-0">
+                    <button onclick="clearResponse()" class="px-6 py-3 bg-white border border-slate-300 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 shadow-sm">
+                        उत्तर साफ़ करें
+                    </button>
+                    <button onclick="saveAndReview()" class="px-6 py-3 bg-purple-100 text-purple-700 border border-purple-200 rounded-xl font-semibold hover:bg-purple-200 shadow-sm">
+                        समीक्षा के लिए चिह्नित करें
+                    </button>
+                    <div class="flex-1"></div>
+                    <button id="btn-prev" onclick="prevQuestion()" class="px-6 py-3 bg-white border border-slate-300 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                        <i class="fas fa-chevron-left"></i> पिछला
+                    </button>
+                    <button id="btn-save-next" onclick="saveAndNext()" class="px-8 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 shadow-md flex items-center gap-2">
+                        सहेजें और अगला <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div id="review-action-bar" class="hidden flex justify-between mt-6 shrink-0">
+                    <button id="btn-rev-prev" onclick="prevQuestion()" class="px-6 py-3 bg-white border border-slate-300 rounded-xl font-semibold hover:bg-slate-50 disabled:opacity-50">पिछला प्रश्न</button>
+                    <button id="btn-rev-next" onclick="nextQuestion()" class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 disabled:opacity-50">अगला प्रश्न</button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Palette -->
+            <div class="w-80 bg-white border-l border-slate-200 flex flex-col shadow-[-4px_0_15px_-3px_rgba(0,0,0,0.05)] z-10 shrink-0">
+                <div id="submit-section" class="p-5 border-b border-slate-200 bg-slate-50">
+                    <button onclick="toggleSubmitModal(true)" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-sm transition">
+                        मॉक टेस्ट सबमिट करें
+                    </button>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-5">
+                    <div class="mb-4 flex justify-between items-center">
+                        <span class="text-sm font-bold text-slate-700">प्रश्न पैलेट</span>
+                        <span id="answered-count" class="text-xs bg-slate-200 text-slate-700 px-2 py-1 rounded-md">0/150 उत्तर दिए</span>
+                    </div>
+                    <div id="palette-grid" class="grid grid-cols-5 gap-2.5"></div>
+                </div>
+
+                <div id="test-legend" class="p-5 border-t border-slate-200 bg-slate-50 text-xs font-medium space-y-3 shrink-0">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-green-500 rounded shrink-0"></div> उत्तर दिया</div>
+                        <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-red-500 rounded shrink-0"></div> उत्तर नहीं दिया</div>
+                        <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-white border border-slate-300 rounded shrink-0"></div> नहीं देखा</div>
+                        <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-purple-600 rounded shrink-0"></div> समीक्षा चिह्नित</div>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-600 pt-1"><div class="w-4 h-4 bg-blue-600 rounded shrink-0"></div> उत्तर दिया और समीक्षा चिह्नित</div>
+                </div>
+
+                <div id="review-legend" class="hidden p-5 border-t border-slate-200 bg-slate-50 text-xs font-medium space-y-3 shrink-0">
+                    <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-emerald-500 rounded shrink-0"></div> सही उत्तर</div>
+                    <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-red-500 rounded shrink-0"></div> गलत उत्तर</div>
+                    <div class="flex items-center gap-2 text-slate-600"><div class="w-4 h-4 bg-slate-200 border border-slate-300 rounded shrink-0"></div> प्रयास नहीं किया</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SUBMIT MODAL ==================== -->
+    <div id="submit-modal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl">
+            <i class="fas fa-exclamation-circle text-6xl text-indigo-500 block text-center mb-4"></i>
+            <h3 class="text-2xl font-bold text-center text-slate-800 mb-2">परीक्षा सबमिट करें?</h3>
+            <p id="submit-modal-text" class="text-center text-slate-600 mb-6"></p>
+            <div class="flex gap-4">
+                <button onclick="toggleSubmitModal(false)" class="flex-1 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200">रद्द करें</button>
+                <button onclick="submitTest()" class="flex-1 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700">सबमिट करें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== RESULT VIEW ==================== -->
+    <div id="result-view" class="hidden min-h-screen bg-slate-100 p-6 flex items-center justify-center">
+        <div class="bg-white p-10 rounded-3xl shadow-xl max-w-4xl w-full border border-slate-200">
+            <div class="text-center mb-10">
+                <div class="inline-block p-4 bg-yellow-100 rounded-full mb-4">
+                    <i class="fas fa-award text-5xl text-yellow-600"></i>
+                </div>
+                <h2 class="text-4xl font-extrabold text-slate-800 mb-2">मॉक टेस्ट पूरा हुआ!</h2>
+                <p class="text-lg text-slate-500">JET गृह विज्ञान मॉक परीक्षा के लिए आपके प्रदर्शन का सारांश नीचे दिया गया है।</p>
+            </div>
             
-            if (!existingData) {
-                // Determine total questions based on set type (Paper 2 Set 2/3 are 150, others 100)
-                let totalQ = 100; 
-                if(testId === 'p2s2' || testId === 'p2s3') totalQ = 150;
-
-                // Create initial data structure
-                const initialData = {
-                    status: 'in-progress',
-                    score: null,
-                    totalQuestions: totalQ,
-                    answers: new Array(totalQ).fill(null), // Initialize empty answers array
-                    visited: new Array(totalQ).fill(0),
-                    timestamp: new Date().toISOString()
-                };
+            <div class="bg-slate-50 rounded-2xl p-8 mb-10 border border-slate-100">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl border-2 border-indigo-100 text-center shadow-sm">
+                        <div id="score-val" class="text-5xl font-black text-indigo-600 mb-2">0</div>
+                        <div class="text-sm text-indigo-800 font-bold uppercase tracking-wide">कुल अंक / 300</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-2 border-emerald-100 text-center shadow-sm">
+                        <div id="correct-val" class="text-4xl font-bold text-emerald-600 mb-2">0</div>
+                        <div class="text-sm text-emerald-800 font-bold uppercase tracking-wide">सही उत्तर</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-2 border-rose-100 text-center shadow-sm">
+                        <div id="incorrect-val" class="text-4xl font-bold text-rose-600 mb-2">0</div>
+                        <div class="text-sm text-rose-800 font-bold uppercase tracking-wide">गलत उत्तर</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 text-center shadow-sm">
+                        <div id="unattempted-val" class="text-4xl font-bold text-slate-600 mb-2">0</div>
+                        <div class="text-sm text-slate-700 font-bold uppercase tracking-wide">छोड़ दिए गए</div>
+                    </div>
+                </div>
                 
-                // Save to Local Storage immediately
-                localStorage.setItem('jssc_test_' + testId, JSON.stringify(initialData));
-            }
+                <div class="mt-8 text-center">
+                    <div id="accuracy-val" class="inline-flex items-center justify-center bg-indigo-100 text-indigo-800 px-6 py-2 rounded-full font-bold text-lg">
+                        सटीकता (Accuracy): 0%
+                    </div>
+                </div>
+            </div>
 
-            // Update UI immediately for visual feedback before redirect
-            updateCardUI(testId, 'in-progress');
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="startReview()" class="px-8 py-4 bg-indigo-50 text-indigo-700 font-bold rounded-xl hover:bg-indigo-100 border border-indigo-200 flex items-center justify-center gap-3 transition">
+                    <i class="fas fa-list"></i> उत्तर और समाधान की समीक्षा करें
+                </button>
+                <button onclick="showView('home-view')" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 flex items-center justify-center gap-3 shadow-md transition">
+                    <i class="fas fa-home"></i> मुख्य पृष्ठ पर लौटें
+                </button>
+            </div>
+        </div>
+    </div>
 
-            // Redirect to the test page after a short delay
-            setTimeout(() => {
-                window.location.href = url;
-            }, 100);
-        }
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // --- DATA GENERATION ---
+        const generateQuestions = () => {
+            const q = (text, options, ans, section) => ({ text, options, ans, section });
+            return [
+                // Paper 1
+                q("शिक्षण के किस स्तर में रटने (rote learning) पर सबसे अधिक जोर दिया जाता है?", ["स्मृति स्तर (Memory Level)", "समझ स्तर (Understanding Level)", "चिंतनशील स्तर (Reflective Level)", "स्वायत्त विकास स्तर"], 0, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("स्वयं (SWAYAM) पोर्टल का मुख्य उद्देश्य क्या है?", ["केवल शिक्षकों को प्रशिक्षण देना", "शिक्षा तक पहुंच, समानता और गुणवत्ता सुनिश्चित करना", "छात्रों को मुफ्त लैपटॉप देना", "विदेशी विश्वविद्यालयों से जोड़ना"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("निम्नलिखित में से कौन सा मूल्यांकन शिक्षण के दौरान लगातार किया जाता है?", ["रचनात्मक मूल्यांकन (Formative)", "योगात्मक मूल्यांकन (Summative)", "नैदानिक मूल्यांकन (Diagnostic)", "प्लेसमेंट मूल्यांकन"], 0, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("ब्लूम के वर्गीकरण (Bloom's Taxonomy) का उच्चतम स्तर कौन सा है?", ["ज्ञान (Knowledge)", "विश्लेषण (Analysis)", "मूल्यांकन (Evaluation)", "रचना/सृजन (Creating)"], 3, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("वह चर (Variable) जिसे शोधकर्ता द्वारा बदला या हेरफेर किया जाता है, क्या कहलाता है?", ["आश्रित चर (Dependent Variable)", "स्वतंत्र चर (Independent Variable)", "बाह्य चर (Extraneous Variable)", "नियंत्रित चर"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("शून्य परिकल्पना (Null Hypothesis) क्या दर्शाती है?", ["चरो के बीच संबंध है", "चरो के बीच कोई महत्वपूर्ण अंतर या संबंध नहीं है", "शोध सफल रहा", "डेटा अपर्याप्त है"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("इनमें से कौन सी एक संभाव्यता नमूनाकरण (Probability Sampling) विधि है?", ["सुविधाजनक नमूनाकरण (Convenience)", "कोटा नमूनाकरण (Quota)", "स्तरीकृत नमूनाकरण (Stratified)", "निर्णयात्मक नमूनाकरण (Judgmental)"], 2, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("शोध प्रबंध (Thesis) लेखन का सही क्रम क्या है?", ["परिचय, साहित्य समीक्षा, कार्यप्रणाली, परिणाम, निष्कर्ष", "परिचय, परिणाम, कार्यप्रणाली, साहित्य समीक्षा, निष्कर्ष", "कार्यप्रणाली, परिचय, साहित्य समीक्षा, परिणाम, निष्कर्ष", "साहित्य समीक्षा, परिचय, कार्यप्रणाली, निष्कर्ष, परिणाम"], 0, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("कार्रवाई अनुसंधान (Action Research) का चक्र क्या है?", ["योजना, कार्य, अवलोकन, चिंतन (Plan, Act, Observe, Reflect)", "अवलोकन, कार्य, योजना, चिंतन", "चिंतन, योजना, अवलोकन, कार्य", "कार्य, योजना, चिंतन, अवलोकन"], 0, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("साहित्यिक चोरी (Plagiarism) को रोकने के लिए उपयोग किया जाने वाला सॉफ्टवेयर कौन सा है?", ["SPSS", "Turnitin", "EndNote", "Mendeley"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("कक्षा संचार में 'ग्रेपवाइन' (Grapevine) किस प्रकार के संचार का उदाहरण है?", ["औपचारिक संचार", "अनौपचारिक संचार", "लिखित संचार", "दृश्य संचार"], 1, "पेपर 1: संचार"),
+                q("संचार प्रक्रिया के मुख्य तत्व क्या हैं?", ["प्रेषक, संदेश, माध्यम, प्राप्तकर्ता, प्रतिक्रिया", "संदेश, प्रेषक, प्राप्तकर्ता, माध्यम, प्रतिक्रिया", "माध्यम, प्रेषक, प्रतिक्रिया, संदेश, प्राप्तकर्ता", "प्राप्तकर्ता, माध्यम, प्रेषक, संदेश, प्रतिक्रिया"], 0, "पेपर 1: संचार"),
+                q("जब कोई व्यक्ति अपने आप से बात करता है, तो इसे क्या कहा जाता है?", ["पारस्परिक संचार (Interpersonal)", "अंतर-वैयक्तिक संचार (Intrapersonal)", "समूह संचार", "जन संचार (Mass Comm)"], 1, "पेपर 1: संचार"),
+                q("कक्षा में प्रभावी संचार के लिए सबसे बड़ी बाधा क्या हो सकती है?", ["स्पष्ट आवाज", "शारीरिक भाषा का उपयोग", "शब्दजाल (Jargon) का अत्यधिक उपयोग", "छात्रों की सक्रिय भागीदारी"], 2, "पेपर 1: संचार"),
+                q("नॉन-वर्बल (गैर-मौखिक) संचार में 'किनेसिक्स' (Kinesics) का क्या अर्थ है?", ["समय का अध्ययन", "दूरी का अध्ययन", "शारीरिक हाव-भाव का अध्ययन", "स्पर्श का अध्ययन"], 2, "पेपर 1: संचार"),
+                q("कंप्यूटर मेमोरी में 1 गीगाबाइट (GB) कितने के बराबर होता है?", ["1024 बाइट्स", "1024 किलोबाइट्स (KB)", "1024 मेगाबाइट्स (MB)", "1024 टेराबाइट्स (TB)"], 2, "पेपर 1: सूचना और संचार प्रौद्योगिकी (ICT)"),
+                q("निम्नलिखित में से कौन सा एक इनपुट डिवाइस नहीं है?", ["कीबोर्ड", "माउस", "स्कैनर", "प्लॉटर (Plotter)"], 3, "पेपर 1: सूचना और संचार प्रौद्योगिकी (ICT)"),
+                q("ईमेल में 'BCC' का पूर्ण रूप क्या है?", ["Blind Carbon Copy", "Blank Carbon Copy", "Basic Carbon Copy", "Broadcast Carbon Copy"], 0, "पेपर 1: सूचना और संचार प्रौद्योगिकी (ICT)"),
+                q("URL का पूर्ण रूप क्या है?", ["Universal Resource Locator", "Uniform Resource Locator", "Universal Router Locator", "Uniform Router Locator"], 1, "पेपर 1: सूचना और संचार प्रौद्योगिकी (ICT)"),
+                q("सॉफ्टवेयर को दुर्भावनापूर्ण तरीके से डिजाइन किया गया हो, उसे क्या कहते हैं?", ["मैलवेयर (Malware)", "फ्रीवेयर (Freeware)", "फर्मवेयर (Firmware)", "शेयरवेयर (Shareware)"], 0, "पेपर 1: सूचना और संचार प्रौद्योगिकी (ICT)"),
+                q("ग्रीनहाउस प्रभाव के लिए मुख्य रूप से कौन सी गैस जिम्मेदार है?", ["ऑक्सीजन", "कार्बन डाइऑक्साइड", "नाइट्रोजन", "आर्गन"], 1, "पेपर 1: पर्यावरण"),
+                q("ओजोन परत का क्षरण मुख्य रूप से किसके कारण होता है?", ["सल्फर डाइऑक्साइड", "क्लोरोफ्लोरोकार्बन (CFCs)", "कार्बन मोनोऑक्साइड", "मीथेन"], 1, "पेपर 1: पर्यावरण"),
+                q("क्योटो प्रोटोकॉल (Kyoto Protocol) किससे संबंधित है?", ["ओजोन परत संरक्षण", "जैव विविधता", "ग्रीनहाउस गैस उत्सर्जन में कमी", "खतरनाक अपशिष्ट प्रबंधन"], 2, "पेपर 1: पर्यावरण"),
+                q("सतत विकास लक्ष्यों (SDGs) की कुल संख्या कितनी है?", ["15", "17", "21", "30"], 1, "पेपर 1: पर्यावरण"),
+                q("भारत में उच्च शिक्षा के नियमन के लिए सर्वोच्च निकाय कौन सा है?", ["NCERT", "UGC", "AICTE", "NCTE"], 1, "पेपर 1: उच्च शिक्षा प्रणाली"),
+                q("प्राचीन भारत में 'नालंदा' विश्वविद्यालय किस शिक्षा के लिए प्रसिद्ध था?", ["वैदिक शिक्षा", "बौद्ध शिक्षा", "जैन शिक्षा", "इस्लामिक शिक्षा"], 1, "पेपर 1: उच्च शिक्षा प्रणाली"),
+                q("NEP 2020 के अनुसार नई स्कूल शिक्षा प्रणाली का ढांचा क्या है?", ["10 + 2", "5 + 3 + 3 + 4", "8 + 4 + 3", "5 + 4 + 3 + 3"], 1, "पेपर 1: उच्च शिक्षा प्रणाली"),
+                q("भारत में केंद्रीय विश्वविद्यालयों की स्थापना किसके द्वारा की जाती है?", ["राज्य सरकार", "संसद के अधिनियम द्वारा", "यूजीसी (UGC) के सीधे आदेश से", "राष्ट्रपति के अध्यादेश से"], 1, "पेपर 1: उच्च शिक्षा प्रणाली"),
+                q("स्वयं प्रभा (SWAYAM PRABHA) में कितने डीटीएच (DTH) चैनल हैं?", ["32", "34", "40", "80"], 3, "पेपर 1: उच्च शिक्षा प्रणाली"),
+                q("यदि A = 1, B = 2, C = 3 है, तो 'CAT' का मान क्या होगा?", ["24", "22", "20", "26"], 0, "पेपर 1: गणितीय तर्क"),
+                q("श्रृंखला पूरी करें: 2, 6, 12, 20, ?", ["24", "28", "30", "32"], 2, "पेपर 1: गणितीय तर्क"),
+                q("एक व्यक्ति उत्तर की ओर 10 किमी चलता है, फिर दाएँ मुड़कर 5 किमी चलता है। वह अब किस दिशा में है?", ["उत्तर-पश्चिम", "उत्तर-पूर्व", "दक्षिण-पश्चिम", "दक्षिण-पूर्व"], 1, "पेपर 1: तार्किक तर्क"),
+                q("सभी मनुष्य मरणशील हैं। सुकरात एक मनुष्य है। इसलिए, सुकरात मरणशील है। यह किस प्रकार का तर्क है?", ["आगमनात्मक (Inductive)", "निगमनात्मक (Deductive)", "सादृश्यमूलक (Analogical)", "अवैध तर्क"], 1, "पेपर 1: तार्किक तर्क"),
+                q("भ्रामक तर्क (Fallacy) जिसमें किसी व्यक्ति के चरित्र पर हमला किया जाता है, न कि उसके तर्क पर, उसे कहते हैं:", ["स्ट्रॉ मैन (Straw man)", "एड होमिनेम (Ad hominem)", "रेड हेरिंग (Red herring)", "स्लिपरी स्लोप"], 1, "पेपर 1: तार्किक तर्क"),
+                q("25 छात्रों की कक्षा में, राम का स्थान ऊपर से 10वां है। नीचे से उसका स्थान क्या होगा?", ["15वां", "16वां", "14वां", "17वां"], 1, "पेपर 1: गणितीय तर्क"),
+                q("कौन सा आरेख 'कुत्ते, जानवर, और पालतू जानवर' के बीच संबंध को सबसे अच्छे तरीके से दर्शाता है?", ["प्रतिच्छेदी वृत्त (Intersecting circles)", "एक वृत्त के अंदर दो अलग वृत्त", "एक बड़े वृत्त में दो ओवरलैपिंग वृत्त", "तीन अलग वृत्त"], 2, "पेपर 1: तार्किक तर्क"),
+                q("एक निश्चित कोड में, 'ROSE' को '6821' और 'CHAIR' को '73456' लिखा जाता है। उसी कोड में 'SEARCH' कैसे लिखा जाएगा?", ["214673", "214763", "214637", "241673"], 0, "पेपर 1: तार्किक तर्क"),
+                q("दो संख्याओं का अनुपात 3:4 है और उनका योग 70 है। छोटी संख्या ज्ञात करें।", ["20", "30", "40", "35"], 1, "पेपर 1: गणितीय तर्क"),
+                q("यदि किसी वस्तु को ₹400 में बेचने पर 20% की हानि होती है, तो उसका क्रय मूल्य क्या था?", ["₹450", "₹480", "₹500", "₹600"], 2, "पेपर 1: गणितीय तर्क"),
+                q("10, 15 और 20 का लघुत्तम समापवर्त्य (LCM) क्या है?", ["30", "40", "60", "120"], 2, "पेपर 1: गणितीय तर्क"),
+                q("निम्नलिखित में से कौन सा डेटा का प्राथमिक स्रोत (Primary Source) है?", ["किताबें", "शोध पत्र", "प्रश्नावली (Questionnaires)", "समीक्षा लेख"], 2, "पेपर 1: डेटा व्याख्या"),
+                q("डेटा को पंक्तियों और स्तंभों में प्रस्तुत करने की विधि को क्या कहा जाता है?", ["पाई चार्ट", "बार ग्राफ", "सारणीकरण (Tabulation)", "हिस्टोग्राम"], 2, "पेपर 1: डेटा व्याख्या"),
+                q("एक पाई चार्ट (Pie Chart) में सभी कोणों का योग कितना होता है?", ["180 डिग्री", "270 डिग्री", "360 डिग्री", "400 डिग्री"], 2, "पेपर 1: डेटा व्याख्या"),
+                q("मात्रात्मक डेटा (Quantitative Data) का सबसे अच्छा उदाहरण है:", ["रंग", "स्वाद", "ऊंचाई और वजन", "भावनाएं"], 2, "पेपर 1: डेटा व्याख्या"),
+                q("डेटा व्याख्या में 'माध्य' (Mean) का क्या अर्थ है?", ["मध्य मूल्य", "सबसे अधिक बार आने वाला मूल्य", "औसत मूल्य", "उच्चतम और निम्नतम के बीच का अंतर"], 2, "पेपर 1: डेटा व्याख्या"),
+                q("पठन बोध (Reading Comprehension) का मुख्य उद्देश्य क्या है?", ["तेजी से पढ़ना", "वर्तनी सुधारना", "दिए गए पाठ का अर्थ और संदर्भ समझना", "व्याकरण सीखना"], 2, "पेपर 1: पठन बोध"),
+                q("एक अच्छे पैराग्राफ का सबसे महत्वपूर्ण गुण क्या है?", ["जटिल शब्दावली", "सुसंगतता और स्पष्टता (Coherence)", "अत्यधिक लंबाई", "अलंकारिक भाषा"], 1, "पेपर 1: पठन बोध"),
+                q("शोध के संदर्भ में 'सार' (Abstract) का क्या अर्थ है?", ["शोध का विस्तृत विवरण", "संक्षिप्त सारांश", "संदर्भ सूची", "डेटा तालिका"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("MOOC का पूर्ण रूप क्या है?", ["Massive Open Online Course", "Multiple Online Open Course", "Massive Offline Open Course", "Modern Online Open Course"], 0, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("शिक्षण को प्रभावित करने वाला सबसे महत्वपूर्ण कारक कौन सा है?", ["शिक्षक का वेतन", "शिक्षक का विषय ज्ञान", "स्कूल की इमारत", "कक्षा का आकार"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
 
-        // 2. Clear All Progress
-        function clearProgress() {
-            if(confirm('Are you sure you want to reset all progress?')) {
-                localStorage.clear();
-                location.reload();
-            }
-        }
+                // Paper 2
+                q("क्वाशियोरकोर (Kwashiorkor) मुख्य रूप से किसकी कमी के कारण होता है?", ["कार्बोहाइड्रेट", "प्रोटीन", "वसा", "विटामिन ए"], 1, "पेपर 2: आहार एवं पोषण"),
+                q("विटामिन C का रासायनिक नाम क्या है?", ["रेटिनॉल", "थायमिन", "एस्कॉर्बिक एसिड", "कैल्सीफेरोल"], 2, "पेपर 2: आहार एवं पोषण"),
+                q("मानव शरीर में आयरन (Iron) के अवशोषण को कौन सा विटामिन बढ़ाता है?", ["विटामिन A", "विटामिन B12", "विटामिन C", "विटामिन K"], 2, "पेपर 2: आहार एवं पोषण"),
+                q("मैलेर्ड प्रतिक्रिया (Maillard Reaction), जो पके हुए भोजन के भूरेपन के लिए जिम्मेदार है, किनके बीच होती है?", ["अमीनो एसिड और कम करने वाली शर्करा (Reducing sugars)", "वसा और कार्बोहाइड्रेट", "विटामिन और खनिज", "एंजाइम और ऑक्सीजन"], 0, "पेपर 2: खाद्य विज्ञान"),
+                q("दूध को पाश्चुरीकृत (Pasteurized) क्यों किया जाता है?", ["स्वाद बढ़ाने के लिए", "रंग निखारने के लिए", "रोगजनक सूक्ष्मजीवों को नष्ट करने के लिए", "वसा कम करने减ने के लिए"], 2, "पेपर 2: खाद्य विज्ञान"),
+                q("निम्नलिखित में से कौन सा वसा में घुलनशील (Fat-soluble) विटामिन नहीं है?", ["विटामिन A", "विटामिन D", "विटामिन C", "विटामिन K"], 2, "पेपर 2: आहार एवं पोषण"),
+                q("सामान्य वयस्क के लिए बेसल मेटाबोलिक रेट (BMR) को कौन सा कारक सबसे अधिक प्रभावित करता है?", ["शरीर का सतह क्षेत्र", "बालों का रंग", "ऊंचाई", "त्वचा का रंग"], 0, "पेपर 2: आहार एवं पोषण"),
+                q("लैक्टोज (Lactose) शर्करा किन दो मोनोसेकेराइड्स से मिलकर बनती है?", ["ग्लूकोज + फ्रुक्टोज", "ग्लूकोज + गैलेक्टोज", "ग्लूकोज + ग्लूकोज", "गैलेक्टोज + फ्रुक्टोज"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("रक्त के थक्के (Blood Clotting) जमने के लिए कौन सा विटामिन आवश्यक है?", ["विटामिन A", "विटामिन C", "विटामिन D", "विटामिन K"], 3, "पेपर 2: आहार एवं पोषण"),
+                q("मधुमेह (Diabetes) के रोगियों को किस प्रकार का आहार अनुशंसित किया जाता है?", ["उच्च शर्करा आहार", "कम ग्लाइसेमिक इंडेक्स (GI) वाला आहार", "उच्च वसा आहार", "कम प्रोटीन आहार"], 1, "पेपर 2: उपचारात्मक पोषण"),
+                q("पेलाग्रा (Pellagra) रोग किस विटामिन की कमी से होता है?", ["थायमिन (B1)", "राइबोफ्लेविन (B2)", "नियासिन (B3)", "पाइरिडोक्सिन (B6)"], 2, "पेपर 2: आहार एवं पोषण"),
+                q("1 ग्राम कार्बोहाइड्रेट शरीर को कितनी ऊर्जा (Kcal) प्रदान करता है?", ["4 Kcal", "9 Kcal", "7 Kcal", "2 Kcal"], 0, "पेपर 2: आहार एवं पोषण"),
+                q("आईसीएमआर (ICMR) 2020 के अनुसार एक सामान्य गर्भवती महिला को कितनी अतिरिक्त कैलोरी की आवश्यकता होती है?", ["+200 Kcal", "+350 Kcal", "+500 Kcal", "+600 Kcal"], 1, "पेपर 2: आहार एवं पोषण"),
+                q("जैविक मूल्य (Biological Value) किस पोषक तत्व की गुणवत्ता मापने के लिए प्रयोग किया जाता है?", ["कार्बोहाइड्रेट", "प्रोटीन", "विटामिन", "खनिज"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("अंडे की सफेदी में पाए जाने वाले मुख्य प्रोटीन का नाम क्या है?", ["केसीन (Casein)", "ओवलब्यूमिन (Ovalbumin)", "ग्लूटेन (Gluten)", "मायोसिन (Myosin)"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("सोयाबीन में कौन सा एंटी-न्यूट्रिशनल कारक पाया जाता है?", ["टैनिन", "ट्रिप्सिन इन्हिबिटर", "ऑक्सालेट", "फाइटिक एसिड"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("फ़ूड सर्विस मैनेजमेंट में 'HACCP' का पूर्ण रूप क्या है?", ["Hazard Analysis and Critical Control Point", "Health And Care Consumer Protection", "Hazard And Caution Control Program", "Home And Community Care Program"], 0, "पेपर 2: खाद्य सेवा प्रबंधन"),
+                q("कैल्शियम का सबसे समृद्ध स्रोत कौन सा है?", ["पालक", "दूध और डेयरी उत्पाद", "सेब", "चावल"], 1, "पेपर 2: आहार एवं पोषण"),
+                q("शरीर में आयोडीन की कमी से मुख्य रूप से कौन सा अंग प्रभावित होता है?", ["हृदय", "लिवर", "थायरॉयड ग्रंथि", "किडनी"], 2, "पेपर 2: आहार एवं पोषण"),
+                q("बच्चों में विटामिन D की कमी से कौन सा रोग होता है?", ["ऑस्टियोपोरोसिस", "रिकेट्स (सूखा रोग)", "रतौंधी", "स्कर्वी"], 1, "पेपर 2: आहार एवं पोषण"),
+                q("कपास (Cotton) फाइबर की प्रकृति क्या है?", ["प्रोटीन फाइबर", "सेलुलोसिक फाइबर", "सिंथेटिक फाइबर", "खनिज फाइबर"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("किस कृत्रिम फाइबर को 'कृत्रिम रेशम' (Artificial Silk) के रूप में जाना जाता है?", ["नायलॉन", "रेयान (Rayon)", "पॉलिएस्टर", "एक्रिलिक"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("ऊन (Wool) के जलने पर कैसी गंध आती है?", ["जलते हुए कागज की", "जलते हुए बालों की", "प्लास्टिक पिघलने की", "विनेगर की"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("वस्त्र निर्माण की वह मूल बुनाई (Weave) कौन सी है जो कपड़े पर एक स्पष्ट तिरछी रेखा (Diagonal line) बनाती है?", ["सादी बुनाई (Plain)", "टवील बुनाई (Twill)", "सैटिन बुनाई (Satin)", "जैकर्ड बुनाई (Jacquard)"], 1, "पेपर 2: परिधान निर्माण"),
+                q("'मर्सराइजेशन' (Mercerization) परिष्करण प्रक्रिया मुख्य रूप से किस कपड़े पर की जाती है?", ["ऊन", "रेशम", "सूती (Cotton)", "पॉलिएस्टर"], 2, "पेपर 2: वस्त्र विज्ञान"),
+                q("बंधेज या टाई एंड डाई (Tie and Dye) किस राज्य की पारंपरिक कला है?", ["केरल", "राजस्थान", "पंजाब", "असम"], 1, "पेपर 2: पारंपरिक वस्त्र"),
+                q("'इक्कत' (Ikat) बुनाई मुख्य रूप से भारत के किस क्षेत्र से संबंधित है?", ["ओडिशा और तेलंगाना", "जम्मू और कश्मीर", "महाराष्ट्र", "हिमाचल प्रदेश"], 0, "पेपर 2: पारंपरिक वस्त्र"),
+                q("धागे (Yarn) की मजबूती मापने के लिए किस उपकरण का उपयोग किया जाता है?", ["क्रीज रिकवरी टेस्टर", "टेन्साइल टेस्टर", "क्रॉकमीटर", "माइक्रोस्कोप"], 1, "पेपर 2: वस्त्र परीक्षण"),
+                q("प्राकृतिक रंगों (Natural dyes) को कपड़े पर पक्का करने के लिए किस रसायन का प्रयोग किया जाता है?", ["ब्लीच", "मॉर्डेंट (Mordant)", "सॉफ्टनर", "स्टार्च"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("कौन सा फाइबर आग प्रतिरोधी (Fire retardant) होता है और अग्निशामक सूट में प्रयोग किया जाता है?", ["सूती", "रेशम", "एस्बेस्टस (Asbestos)", "रेयान"], 2, "पेपर 2: वस्त्र विज्ञान"),
+                q("कपड़े पर पैटर्न प्रिंट करने के लिए लकड़ी के ब्लॉकों का उपयोग क्या कहलाता है?", ["रोलर छपाई", "ब्लॉक छपाई", "स्क्रीन छपाई", "स्टैंसिल छपाई"], 1, "पेपर 2: परिधान निर्माण"),
+                q("सिलाई मशीन में 'बॉबिन' का क्या कार्य है?", ["कपड़े को आगे बढ़ाना", "ऊपरी धागे को नियंत्रित करना", "निचला धागा प्रदान करना", "कपड़े को काटना"], 2, "पेपर 2: परिधान निर्माण"),
+                q("कश्मीरी शॉल मुख्य रूप से किस जानवर के बालों से बनती है?", ["भेड़", "पहाड़ी बकरी (Pashmina)", "खरगोश", "ऊंट"], 1, "पेपर 2: पारंपरिक वस्त्र"),
+                q("कढ़ाई कला 'चिकनकारी' (Chikankari) किस शहर के लिए प्रसिद्ध है?", ["वाराणसी", "लखनऊ", "जयपुर", "हैदराबाद"], 1, "पेपर 2: पारंपरिक वस्त्र"),
+                q("कपड़े के सिकुड़न (Shrinkage) को रोकने के लिए की जाने वाली फिनिशिंग को क्या कहते हैं?", ["कैलेंडरिंग", "सैनफोराइजेशन (Sanforization)", "टेंटरिंग", "साइजिंग"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("नायलॉन का आविष्कार किसने किया था?", ["华लेस कैरोथर्स (Wallace Carothers)", "एलि विटनी", "चार्ल्स मैकिन्टोश", "जॉर्ज डी मेस्ट्रल"], 0, "पेपर 2: वस्त्र विज्ञान"),
+                q("सिलाई में डार्ट (Dart) का मुख्य उद्देश्य क्या है?", ["डिजाइन बनाना", "कपड़े को मजबूत करना", "पोशाक को शरीर के आकार में फिट करना", "लंबाई बढ़ाना"], 2, "पेपर 2: परिधान निर्माण"),
+                q("ऊन को कीड़ों (Moth) से बचाने के लिए कपड़े में क्या रखा जाता है?", ["नमक", "नेफ़थलीन बॉल्स (Naphthalene balls)", "सिरका", "चीनी"], 1, "पेपर 2: वस्त्र देखभाल"),
+                q("'कलमकारी' (Kalamkari) कला में मुख्य रूप से किसका उपयोग होता है?", ["ब्रश और मोम", "प्राकृतिक रंग और कलम", "धागा और सुई", "मशीन प्रिंट"], 1, "पेपर 2: पारंपरिक वस्त्र"),
+                q("सबसे मजबूत प्राकृतिक फाइबर कौन सा है?", ["कपास", "ऊन", "रेशम", "जूट"], 2, "पेपर 2: वस्त्र विज्ञान"),
+                q("प्रबंधन प्रक्रिया (Management Process) का पहला कदम क्या है?", ["योजना बनाना (Planning)", "आयोजन (Organizing)", "नियंत्रण (Controlling)", "मूल्यांकन (Evaluating)"], 0, "पेपर 2: संसाधन प्रबंधन"),
+                q("समय, ऊर्जा और कौशल किस प्रकार के संसाधन हैं?", ["भौतिक संसाधन", "मानवीय संसाधन", "आर्थिक संसाधन", "सामुदायिक संसाधन"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("परिवार के बजट का मुख्य उद्देश्य क्या है?", ["अतिरिक्त पैसा कमाना", "आय और व्यय का नियोजन एवं नियंत्रण", "शेयरों में निवेश करना", "बैंक लोन लेना"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("कार्य सरलीकरण (Work Simplification) की अवधारणा सबसे पहले किसने प्रस्तुत की?", ["फ्रेडरिक टेलर", "मार्विन मुंडेल", "गिल्बरेथ (Gilbreth)", "एल्टन मेयो"], 2, "पेपर 2: संसाधन प्रबंधन"),
+                q("'एर्गोनॉमिक्स' (Ergonomics) का मुख्य रूप से किससे संबंध है?", ["फर्नीचर की लागत कम करना", "सौंदर्य और सजावट", "मानव कार्यकुशलता, सुरक्षा और आराम", "घर की संरचनात्मक मजबूती"], 2, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("मुंडेल (Mundel) के परिवर्तन के वर्गों (Classes of Change) में कितने स्तर हैं?", ["3", "4", "5", "6"], 2, "पेपर 2: संसाधन प्रबंधन"),
+                q("थकान (Fatigue) मुख्य रूप से कितने प्रकार की होती है?", ["शारीरिक और मानसिक", "आंतरिक और बाहरी", "अस्थायी और स्थायी", "प्राकृतिक और कृत्रिम"], 0, "पेपर 2: संसाधन प्रबंधन"),
+                q("रंग चक्र (Color Wheel) में प्राथमिक रंग कौन से हैं?", ["लाल, हरा, पीला", "लाल, नीला, पीला", "हरा, नारंगी, बैंगनी", "काला, सफेद, ग्रे"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("उपभोक्ता संरक्षण अधिनियम (CPA) भारत में पहली बार कब पारित हुआ था?", ["1980", "1986", "1992", "2005"], 1, "पेपर 2: उपभोक्ता अध्ययन"),
+                q("ISI मार्क (भारतीय मानक संस्थान) किस प्रकार के उत्पादों पर प्रमाणित किया जाता है?", ["कृषि उत्पाद", "औद्योगिक उत्पाद और बिजली के उपकरण", "सोने के आभूषण", "खाद्य पदार्थ"], 1, "पेपर 2: उपभोक्ता अध्ययन"),
+                q("AGMARK प्रमाणन किसके लिए प्रयोग किया जाता है?", ["इलेक्ट्रॉनिक्स", "कृषि उत्पाद", "कपड़े", "स्वर्ण आभूषण"], 1, "पेपर 2: उपभोक्ता अध्ययन"),
+                q("निर्णय लेने की प्रक्रिया का अंतिम चरण कौन सा है?", ["समस्या की पहचान", "विकल्पों की खोज", "विकल्प का चयन", "निर्णय का मूल्यांकन (Evaluation)"], 3, "पेपर 2: संसाधन प्रबंधन"),
+                q("कमरे की छत को ऊंचा दिखाने के लिए किस प्रकार की रेखाओं का उपयोग आंतरिक सज्जा में किया जाता है?", ["क्षैतिज रेखाएं (Horizontal)", "लंबवत रेखाएं (Vertical)", "तिरछी रेखाएं", "वक्र रेखाएं"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("इकबाना (Ikebana) क्या है?", ["जापानी चित्रकला", "जापानी पुष्प सज्जा (Flower Arrangement)", "चीनी मिट्टी के बर्तन", "कोरियाई नृत्य"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("धन (Money) किस प्रकार का संसाधन है?", ["मानवीय संसाधन", "अमूर्त संसाधन", "गैर-मानवीय (भौतिक) संसाधन", "प्राकृतिक संसाधन"], 2, "पेपर 2: संसाधन प्रबंधन"),
+                q("गृह विज्ञान में 'मूल्य' (Values) का क्या अर्थ है?", ["वस्तुओं की कीमत", "व्यक्ति के विश्वास और आदर्श जो दिशा निर्देश देते हैं", "शारीरिक क्षमता", "सामाजिक स्थिति"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("भविष्य निधि (Provident Fund) किस प्रकार की बचत का उदाहरण है?", ["स्वैच्छिक बचत", "अनिवार्य बचत", "अल्पकालिक बचत", "शेयर बाजार निवेश"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("'इको-मार्क' (Eco-mark) प्रतीक किस चीज़ को दर्शाता है?", ["मिट्टी का बर्तन (Earthen Pot)", "हरा पत्ता", "सूर्य", "नदी"], 0, "पेपर 2: उपभोक्ता अध्ययन"),
+                q("फर्नीचर व्यवस्था में 'ट्रैफिक पैटर्न' का क्या अर्थ है?", ["गाड़ियों की पार्किंग", "कमरे के अंदर लोगों के चलने-फिरने का रास्ता", "फर्नीचर का रंग", "कमरे की रोशनी"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("बजट का वह प्रकार जिसमें आय और व्यय बराबर होते हैं, क्या कहलाता है?", ["घाटे का बजट", "बचत का बजट", "संतुलित बजट", "शून्य बजट"], 2, "पेपर 2: संसाधन प्रबंधन"),
+                q("बाल विकास के अध्ययन में 'संज्ञानात्मक विकास' (Cognitive Development) का सिद्धांत किसने दिया?", ["सिगमंड फ्रायड", "जीन पियाजे (Jean Piaget)", "एरिक एरिकसन", "बी.एफ. स्किनर"], 1, "पेपर 2: मानव विकास"),
+                q("नवजात शिशु (Neonate) की अवधि जन्म से लेकर कब तक मानी जाती है?", ["1 सप्ताह", "2 से 4 सप्ताह (लगभग 1 महीना)", "6 महीने", "1 वर्ष"], 1, "पेपर 2: मानव विकास"),
+                q("एरिक एरिकसन के मनोसामाजिक विकास सिद्धांत में कुल कितने चरण हैं?", ["4", "6", "8", "10"], 2, "पेपर 2: मानव विकास"),
+                q("लिव वायगोत्स्की (Lev Vygotsky) ने बाल विकास में किस तत्व पर सबसे अधिक जोर दिया?", ["आनुवंशिकी", "सामाजिक और सांस्कृतिक अंतःक्रिया", "पोषण", "शारीरिक परिपक्वता"], 1, "पेपर 2: मानव विकास"),
+                q("'जोन ऑफ प्रॉक्सिमल डेवलपमेंट' (ZPD) की अवधारणा किसने प्रस्तुत की?", ["जीन पियाजे", "लिव वायगोत्स्की", "अल्बर्ट बंडूरा", "जेरोम ब्रूनर"], 1, "पेपर 2: मानव विकास"),
+                q("गर्भधारण से लेकर जन्म तक की अवस्था को क्या कहते हैं?", ["शैशवावस्था", "जन्मपूर्व अवस्था (Prenatal Stage)", "प्रारंभिक बाल्यावस्था", "किशोरावस्था"], 1, "पेपर 2: मानव विकास"),
+                q("एक बच्चा जब किसी वस्तु को देखने पर यह समझता है कि वह वस्तु छिप जाने पर भी मौजूद है, तो उसे क्या कहते हैं?", ["वस्तु स्थायित्व (Object Permanence)", "अहंकेंद्रवाद", "संरक्षण", "एनिमिज्म"], 0, "पेपर 2: मानव विकास"),
+                q("फ्रायड के अनुसार व्यक्तित्व के तीन मुख्य घटक क्या हैं?", ["Id, Ego, Superego", "Introvert, Extrovert, Ambivert", "Cognitive, Affective, Psychomotor", "Oral, Anal, Phallic"], 0, "पेपर 2: मानव विकास"),
+                q("किस अवस्था को 'तूफान और तनाव' (Storm and Stress) की अवस्था कहा जाता है?", ["शैशवावस्था", "बाल्यावस्था", "किशोरावस्था (Adolescence)", "प्रौढ़ावस्था"], 2, "पेपर 2: मानव विकास"),
+                q("बच्चों में फाइन मोटर स्किल्स (Fine Motor Skills) का उदाहरण क्या है?", ["दौड़ना", "कूदना", "पेंसिल पकड़ना और लिखना", "सीढ़ियां चढ़ना"], 2, "पेपर 2: मानव विकास"),
+                q("बुद्धि का द्विकारक सिद्धांत (Two-Factor Theory of Intelligence) किसने दिया था?", ["अल्फ्रेड बिने", "चार्ल्स स्पीयरमैन", "हावर्ड गार्डनर", "रॉबर्ट स्टर्नबर्ग"], 1, "पेपर 2: मानव विकास"),
+                q("सामाजिक अधिगम सिद्धांत (Social Learning Theory), जिसमें बच्चे दूसरों का अवलोकन करके सीखते हैं, किसने दिया?", ["अल्बर्ट बंडूरा", "इवान पावलोव", "बी.एफ. स्किनर", "थार्नडाइक"], 0, "पेपर 2: मानव विकास"),
+                q("आईक्यू (IQ) की गणना का सूत्र क्या है?", ["(मानसिक आयु / कालानुक्रमिक आयु) × 100", "(कालानुक्रमिक आयु / मानसिक आयु) × 100", "(मानसिक आयु × 100) / 50", "(कालानुक्रमिक आयु × 100) / 50"], 0, "पेपर 2: मानव विकास"),
+                q("विशेष आवश्यकता वाले बच्चों के लिए समावेशी शिक्षा (Inclusive Education) का अर्थ है:", ["उन्हें अलग स्कूल में पढ़ाना", "सामान्य बच्चों के साथ एक ही कक्षा में पढ़ाना", "केवल घर पर पढ़ाना", "उन्हें स्कूल न भेजना"], 1, "पेपर 2: मानव विकास"),
+                q("आनुवंशिकता (Heredity) की सबसे छोटी इकाई क्या है?", ["क्रोमोसोम", "डीएनए (DNA)", "जीन (Gene)", "कोशिका"], 2, "पेपर 2: मानव विकास"),
+                q("ऑटिज्म स्पेक्ट्रम डिसऑर्डर (ASD) मुख्य रूप से प्रभावित करता है:", ["शारीरिक विकास", "सामाजिक कौशल और संचार", "दृष्टि", "श्रवण क्षमता"], 1, "पेपर 2: मानव विकास"),
+                q("वृद्धावस्था और बुजुर्गों के बहु-विषयक अध्ययन को क्या कहा जाता है?", ["बाल चिकित्सा", "जेरोन्टोलॉजी (Gerontology)", "ऑन्कोलॉजी", "पैथोलॉजी"], 1, "पेपर 2: पारिवारिक अध्ययन"),
+                q("परिवार का वह प्रकार जिसमें माता-पिता और उनके अविवाहित बच्चे एक साथ रहते हैं, कहलाता है:", ["संयुक्त परिवार", "विस्तारित परिवार", "एकल परिवार (Nuclear Family)", "मातृसत्तात्मक परिवार"], 2, "पेपर 2: पारिवारिक अध्ययन"),
+                q("शिशु के जन्म के समय उसका औसत वजन कितना होना चाहिए?", ["1.5 - 2 किग्रा", "2.5 - 3.5 किग्रा", "4 - 5 किग्रा", "5 - 6 किग्रा"], 1, "पेपर 2: मानव विकास"),
+                q("टीकाकरण में 'BCG' का टीका किस बीमारी से बचाव के लिए दिया जाता है?", ["पोलियो", "ट्यूबरकुलोसिस (टीबी)", "खसरा", "हेपेटाइटिस"], 1, "पेपर 2: मानव विकास"),
+                q("प्रसार शिक्षा (Extension Education) का मुख्य दर्शन क्या है?", ["स्कूलों में पढ़ाना", "लोगों की मदद करना ताकि वे स्वयं की मदद कर सकें (Help people to help themselves)", "केवल कृषि उत्पाद बेचना", "शहरों का विकास करना"], 1, "पेपर 2: प्रसार शिक्षा"),
+                q("ग्रामीण प्रसार शिक्षा में 'PRA' तकनीक का पूर्ण रूप क्या है?", ["Participatory Rural Appraisal", "Public Relations Activity", "Program Review Analysis", "Performance Rating Assessment"], 0, "पेपर 2: प्रसार शिक्षा"),
+                q("प्रसार शिक्षा कार्यक्रम की प्रक्रिया का पहला चरण क्या है?", ["कार्यक्रम का मूल्यांकन", "किसानों को पढ़ाना", "स्थिति का विश्लेषण (Analysis of the situation)", "पुनर्विचार"], 2, "पेपर 2: प्रसार शिक्षा"),
+                q("दृश्य-श्रव्य सामग्री (Audio-Visual Aids) का मुख्य लाभ क्या है?", ["यह सस्ती होती है", "यह सीखने और याद रखने में सुधार करती है", "यह केवल मनोरंजन के लिए है", "यह शिक्षक की जगह ले लेती है"], 1, "पेपर 2: विकास संचार"),
+                q("फ्लैश कार्ड का उपयोग प्रसार कार्य में किस प्रकार की सामग्री के रूप में किया जाता है?", ["श्रव्य सामग्री", "दृश्य सामग्री (Visual Aid)", "दृश्य-श्रव्य सामग्री", "डिजिटल सामग्री"], 1, "पेपर 2: विकास संचार"),
+                q("अरस्तू (Aristotle) के संचार मॉडल में मुख्य तत्व क्या हैं?", ["प्रेषक, संदेश, माध्यम", "वक्ता, भाषण, श्रोता (Speaker, Speech, Audience)", "प्रेषक, शोर, प्राप्तकर्ता", "माध्यम, प्रतिक्रिया, शोर"], 1, "पेपर 2: विकास संचार"),
+                q("कठपुतली (Puppetry) किस प्रकार का पारंपरिक संचार माध्यम है?", ["लोक मीडिया (Folk Media)", "प्रिंट मीडिया", "इलेक्ट्रॉनिक मीडिया", "सोशल मीडिया"], 0, "पेपर 2: विकास संचार"),
+                q("नवाचार के प्रसार (Diffusion of Innovations) का सिद्धांत किसने दिया था?", ["एवरेट रोजर्स (Everett Rogers)", "डेविड बर्लो", "शैनन और वीवर", "पॉल लेजर्सफेल्ड"], 0, "पेपर 2: विकास संचार"),
+                q("राष्ट्रीय ग्रामीण रोजगार गारंटी अधिनियम (NREGA) किस वर्ष पारित किया गया था?", ["2001", "2005", "2010", "2014"], 1, "पेपर 2: सामुदायिक विकास"),
+                q("महिला स्वयं सहायता समूहों (SHGs) का मुख्य उद्देश्य क्या है?", ["केवल बचत करना", "महिलाओं का सामाजिक और आर्थिक सशक्तिकरण", "खेती करना", "राजनीतिक दल बनाना"], 1, "पेपर 2: सामुदायिक विकास"),
+                q("पंचायती राज प्रणाली में सबसे निचला स्तर कौन सा है?", ["ग्राम पंचायत", "पंचायत समिति", "जिला परिषद", "राज्य सरकार"], 0, "पेपर 2: सामुदायिक विकास"),
+                q("प्रसार शिक्षण विधियों में 'परिणाम प्रदर्शन' (Result Demonstration) का क्या अर्थ है?", ["किसी नई तकनीक के काम करने का तरीका दिखाना", "किसी नई तकनीक के लाभ और परिणामों को खेत में साबित करना", "कक्षा में व्याख्यान देना", "पोस्टर चिपकाना"], 1, "पेपर 2: प्रसार शिक्षा"),
+                q("'डेल्फी तकनीक' (Delphi Technique) का उपयोग मुख्य रूप से किसलिए किया जाता है?", ["विशेषज्ञों की राय और सर्वसम्मति प्राप्त करने के लिए", "मृदा परीक्षण के लिए", "पोषण विश्लेषण के लिए", "फसल कटाई के लिए"], 0, "पेपर 2: प्रसार शिक्षा"),
+                q("भारत में 'कृषि विज्ञान केंद्र' (KVK) का मुख्य कार्य क्या है?", ["बीज बेचना", "प्रौद्योगिकी मूल्यांकन और प्रदर्शन (Technology Assessment & Demonstration)", "किसानों को ऋण देना", "अनाज खरीदना"], 1, "पेपर 2: प्रसार शिक्षा"),
+                q("प्रसार कार्यकर्ता और ग्रामीण लोगों के बीच की दूरी को क्या कहा जाता है?", ["सामाजिक दूरी", "शारीरिक दूरी", "सांस्कृतिक दूरी", "उपरोक्त सभी"], 3, "पेपर 2: विकास संचार"),
+                q("'कुपोषण मुक्त भारत' के लिए भारत सरकार का प्रमुख कार्यक्रम कौन सा है?", ["स्वच्छ भारत मिशन", "पोषण अभियान (POSHAN Abhiyaan)", "आयुष्मान भारत", "स्किल इंडिया"], 1, "पेपर 2: सामुदायिक विकास"),
+                q("बर्लो के संचार मॉडल (SMCR) में 'M' का क्या अर्थ है?", ["माध्यम (Medium)", "संदेश (Message)", "मॉडल (Model)", "प्रबंधन (Management)"], 1, "पेपर 2: विकास संचार"),
+                q("संचार में 'फीडबैक' (Feedback) क्यों महत्वपूर्ण है?", ["यह प्रक्रिया को धीमा करता है", "यह सुनिश्चित करता है कि संदेश सही ढंग से समझा गया है", "यह केवल औपचारिकता है", "इससे शोर बढ़ता है"], 1, "पेपर 2: विकास संचार"),
+                q("प्रौढ़ शिक्षा (Adult Education) की विशेषता क्या है?", ["यह स्वैच्छिक और आवश्यकता-आधारित है", "यह बच्चों के लिए अनिवार्य है", "यह केवल स्कूलों में दी जाती है", "इसमें डिग्री मिलना अनिवार्य है"], 0, "पेपर 2: प्रसार शिक्षा"),
+                q("DWCRA योजना का उद्देश्य मुख्य रूप से किनके विकास के लिए था?", ["शहरी पुरुष", "ग्रामीण क्षेत्रों की महिलाएं और बच्चे", "बड़े किसान", "उद्योगपति"], 1, "पेपर 2: सामुदायिक विकास")
+            ].map((item, index) => ({ id: index, ...item }));
+        };
 
-        // 3. Helper to Update UI Elements
-        function updateCardUI(testId, status, score = null) {
-            const badge = document.getElementById('badge-' + testId);
-            const btn = document.getElementById('btn-' + testId);
+        // --- STATE VARIABLES ---
+        const questions = generateQuestions();
+        let currentQ = 0;
+        let answers = {};
+        let reviewMarks = {};
+        let visited = {};
+        let timeLeft = 180 * 60; // 180 minutes
+        let timerId = null;
+        let isReviewMode = false;
+        const totalQ = questions.length;
 
-            if (!badge || !btn) return;
-
-            if (status === 'completed') {
-                badge.className = 'badge status-completed';
-                badge.innerText = 'Completed';
-                
-                btn.className = 'btn btn-retake';
-                btn.innerText = `Retake (Score: ${score})`;
-                // Note: The onclick event remains, allowing retake
-            } 
-            else if (status === 'in-progress') {
-                badge.className = 'badge status-attempted';
-                badge.innerText = 'Attempted';
-                
-                btn.className = 'btn btn-resume';
-                btn.innerText = 'Resume Test';
-            }
-        }
-
-        // 4. On Page Load: Check Storage and Render Correct State
-        document.addEventListener("DOMContentLoaded", function() {
-            const testIds = ['p1s1', 'p1s2', 'p1s3', 'p2s1', 'p2s2', 'p2s3'];
-
-            testIds.forEach(id => {
-                const storedData = localStorage.getItem('jssc_test_' + id);
-                if (storedData) {
-                    const data = JSON.parse(storedData);
-                    updateCardUI(id, data.status, data.score);
-                }
+        // --- NAVIGATION ---
+        function showView(viewId) {
+            ['home-view', 'instructions-view', 'test-view', 'result-view'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+                if (id === 'test-view') document.getElementById(id).classList.remove('flex');
             });
-        });
-    </script>
+            const view = document.getElementById(viewId);
+            view.classList.remove('hidden');
+            if (viewId === 'test-view') view.classList.add('flex');
+        }
 
+        function formatTime(seconds) {
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = seconds % 60;
+            return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        // --- EXAM LOGIC ---
+        function startTest() {
+            currentQ = 0;
+            answers = {};
+            reviewMarks = {};
+            visited = { 0: true };
+            timeLeft = 180 * 60;
+            isReviewMode = false;
+
+            document.getElementById('test-title').innerHTML = "JET गृह विज्ञान";
+            document.getElementById('timer-badge').classList.remove('hidden');
+            document.getElementById('back-to-score-btn').classList.add('hidden');
+            document.getElementById('test-action-bar').classList.remove('hidden');
+            document.getElementById('review-action-bar').classList.add('hidden');
+            document.getElementById('submit-section').classList.remove('hidden');
+            document.getElementById('test-legend').classList.remove('hidden');
+            document.getElementById('review-legend').classList.add('hidden');
+
+            renderQuestion();
+            renderPalette();
+            showView('test-view');
+
+            if (timerId) clearInterval(timerId);
+            timerId = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer-display').innerText = formatTime(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            visited[currentQ] = true;
+            const q = questions[currentQ];
+            
+            document.getElementById('question-section').innerText = q.section;
+            document.getElementById('question-counter').innerText = `प्रश्न ${currentQ + 1} / ${totalQ}`;
+            document.getElementById('question-text').innerText = q.text;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, i) => {
+                const isChecked = answers[currentQ] === i;
+                let optionClass = "border-slate-200 hover:bg-slate-50";
+                let iconHtml = '';
+
+                if (isReviewMode) {
+                    if (i === q.ans) {
+                        optionClass = "bg-emerald-50 border-emerald-500 shadow-sm";
+                        iconHtml = `<div class="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs bg-emerald-500"><i class="fas fa-check"></i></div>`;
+                    } else if (isChecked && i !== q.ans) {
+                        optionClass = "bg-rose-50 border-rose-500 shadow-sm";
+                        iconHtml = `<div class="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs bg-rose-500"><i class="fas fa-times"></i></div>`;
+                    } else {
+                        optionClass = "border-slate-200 opacity-50";
+                        iconHtml = `<div class="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs bg-slate-300"></div>`;
+                    }
+                } else {
+                    if (isChecked) optionClass = "bg-indigo-50 border-indigo-500";
+                    iconHtml = `<input type="radio" name="q-${currentQ}" value="${i}" ${isChecked ? 'checked' : ''} onchange="handleSelect(${i})" class="w-5 h-5 text-indigo-600 border-gray-300 focus:ring-indigo-500 cursor-pointer">`;
+                }
+
+                const textClass = isReviewMode && i === q.ans ? "text-emerald-800 font-medium" : "text-slate-700";
+
+                optionsContainer.innerHTML += `
+                    <label class="flex items-start p-4 rounded-xl border-2 cursor-pointer transition-all ${optionClass}">
+                        <div class="flex-shrink-0 mt-0.5">${iconHtml}</div>
+                        <span class="ml-4 ${textClass}">${opt}</span>
+                    </label>
+                `;
+            });
+
+            // Review explanation
+            const reviewBox = document.getElementById('review-explanation');
+            if (isReviewMode) {
+                reviewBox.classList.remove('hidden');
+                const userAnsText = answers[currentQ] !== undefined ? `विकल्प ${answers[currentQ] + 1}` : 'प्रयास नहीं किया गया';
+                reviewBox.innerHTML = `
+                    आपका उत्तर: ${userAnsText} <br/>
+                    सही उत्तर: विकल्प ${q.ans + 1}
+                `;
+                document.getElementById('btn-rev-prev').disabled = currentQ === 0;
+                document.getElementById('btn-rev-next').disabled = currentQ === totalQ - 1;
+            } else {
+                reviewBox.classList.add('hidden');
+                document.getElementById('btn-prev').disabled = currentQ === 0;
+            }
+
+            // Scroll top
+            optionsContainer.parentElement.scrollTop = 0;
+            renderPalette();
+        }
+
+        function handleSelect(optionIndex) {
+            answers[currentQ] = optionIndex;
+            renderQuestion();
+        }
+
+        function clearResponse() {
+            delete answers[currentQ];
+            reviewMarks[currentQ] = false;
+            renderQuestion();
+        }
+
+        function saveAndNext() {
+            reviewMarks[currentQ] = false;
+            if (currentQ < totalQ - 1) {
+                currentQ++;
+                renderQuestion();
+            }
+        }
+
+        function saveAndReview() {
+            reviewMarks[currentQ] = true;
+            if (currentQ < totalQ - 1) {
+                currentQ++;
+                renderQuestion();
+            } else {
+                renderPalette();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQ < totalQ - 1) {
+                currentQ++;
+                renderQuestion();
+            }
+        }
+
+        // --- PALETTE LOGIC ---
+        function getStatusColor(idx) {
+            const isAns = answers[idx] !== undefined;
+            const isRev = reviewMarks[idx];
+            const isVis = visited[idx];
+
+            if (isAns && isRev) return 'bg-blue-600 text-white border-blue-700';
+            if (isRev) return 'bg-purple-600 text-white border-purple-700';
+            if (isAns) return 'bg-green-500 text-white border-green-600';
+            if (isVis) return 'bg-red-500 text-white border-red-600';
+            return 'bg-white text-slate-700 border-slate-300';
+        }
+
+        function getReviewStatusColor(idx) {
+            if (answers[idx] === undefined) return 'bg-slate-200 text-slate-600 border-slate-300';
+            if (answers[idx] === questions[idx].ans) return 'bg-emerald-500 text-white border-emerald-600';
+            return 'bg-red-500 text-white border-red-600';
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < totalQ; i++) {
+                let colorClass = isReviewMode ? getReviewStatusColor(i) : getStatusColor(i);
+                let extraClass = (currentQ === i) ? 'ring-2 ring-offset-2 ring-indigo-500 scale-110' : 'hover:opacity-80';
+                
+                grid.innerHTML += `
+                    <button onclick="currentQ=${i}; renderQuestion();" class="h-10 rounded-lg font-medium text-sm flex items-center justify-center border transition-all ${colorClass} ${extraClass}">
+                        ${i + 1}
+                    </button>
+                `;
+            }
+            document.getElementById('answered-count').innerText = `${Object.keys(answers).length}/150 उत्तर दिए`;
+        }
+
+        // --- SUBMIT & RESULTS ---
+        function toggleSubmitModal(show) {
+            const modal = document.getElementById('submit-modal');
+            if (show) {
+                document.getElementById('submit-modal-text').innerText = `आपने 150 में से ${Object.keys(answers).length} प्रश्नों के उत्तर दिए हैं। क्या आप सबमिट करना चाहते हैं?`;
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function calculateScore() {
+            let correct = 0; let incorrect = 0; let unattempted = 0;
+            questions.forEach((q, idx) => {
+                if (answers[idx] === undefined) unattempted++;
+                else if (answers[idx] === q.ans) correct++;
+                else incorrect++;
+            });
+            return { correct, incorrect, unattempted, score: correct * 2 };
+        }
+
+        function submitTest() {
+            if (timerId) clearInterval(timerId);
+            toggleSubmitModal(false);
+
+            const stats = calculateScore();
+            document.getElementById('score-val').innerText = stats.score;
+            document.getElementById('correct-val').innerText = stats.correct;
+            document.getElementById('incorrect-val').innerText = stats.incorrect;
+            document.getElementById('unattempted-val').innerText = stats.unattempted;
+            
+            const accuracy = stats.correct + stats.incorrect > 0 ? ((stats.correct / (stats.correct + stats.incorrect)) * 100).toFixed(1) : 0;
+            document.getElementById('accuracy-val').innerText = `सटीकता (Accuracy): ${accuracy}%`;
+
+            showView('result-view');
+        }
+
+        function startReview() {
+            isReviewMode = true;
+            currentQ = 0;
+
+            document.getElementById('test-title').innerHTML = "JET गृह विज्ञान - उत्तर समीक्षा";
+            document.getElementById('timer-badge').classList.add('hidden');
+            document.getElementById('back-to-score-btn').classList.remove('hidden');
+            document.getElementById('test-action-bar').classList.add('hidden');
+            document.getElementById('review-action-bar').classList.remove('hidden');
+            document.getElementById('review-action-bar').classList.add('flex');
+            document.getElementById('submit-section').classList.add('hidden');
+            document.getElementById('test-legend').classList.add('hidden');
+            document.getElementById('review-legend').classList.remove('hidden');
+
+            renderQuestion();
+            showView('test-view');
+        }
+
+        // Initialize display
+        showView('home-view');
+    </script>
 </body>
 </html>
