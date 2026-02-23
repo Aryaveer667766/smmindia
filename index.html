@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JET Home Science Mock Test - Set 4</title>
+    <title>JET Home Science Mock Test - Set 5 (Hard Level)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -25,39 +25,42 @@
                 <i class="fas fa-graduation-cap text-indigo-300 text-3xl"></i>
                 <span class="text-xl font-bold tracking-wide">JPSC JET तैयारी</span>
             </div>
-            <button onclick="showView('instructions-view')" class="bg-white text-indigo-900 px-5 py-2 rounded-lg font-bold hover:bg-indigo-50 transition">
+            <button id="home-nav-btn" onclick="showView('instructions-view')" class="bg-white text-indigo-900 px-5 py-2 rounded-lg font-bold hover:bg-indigo-50 transition">
                 मॉक टेस्ट दें
             </button>
         </nav>
 
         <main class="max-w-6xl mx-auto p-6 mt-8 space-y-12 w-full">
             <div class="text-center py-16 bg-white rounded-3xl shadow-sm border border-slate-200 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-rose-500 via-red-500 to-orange-500"></div>
+                <div class="absolute top-4 right-4 bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-200 uppercase tracking-widest">
+                    कठिन स्तर (Hard Level)
+                </div>
                 <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">झारखंड पात्रता परीक्षा (JET)</h1>
-                <h2 class="text-2xl font-semibold text-indigo-600 mb-6">गृह विज्ञान मॉक परीक्षा - सेट 4 (Home Science - Set 4)</h2>
+                <h2 class="text-2xl font-semibold text-rose-600 mb-6">गृह विज्ञान मॉक परीक्षा - सेट 5 (Home Science - Set 5)</h2>
                 <p class="text-slate-600 max-w-2xl mx-auto mb-10 text-lg">
-                    असिस्टेंट प्रोफेसर भर्ती परीक्षा की तैयारी करें। हमारा यह मॉक टेस्ट पूरी तरह से वास्तविक JET/UGC NET पाठ्यक्रम पर आधारित है, जिसमें 150 नए और अद्वितीय प्रश्न (हिंदी माध्यम) शामिल हैं।
+                    असिस्टेंट प्रोफेसर भर्ती परीक्षा की एडवांस तैयारी करें। यह सेट <strong>कठिन (Hard)</strong> स्तर का है, जिसमें उन्नत वैज्ञानिक सिद्धांतों, शोध कार्यप्रणाली और गहराई वाले विश्लेषणात्मक 150 प्रश्न शामिल हैं।
                 </p>
-                <button onclick="showView('instructions-view')" class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-indigo-700 shadow-lg hover:shadow-xl transition-all flex items-center justify-center mx-auto gap-3">
+                <button id="home-hero-btn" onclick="showView('instructions-view')" class="bg-rose-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-rose-700 shadow-lg hover:shadow-xl transition-all flex items-center justify-center mx-auto gap-3">
                     <i class="fas fa-play-circle text-2xl"></i>
-                    150 प्रश्नों का मॉक टेस्ट शुरू करें
+                    150 प्रश्नों का कठिन मॉक टेस्ट शुरू करें
                 </button>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
                     <div class="flex items-center gap-3 mb-6">
-                        <i class="fas fa-bookmark text-indigo-600 text-2xl"></i>
+                        <i class="fas fa-bookmark text-rose-600 text-2xl"></i>
                         <h3 class="text-2xl font-bold text-slate-800">परीक्षा पैटर्न</h3>
                     </div>
                     <ul class="space-y-4 text-slate-600">
                         <li class="flex justify-between items-center pb-2 border-b border-slate-100">
                             <span class="font-semibold">पेपर I (सामान्य अभिक्षमता)</span>
-                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-bold">50 प्रश्न / 100 अंक</span>
+                            <span class="bg-rose-100 text-rose-800 px-3 py-1 rounded-full text-sm font-bold">50 प्रश्न / 100 अंक</span>
                         </li>
                         <li class="flex justify-between items-center pb-2 border-b border-slate-100">
                             <span class="font-semibold">पेपर II (गृह विज्ञान)</span>
-                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-bold">100 प्रश्न / 200 अंक</span>
+                            <span class="bg-rose-100 text-rose-800 px-3 py-1 rounded-full text-sm font-bold">100 प्रश्न / 200 अंक</span>
                         </li>
                         <li class="flex justify-between items-center pb-2 border-b border-slate-100">
                             <span class="font-semibold">कुल समय</span>
@@ -72,20 +75,20 @@
 
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
                     <div class="flex items-center gap-3 mb-6">
-                        <i class="fas fa-list text-indigo-600 text-2xl"></i>
-                        <h3 class="text-2xl font-bold text-slate-800">पाठ्यक्रम अवलोकन</h3>
+                        <i class="fas fa-list text-rose-600 text-2xl"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">सेट 5 की विशेषताएँ (Advanced)</h3>
                     </div>
                     <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-slate-600">
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> आहार विज्ञान और पोषण</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> शिक्षण एवं शोध अभिक्षमता</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> वस्त्र एवं परिधान निर्माण</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> तार्किक और गणितीय तर्क</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> पारिवारिक संसाधन प्रबंधन</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> डेटा व्याख्या (DI)</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> मानव विकास और बाल मनोविज्ञान</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> पर्यावरण और ICT</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> प्रसार शिक्षा एवं संचार</div>
-                        <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> उच्च शिक्षा प्रणाली</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> जैव रसायन (Biochemistry)</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> उन्नत शोध सांख्यिकी (ANOVA/Test)</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> वस्त्र बहुलक (Textile Polymers)</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> जटिल तार्किक निगमनात्मक तर्क</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> एर्गोनॉमिक्स के वैज्ञानिक मापदंड</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> संचार के गूढ़ मॉडल (Entropy)</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> बाल विकास (ब्रोंफेनब्रेनर मॉडल)</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> ICT: नेटवर्किंग प्रोटोकॉल</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> ग्रामीण विकास के विश्लेषणात्मक उपकरण</div>
+                        <div class="flex items-start gap-2"><i class="fas fa-bolt text-rose-500 mt-1"></i> उच्च शिक्षा: NEP 2020 डीप क्लॉज</div>
                     </div>
                 </div>
             </div>
@@ -95,14 +98,14 @@
     <!-- ==================== INSTRUCTIONS VIEW ==================== -->
     <div id="instructions-view" class="hidden min-h-screen p-6 flex items-center justify-center bg-slate-50">
         <div class="max-w-3xl w-full bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-            <div class="bg-indigo-600 text-white px-8 py-6">
-                <h2 class="text-2xl font-bold">JET मॉक टेस्ट के लिए सामान्य निर्देश</h2>
+            <div class="bg-rose-600 text-white px-8 py-6">
+                <h2 class="text-2xl font-bold">JET मॉक टेस्ट (सेट 5 - कठिन) के लिए निर्देश</h2>
             </div>
             <div class="p-8">
                 <ul class="space-y-4 text-slate-700 mb-8">
-                    <li class="flex gap-3"><span class="font-bold text-indigo-600">1.</span> परीक्षा की कुल अवधि 180 मिनट है।</li>
-                    <li class="flex gap-3"><span class="font-bold text-indigo-600">2.</span> स्क्रीन के ऊपर दाईं ओर उलटी गिनती (टाइमर) प्रदर्शित होगी जो परीक्षा पूरी करने के लिए शेष समय दिखाएगी।</li>
-                    <li class="flex gap-3"><span class="font-bold text-indigo-600">3.</span> स्क्रीन के दाईं ओर प्रदर्शित प्रश्न पैलेट निम्नलिखित रंगों का उपयोग करके प्रत्येक प्रश्न की स्थिति दिखाएगा:</li>
+                    <li class="flex gap-3"><span class="font-bold text-rose-600">1.</span> परीक्षा की कुल अवधि 180 मिनट है।</li>
+                    <li class="flex gap-3"><span class="font-bold text-rose-600">2.</span> यह एक <strong>उच्च कठिनाई (High Difficulty)</strong> स्तर का परीक्षण है। प्रश्नों को ध्यान से पढ़ें।</li>
+                    <li class="flex gap-3"><span class="font-bold text-rose-600">3.</span> स्क्रीन के दाईं ओर प्रदर्शित प्रश्न पैलेट निम्नलिखित रंगों का उपयोग करके प्रत्येक प्रश्न की स्थिति दिखाएगा:</li>
                 </ul>
                 
                 <div class="grid grid-cols-2 gap-4 mb-8 text-sm">
@@ -114,12 +117,12 @@
 
                 <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 text-yellow-800 text-sm rounded-r-lg">
                     <p class="font-bold mb-1">नोट:</p>
-                    <p>कोई नकारात्मक अंकन (Negative marking) नहीं है। सभी 150 प्रश्नों का उत्तर देने का प्रयास करें। समीक्षा के लिए चिह्नित प्रश्नों का मूल्यांकन किया जाएगा यदि उनका उत्तर दिया गया है।</p>
+                    <p>कोई नकारात्मक अंकन (Negative marking) नहीं है। सभी 150 प्रश्नों का उत्तर देने का प्रयास करें।</p>
                 </div>
 
                 <div class="flex justify-end gap-4">
                    <button onclick="showView('home-view')" class="px-6 py-3 font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">रद्द करें</button>
-                   <button onclick="startTest()" class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition">मैं परीक्षा के लिए तैयार हूँ</button>
+                   <button onclick="startTest()" class="px-8 py-3 bg-rose-600 text-white font-bold rounded-lg hover:bg-rose-700 transition">मैं परीक्षा के लिए तैयार हूँ</button>
                 </div>
             </div>
         </div>
@@ -130,13 +133,13 @@
         <!-- Top Navbar -->
         <div class="bg-white shadow-sm border-b border-slate-200 px-6 py-3 flex justify-between items-center z-10 shrink-0">
             <div class="flex items-center gap-3">
-                <i class="fas fa-book-open text-indigo-600 text-xl"></i>
-                <h1 id="test-title" class="font-bold text-lg text-slate-800">JET गृह विज्ञान</h1>
+                <i class="fas fa-book-open text-rose-600 text-xl"></i>
+                <h1 id="test-title" class="font-bold text-lg text-slate-800">JET गृह विज्ञान (सेट 5 - कठिन)</h1>
             </div>
             <div id="timer-badge" class="flex items-center gap-2 text-rose-600 font-mono text-xl bg-rose-50 px-4 py-1.5 rounded-lg border border-rose-100">
                 <i class="far fa-clock"></i> <span id="timer-display">03:00:00</span>
             </div>
-            <button id="back-to-score-btn" onclick="showView('result-view')" class="hidden text-indigo-600 font-bold hover:bg-indigo-50 px-4 py-2 rounded-lg">
+            <button id="back-to-score-btn" onclick="showView('result-view')" class="hidden text-rose-600 font-bold hover:bg-rose-50 px-4 py-2 rounded-lg">
                 स्कोर पर वापस जाएं
             </button>
         </div>
@@ -147,7 +150,7 @@
             <div class="flex-1 flex flex-col p-6 overflow-y-auto">
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col">
                     <div class="px-8 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl shrink-0">
-                        <span id="question-section" class="text-sm font-bold text-indigo-600 uppercase tracking-wider"></span>
+                        <span id="question-section" class="text-sm font-bold text-rose-600 uppercase tracking-wider"></span>
                         <span id="question-counter" class="text-sm font-semibold text-slate-500"></span>
                     </div>
                     
@@ -170,14 +173,14 @@
                     <button id="btn-prev" onclick="prevQuestion()" class="px-6 py-3 bg-white border border-slate-300 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
                         <i class="fas fa-chevron-left"></i> पिछला
                     </button>
-                    <button id="btn-save-next" onclick="saveAndNext()" class="px-8 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 shadow-md flex items-center gap-2">
+                    <button id="btn-save-next" onclick="saveAndNext()" class="px-8 py-3 bg-rose-600 text-white rounded-xl font-bold hover:bg-rose-700 shadow-md flex items-center gap-2">
                         सहेजें और अगला <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
 
                 <div id="review-action-bar" class="hidden flex justify-between mt-6 shrink-0">
                     <button id="btn-rev-prev" onclick="prevQuestion()" class="px-6 py-3 bg-white border border-slate-300 rounded-xl font-semibold hover:bg-slate-50 disabled:opacity-50">पिछला प्रश्न</button>
-                    <button id="btn-rev-next" onclick="nextQuestion()" class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 disabled:opacity-50">अगला प्रश्न</button>
+                    <button id="btn-rev-next" onclick="nextQuestion()" class="px-6 py-3 bg-rose-600 text-white rounded-xl font-semibold hover:bg-rose-700 disabled:opacity-50">अगला प्रश्न</button>
                 </div>
             </div>
 
@@ -219,12 +222,12 @@
     <!-- ==================== SUBMIT MODAL ==================== -->
     <div id="submit-modal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50">
         <div class="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl">
-            <i class="fas fa-exclamation-circle text-6xl text-indigo-500 block text-center mb-4"></i>
+            <i class="fas fa-exclamation-circle text-6xl text-rose-500 block text-center mb-4"></i>
             <h3 class="text-2xl font-bold text-center text-slate-800 mb-2">परीक्षा सबमिट करें?</h3>
             <p id="submit-modal-text" class="text-center text-slate-600 mb-6"></p>
             <div class="flex gap-4">
                 <button onclick="toggleSubmitModal(false)" class="flex-1 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200">रद्द करें</button>
-                <button onclick="submitTest()" class="flex-1 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700">सबमिट करें</button>
+                <button onclick="submitTest()" class="flex-1 py-3 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700">सबमिट करें</button>
             </div>
         </div>
     </div>
@@ -237,22 +240,22 @@
                     <i class="fas fa-award text-5xl text-yellow-600"></i>
                 </div>
                 <h2 class="text-4xl font-extrabold text-slate-800 mb-2">मॉक टेस्ट पूरा हुआ!</h2>
-                <p class="text-lg text-slate-500">JET गृह विज्ञान मॉक परीक्षा के लिए आपके प्रदर्शन का सारांश नीचे दिया गया है।</p>
+                <p class="text-lg text-slate-500">JET गृह विज्ञान मॉक परीक्षा (कठिन स्तर) के लिए आपके प्रदर्शन का सारांश नीचे दिया गया है।</p>
             </div>
             
             <div class="bg-slate-50 rounded-2xl p-8 mb-10 border border-slate-100">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-xl border-2 border-indigo-100 text-center shadow-sm">
-                        <div id="score-val" class="text-5xl font-black text-indigo-600 mb-2">0</div>
-                        <div class="text-sm text-indigo-800 font-bold uppercase tracking-wide">कुल अंक / 300</div>
+                    <div class="bg-white p-6 rounded-xl border-2 border-rose-100 text-center shadow-sm">
+                        <div id="score-val" class="text-5xl font-black text-rose-600 mb-2">0</div>
+                        <div class="text-sm text-rose-800 font-bold uppercase tracking-wide">कुल अंक / 300</div>
                     </div>
                     <div class="bg-white p-6 rounded-xl border-2 border-emerald-100 text-center shadow-sm">
                         <div id="correct-val" class="text-4xl font-bold text-emerald-600 mb-2">0</div>
                         <div class="text-sm text-emerald-800 font-bold uppercase tracking-wide">सही उत्तर</div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl border-2 border-rose-100 text-center shadow-sm">
-                        <div id="incorrect-val" class="text-4xl font-bold text-rose-600 mb-2">0</div>
-                        <div class="text-sm text-rose-800 font-bold uppercase tracking-wide">गलत उत्तर</div>
+                    <div class="bg-white p-6 rounded-xl border-2 border-red-100 text-center shadow-sm">
+                        <div id="incorrect-val" class="text-4xl font-bold text-red-600 mb-2">0</div>
+                        <div class="text-sm text-red-800 font-bold uppercase tracking-wide">गलत उत्तर</div>
                     </div>
                     <div class="bg-white p-6 rounded-xl border-2 border-slate-200 text-center shadow-sm">
                         <div id="unattempted-val" class="text-4xl font-bold text-slate-600 mb-2">0</div>
@@ -261,17 +264,17 @@
                 </div>
                 
                 <div class="mt-8 text-center">
-                    <div id="accuracy-val" class="inline-flex items-center justify-center bg-indigo-100 text-indigo-800 px-6 py-2 rounded-full font-bold text-lg">
+                    <div id="accuracy-val" class="inline-flex items-center justify-center bg-rose-100 text-rose-800 px-6 py-2 rounded-full font-bold text-lg">
                         सटीकता (Accuracy): 0%
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="startReview()" class="px-8 py-4 bg-indigo-50 text-indigo-700 font-bold rounded-xl hover:bg-indigo-100 border border-indigo-200 flex items-center justify-center gap-3 transition">
+                <button onclick="startReview()" class="px-8 py-4 bg-rose-50 text-rose-700 font-bold rounded-xl hover:bg-rose-100 border border-rose-200 flex items-center justify-center gap-3 transition">
                     <i class="fas fa-list"></i> उत्तर और समाधान की समीक्षा करें
                 </button>
-                <button onclick="showView('home-view')" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 flex items-center justify-center gap-3 shadow-md transition">
+                <button onclick="showView('home-view')" class="px-8 py-4 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 flex items-center justify-center gap-3 shadow-md transition">
                     <i class="fas fa-home"></i> मुख्य पृष्ठ पर लौटें
                 </button>
             </div>
@@ -280,163 +283,143 @@
 
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        // --- DATA GENERATION (SET 4) ---
+        // --- DATA GENERATION (SET 5 - HARD LEVEL) ---
         const generateQuestions = () => {
             const q = (text, options, ans, section) => ({ text, options, ans, section });
             return [
                 // --- PAPER 1: General Aptitude (Questions 1 - 50) ---
-                q("'शिक्षण के सूत्र' (Maxims of Teaching) के अनुसार, शिक्षा किस दिशा में आगे बढ़नी चाहिए?", ["अज्ञात से ज्ञात की ओर", "अमूर्त से मूर्त की ओर", "ज्ञात से अज्ञात की ओर", "जटिल से सरल की ओर"], 2, "पेपर 1: शिक्षण अभिक्षमता"),
-                q("'फ्लिप्ड क्लासरूम' (Flipped Classroom) मॉडल का मुख्य विचार क्या है?", ["कक्षा में केवल खेल खेलना", "छात्र घर पर लेक्चर वीडियो देखते हैं और कक्षा में होमवर्क/प्रोजेक्ट करते हैं", "शिक्षक कक्षा में सोते हैं", "केवल ऑनलाइन परीक्षाएं लेना"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
-                q("SWAYAM का पूर्ण रूप (Full Form) क्या है?", ["Study Webs of Active-Learning for Young Aspiring Minds", "Students Web of Active Youth Action Movement", "Study Web of Artificial Youth And Minds", "State Wide Academic Youth And Motivation"], 0, "पेपर 1: शिक्षण अभिक्षमता"),
-                q("नैदानिक मूल्यांकन (Diagnostic Evaluation) मुख्य रूप से क्यों किया जाता है?", ["ग्रेड देने के लिए", "छात्रों की सीखने की कठिनाइयों और कारणों का पता लगाने के लिए", "प्रवेश के लिए", "शिक्षक का वेतन बढ़ाने के लिए"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
-                q("किस शिक्षण विधि में 'करके सीखना' (Learning by doing) पर सबसे अधिक बल दिया जाता है?", ["व्याख्यान विधि (Lecture Method)", "प्रोजेक्ट विधि (Project Method)", "कहानी सुनाना", "पाठ्यपुस्तक विधि"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
-                q("एक शोधकर्ता केवल उन्हीं लोगों को चुनता है जो उसके शोध के उद्देश्य के लिए सबसे उपयुक्त हैं। यह कौन सा नमूनाकरण है?", ["कोटा (Quota)", "स्नोबॉल (Snowball)", "सोद्देश्य या निर्णयात्मक (Purposive/Judgmental)", "सरल यादृच्छिक (Simple Random)"], 2, "पेपर 1: अनुसंधान अभिक्षमता"),
-                q("जब शोध में शून्य परिकल्पना (Null Hypothesis) वास्तव में गलत हो, लेकिन हम उसे अस्वीकार करने में विफल रहते हैं, तो इसे क्या कहते हैं?", ["टाइप I त्रुटि (Type I Error)", "टाइप II त्रुटि (Type II Error)", "मानक त्रुटि", "सिस्टम त्रुटि"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
-                q("शोध में 'गुणात्मक डेटा' (Qualitative Data) का उदाहरण कौन सा है?", ["छात्रों का वजन", "तापमान", "लोगों की राय और दृष्टिकोण", "परीक्षा के अंक"], 2, "पेपर 1: अनुसंधान अभिक्षमता"),
-                q("एक शोध पत्र (Research Paper) लिखने में सबसे पहला कदम क्या होना चाहिए?", ["डेटा विश्लेषण", "साहित्य की समीक्षा (Literature Review) / समस्या की पहचान", "निष्कर्ष लिखना", "संदर्भ ग्रंथ सूची तैयार करना"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
-                q("APA प्रारूप (Format) का उपयोग मुख्य रूप से किस क्षेत्र के शोध पत्रों के संदर्भ देने के लिए किया जाता है?", ["सामाजिक विज्ञान (Social Sciences)", "साहित्य और भाषा", "रसायन विज्ञान", "कंप्यूटर विज्ञान"], 0, "पेपर 1: अनुसंधान अभिक्षमता"),
-                q("विभिन्न संस्कृतियों के लोगों के बीच होने वाले संचार को क्या कहा जाता है?", ["समूह संचार", "अंतर-सांस्कृतिक संचार (Inter-cultural communication)", "अंतर-वैयक्तिक संचार", "सार्वजनिक संचार"], 1, "पेपर 1: संचार"),
-                q("संचार में 'सिमेंटिक शोर' (Semantic Noise) का क्या कारण होता है?", ["बाहर का ट्रैफिक", "खराब टेलीफोन लाइन", "प्रेषक और प्राप्तकर्ता द्वारा शब्दों के अलग-अलग अर्थ निकालना", "तेज संगीत"], 2, "पेपर 1: संचार"),
-                q("जब कोई कंपनी अपने कर्मचारियों को नियम और नीतियां बताती है, तो यह किस प्रकार का संचार है?", ["क्षैतिज संचार (Horizontal)", "नीचे की ओर संचार (Downward)", "ऊपर की ओर संचार (Upward)", "विकर्ण संचार (Diagonal)"], 1, "पेपर 1: संचार"),
-                q("संचार प्रक्रिया में संदेश को प्रतीकों, शब्दों या चित्रों में बदलने की प्रक्रिया को क्या कहते हैं?", ["डिकोडिंग", "एन्कोडिंग (Encoding)", "फीडबैक", "चैनलिंग"], 1, "पेपर 1: संचार"),
-                q("दृश्य संचार (Visual Communication) का सबसे अच्छा उदाहरण कौन सा है?", ["रेडियो प्रसारण", "ट्रैफिक लाइट के रंग", "टेलीफोन कॉल", "पॉडकास्ट"], 1, "पेपर 1: संचार"),
-                q("निम्नलिखित में से कौन सी मेमोरी स्थायी (Non-Volatile) होती है?", ["SRAM", "DRAM", "ROM", "Cache"], 2, "पेपर 1: ICT"),
-                q("कंप्यूटर में 'SSD' का पूर्ण रूप क्या है?", ["Solid State Drive", "Super Speed Drive", "Solid System Disk", "Static State Drive"], 0, "पेपर 1: ICT"),
-                q("इंटरनेट पर वेबसाइटों के नाम (.com, .edu, .gov) को क्या कहा जाता है?", ["IP Address", "Top-Level Domain (TLD)", "MAC Address", "Router"], 1, "पेपर 1: ICT"),
-                q("बाइनरी संख्या '1010' का दशमलव (Decimal) मान क्या होगा?", ["8", "10", "12", "14"], 1, "पेपर 1: ICT"),
-                q("माइक्रोसॉफ्ट एक्सेल में किसी भी फॉर्मूले की शुरुआत किस प्रतीक से होती है?", ["#", "@", "=", "$"], 2, "पेपर 1: ICT"),
-                q("ध्वनि प्रदूषण को मापने की इकाई क्या है?", ["हर्ट्ज (Hz)", "डेसिबल (dB)", "जूल (J)", "न्यूटन (N)"], 1, "पेपर 1: पर्यावरण"),
-                q("'कॉप 21' (COP 21) जिसमें ऐतिहासिक जलवायु समझौता हुआ था, कहाँ आयोजित किया गया था?", ["क्योटो", "पेरिस (Paris)", "रियो डी जनेरियो", "जिनेवा"], 1, "पेपर 1: पर्यावरण"),
-                q("निम्नलिखित में से कौन सा नवीकरणीय (Renewable) ऊर्जा का स्रोत नहीं है?", ["सौर ऊर्जा", "पवन ऊर्जा", "कोयला (Coal)", "बायोमास"], 2, "पेपर 1: पर्यावरण"),
-                q("खाद्य श्रृंखला में ऊपर जाने पर विषाक्त पदार्थों (जैसे DDT) की सांद्रता बढ़ने की प्रक्रिया को क्या कहते हैं?", ["बायोरेमेडिएशन", "बायोमैग्निफिकेशन (Biomagnification)", "बायोमास", "इकोटोन"], 1, "पेपर 1: पर्यावरण"),
-                q("ओजोन परत की मोटाई मापने की इकाई क्या है?", ["डोबसन इकाई (Dobson Unit)", "नॉट", "बैरल", "रिक्टर"], 0, "पेपर 1: पर्यावरण"),
-                q("भारत में 'राष्ट्रीय मूल्यांकन और प्रत्यायन परिषद' (NAAC) का मुख्य कार्य क्या है?", ["छात्रों को छात्रवृत्ति देना", "उच्च शिक्षा संस्थानों का मूल्यांकन और मान्यता प्रदान करना (Accreditation)", "स्कूल की किताबें छापना", "शिक्षकों की भर्ती करना"], 1, "पेपर 1: उच्च शिक्षा"),
-                q("प्राचीन भारत का 'तक्षशिला' (Taxila) विश्वविद्यालय मुख्य रूप से किस विषय के अध्ययन के लिए प्रसिद्ध था?", ["केवल बौद्ध धर्म", "चिकित्सा शास्त्र (Medicine) और युद्ध कला", "केवल गणित", "यूनानी दर्शन"], 1, "पेपर 1: उच्च शिक्षा"),
-                q("NEP 2020 के अनुसार, उच्च शिक्षा के लिए एक एकल नियामक निकाय (Single Umbrella Body) का क्या नाम प्रस्तावित है?", ["UGC", "AICTE", "HECI (Higher Education Commission of India)", "NCTE"], 2, "पेपर 1: उच्च शिक्षा"),
-                q("शिक्षा को भारतीय संविधान की किस सूची (List) में रखा गया है?", ["संघ सूची (Union List)", "राज्य सूची (State List)", "समवर्ती सूची (Concurrent List)", "अवशिष्ट सूची"], 2, "पेपर 1: उच्च शिक्षा / राजनीति"),
-                q("MOOCs का पूर्ण रूप क्या है?", ["Massive Open Online Courses", "Modern Online Open Classes", "Multiple Offline Open Courses", "Massive Open Offline Classes"], 0, "पेपर 1: उच्च शिक्षा"),
-                q("यदि 'A' भाई है 'B' का, 'C' पिता है 'A' का, 'D' भाई है 'E' का, और 'E' बेटी है 'B' की, तो 'D' का चाचा/मामा कौन है?", ["C", "A", "B", "तय नहीं किया जा सकता"], 1, "पेपर 1: लॉजिकल रीजनिंग"),
-                q("श्रृंखला पूरी करें: 5, 11, 24, 51, 106, ?", ["212", "217", "219", "222"], 1, "पेपर 1: गणितीय तर्क"),
-                q("एक आदमी एक वस्तु को ₹150 में खरीदता है और उसे 20% लाभ पर बेचता है। विक्रय मूल्य क्या होगा?", ["₹160", "₹170", "₹180", "₹200"], 2, "पेपर 1: गणितीय तर्क"),
-                q("सभी कवि स्वप्नदृष्टा हैं। कुछ चित्रकार स्वप्नदृष्टा हैं। निष्कर्ष: I. कुछ चित्रकार कवि हैं। II. कुछ स्वप्नदृष्टा चित्रकार नहीं हैं।", ["केवल I सही है", "केवल II सही है", "दोनों सही हैं", "दोनों गलत हैं"], 3, "पेपर 1: लॉजिकल रीजनिंग"),
-                q("A और B एक काम को क्रमशः 10 दिन और 15 दिन में पूरा कर सकते हैं। दोनों मिलकर उस काम को कितने दिन में पूरा करेंगे?", ["4 दिन", "5 दिन", "6 दिन", "8 दिन"], 2, "पेपर 1: गणितीय तर्क"),
-                q("डेटा व्याख्या में 'औसत वृद्धि दर' (Average Growth Rate) निकालने के लिए किन आंकड़ों की तुलना की जाती है?", ["केवल पहले वर्ष की", "केवल अंतिम वर्ष की", "प्रारंभिक और अंतिम वर्ष के मानों के अंतर की", "सभी वर्षों के योग की"], 2, "पेपर 1: डेटा व्याख्या"),
-                q("डेटा प्रदर्शित करने के लिए 'लाइन ग्राफ' का उपयोग मुख्य रूप से कब किया जाता है?", ["कुल के हिस्सों को दिखाने के लिए", "समय के साथ रुझान (Trends over time) दिखाने के लिए", "केवल दो संख्याओं की तुलना के लिए", "स्थानिक डेटा के लिए"], 1, "पेपर 1: डेटा व्याख्या"),
-                q("एक निश्चित कोड भाषा में 'COMPUTER' को 'RFUVQNPC' लिखा जाता है। उसी भाषा में 'MEDICINE' कैसे लिखा जाएगा?", ["EOJDJEFM", "EOJDEJFM", "MFEJDJOE", "MFEDJJOE"], 0, "पेपर 1: लॉजिकल रीजनिंग"),
-                q("दो संख्याओं का HCF (म.स.प.) 8 है और LCM (ल.स.प.) 48 है। यदि एक संख्या 16 है, तो दूसरी संख्या क्या होगी?", ["24", "32", "40", "48"], 0, "पेपर 1: गणितीय तर्क"),
-                q("पठन बोध (Reading Comprehension) का आकलन करते समय, 'अनुमान लगाना' (Inferencing) का क्या अर्थ है?", ["पाठ को तेजी से पढ़ना", "लेखक के प्रत्यक्ष रूप से न कहे गए अर्थ को समझना (Reading between the lines)", "शब्दों की वर्तनी जांचना", "पाठ का अनुवाद करना"], 1, "पेपर 1: पठन बोध"),
-                q("कौन सा वायु प्रदूषक रक्त के हीमोग्लोबिन के साथ ऑक्सीजन की तुलना में बहुत तेजी से जुड़ता है?", ["कार्बन डाइऑक्साइड", "कार्बन मोनोऑक्साइड (CO)", "ओजोन", "मीथेन"], 1, "पेपर 1: पर्यावरण"),
-                q("शिक्षण अभिक्षमता में 'ब्लैकबोर्ड' किस प्रकार की शिक्षण सहायक सामग्री है?", ["श्रव्य", "दृश्य (Visual)", "श्रव्य-दृश्य", "डिजिटल"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
-                q("शोध नैतिकता (Research Ethics) का उल्लंघन किसे माना जाता है?", ["सही डेटा प्रस्तुत करना", "दूसरे के काम को अपना बताकर प्रस्तुत करना (साहित्यिक चोरी)", "संदर्भ (References) देना", "गोपनीयता बनाए रखना"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
-                q("कंप्यूटर को इंटरनेट से जोड़ने के लिए किस उपकरण की आवश्यकता होती है?", ["प्रिंटर", "मॉडेम (Modem)", "स्कैनर", "प्लॉटर"], 1, "पेपर 1: ICT"),
-                q("प्रसिद्ध पर्यावरण आंदोलन 'चिपको आंदोलन' किस राज्य से शुरू हुआ था?", ["केरल", "राजस्थान", "उत्तराखंड", "मध्य प्रदेश"], 2, "पेपर 1: पर्यावरण"),
-                q("इंदिरा गांधी राष्ट्रीय मुक्त विश्वविद्यालय (IGNOU) की स्थापना किस वर्ष हुई थी?", ["1975", "1980", "1985", "1990"], 2, "पेपर 1: उच्च शिक्षा"),
-                q("एक व्यक्ति दक्षिण की ओर 12 किमी चलता है, फिर बाएँ मुड़ता है और 5 किमी चलता है। वह अपने आरंभिक बिंदु से कितनी दूरी पर है?", ["13 किमी", "15 किमी", "17 किमी", "19 किमी"], 0, "पेपर 1: लॉजिकल रीजनिंग"),
-                q("एक आयत की लंबाई 20% बढ़ा दी जाती है और चौड़ाई 20% कम कर दी जाती है। उसके क्षेत्रफल पर क्या प्रभाव पड़ेगा?", ["कोई प्रभाव नहीं", "4% की कमी", "4% की वृद्धि", "20% की कमी"], 1, "पेपर 1: गणितीय तर्क"),
-                q("कक्षा में संचार को बेहतर बनाने के लिए शिक्षक को क्या करना चाहिए?", ["जटिल शब्दों का प्रयोग", "छात्रों की ओर ध्यान न देना", "सहानुभूति (Empathy) और सक्रिय श्रवण", "लगातार डांटना"], 2, "पेपर 1: संचार"),
-                q("शोध में 'नमूनाकरण त्रुटि' (Sampling Error) को कैसे कम किया जा सकता है?", ["नमूना आकार (Sample Size) बढ़ाकर", "नमूना आकार घटाकर", "त्रुटिपूर्ण डेटा लेकर", "शोध को रोककर"], 0, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("शिक्षाशास्त्र में 'ह्यूटागॉजी' (Heutagogy) की अवधारणा का तात्पर्य क्या है?", ["शिक्षक-निर्देशित अधिगम", "सहकर्मी-निर्देशित अधिगम", "स्व-निर्धारित (Self-determined) अधिगम", "मशीन-आधारित अधिगम"], 2, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("रॉबर्ट गैग्ने (Gagné) की सीखने की शर्तों (Conditions of Learning) के पदानुक्रम में सबसे शीर्ष पर कौन सा अधिगम है?", ["संप्रत्यय अधिगम (Concept Learning)", "सिद्धांत अधिगम (Rule Learning)", "समस्या समाधान अधिगम (Problem Solving)", "बहु-विभेदन (Multiple Discrimination)"], 2, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("शिक्षण के 'चिंतनशील स्तर' (Reflective Level) के मुख्य प्रस्तावक कौन हैं?", ["हर्बर्ट (Herbart)", "मॉरिसन (Morrison)", "हंट (Hunt)", "स्किनर (Skinner)"], 2, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("निम्नलिखित में से कौन सा रचनात्मक मूल्यांकन (Formative Evaluation) का सटीक उदाहरण है?", ["सत्र के अंत में दी जाने वाली वार्षिक परीक्षा", "कक्षा शिक्षण के दौरान ली जाने वाली साप्ताहिक क्विज़", "विश्वविद्यालय की प्रवेश परीक्षा", "शोध प्रबंध का अंतिम बचाव (Defense)"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("ज्ञानमीमांसा (Epistemology) अनुसंधान के किस पहलू से संबंधित है?", ["अस्तित्व की प्रकृति (Nature of reality)", "ज्ञान की प्रकृति और उत्पत्ति (Nature and origin of knowledge)", "नैतिक मूल्य (Ethics)", "सौंदर्यशास्त्र (Aesthetics)"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("शोध में 'टाइप II त्रुटि' (Type II Error) की सांख्यिकीय शक्ति (Power of a statistical test) की गणना कैसे की जाती है?", ["α (Alpha)", "1 - α", "β (Beta)", "1 - β"], 3, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("यदि आप यह जाँचना चाहते हैं कि तीन अलग-अलग शिक्षण विधियों का छात्रों के प्रदर्शन पर प्रभाव अलग-अलग है या नहीं (जहाँ एक स्वतंत्र चर के तीन स्तर हैं), तो आप किस सांख्यिकीय परीक्षण का उपयोग करेंगे?", ["टी-टेस्ट (t-test)", "ची-स्क्वायर (Chi-square)", "वन-वे एनोवा (One-way ANOVA)", "पियर्सन सहसंबंध (Pearson Correlation)"], 2, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("'क्रुस्कल-वालिस एच परीक्षण' (Kruskal-Wallis H test) सांख्यिकी में किसका गैर-पैरामीट्रिक विकल्प है?", ["स्वतंत्र नमूना टी-टेस्ट", "युग्मित नमूना टी-टेस्ट", "वन-वे एनोवा (One-way ANOVA)", "पियर्सन सहसंबंध"], 2, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("स्नोबॉल नमूनाकरण (Snowball Sampling) मुख्य रूप से तब उपयोगी होता है जब:", ["जनसंख्या बहुत बड़ी और सजातीय हो", "शोधकर्ता के पास बहुत सारा पैसा हो", "लक्षित जनसंख्या तक पहुंचना मुश्किल हो (Hidden populations)", "यादृच्छिककरण की सख्त आवश्यकता हो"], 2, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("शोध प्रबंध लिखते समय, 'op. cit.' (Opere Citato) का उपयोग संदर्भ में कब किया जाता है?", ["ठीक उसी पृष्ठ के लिए जो ऊपर उद्धृत है", "उसी लेखक द्वारा पहले उद्धृत किए गए किसी कार्य को संदर्भित करने के लिए (अलग पृष्ठ)", "किसी अज्ञात लेखक के लिए", "एक से अधिक लेखकों को संदर्भित करने के लिए"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("डेविड बर्लो (David Berlo) के SMCR मॉडल में, संचार कौशल, दृष्टिकोण, ज्ञान और सामाजिक प्रणाली किसके हिस्से हैं?", ["केवल प्रेषक (Sender)", "केवल प्राप्तकर्ता (Receiver)", "संदेश (Message) और चैनल (Channel)", "प्रेषक (Sender) और प्राप्तकर्ता (Receiver) दोनों"], 3, "पेपर 1: संचार"),
+                q("संचार के संदर्भ में 'एन्ट्रोपी' (Entropy) शब्द का क्या अर्थ है?", ["संदेश की अधिकतम स्पष्टता", "संचार में अनिश्चितता, अव्यवस्था या सूचना का नुकसान", "प्राप्तकर्ता द्वारा तत्काल प्रतिक्रिया", "प्रेषक का आत्मविश्वास"], 1, "पेपर 1: संचार"),
+                q("अंतर-सांस्कृतिक संचार में 'एथनोसेंट्रिज्म' (Ethnocentrism) का क्या अर्थ है?", ["सभी संस्कृतियों को समान मानना", "अपनी स्वयं की संस्कृति को श्रेष्ठ मानना और उसके मानकों से दूसरों को आंकना", "दूसरी संस्कृति को पूरी तरह अपना लेना", "किसी भी संस्कृति का पालन न करना"], 1, "पेपर 1: संचार"),
+                q("संचार नेटवर्क में, वह व्यक्ति जो दो या दो से अधिक समूहों को जोड़ता है लेकिन स्वयं किसी का सदस्य नहीं होता है, उसे क्या कहा जाता है?", ["गेटकीपर (Gatekeeper)", "ओपिनियन लीडर (Opinion Leader)", "लिंकेज (Linkage) या लियाज़ोन (Liaison)", "आइसोलेट (Isolate)"], 2, "पेपर 1: संचार"),
+                q("एक कक्षा में एक छात्र शिक्षक के व्याख्यान पर सिर हिला रहा है, लेकिन वह कुछ और सोच रहा है। यह किस प्रकार की श्रवण (Listening) बाधा है?", ["शारीरिक (Physical)", "सिमेंटिक (Semantic)", "मनोवैज्ञानिक (Psychological)", "शारीरिक (Physiological)"], 2, "पेपर 1: संचार"),
+                q("कंप्यूटर नेटवर्किंग में, IPv6 एड्रेस स्पेस कितने बिट्स का होता है?", ["32 बिट्स", "64 बिट्स", "128 बिट्स", "256 बिट्स"], 2, "पेपर 1: ICT"),
+                q("मालवेयर का वह प्रकार जो उपयोगकर्ता की फाइलों को एन्क्रिप्ट कर देता है और उन्हें डिक्रिप्ट करने के लिए पैसे मांगता है, क्या कहलाता है?", ["स्पाईवेयर (Spyware)", "रैनसमवेयर (Ransomware)", "वर्म (Worm)", "ट्रोजन हॉर्स (Trojan Horse)"], 1, "पेपर 1: ICT"),
+                q("हेक्साडेसिमल संख्या प्रणाली (Hexadecimal Number System) का आधार (Base) क्या है?", ["2", "8", "10", "16"], 3, "पेपर 1: ICT"),
+                q("ईमेल प्रोटोकॉल में 'IMAP' का पूर्ण रूप क्या है?", ["Internet Message Access Protocol", "Internal Media Access Protocol", "Internet Mail Application Protocol", "International Message Authorized Protocol"], 0, "पेपर 1: ICT"),
+                q("निम्नलिखित में से कौन सा एक 'सिंक्रोनस' (Synchronous) ई-लर्निंग टूल नहीं है?", ["लाइव वेबिनार", "वीडियो कॉन्फ्रेंसिंग (Zoom)", "तत्काल संदेश (Instant Messaging)", "चर्चा मंच (Discussion Forum)"], 3, "पेपर 1: ICT"),
+                q("जैव रासायनिक ऑक्सीजन मांग (BOD) मुख्य रूप से जल में क्या मापता है?", ["कुल घुलित ठोस (TDS)", "जैविक पदार्थों को विघटित करने के लिए सूक्ष्मजीवों द्वारा आवश्यक ऑक्सीजन की मात्रा", "जल की क्षारीयता", "भारी धातुओं की सांद्रता"], 1, "पेपर 1: पर्यावरण"),
+                q("क्योटो प्रोटोकॉल के तहत 'स्वच्छ विकास तंत्र' (Clean Development Mechanism - CDM) का उद्देश्य क्या था?", ["विकासशील देशों को उत्सर्जन कम करने वाली परियोजनाओं में मदद करके विकसित देशों को कार्बन क्रेडिट अर्जित करने देना", "नदियों को साफ करना", "ओजोन छिद्र की मरम्मत करना", "प्लास्टिक का पुनर्चक्रण"], 0, "पेपर 1: पर्यावरण"),
+                q("सतत विकास लक्ष्य 13 (SDG 13) मुख्य रूप से किस पर केंद्रित है?", ["गुणवत्तापूर्ण शिक्षा", "जलवायु कार्रवाई (Climate Action)", "लैंगिक समानता", "पानी के नीचे जीवन"], 1, "पेपर 1: पर्यावरण"),
+                q("भारत में 'राष्ट्रीय वायु गुणवत्ता सूचकांक' (NAAQI) में कितने प्रदूषकों को मापा जाता है?", ["4", "6", "8", "12"], 2, "पेपर 1: पर्यावरण"),
+                q("फोटोकेमिकल स्मॉग (Photochemical Smog) के निर्माण में सूर्य के प्रकाश के साथ मुख्य रूप से कौन से प्रदूषक प्रतिक्रिया करते हैं?", ["SO2 और पार्टिकुलेट मैटर", "नाइट्रोजन ऑक्साइड (NOx) और वाष्पशील कार्बनिक यौगिक (VOCs)", "कार्बन मोनोऑक्साइड", "सीएफसी (CFCs)"], 1, "पेपर 1: पर्यावरण"),
+                q("NEP 2020 के अनुसार, स्कूल शिक्षा के लिए प्रस्तावित नया शैक्षणिक और पाठ्यक्रम ढांचा (5+3+3+4) किस आयु वर्ग को कवर करता है?", ["6 से 18 वर्ष", "3 से 18 वर्ष", "5 से 16 वर्ष", "4 से 18 वर्ष"], 1, "पेपर 1: उच्च शिक्षा"),
+                q("प्राचीन भारतीय शिक्षा प्रणाली में, 'विक्रमशिला' विश्वविद्यालय विशेष रूप से किस शाखा के अध्ययन के लिए प्रसिद्ध था?", ["वैदिक गणित", "वज्रयान बौद्ध धर्म (Vajrayana Buddhism / Tantrism)", "आयुर्वेद", "यूनानी चिकित्सा"], 1, "पेपर 1: उच्च शिक्षा"),
+                q("भारत के संविधान का कौन सा अनुच्छेद अल्पसंख्यकों को अपनी पसंद के शैक्षिक संस्थान स्थापित करने और प्रशासित करने का अधिकार देता है?", ["अनुच्छेद 21A", "अनुच्छेद 29", "अनुच्छेद 30", "अनुच्छेद 45"], 2, "पेपर 1: उच्च शिक्षा / राजनीति"),
+                q("'स्वयं प्रभा' (SWAYAM PRABHA) DTH चैनलों को अपलिंक करने के लिए किस उपग्रह का उपयोग किया जाता है?", ["INSAT-3D", "GSAT-15", "EDUSAT", "Chandrayaan-2"], 1, "पेपर 1: उच्च शिक्षा"),
+                q("विश्वविद्यालयों में 'एकैडमिक बैंक ऑफ क्रेडिट' (ABC) प्रणाली का मुख्य उद्देश्य क्या है?", ["विश्वविद्यालयों को धन वितरित करना", "छात्रों की शैक्षणिक गतिशीलता को सुगम बनाना और उनके द्वारा अर्जित क्रेडिट का डिजिटल रिकॉर्ड रखना", "शिक्षकों की उपस्थिति दर्ज करना", "विदेशी छात्रों को प्रवेश देना"], 1, "पेपर 1: उच्च शिक्षा"),
+                q("तार्किक वर्ग-विरोध (Square of Opposition) के अनुसार, यदि 'सभी S, P हैं' (A) सत्य है, तो 'कुछ S, P नहीं हैं' (O) क्या होगा?", ["सत्य (True)", "असत्य (False)", "अनिर्णायक (Undetermined)", "आंशिक रूप से सत्य"], 1, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("अभिकथन (A): संचार में अर्थ (Meaning) संदेश में नहीं, बल्कि लोगों में होता है। कारण (R): डिकोडिंग पूरी तरह से प्राप्तकर्ता की मनोवैज्ञानिक स्थिति और संस्कृति पर निर्भर करती है।", ["A और R दोनों सत्य हैं, और R, A की सही व्याख्या है", "A और R दोनों सत्य हैं, लेकिन R, A की सही व्याख्या नहीं है", "A सत्य है लेकिन R असत्य है", "A असत्य है लेकिन R सत्य है"], 0, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("यदि 'A % B' का अर्थ A, B की माँ है; 'A $ B' का अर्थ A, B का पिता है; 'A # B' का अर्थ A, B की बहन है। तो 'P $ Q # R % S' में P का S से क्या संबंध है?", ["चाचा", "नाना (Maternal Grandfather)", "दादा", "भाई"], 1, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("एक निश्चित राशि पर 2 वर्षों के लिए 10% प्रति वर्ष की दर से चक्रवृद्धि ब्याज और साधारण ब्याज के बीच का अंतर ₹40 है। राशि (Principal) ज्ञात करें।", ["₹2000", "₹3000", "₹4000", "₹5000"], 2, "पेपर 1: गणितीय तर्क"),
+                q("कथन: 'कोई भी आदमी पूर्ण नहीं है।' इसका तार्किक समतुल्य (Logical equivalent) क्या है?", ["सभी आदमी अपूर्ण हैं", "कुछ आदमी पूर्ण नहीं हैं", "कुछ पूर्ण आदमी नहीं हैं", "सभी अपूर्ण आदमी हैं"], 0, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("एक आदमी 10 किमी/घंटा की गति से 40 किमी और 20 किमी/घंटा की गति से 60 किमी की यात्रा करता है। उसकी पूरी यात्रा की औसत गति क्या है?", ["14.28 किमी/घंटा", "15 किमी/घंटा", "16.67 किमी/घंटा", "18 किमी/घंटा"], 0, "पेपर 1: गणितीय तर्क"),
+                q("दी गई संख्या श्रृंखला में गलत पद (Wrong term) ज्ञात कीजिए: 3, 8, 15, 24, 34, 48, 63", ["15", "24", "34", "48"], 2, "पेपर 1: गणितीय तर्क"),
+                q("एक कक्षा में 60% छात्र लड़कियां हैं। यदि 20% लड़कियों और 30% लड़कों को छात्रवृत्ति मिलती है, तो कक्षा के कितने प्रतिशत छात्रों को छात्रवृत्ति नहीं मिलती है?", ["24%", "26%", "74%", "76%"], 3, "पेपर 1: गणितीय तर्क"),
+                q("हेत्वभास (Fallacy) का प्रकार बताएँ: 'चूंकि ब्रह्मांड की हर चीज़ का एक कारण होता है, इसलिए पूरे ब्रह्मांड का भी एक कारण होना चाहिए।'", ["Ad Hominem", "Fallacy of Composition (संयोजन का हेत्वाभास)", "Fallacy of Division", "Red Herring"], 1, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("एनालॉजी हल करें: जैसे 'ऑर्निथोलॉजी' (Ornithology) का संबंध 'पक्षियों' से है, वैसे ही 'एंटोमोलॉजी' (Entomology) का संबंध किससे है?", ["जानवरों", "कवक", "कीड़े (Insects)", "पौधे"], 2, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("डेटा व्याख्या (DI) में, यदि किसी वर्ष कंपनी की आय ₹500 करोड़ है और व्यय ₹400 करोड़ है, तो लाभ प्रतिशत (Profit %) कैसे निकाला जाता है?", ["(500-400)/500 * 100", "(500-400)/400 * 100", "(400/500) * 100", "(500/400) * 100"], 1, "पेपर 1: डेटा व्याख्या"),
+                q("डेटा व्याख्या में 'सहसंबंध गुणांक' (Correlation Coefficient) r का मान हमेशा किसके बीच होता है?", ["0 से 1", "-1 से +1", "1 से 100", "-100 से +100"], 1, "पेपर 1: डेटा व्याख्या"),
+                q("अनुसंधान नैतिकता में, डेटा फल्सिफिकेशन (Falsification) का क्या अर्थ है?", ["दूसरों का काम चुराना", "परिणामों का समर्थन करने के लिए शोध सामग्री, उपकरण, या प्रक्रियाओं में हेरफेर करना या डेटा को बदलना", "डेटा को पूरी तरह से बनाना (Fabrication)", "डेटा को प्रकाशित न करना"], 1, "पेपर 1: अनुसंधान अभिक्षमता"),
+                q("शिक्षण मॉडल 'ADDIE' में 'I' का क्या अर्थ है?", ["Instruction", "Implementation (क्रियान्वयन)", "Innovation", "Integration"], 1, "पेपर 1: शिक्षण अभिक्षमता"),
+                q("विंडोज ऑपरेटिंग सिस्टम में 'क्लिपबोर्ड' (Clipboard) की सामग्री को कट (Cut) करने के लिए किस शॉर्टकट कुंजी का उपयोग होता है?", ["Ctrl + C", "Ctrl + X", "Ctrl + V", "Ctrl + Z"], 1, "पेपर 1: ICT"),
+                q("'सस्टेनेबल डेवलपमेंट गोल्स' (SDGs) को संयुक्त राष्ट्र द्वारा किस वर्ष अपनाया गया था?", ["2000", "2012", "2015", "2020"], 2, "पेपर 1: पर्यावरण"),
+                q("शिक्षा के लिए 'यशपाल समिति' (Yash Pal Committee - 2009) का मुख्य विषय क्या था?", ["मुफ्त लैपटॉप वितरण", "उच्च शिक्षा के नवीनीकरण और कायाकल्प (Renovation and Rejuvenation of Higher Education)", "प्राथमिक विद्यालयों का निर्माण", "विदेशी विश्वविद्यालयों का प्रवेश"], 1, "पेपर 1: उच्च शिक्षा"),
+                q("तर्कशास्त्र में 'न्याय' (Nyaya) दर्शन के अनुसार ज्ञान के कितने वैध स्रोत (Pramanas) हैं?", ["2 (प्रत्यक्ष, अनुमान)", "3", "4 (प्रत्यक्ष, अनुमान, उपमान, शब्द)", "6"], 2, "पेपर 1: लॉजिकल रीजनिंग"),
+                q("यदि किसी महीने की 3 तारीख को शुक्रवार है, तो उसी महीने की 25 तारीख को कौन सा दिन होगा?", ["शुक्रवार", "शनिवार", "रविवार", "सोमवार"], 1, "पेपर 1: गणितीय तर्क"),
+                q("परिसंचरण (Circulation) और प्रसारण (Broadcasting) संचार के किस रूप के अंतर्गत आते हैं?", ["इंटरपर्सनल", "जन संचार (Mass Communication)", "इंट्रापर्सनल", "ग्रुप संचार"], 1, "पेपर 1: संचार"),
 
                 // --- PAPER 2: Home Science (Questions 51 - 150) ---
-                q("विटामिन B1 (थायमिन) की कमी से मुख्य रूप से कौन सा रोग होता है?", ["स्कर्वी", "बेरी-बेरी (Beri-beri)", "पेलाग्रा", "रतौंधी"], 1, "पेपर 2: आहार एवं पोषण"),
-                q("खाद्य पदार्थों में प्रोटीन की गुणवत्ता का आकलन करने के लिए 'PER' का पूर्ण रूप क्या है?", ["Protein Energy Ratio", "Protein Efficiency Ratio", "Protein Estimation Rate", "Protein Energy Requirement"], 1, "पेपर 2: खाद्य विज्ञान"),
-                q("भोजन पकाने की किस विधि में पानी का उपयोग ताप के माध्यम के रूप में नहीं किया जाता है?", ["उबालना (Boiling)", "सिमरिंग (Simmering)", "भूनना (Roasting)", "स्टीमिंग (Steaming)"], 2, "पेपर 2: खाद्य विज्ञान"),
-                q("चीनी (Sugar) को उच्च तापमान पर गर्म करने से उसका भूरा होना कौन सी प्रक्रिया कहलाती है?", ["मैलेर्ड रिएक्शन", "कारमेलाइजेशन (Caramelization)", "जिलेटिनाइजेशन", "पायसीकरण"], 1, "पेपर 2: खाद्य विज्ञान"),
-                q("आहार फाइबर (Dietary Fiber) का मुख्य कार्य क्या है?", ["ऊर्जा प्रदान करना", "मांसपेशियों का निर्माण", "कब्ज रोकना और मल त्याग को सुगम बनाना", "रक्त निर्माण"], 2, "पेपर 2: आहार एवं पोषण"),
-                q("कीटो डाइट (Keto Diet) में किस पोषक तत्व का सेवन बहुत कम कर दिया जाता है?", ["वसा (Fat)", "प्रोटीन", "विटामिन", "कार्बोहाइड्रेट (Carbohydrates)"], 3, "पेपर 2: उपचारात्मक पोषण"),
-                q("हल्दी पाउडर में मिलावट के रूप में अक्सर किस जहरीले पीले रसायन का उपयोग किया जाता है?", ["सूडान रेड", "मेटानिल येलो (Metanil Yellow)", "आर्गेमोन", "मैलाकाइट ग्रीन"], 1, "पेपर 2: खाद्य विज्ञान"),
-                q("दूध में मुख्य रूप से कौन सा कार्बोहाइड्रेट पाया जाता है?", ["सुक्रोज", "लैक्टोज", "माल्टोज", "ग्लूकोज"], 1, "पेपर 2: आहार एवं पोषण"),
-                q("उच्च यूरिक एसिड (Gout) वाले रोगियों को किस प्रकार के आहार से बचने की सलाह दी जाती है?", ["प्यूरिन युक्त आहार (जैसे रेड मीट, ऑर्गन मीट)", "विटामिन सी युक्त आहार", "कैल्शियम युक्त आहार", "फाइबर युक्त आहार"], 0, "पेपर 2: उपचारात्मक पोषण"),
-                q("मानव शरीर में कार्बोहाइड्रेट किस रूप में जमा होता है?", ["स्टार्च", "ग्लाइकोजन (Glycogen)", "ग्लूकोज", "लैक्टोज"], 1, "पेपर 2: आहार एवं पोषण"),
-                q("संतुलित आहार (Balanced Diet) में ऊर्जा का कितना प्रतिशत कार्बोहाइड्रेट से आना चाहिए?", ["10-20%", "30-40%", "55-65%", "80-90%"], 2, "पेपर 2: आहार एवं पोषण"),
-                q("किस पोषक तत्व को 'बॉडी बिल्डिंग फूड' कहा जाता है?", ["कार्बोहाइड्रेट", "वसा", "विटामिन", "प्रोटीन"], 3, "पेपर 2: आहार एवं पोषण"),
-                q("खाद्य परिरक्षण की 'पाश्चुरीकरण' (Pasteurization) विधि का आविष्कार किसने किया था?", ["लुई पाश्चर (Louis Pasteur)", "अलेक्जेंडर फ्लेमिंग", "रॉबर्ट हुक", "एडवर्ड जेनर"], 0, "पेपर 2: खाद्य विज्ञान"),
-                q("नवजात शिशु के लिए सबसे पहला पीला, गाढ़ा दूध जो रोग प्रतिरोधक क्षमता बढ़ाता है, क्या कहलाता है?", ["सीरम", "कोलोस्ट्रम (Colostrum)", "प्रोलेक्टिन", "ऑक्सीटोसिन"], 1, "पेपर 2: आहार एवं पोषण"),
-                q("ऑस्टियोपोरोसिस (हड्डियों का खोखलापन) मुख्य रूप से किसकी कमी से होता है?", ["आयरन", "विटामिन सी", "कैल्शियम और विटामिन डी", "विटामिन बी कॉम्प्लेक्स"], 2, "पेपर 2: उपचारात्मक पोषण"),
-                q("आयोडीन की कमी को दूर करने के लिए भारत में मुख्य रूप से किस खाद्य पदार्थ को फोर्टिफाई (Fortify) किया जाता है?", ["दूध", "नमक (Salt)", "चावल", "तेल"], 1, "पेपर 2: सार्वजनिक पोषण"),
-                q("फूड सर्विस में 'टेबल डी'होट' (Table d'hôte) मेनू का क्या अर्थ है?", ["अपनी पसंद से चुनना (A la carte)", "एक निश्चित कीमत पर एक पूरा भोजन (Set menu)", "केवल पेय पदार्थ", "मुफ्त भोजन"], 1, "पेपर 2: खाद्य सेवा प्रबंधन"),
-                q("खाद्य पदार्थों में प्राकृतिक रूप से पाए जाने वाले रंगद्रव्य 'क्लोरोफिल' (Chlorophyll) का रंग क्या होता है?", ["लाल", "नारंगी", "हरा", "बैंगनी"], 2, "पेपर 2: खाद्य विज्ञान"),
-                q("शरीर में आयरन का परिवहन करने वाले प्रोटीन का नाम क्या है?", ["हीमोग्लोबिन", "ट्रांसफेरिन (Transferrin)", "एल्ब्यूमिन", "ग्लोब्युलिन"], 1, "पेपर 2: आहार एवं पोषण"),
-                q("सीलिएक रोग (Celiac Disease) के रोगियों को किस अनाज से पूरी तरह बचना चाहिए?", ["चावल", "मक्का", "गेहूं (Gluten)", "बाजरा"], 2, "पेपर 2: उपचारात्मक पोषण"),
-                q("रेशम (Silk) के उत्पादन और पालन की प्रक्रिया को क्या कहा जाता है?", ["एपीकल्चर", "सेरीकल्चर (Sericulture)", "पीसीकल्चर", "हॉर्टिकल्चर"], 1, "पेपर 2: वस्त्र विज्ञान"),
-                q("बुनाई (Weaving) में जो धागे लंबाई (Lengthwise) में खींचे जाते हैं, उन्हें क्या कहते हैं?", ["बाना (Weft)", "ताना (Warp)", "सेलवेज", "बायस"], 1, "पेपर 2: वस्त्र निर्माण"),
-                q("बास्केट वीव (Basket Weave) किस मूल बुनाई का ही एक प्रकार (Variation) है?", ["टवील बुनाई", "सैटिन बुनाई", "सादी बुनाई (Plain Weave)", "जैकर्ड बुनाई"], 2, "पेपर 2: वस्त्र निर्माण"),
-                q("नायलॉन, पॉलिएस्टर और ऐक्रेलिक किस प्रकार के फाइबर हैं?", ["प्राकृतिक", "पुनर्जीवित (Regenerated)", "सिंथेटिक (Synthetic / Man-made)", "खनिज"], 2, "पेपर 2: वस्त्र विज्ञान"),
-                q("कपड़े पर रंगाई (Dyeing) करने का सबसे अंतिम चरण (stage) कौन सा हो सकता है?", ["फाइबर रंगाई", "सूत (Yarn) रंगाई", "पीस (Fabric) रंगाई", "परिधान (Garment) रंगाई"], 3, "पेपर 2: वस्त्र विज्ञान"),
-                q("गुजरात और राजस्थान की प्रसिद्ध 'बंधनी' (Bandhani) किस कला का उदाहरण है?", ["टाई एंड डाई (Tie & Dye)", "ब्लॉक प्रिंटिंग", "रोलर प्रिंटिंग", "कढ़ाई"], 0, "पेपर 2: पारंपरिक वस्त्र"),
-                q("कलमकारी (Kalamkari) कला भारत के किस राज्य की पहचान है?", ["पंजाब", "आंध्र प्रदेश", "गुजरात", "असम"], 1, "पेपर 2: पारंपरिक वस्त्र"),
-                q("कपास के रेशे मुख्य रूप से किस रासायनिक पदार्थ से बने होते हैं?", ["प्रोटीन", "सेल्युलोज (Cellulose)", "लिग्निन", "केराटिन"], 1, "पेपर 2: वस्त्र विज्ञान"),
-                q("वस्त्र परीक्षण में 'GSM' का अर्थ क्या है?", ["Grams per Square Meter (कपड़े का वजन)", "Good Standard Material", "General Size Measure", "Grams per Single Meter"], 0, "पेपर 2: वस्त्र परीक्षण"),
-                q("सिलाई में 'रनिंग स्टिच' (Running Stitch) का उपयोग मुख्य रूप से किसलिए होता है?", ["कपड़े को पक्का सिलने के लिए", "कच्ची सिलाई (Basting) या गैदरिंग के लिए", "बटन लगाने के लिए", "ज़िपर लगाने के लिए"], 1, "पेपर 2: परिधान निर्माण"),
-                q("क्रेप (Crepe), शिफॉन और जोर्जेट कपड़े किस प्रकार के धागे (Yarn) से बनते हैं?", ["कम ऐंठन (Low twist) वाले", "अधिक ऐंठन (High twist) वाले धागे", "बिना ऐंठन वाले", "केवल ऊनी धागे"], 1, "पेपर 2: वस्त्र निर्माण"),
-                q("कपड़े के सिकुड़ने (Shrinkage) को मापने के लिए किस परीक्षण का उपयोग किया जाता है?", ["डाइमेंशनल स्टेबिलिटी टेस्ट (Dimensional Stability Test)", "टीयर स्ट्रेंथ", "क्रीज रिकवरी", "पिलिंग टेस्ट"], 0, "पेपर 2: वस्त्र परीक्षण"),
-                q("'कसूती' (Kasuti) पारंपरिक कढ़ाई किस राज्य की है?", ["कर्नाटक", "पंजाब", "पश्चिम बंगाल", "कश्मीर"], 0, "पेपर 2: पारंपरिक वस्त्र"),
-                q("कपड़े की सतह से अवांछित धागों और रोएं को जलाने की परिष्करण प्रक्रिया को क्या कहते हैं?", ["मर्सराइजेशन", "सिंजिंग (Singeing)", "साइजिंग", "ब्लीचिंग"], 1, "पेपर 2: वस्त्र विज्ञान"),
-                q("ऊन की गुणवत्ता मुख्य रूप से किससे मापी जाती है?", ["रंग से", "वजन से", "फाइबर के व्यास (माइक्रोन) और क्रिम्प से", "लंबाई से"], 2, "पेपर 2: वस्त्र विज्ञान"),
-                q("सिलाई मशीन की सुई में धागा बार-बार टूटने का क्या कारण हो सकता है?", ["सुई का गलत तरीके से लगा होना या टेंशन बहुत टाइट होना", "तेल की कमी", "बॉबिन का खाली होना", "कपड़ा बहुत हल्का होना"], 0, "पेपर 2: परिधान निर्माण"),
-                q("बुने हुए कपड़े (Knitted fabric) में खड़ी पंक्तियों (Vertical columns) को क्या कहा जाता है?", ["कोर्स (Course)", "वेल्स (Wales)", "ताना", "बाना"], 1, "पेपर 2: वस्त्र निर्माण"),
-                q("सूती कपड़े को फफूंदी (Mildew) से बचाने के लिए क्या सावधानी बरतनी चाहिए?", ["उसे गीला रखना चाहिए", "उसे पूरी तरह से सूखा और हवादार जगह पर रखना चाहिए", "उसे प्लास्टिक में कसकर बांधना चाहिए", "उस पर तेल लगाना चाहिए"], 1, "पेपर 2: वस्त्र देखभाल"),
-                q("परिधान निर्माण में 'टक्स' (Tucks) का उपयोग क्यों किया जाता है?", ["केवल लंबाई बढ़ाने के लिए", "सजावट के लिए और कपड़े को आकार देने के लिए", "कपड़े को रंगने के लिए", "ज़िप लगाने के लिए"], 1, "पेपर 2: परिधान निर्माण"),
-                q("विस्कोस रेयान (Viscose Rayon) किस प्रकार का फाइबर है?", ["पूरी तरह से प्राकृतिक", "पुनर्जीवित सेल्युलोसिक (Regenerated Cellulosic)", "पूरी तरह से सिंथेटिक", "खनिज फाइबर"], 1, "पेपर 2: वस्त्र विज्ञान"),
-                q("प्रबंधन प्रक्रिया (Management Process) के 4 मुख्य चरण क्या हैं?", ["योजना, आयोजन, क्रियान्वयन, नियंत्रण (Planning, Organizing, Actuating, Controlling)", "सोचना, खरीदना, उपयोग करना, फेंकना", "योजना, निवेश, लाभ, हानि", "शुरुआत, मध्य, अंत, समीक्षा"], 0, "पेपर 2: संसाधन प्रबंधन"),
-                q("मार्विन मुंडेल (Marvin Mundel) ने कार्य सरलीकरण के लिए परिवर्तन के कितने वर्ग (Classes of Change) सुझाए हैं?", ["2", "3", "5", "7"], 2, "पेपर 2: संसाधन प्रबंधन"),
-                q("दिन के दौरान कार्यकर्ता की ऊर्जा और उत्पादकता के उतार-चढ़ाव को दर्शाने वाले ग्राफ को क्या कहते हैं?", ["फ्लो चार्ट", "वर्क कर्व (Work Curve / कार्य वक्र)", "पाई चार्ट", "बजट वक्र"], 1, "पेपर 2: संसाधन प्रबंधन"),
-                q("बजट का वह प्रकार जो लंबी अवधि (जैसे घर खरीदना) के लिए बनाया जाता है, क्या कहलाता है?", ["मासिक बजट", "दैनिक बजट", "दीर्घकालिक योजना / पूंजीगत बजट (Capital Budget)", "शून्य बजट"], 2, "पेपर 2: संसाधन प्रबंधन"),
-                q("उपभोक्ता संरक्षण अधिनियम (CPA) 2019 के अनुसार, केंद्रीय उपभोक्ता संरक्षण प्राधिकरण (CCPA) का मुख्य कार्य क्या है?", ["केवल शिकायतें सुनना", "उपभोक्ता अधिकारों को बढ़ावा देना, रक्षा करना और लागू करना (भ्रामक विज्ञापनों को रोकना)", "सामान बेचना", "कीमतें तय करना"], 1, "पेपर 2: उपभोक्ता अध्ययन"),
-                q("एर्गोनॉमिक्स (Ergonomics) में 'एन्थ्रोपोमेट्री' (Anthropometry) का उपयोग किसके लिए किया जाता है?", ["रंगों का चयन करने के लिए", "कार्य क्षेत्र और फर्नीचर को मानव शरीर के माप (Body Dimensions) के अनुकूल डिजाइन करने के लिए", "हवा का तापमान मापने के लिए", "बजट बनाने के लिए"], 1, "पेपर 2: एर्गोनॉमिक्स"),
-                q("आंतरिक सज्जा में 'प्राइमरी रंग' (Primary Colors) कौन से हैं?", ["लाल, पीला, नीला", "हरा, नारंगी, बैंगनी", "सफेद, काला, ग्रे", "गुलाबी, हल्का नीला, पीला"], 0, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
-                q("घर के फर्श की योजना (Floor Plan) में 'प्राइवेट जोन' (Private Zone) में कौन से कमरे आते हैं?", ["लिविंग रूम, डाइनिंग रूम", "किचन, स्टोर रूम", "बेडरूम, बाथरूम", "पोर्च, गेराज"], 2, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
-                q("फर्नीचर व्यवस्था में 'समतुल्यता' (Balance) कितने प्रकार की होती है?", ["औपचारिक (Formal) और अनौपचारिक (Informal)", "बड़ी और छोटी", "गर्म और ठंडी", "सस्ती और महंगी"], 0, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
-                q("आईएसआई (ISI) मार्क प्रमाणन किस संस्था द्वारा दिया जाता है?", ["FSSAI", "AGMARK", "BIS (Bureau of Indian Standards)", "ISO"], 2, "पेपर 2: उपभोक्ता अध्ययन"),
-                q("धन (Money) का वह हिस्सा जो खर्च नहीं किया जाता और भविष्य के लिए रखा जाता है, क्या कहलाता है?", ["निवेश", "बचत (Saving)", "ऋण", "ब्याज"], 1, "पेपर 2: संसाधन प्रबंधन"),
-                q("समय व्यवस्थापन में 'पीक लोड' (Peak Load) को कैसे कम किया जा सकता है?", ["काम को टालकर", "कामों को बांटकर (Delegation) और समय की पूर्व योजना बनाकर", "ज्यादा काम करके", "काम न करके"], 1, "पेपर 2: संसाधन प्रबंधन"),
-                q("रंगों के गुण (Properties of Color) में 'ह्यू' (Hue) का क्या अर्थ है?", ["रंग का हल्कापन या गाढ़ापन", "रंग की चमक या तीव्रता", "रंग का नाम (जैसे लाल, नीला)", "रंग की गर्माहट"], 2, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
-                q("घर की 'ओरिएंटेशन' (Orientation) में सूर्य की रोशनी और हवा का अधिकतम लाभ उठाने के लिए लिविंग रूम की दिशा आदर्श रूप से क्या होनी चाहिए?", ["दक्षिण या दक्षिण-पूर्व", "उत्तर-पश्चिम", "ठीक उत्तर", "ठीक पश्चिम"], 0, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
-                q("पारिवारिक जीवन चक्र के 'सिकुड़न चरण' (Contracting Stage) की क्या विशेषता है?", ["बच्चों का जन्म", "बच्चों का शिक्षा के लिए स्कूल जाना", "बच्चों का स्वतंत्र होकर घर छोड़ना (खाली घोंसला)", "माता-पिता की नई नौकरी"], 2, "पेपर 2: पारिवारिक अध्ययन"),
-                q("चेक (Cheque) पर दो तिरछी रेखाएं खींचने (Crossing a cheque) का क्या अर्थ है?", ["चेक रद्द हो गया है", "नकद भुगतान काउंटर पर नहीं होगा, पैसा सीधे खाते में जाएगा (Account Payee)", "चेक बाउंस हो गया है", "यह एक उपहार है"], 1, "पेपर 2: संसाधन प्रबंधन"),
-                q("कार्य सरलीकरण (Work Simplification) का मुख्य उद्देश्य क्या है?", ["काम को लंबा खींचना", "न्यूनतम समय और ऊर्जा व्यय के साथ अधिकतम कार्य पूरा करना", "गुणवत्ता से समझौता करना", "महंगे उपकरण खरीदना"], 1, "पेपर 2: संसाधन प्रबंधन"),
-                q("गृह विज्ञान में मूल्य (Values), लक्ष्य (Goals) और स्तर (Standards) आपस में कैसे जुड़े हैं?", ["मूल्य लक्ष्य निर्धारित करते हैं, और स्तर लक्ष्यों की प्राप्ति को मापते हैं", "तीनों बिल्कुल अलग हैं", "स्तर सबसे महत्वपूर्ण हैं", "केवल लक्ष्य महत्वपूर्ण हैं"], 0, "पेपर 2: संसाधन प्रबंधन"),
-                q("उपभोक्ता संरक्षण में 'जागो ग्राहक जागो' अभियान का मुख्य उद्देश्य क्या था?", ["खरीददारी को रोकना", "उपभोक्ताओं को उनके अधिकारों और जिम्मेदारियों के प्रति जागरूक करना", "विज्ञापनों पर प्रतिबंध लगाना", "कीमतें बढ़ाना"], 1, "पेपर 2: उपभोक्ता अध्ययन"),
-                q("मकान के नक्शे में खिड़की (Window) को किस प्रतीक द्वारा दर्शाया जाता है?", ["ठोस काली रेखा", "दीवार में दो समानांतर रेखाएं", "एक चक्र (Circle)", "एक तीर (Arrow)"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
-                q("जीन पियाजे (Jean Piaget) के संज्ञानात्मक विकास सिद्धांत में 'स्कीमा' (Schema) का क्या अर्थ है?", ["शारीरिक व्यायाम", "ज्ञान और मानसिक संरचनाओं के निर्माण खंड (Building blocks of knowledge)", "खेल का मैदान", "भावनात्मक प्रतिक्रिया"], 1, "पेपर 2: मानव विकास"),
-                q("लिव वायगोत्स्की के अनुसार, संज्ञानात्मक विकास में सबसे महत्वपूर्ण भूमिका किसकी होती है?", ["केवल आनुवंशिकी", "समाज, संस्कृति और भाषा", "केवल शारीरिक पोषण", "अकेले रहकर सीखना"], 1, "पेपर 2: मानव विकास"),
-                q("एरिक एरिकसन के मनोसामाजिक विकास सिद्धांत के अनुसार, शैशवावस्था (0-1 वर्ष) का मुख्य संघर्ष कौन सा है?", ["स्वायत्तता बनाम शर्म", "पहचान बनाम भूमिका भ्रम", "विश्वास बनाम अविश्वास (Trust vs. Mistrust)", "पहल बनाम अपराधबोध"], 2, "पेपर 2: मानव विकास"),
-                q("भाषा के विकास में 'होलोफ्रेस्टिक' (Holophrastic) अवस्था का क्या अर्थ है?", ["बच्चा बिल्कुल नहीं बोलता", "बच्चा एक ही शब्द का उपयोग पूरे वाक्य के अर्थ में करता है (जैसे 'पानी' का अर्थ 'मुझे पानी चाहिए')", "बच्चा लंबे वाक्य बोलता है", "बच्चा केवल रोता है"], 1, "पेपर 2: मानव विकास"),
-                q("खेल के प्रकारों में, जब बच्चे एक साथ मिलकर एक सामान्य लक्ष्य के लिए खेलते हैं (जैसे घर बनाना), तो उसे क्या कहते हैं?", ["एकाकी खेल (Solitary Play)", "समानांतर खेल (Parallel Play)", "सहकारी खेल (Cooperative Play)", "दर्शक व्यवहार (Onlooker)"], 2, "पेपर 2: मानव विकास"),
-                q("ऑटिज्म स्पेक्ट्रम डिसऑर्डर (ASD) के मुख्य लक्षण क्या हैं?", ["दौड़ने में कठिनाई", "सामाजिक संपर्क और संचार में कठिनाई, और दोहराए जाने वाले व्यवहार", "दृष्टिहीनता", "सुनने में अक्षमता"], 1, "पेपर 2: मानव विकास"),
-                q("ADHD का पूर्ण रूप क्या है, जो बच्चों में पाया जाने वाला एक सामान्य न्यूरो-डेवलपमेंटल विकार है?", ["Autism Deficit Hyperactivity Disorder", "Attention Deficit Hyperactivity Disorder", "Active Development Health Disease", "Anxiety Deficit Hyperactive Disorder"], 1, "पेपर 2: मानव विकास"),
-                q("शारीरिक विकास के 'ग्रॉस मोटर स्किल्स' (Gross Motor Skills) में क्या शामिल है?", ["पेंसिल पकड़ना", "कैंची से काटना", "दौड़ना, कूदना, चढ़ना (बड़ी मांसपेशियों का उपयोग)", "मोती पिरोना"], 2, "पेपर 2: मानव विकास"),
-                q("गार्डनर के बहु-बुद्धि सिद्धांत में, वह बुद्धि जो किसी व्यक्ति को दूसरों की भावनाओं और इरादों को समझने में मदद करती है, क्या कहलाती है?", ["अंतर-वैयक्तिक (Interpersonal) बुद्धि", "अंतरा-वैयक्तिक (Intrapersonal) बुद्धि", "भाषाई बुद्धि", "तार्किक बुद्धि"], 0, "पेपर 2: मानव विकास"),
-                q("कोहलबर्ग (Kohlberg) के नैतिक विकास सिद्धांत में कितने मुख्य स्तर (Levels) हैं?", ["2", "3", "4", "6"], 1, "पेपर 2: मानव विकास"),
-                q("बाल्यावस्था में 'एनिमिज्म' (Animism) का क्या अर्थ है (पियाजे के अनुसार)?", ["जानवरों से डरना", "निर्जीव वस्तुओं (जैसे खिलौनों) में जीवन और भावनाएं मानना", "चित्रकारी करना", "अकेले खेलना"], 1, "पेपर 2: मानव विकास"),
-                q("वृद्धावस्था (Old Age) में दृष्टि से संबंधित सबसे आम समस्या कौन सी है जिसमें आंखों का लेंस धुंधला हो जाता है?", ["ग्लूकोमा", "मोतियाबिंद (Cataracts)", "मायोपिया", "रतौंधी"], 1, "पेपर 2: पारिवारिक अध्ययन"),
-                q("शिशु के जन्म के तुरंत बाद उसकी शारीरिक स्थिति (हृदय गति, श्वास, रंग आदि) का आकलन करने के लिए कौन सा परीक्षण किया जाता है?", ["APGAR (अपगार) स्कोर", "रक्त परीक्षण", "IQ परीक्षण", "व्यक्तित्व परीक्षण"], 0, "पेपर 2: मानव विकास"),
-                q("सामाजिकरण (Socialization) की वह प्रक्रिया जो बच्चे के स्कूल जाने पर शुरू होती है, क्या कहलाती है?", ["प्राथमिक सामाजिकरण", "द्वितीयक सामाजिकरण (Secondary Socialization)", "पुनर्समाजिकरण", "प्रत्याशित सामाजिकरण"], 1, "पेपर 2: पारिवारिक अध्ययन"),
-                q("अल्बर्ट बंडूरा (Albert Bandura) का सिद्धांत किस प्रयोग के लिए सबसे प्रसिद्ध है?", ["पावलोव का कुत्ता", "स्किनर बॉक्स", "बोबो डॉल प्रयोग (Bobo Doll Experiment - अवलोकन अधिगम)", "लिटिल अल्बर्ट"], 2, "पेपर 2: मानव विकास"),
-                q("गर्भधारण से जन्म तक की अवधि (लगभग 280 दिन) को क्या कहा जाता है?", ["नवजात काल", "शैशवावस्था", "जन्मपूर्व काल (Prenatal Period)", "बाल्यावस्था"], 2, "पेपर 2: मानव विकास"),
-                q("पियाजे के सिद्धांत में वह क्षमता जिसके द्वारा बच्चा यह समझता है कि वस्तु का आकार या रूप बदलने पर भी उसकी मात्रा समान रहती है (जैसे पानी को चौड़े गिलास से लंबे गिलास में डालना):", ["वस्तु स्थायित्व", "अहंकेंद्रवाद", "संरक्षण (Conservation)", "वर्गीकरण"], 2, "पेपर 2: मानव विकास"),
-                q("बाल शोषण (Child Abuse) के खिलाफ सुरक्षा और बाल अधिकारों के लिए काम करने वाली अंतर्राष्ट्रीय संस्था कौन सी है?", ["WHO", "UNICEF", "UNESCO", "FAO"], 1, "पेपर 2: पारिवारिक अध्ययन"),
-                q("एकल परिवार (Nuclear Family) की तुलना में संयुक्त परिवार (Joint Family) का एक प्रमुख लाभ क्या है?", ["कम शोरगुल", "बुजुर्गों और बच्चों की देखभाल के लिए साझा जिम्मेदारी और सुरक्षा", "अधिक स्वतंत्रता", "कम खर्च"], 1, "पेपर 2: पारिवारिक अध्ययन"),
-                q("शिशुओं में 'रूटिंग रिफ्लेक्स' (Rooting Reflex) का क्या कार्य है?", ["डरने पर रोना", "गाल को छूने पर सिर घुमाना और मुंह खोलना (स्तनपान के लिए)", "उंगली को मजबूती से पकड़ना", "चौंक जाना"], 1, "पेपर 2: मानव विकास"),
-                q("प्रसार शिक्षा (Extension Education) के मुख्य सिद्धांतों में से एक 'लर्निंग बाय डूइंग' (Learning by doing) किसने दिया था?", ["जॉन डेवी (John Dewey)", "सीमैन ए. कन्नैप (Seaman A. Knapp)", "अरस्तू", "महात्मा गांधी"], 1, "पेपर 2: प्रसार शिक्षा"),
-                q("विस्तार शिक्षा में 'अभियान' (Campaign) का मुख्य उद्देश्य क्या है?", ["लंबे समय तक पढ़ाना", "किसी विशिष्ट समस्या (जैसे टीकाकरण, पल्स पोलियो) पर कम समय में बड़े पैमाने पर जन जागरूकता पैदा करना", "व्यक्तिगत सलाह देना", "पैसे कमाना"], 1, "पेपर 2: विकास संचार"),
-                q("पीआरए (PRA - Participatory Rural Appraisal) तकनीक में 'वेन डायग्राम' (Venn Diagram) का उपयोग किसलिए किया जाता है?", ["गांव का नक्शा बनाने के लिए", "गांव की विभिन्न संस्थाओं (Institutions) के महत्व और उनके बीच संबंधों को दर्शाने के लिए", "मौसम की भविष्यवाणी के लिए", "फसल का वजन नापने के लिए"], 1, "पेपर 2: प्रसार शिक्षा"),
-                q("प्रसार संचार मॉडल 'SMCRE' किसने प्रतिपादित किया था?", ["शैनन और वीवर", "डेविड बर्लो (David Berlo)", "जे. पॉल लीगन्स (J. Paul Leagans)", "एवरेट रोजर्स"], 1, "पेपर 2: विकास संचार"),
-                q("एडगर डेल (Edgar Dale) के 'अनुभव के शंकु' के अनुसार, हम सबसे अधिक कैसे सीखते हैं?", ["केवल पढ़कर", "केवल सुनकर", "जब हम वास्तव में कोई कार्य करते हैं (Direct Purposeful Experience)", "केवल चित्र देखकर"], 2, "पेपर 2: विकास संचार"),
-                q("नवाचार अंगीकरण (Innovation Adoption) के मॉडल के अनुसार, जो लोग समाज में सबसे अंत में किसी नई तकनीक को अपनाते हैं, उन्हें क्या कहा जाता है?", ["नवोन्मेषक (Innovators)", "प्रारंभिक अपनाने वाले (Early Adopters)", "प्रारंभिक बहुमत (Early Majority)", "पिछड़े / विलंबकारी (Laggards)"], 3, "पेपर 2: प्रसार शिक्षा"),
-                q("भारत में 'स्वर्ण जयंती ग्राम स्वरोजगार योजना' (SGSY) का पुनर्गठन करके कौन सा नया मिशन बनाया गया है?", ["MGNREGA", "NRLM (राष्ट्रीय ग्रामीण आजीविका मिशन)", "PM-KISAN", "डिजिटल इंडिया"], 1, "पेपर 2: सामुदायिक विकास"),
-                q("प्रसार कार्यकर्ता द्वारा खेत या घर पर जाकर की जाने वाली मुलाकात किस प्रकार का संचार है?", ["जन संचार", "समूह संचार", "व्यक्तिगत संपर्क (Individual Contact)", "लिखित संचार"], 2, "पेपर 2: प्रसार शिक्षा"),
-                q("कृषि विज्ञान केंद्र (KVK) का मुख्य कार्यक्षेत्र क्या है?", ["जिले के किसानों के लिए प्रौद्योगिकी मूल्यांकन, शोधन और प्रदर्शन", "राष्ट्रीय स्तर पर नीतियां बनाना", "अंतर्राष्ट्रीय व्यापार", "उपभोक्ता अधिकार संरक्षण"], 0, "पेपर 2: प्रसार शिक्षा"),
-                q("विकास संचार (Development Communication) में 'कठपुतली' और 'नुक्कड़ नाटक' किस प्रकार के मीडिया हैं?", ["इलेक्ट्रॉनिक मीडिया", "लोक मीडिया (Folk Media)", "प्रिंट मीडिया", "सोशल मीडिया"], 1, "पेपर 2: विकास संचार"),
-                q("संचार प्रक्रिया में 'फीडबैक' (Feedback) का महत्व क्या है?", ["यह प्रक्रिया को समाप्त करता है", "यह सुनिश्चित करता है कि संदेश सही ढंग से प्राप्त और समझा गया है, जिससे संचार दो-तरफा बनता है", "इससे शोर पैदा होता है", "यह केवल औपचारिकता है"], 1, "पेपर 2: विकास संचार"),
-                q("ग्राम पंचायत का कार्यकाल भारत में सामान्यतः कितने वर्ष का होता है?", ["3 वर्ष", "4 वर्ष", "5 वर्ष", "6 वर्ष"], 2, "पेपर 2: सामुदायिक विकास"),
-                q("प्रसार शिक्षा में 'फ्लैश कार्ड' (Flash Cards) का आदर्श रूप से उपयोग कितने लोगों के समूह के लिए किया जाता है?", ["1-2 लोग", "10-25 लोगों का छोटा समूह", "1000 से अधिक लोग", "पूरे जिले के लिए"], 1, "पेपर 2: विकास संचार"),
-                q("महिला सशक्तिकरण के लिए भारत सरकार की 'बेटी बचाओ, बेटी पढ़ाओ' योजना मुख्य रूप से किस समस्या के समाधान के लिए शुरू की गई थी?", ["महिला बेरोजगारी", "गिरते बाल लिंग अनुपात (Child Sex Ratio) और बालिकाओं की शिक्षा", "महिलाओं का स्वास्थ्य", "राजनीतिक भागीदारी"], 1, "पेपर 2: सामुदायिक विकास"),
-                q("अरस्तू (Aristotle) के संचार मॉडल में किन तीन तत्वों पर मुख्य रूप से ध्यान दिया गया है?", ["वक्ता, भाषण, श्रोता (Speaker, Speech, Audience)", "प्रेषक, चैनल, प्राप्तकर्ता", "शोर, फीडबैक, संदेश", "माध्यम, एन्कोडिंग, डिकोडिंग"], 0, "पेपर 2: विकास संचार"),
-                q("मनरेगा (MGNREGA) के तहत ग्रामीण परिवारों को एक वित्तीय वर्ष में कम से कम कितने दिनों के रोजगार की गारंटी दी जाती है?", ["50 दिन", "100 दिन", "150 दिन", "200 दिन"], 1, "पेपर 2: सामुदायिक विकास"),
-                q("प्रसार कार्यक्रमों के मूल्यांकन (Evaluation) का मुख्य उद्देश्य क्या है?", ["कार्यक्रम को हमेशा के लिए बंद करना", "कार्यक्रम की सफलताओं, कमजोरियों का पता लगाना और भविष्य के लिए सुधार करना", "केवल रिपोर्ट छापना", "किसानों को सजा देना"], 1, "पेपर 2: प्रसार शिक्षा"),
-                q("प्रसार शिक्षा की प्रकृति कैसी है?", ["कठोर और नियमबद्ध", "लचीली और शिक्षार्थी की आवश्यकता पर आधारित (Flexible and Need-based)", "केवल सैद्धांतिक", "केवल बच्चों के लिए"], 1, "पेपर 2: प्रसार शिक्षा"),
-                q("'कस्तूरबा गांधी बालिका विद्यालय' (KGBV) योजना का मुख्य उद्देश्य क्या है?", ["कॉलेज शिक्षा", "वंचित वर्गों की लड़कियों के लिए उच्च प्राथमिक स्तर पर आवासीय स्कूल प्रदान करना", "लड़कों की शिक्षा", "विदेशी शिक्षा"], 1, "पेपर 2: सामुदायिक विकास"),
-                q("विस्तार शिक्षा के जनक (Father of Extension Education) के रूप में किसे जाना जाता है (विश्व स्तर पर)?", ["जे. पॉल लीगन्स", "डॉ. ए. एस. ढेंसा", "जेम्स स्टुअर्ट (James Stuart - University Extension)", "महात्मा गांधी"], 2, "पेपर 2: प्रसार शिक्षा")
+                q("फेनिलकेटोनुरिया (PKU) नामक आनुवंशिक चयापचय विकार में किस एंजाइम की कमी होती है?", ["ग्लूकोज-6-फॉस्फेटेस", "फेनिलएलनिन हाइड्रॉक्सिलेस (Phenylalanine Hydroxylase)", "लैक्टेस", "लाइपेस"], 1, "पेपर 2: उपचारात्मक पोषण"),
+                q("कठोर व्यायाम के दौरान मांसपेशियों में अवायवीय ग्लाइकोलाइसिस (Anaerobic Glycolysis) से उत्पन्न लैक्टिक एसिड को यकृत (Liver) में ले जाकर वापस ग्लूकोज में बदलने की प्रक्रिया को क्या कहते हैं?", ["क्रेब्स साइकिल (Krebs Cycle)", "कोरी साइकिल (Cori Cycle)", "यूरिया साइकिल", "ग्लाइकोजिनोलिसिस"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("शरीर में विटामिन B5 (पैंटोथेनिक एसिड) का मुख्य कार्य किस महत्वपूर्ण सहएंजाइम का निर्माण करना है?", ["Coenzyme A (CoA)", "NAD", "FAD", "PLP"], 0, "पेपर 2: आहार एवं पोषण"),
+                q("मधुमेह रोगियों में पिछले 2-3 महीनों के औसत रक्त शर्करा स्तर की निगरानी के लिए कौन सा परीक्षण किया जाता है?", ["फास्टिंग ब्लड ग्लूकोज", "ग्लूकोज टॉलरेंस टेस्ट (GTT)", "HbA1c (ग्लाइकेटेड हीमोग्लोबिन)", "यूरिन कीटोन टेस्ट"], 2, "पेपर 2: उपचारात्मक पोषण"),
+                q("हेपेटिक एन्सेफैलोपैथी (यकृत की गंभीर बीमारी) में आहार में किस प्रकार के अमीनो एसिड को कम (Restrict) किया जाता है?", ["शाखित श्रृंखला अमीनो एसिड (BCAA)", "सुगंधित अमीनो एसिड (Aromatic Amino Acids - AAA)", "सल्फर युक्त अमीनो एसिड", "गैर-आवश्यक अमीनो एसिड"], 1, "पेपर 2: उपचारात्मक पोषण"),
+                q("खाद्य प्रसंस्करण में 'ब्लांचिंग' (Blanching) मुख्य रूप से किन एंजाइमों को निष्क्रिय करने के लिए की जाती है जो फल/सब्जी के रंग और स्वाद को खराब करते हैं?", ["एमाइलेज", "परोक्सीडेज और कैटालेज (Peroxidase and Catalase)", "प्रोटिएज", "लाइपेज"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("शरीर का सबसे प्रचुर मात्रा में पाया जाने वाला इंट्रासेल्युलर एंटीऑक्सीडेंट कौन सा है जो तीन अमीनो एसिड से बना होता है?", ["ग्लूटाथियोन (Glutathione)", "मेलाटोनिन", "विटामिन सी", "विटामिन ई"], 0, "पेपर 2: आहार एवं पोषण"),
+                q("मैपेल सिरप यूरिन डिजीज (MSUD) किस प्रकार के अमीनो एसिड के चयापचय में दोष के कारण होता है?", ["सुगंधित अमीनो एसिड", "शाखित श्रृंखला अमीनो एसिड (BCAA - Leucine, Isoleucine, Valine)", "सल्फर अमीनो एसिड", "क्षारीय अमीनो एसिड"], 1, "पेपर 2: उपचारात्मक पोषण"),
+                q("वसा के पूर्ण ऑक्सीकरण (Beta-oxidation) के लिए कोशिकाओं में फैटी एसिड को माइटोकॉन्ड्रिया के अंदर ले जाने का कार्य कौन करता है?", ["एल्ब्यूमिन", "कार्निटाइन (Carnitine)", "हीमोग्लोबिन", "इंसुलिन"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("विल्सन रोग (Wilson's Disease) शरीर में किस खनिज के अत्यधिक संचय के कारण होता है?", ["आयरन", "कैल्शियम", "तांबा (Copper)", "जिंक"], 2, "पेपर 2: उपचारात्मक पोषण"),
+                q("स्तनपान कराने वाली माता के दूध (Breast Milk) में आयरन के अवशोषण को बढ़ाने वाला प्रोटीन कौन सा है?", ["लैक्टोफेरिन (Lactoferrin)", "केसीन", "ओवलब्यूमिन", "ग्लूटेन"], 0, "पेपर 2: आहार एवं पोषण"),
+                q("हृदय रोगियों के लिए आहार में संतृप्त वसा (Saturated Fat) को ऊर्जा के कुल प्रतिशत के कितने से कम रखने की सिफारिश की जाती है?", ["7-10%", "15-20%", "25-30%", "30-40%"], 0, "पेपर 2: उपचारात्मक पोषण"),
+                q("पोषण सर्वेक्षण में उपयोग की जाने वाली '24-घंटे आहार रिकॉल विधि' (24-Hour Dietary Recall) का मुख्य नुकसान क्या है?", ["यह बहुत महंगी है", "यह स्मृति पर निर्भर करती है और शायद सामान्य आहार का प्रतिनिधित्व न करे (Memory bias)", "इसमें रक्त परीक्षण की आवश्यकता होती है", "यह केवल बच्चों के लिए है"], 1, "पेपर 2: सार्वजनिक पोषण"),
+                q("अनाज में मौजूद 'फाइटिक एसिड' खनिजों (जैसे कैल्शियम, आयरन) के अवशोषण को रोकता है। इस प्रभाव को कम करने का सबसे प्रभावी तरीका कौन सा है?", ["सुखाना", "अंकुरण और किण्वन (Germination and Fermentation)", "ठंडा करना", "कच्चा खाना"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("बेसल मेटाबोलिक रेट (BMR) की गणना के लिए सबसे प्रसिद्ध और व्यापक रूप से इस्तेमाल किया जाने वाला समीकरण कौन सा है?", ["बीएमआई समीकरण", "हैरिस-बेनेडिक्ट समीकरण (Harris-Benedict Equation)", "न्यूटन का नियम", "डाइबिटीज प्रिवेंशन फार्मूला"], 1, "पेपर 2: आहार एवं पोषण"),
+                q("विटामिन B3 (नियासिन) को शरीर में किस आवश्यक अमीनो एसिड से संश्लेषित (Synthesize) किया जा सकता है?", ["लाइसिन", "ट्रिप्टोफैन (Tryptophan)", "ल्यूसीन", "वेलिन"], 1, "पेपर 2: आहार एवं पोषण"),
+                q("रक्त में ट्राइग्लिसराइड्स को कम करने के लिए कौन सा विटामिन औषधीय (Pharmacological) खुराक में दिया जाता है?", ["विटामिन C", "विटामिन D", "नियासिन (Niacin)", "थायमिन"], 2, "पेपर 2: उपचारात्मक पोषण"),
+                q("फूड सर्विस सिस्टम में, वह सिस्टम जहां भोजन एक केंद्रीय रसोई में पकाया जाता है और फिर उपग्रह (Satellite) रसोई/वार्डों में वितरित किया जाता है, क्या कहलाता है?", ["पारंपरिक (Conventional)", "कमिश्नरी (Commissary)", "रेडी-प्रिपर्ड (Ready-prepared)", "असेंबली-सर्व (Assembly-serve)"], 1, "पेपर 2: खाद्य सेवा प्रबंधन"),
+                q("दूध का पाश्चुरीकरण 'HTST' विधि (High-Temperature Short-Time) में तापमान और समय कितना होता है?", ["63°C पर 30 मिनट", "72°C पर 15 सेकंड (71.7°C - 15s)", "100°C पर 5 सेकंड", "135°C पर 2 सेकंड"], 1, "पेपर 2: खाद्य विज्ञान"),
+                q("पॉलीमेरिक श्रृंखला (Polymeric chain) में मोनोमर्स की संख्या को क्या कहा जाता है, जो फाइबर की ताकत निर्धारित करता है?", ["विशिष्ट गुरुत्व (Specific Gravity)", "पोलीमराइज़ेशन की डिग्री (Degree of Polymerization - DP)", "आर्द्रता (Moisture Regain)", "क्रिम्प (Crimp)"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("वस्त्र बुनाई (Weaving) के ड्राफ्टिंग (Drafting) और पेग प्लान (Peg Plan) में, 'ड्राफ्ट' क्या दर्शाता है?", ["किस ताने के धागे को किस हार्नेस (Harness/Heald) से पिरोया गया है", "बाने का धागा कैसे डाला जाता है", "कपड़े का रंग", "सिलाई का तरीका"], 0, "पेपर 2: वस्त्र निर्माण"),
+                q("ऊन (Wool) का 'आर्द्रता पुन: प्राप्ति' (Standard Moisture Regain) प्रतिशत कितना होता है, जो सभी प्राकृतिक रेशों में सबसे अधिक है?", ["8.5%", "11%", "13-16%", "0.4%"], 2, "पेपर 2: वस्त्र विज्ञान"),
+                q("'मॉर्डेंट डाई' (Mordant Dyes) को कपड़े पर स्थिर करने के लिए किस प्रकार के रसायनों का उपयोग किया जाता है?", ["एसिड", "धात्विक लवण (Metallic Salts like Alum, Chrome)", "क्षार", "अल्कोहल"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("पारंपरिक कढ़ाई 'कसूती' (कर्नाटक) में उपयोग किए जाने वाले चार मुख्य टांके (Stitches) कौन से हैं?", ["रनिंग, साटन, चेन, स्टेम", "गवंती, मुर्गी, नेगी, मेंथी (Gavanti, Murgi, Negi, Menthi)", "बखिया, मूरी, फंदा, जाली", "हीर भरत, आरी, मोती, दर्पण"], 1, "पेपर 2: पारंपरिक वस्त्र"),
+                q("कपड़े की ज्वलनशीलता (Flammability) का परीक्षण करने के लिए 45-डिग्री कोण (Angle) का उपयोग किस मानक परीक्षण में किया जाता है?", ["टीयर स्ट्रेंथ टेस्ट", "पिलिंग टेस्ट", "45-डिग्री फ्लेमेबिलिटी टेस्ट (ASTM D1230)", "क्रीज रिकवरी टेस्ट"], 2, "पेपर 2: वस्त्र परीक्षण"),
+                q("सिंथेटिक फाइबर 'केवलर' (Kevlar) का उपयोग मुख्य रूप से किस लिए किया जाता है?", ["तैराकी के कपड़े", "बुलेटप्रूफ जैकेट (उच्च शक्ति के कारण)", "सर्दियों के मोज़े", "अस्पताल की चादरें"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("बुनाई में, वह कपड़े का किनारा (Edge) जो धागों को उखड़ने से रोकता है, क्या कहलाता है?", ["बायस (Bias)", "सेलवेज (Selvedge)", "सीवन (Seam)", "डार्ट (Dart)"], 1, "पेपर 2: वस्त्र निर्माण"),
+                q("वस्त्र रंगाई में 'रंग पक्कापन' (Color Fastness) का मूल्यांकन करने के लिए 'ग्रे स्केल' (Grey Scale) का उपयोग किया जाता है। ग्रे स्केल की रेटिंग सीमा क्या है?", ["1 से 5 (1=खराब, 5=उत्कृष्ट)", "1 से 10", "A से F", "0 से 100"], 0, "पेपर 2: वस्त्र परीक्षण"),
+                q("'इक्कत' (Ikat) और 'बंधनी' (Bandhani) में मुख्य अंतर क्या है?", ["बंधनी में बुनाई के बाद कपड़े को रंगा जाता है (टाई-डाई), जबकि इक्कत में बुनाई से पहले धागों (Yarn) को रंगा जाता है", "इक्कत छपाई है, बंधनी कढ़ाई है", "कोई अंतर नहीं है", "बंधनी केवल रेशम पर होती है"], 0, "पेपर 2: पारंपरिक वस्त्र"),
+                q("सिलाई में, कपड़े को शरीर के कर्व्स (Curves) पर फिट करने के लिए त्रिकोणीय मोड़ को सिला जाता है, इसे क्या कहते हैं?", ["टक्स (Tucks)", "प्लीट्स (Pleats)", "डार्ट (Dart)", "गैदर्स (Gathers)"], 2, "पेपर 2: परिधान निर्माण"),
+                q("डिस्पर्स डाई (Disperse Dyes) का उपयोग विशेष रूप से किन फाइबर को रंगने के लिए किया जाता है क्योंकि वे पानी में अघुलनशील होती हैं?", ["कपास", "रेशम", "पॉलिएस्टर और एसीटेट", "ऊन"], 2, "पेपर 2: वस्त्र विज्ञान"),
+                q("एक परिधान कारखाने में, मार्कर (Marker) बनाने का मुख्य उद्देश्य क्या है?", ["कपड़े पर कढ़ाई करना", "कपड़े की बर्बादी को कम करने के लिए पैटर्न के टुकड़ों का लेआउट बनाना (Fabric Utilization)", "धागे को काटना", "बटन लगाना"], 1, "पेपर 2: परिधान निर्माण"),
+                q("कपड़े की बुनाई में 'जैकर्ड लूम' (Jacquard Loom) का उपयोग क्यों किया जाता है?", ["सादी बुनाई के लिए", "अत्यधिक जटिल और बड़े घुमावदार डिज़ाइनों (जैसे ब्रोकेड, दमास्क) को बुनने के लिए", "केवल तौलिए बुनने के लिए", "सिलाई के लिए"], 1, "पेपर 2: वस्त्र निर्माण"),
+                q("कपास के रेशों की कताई (Spinning) के दौरान, 'रोविंग' (Roving) प्रक्रिया का क्या अर्थ है?", ["बीज निकालना", "धागे को रंगना", "स्लाइवर (Sliver) को थोड़ा खींचना और हल्की ऐंठन (Twist) देकर पतला करना", "कपड़ा बुनना"], 2, "पेपर 2: वस्त्र निर्माण"),
+                q("जॉर्जेट और शिफॉन कपड़े किस प्रकार के क्रेप यार्न (Crepe Yarn) का उपयोग करके बनाए जाते हैं?", ["लो ट्विस्ट (Low Twist)", "हाई ट्विस्ट (High Twist - 40+ TPI)", "टेक्सचर्ड यार्न", "कोर स्पन यार्न"], 1, "पेपर 2: वस्त्र विज्ञान"),
+                q("एंगेल के उपभोग के नियम (Engel's Law of Consumption) के अनुसार, जैसे-जैसे परिवार की आय बढ़ती है, भोजन पर खर्च होने वाली आय का प्रतिशत:", ["बढ़ता है", "समान रहता है", "घटता है (Decreases)", "अनिश्चित है"], 2, "पेपर 2: संसाधन प्रबंधन"),
+                q("कार्य सरलीकरण (Work Simplification) में मुंडेल (Mundel) के परिवर्तन के वर्ग 3 (Class 3) में क्या शामिल है?", ["हाथ की गतियों में परिवर्तन", "कार्य उपकरण (Equipment) में परिवर्तन", "उत्पादन क्रम (Sequence) में परिवर्तन", "उत्पाद (Product) में परिवर्तन"], 2, "पेपर 2: संसाधन प्रबंधन"),
+                q("एर्गोनॉमिक्स में, 5वां पर्सेंटाइल (5th Percentile) महिला और 95वां पर्सेंटाइल (95th Percentile) पुरुष का डेटा आमतौर पर किसलिए उपयोग किया जाता है?", ["रंग चुनने के लिए", "ताकि 90% आबादी के लिए डिज़ाइन को समायोजित (Accommodate) किया जा सके (Adjustable design)", "केवल पुरुषों के लिए डिज़ाइन करने के लिए", "सौंदर्य के लिए"], 1, "पेपर 2: एर्गोनॉमिक्स"),
+                q("उपभोक्ता संरक्षण अधिनियम (CPA) 2019 के तहत, 'भ्रामक विज्ञापनों' (Misleading Advertisements) के लिए सीसीपीए (CCPA) द्वारा लगाया जा सकने वाला अधिकतम जुर्माना (बाद के अपराधों के लिए) कितना है?", ["10 लाख रुपये", "50 लाख रुपये तक", "1 करोड़ रुपये", "10 हजार रुपये"], 1, "पेपर 2: उपभोक्ता अध्ययन"),
+                q("समय प्रबंधन में 'वर्क कर्व' (Work Curve) के अनुसार, काम शुरू करने के तुरंत बाद कार्यकर्ता की उत्पादकता में प्रारंभिक वृद्धि को क्या कहा जाता है?", ["वार्म-अप अवधि (Warm-up period)", "पीक लोड", "थकान में कमी", "स्पर्ट (Spurt)"], 0, "पेपर 2: संसाधन प्रबंधन"),
+                q("आंतरिक सजावट में 'स्वर्णिम अनुपात' (Golden Ratio - 1:1.618) का उपयोग किस सिद्धांत को प्राप्त करने के लिए किया जाता है?", ["लय (Rhythm)", "समानुपात (Proportion/Scale)", "संतुलन (Balance)", "दबाव (Emphasis)"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("रंग सिद्धांत (Color Theory) में मुनसेल रंग प्रणाली (Munsell Color System) किन तीन आयामों (Dimensions) पर आधारित है?", ["ह्यू, वैल्यू, और क्रोमा (Hue, Value, Chroma)", "लाल, नीला, पीला", "टिन्ट, टोन, शेड", "प्राथमिक, द्वितीयक, तृतीयक"], 0, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("मकान निर्माण में 'कारपेट एरिया' (Carpet Area) और 'सुपर बिल्ट-अप एरिया' (Super Built-up Area) के बीच मुख्य अंतर क्या है?", ["कारपेट एरिया में बाहरी दीवारें और सामान्य क्षेत्र (जैसे सीढ़ियां, लिफ्ट) शामिल नहीं होते हैं, जबकि सुपर बिल्ट-अप में ये सभी शामिल होते हैं", "कारपेट एरिया बड़ा होता है", "दोनों समान हैं", "सुपर बिल्ट-अप में केवल छत आती है"], 0, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("पारिवारिक बजट का वह प्रकार जिसमें भविष्य की एक निश्चित अवधि के लिए आय और व्यय का विस्तृत लिखित अनुमान होता है, क्या कहलाता है?", ["वास्तविक बजट", "योजनाबद्ध / लिखित बजट (Planned Budget)", "घाटे का बजट", "छिपा हुआ बजट"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("निर्णय लेने (Decision Making) की प्रक्रिया में 'यूरिस्टिक्स' (Heuristics) का क्या अर्थ है?", ["लंबी गणितीय गणना", "अनुभव पर आधारित मानसिक शॉर्टकट (Mental shortcuts) या अंगूठे का नियम", "दूसरों से पूछना", "सिक्का उछालना"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("थकान (Fatigue) के दो मुख्य प्रकार कौन से हैं?", ["प्राकृतिक और अप्राकृतिक", "शारीरिक (Physiological) और मनोवैज्ञानिक (Psychological)", "स्थायी और अस्थायी", "हल्की और भारी"], 1, "पेपर 2: संसाधन प्रबंधन"),
+                q("किस प्रकार की प्रकाश व्यवस्था (Lighting) कमरे के एक बड़े क्षेत्र में समान रोशनी प्रदान करती है (जैसे छत पर लगा ट्यूबलाइट)?", ["एक्सेंट लाइटिंग", "टास्क लाइटिंग", "एम्बिएंट / जनरल लाइटिंग (Ambient Lighting)", "कोव (Cove) लाइटिंग"], 2, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("'कंज्यूमर प्रोटेक्शन ई-कॉमर्स रूल्स' भारत में किस वर्ष अधिसूचित किए गए (ऑनलाइन धोखाधड़ी को रोकने के लिए)?", ["2000", "2015", "2020", "2024"], 2, "पेपर 2: उपभोक्ता अध्ययन"),
+                q("रंगों को सफेद रंग मिलाने पर जो रूप प्राप्त होता है (जैसे लाल + सफेद = गुलाबी), उसे क्या कहते हैं?", ["शेड (Shade)", "टिन्ट (Tint)", "टोन (Tone)", "ह्यू (Hue)"], 1, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("फर्नीचर लेआउट में 'क्लीयरेंस' (Clearance) का क्या अर्थ है?", ["फर्नीचर बेचना", "कमरे को खाली करना", "दो फर्नीचर के टुकड़ों के बीच सुरक्षित और आरामदायक आवाजाही के लिए छोड़ी गई खाली जगह", "छत की ऊंचाई"], 2, "पेपर 2: आवास एवं आंतरिक डिजाइन"),
+                q("यूरी ब्रोंफेनब्रेनर (Urie Bronfenbrenner) के पारिस्थितिक तंत्र सिद्धांत (Ecological Systems Theory) में, बच्चे के दो माइक्रोसिस्टम्स (जैसे घर और स्कूल) के बीच का संबंध किस प्रणाली में आता है?", ["माइक्रोसिस्टम (Microsystem)", "मेसोसिस्टम (Mesosystem)", "एक्सोसिस्टम (Exosystem)", "मैक्रोसिस्टम (Macrosystem)"], 1, "पेपर 2: मानव विकास"),
+                q("पियाजे के संज्ञानात्मक विकास की 'सेंसरी-मोटर अवस्था' (0-2 वर्ष) में, किस उप-अवस्था (Sub-stage) में बच्चे पहली बार 'वस्तु स्थायित्व' (Object Permanence) का कुछ संकेत दिखाना शुरू करते हैं?", ["प्राथमिक वृत्तीय प्रतिक्रियाएं (Primary Circular Reactions)", "माध्यमिक वृत्तीय प्रतिक्रियाओं का समन्वय (Coordination of Secondary Circular Reactions - 8-12 महीने)", "तृतीयक वृत्तीय प्रतिक्रियाएं", "मानसिक प्रतिनिधित्व"], 1, "पेपर 2: मानव विकास"),
+                q("वायगोत्स्की के अनुसार, बच्चे अपने व्यवहार और सोच को निर्देशित करने के लिए जो खुद से (बिना आवाज किए) बात करते हैं, उसे क्या कहा जाता है?", ["अहंकेंद्रित भाषण (Egocentric Speech)", "निजी भाषण / आंतरिक भाषण (Private/Inner Speech)", "सामाजिक भाषण", "टेलीग्राफिक भाषण"], 1, "पेपर 2: मानव विकास"),
+                q("लॉरेंस कोहलबर्ग के नैतिक विकास के 'उत्तर-पारंपरिक स्तर' (Post-Conventional Level) की क्या विशेषता है?", ["दंड से बचना", "समाज के नियम मानना", "सार्वभौमिक नैतिक सिद्धांतों (Universal Ethical Principles) के आधार पर सही-गलत का निर्णय लेना", "दोस्तों को खुश करना"], 2, "पेपर 2: मानव विकास"),
+                q("विकास के दौरान 'टेराटोजेन्स' (Teratogens) क्या हैं?", ["अच्छे हार्मोन", "पर्यावरणीय एजेंट (जैसे दवाएं, वायरस, विकिरण) जो भ्रूण में जन्म दोष पैदा कर सकते हैं", "आनुवंशिक गुणसूत्र", "पोषण की कमी"], 1, "पेपर 2: मानव विकास"),
+                q("'थैलिडोमाइड' (Thalidomide) त्रासदी, जिसने 1950 के दशक में जन्म दोष पैदा किए थे, किस प्रकार के विकास को सबसे अधिक प्रभावित करती है?", ["मस्तिष्क विकास", "अंगों का विकास (Limb Development - Phocomelia)", "श्रवण", "हृदय"], 1, "पेपर 2: मानव विकास"),
+                q("मनोविश्लेषण में फ्रायड द्वारा वर्णित 'रक्षा तंत्र' (Defense Mechanisms) में, व्यक्ति जब अपनी अस्वीकार्य भावनाओं को दूसरे व्यक्ति पर थोपता है, तो उसे क्या कहते हैं?", ["दमन (Repression)", "प्रक्षेपण (Projection)", "प्रतिगमन (Regression)", "युक्तिकरण (Rationalization)"], 1, "पेपर 2: मानव विकास"),
+                q("भाषा विकास में, 'नोआम चॉम्स्की' (Noam Chomsky) ने कौन सा सिद्धांत दिया था?", ["भाषा केवल पुरस्कार से सीखी जाती है", "बच्चों में भाषा सीखने की जन्मजात क्षमता (Language Acquisition Device - LAD) होती है", "भाषा समाज से आती है", "भाषा जीन में नहीं होती"], 1, "पेपर 2: मानव विकास"),
+                q("पियाजे के अनुसार 'संरक्षण' (Conservation) का सिद्धांत बच्चा किस अवस्था में पूरी तरह से समझ पाता है?", ["सेंसरी-मोटर", "प्री-ऑपरेशनल", "ठोस संक्रियात्मक अवस्था (Concrete Operational Stage - 7-11 वर्ष)", "औपचारिक संक्रियात्मक"], 2, "पेपर 2: मानव विकास"),
+                q("जॉन बॉल्बी (John Bowlby) और मैरी आइंसवर्थ (Mary Ainsworth) का कार्य मुख्य रूप से बाल मनोविज्ञान के किस क्षेत्र से संबंधित है?", ["बुद्धि परीक्षण", "नैतिक विकास", "लगाव सिद्धांत (Attachment Theory)", "भाषा विकास"], 2, "पेपर 2: मानव विकास"),
+                q("वृद्धावस्था में (जेरोन्टोलॉजी), 'क्रिस्टलाइज्ड इंटेलिजेंस' (Crystallized Intelligence) का क्या होता है?", ["यह बहुत तेजी से घटती है", "यह पूरी तरह से खत्म हो जाती है", "यह आम तौर पर स्थिर रहती है या उम्र के साथ बढ़ती है (क्योंकि यह संचित ज्ञान पर आधारित है)", "यह शून्य हो जाती है"], 2, "पेपर 2: पारिवारिक अध्ययन"),
+                q("एरिक एरिकसन के मनोसामाजिक सिद्धांत में, मध्य-वयस्कों (Middle Adulthood) का मुख्य विकासात्मक कार्य (Crisis) क्या है?", ["पहचान बनाम भूमिका भ्रम", "अंतरंगता बनाम अलगाव", "उत्पादकता बनाम ठहराव (Generativity vs. Stagnation)", "अखंडता बनाम निराशा"], 2, "पेपर 2: मानव विकास"),
+                q("नवजात शिशु के सजगता (Reflexes) में 'बेबिन्स्की रिफ्लेक्स' (Babinski Reflex) क्या है?", ["हथेली को छूने पर मुट्ठी बंद करना", "पैर के तलवे को सहलाने पर पैर की उंगलियों का बाहर की ओर फैलना", "अचानक आवाज पर चौंकना", "गाल छूने पर सिर घुमाना"], 1, "पेपर 2: मानव विकास"),
+                q("बौद्धिक विकलांगता (Intellectual Disability) के वर्गीकरण में, 'हल्की' (Mild) विकलांगता के लिए IQ सीमा (DSM-5 के अनुसार अनुमानित) क्या है?", ["20-35", "35-50", "50-70", "70-85"], 2, "पेपर 2: मानव विकास"),
+                q("भारतीय संदर्भ में 'शारदा अधिनियम' (Sarda Act - 1929) का मुख्य उद्देश्य क्या था?", ["दहेज प्रथा रोकना", "बाल विवाह पर रोक लगाना (लड़कियों के लिए न्यूनतम आयु 14 वर्ष)", "सती प्रथा रोकना", "विधवा पुनर्विवाह"], 1, "पेपर 2: पारिवारिक अध्ययन"),
+                q("विस्तार शिक्षा के 'नवाचार के प्रसार' (Diffusion of Innovation) सिद्धांत में, एवरेट रोजर्स के अनुसार 'इनोवेटर्स' (Innovators) का समाज में कितना प्रतिशत होता है?", ["2.5%", "13.5%", "34%", "16%"], 0, "पेपर 2: प्रसार शिक्षा"),
+                q("पीआरए (Participatory Rural Appraisal) में 'चपाती आरेख' (Chapati Diagram / Venn Diagram) का उपयोग मुख्य रूप से क्या समझने के लिए किया जाता है?", ["गांव का क्षेत्रफल", "विभिन्न संस्थाओं का महत्व, उनकी पहुंच और समुदाय के साथ उनके संबंध", "फसल का प्रकार", "मौसम"], 1, "पेपर 2: प्रसार शिक्षा"),
+                q("जॉर्ज गेर्बनर (George Gerbner) के संचार मॉडल का मुख्य तत्व कौन सा है जो इसे अन्य मॉडलों से अलग करता है?", ["प्रेषक", "माध्यम", "बोझ (Burden)", "कंटेंट (घटना की धारणा और उस पर प्रतिक्रिया)"], 3, "पेपर 2: विकास संचार"),
+                q("विस्तार कार्यक्रम योजना (Extension Program Planning) के जे. पॉल लीगन्स (J. Paul Leagans) मॉडल का पहला कदम क्या है?", ["उद्देश्य निर्धारित करना", "स्थिति का विश्लेषण करना (Analysis of the Situation)", "शिक्षण योजना बनाना", "मूल्यांकन करना"], 1, "पेपर 2: प्रसार शिक्षा"),
+                q("कर्कपैट्रिक (Kirkpatrick) का मॉडल मुख्य रूप से किस लिए उपयोग किया जाता है?", ["कृषि ऋण वितरण", "विस्तार संचार", "प्रशिक्षण कार्यक्रमों के मूल्यांकन (Evaluation of Training Programs) के चार स्तर", "महिलाओं का सशक्तिकरण"], 2, "पेपर 2: प्रसार शिक्षा"),
+                q("सामुदायिक विकास में 'निचले स्तर से ऊपर की ओर' (Bottom-up Approach) योजना का क्या अर्थ है?", ["सरकार नीतियां बनाती है", "योजना और निर्णय लेने की प्रक्रिया में स्थानीय समुदाय की प्रत्यक्ष भागीदारी", "केवल वित्तीय सहायता", "बाहरी एजेंसियों द्वारा नियंत्रण"], 1, "पेपर 2: सामुदायिक विकास"),
+                q("संचार में 'किनेसिक्स' (Kinesics) और 'ओक्यूलेसिक्स' (Oculesics) क्रमशः किससे संबंधित हैं?", ["आवाज और समय", "शारीरिक हाव-भाव (Body movement) और आंखों का संपर्क (Eye contact)", "स्पर्श और दूरी", "लिपि और चित्र"], 1, "पेपर 2: विकास संचार"),
+                q("विस्तार शिक्षा में 'विधि प्रदर्शन' (Method Demonstration) और 'परिणाम प्रदर्शन' (Result Demonstration) के बीच मुख्य अंतर क्या है?", ["विधि प्रदर्शन दिखाता है कि 'यह कैसे करें' (कौशल), जबकि परिणाम प्रदर्शन दिखाता है कि 'यह क्यों करें' (मूल्य/लाभ)", "विधि प्रदर्शन लंबा होता है", "परिणाम प्रदर्शन केवल प्रयोगशाला में होता है", "कोई अंतर नहीं है"], 0, "पेपर 2: प्रसार शिक्षा"),
+                q("भारत में 'राष्ट्रीय ग्रामीण आजीविका मिशन' (NRLM - Aajeevika) का मुख्य ध्यान किस पर है?", ["सड़क निर्माण", "शहरी रोजगार", "स्वयं सहायता समूहों (SHGs) के माध्यम से ग्रामीण महिलाओं का सशक्तिकरण और आजीविका संवर्धन", "बड़े उद्योग स्थापित करना"], 2, "पेपर 2: सामुदायिक विकास"),
+                q("आईसीडीएस (ICDS) कार्यक्रम के तहत 'पूरक पोषण' (Supplementary Nutrition) किसे प्रदान किया जाता है?", ["केवल 6-14 वर्ष के बच्चे", "0-6 वर्ष के बच्चे, गर्भवती और स्तनपान कराने वाली माताएं", "सभी ग्रामीण वयस्क", "केवल बुजुर्ग"], 1, "पेपर 2: सामुदायिक विकास"),
+                q("प्रसार अनुसंधान में प्रयुक्त 'डेल्फी तकनीक' (Delphi Technique) की मुख्य विशेषता क्या है?", ["खेत पर प्रयोग", "आमने-सामने की बैठक", "विशेषज्ञों के पैनल से अनाम और पुनरावृत्त (Iterative) प्रश्नावली के माध्यम से सर्वसम्मति प्राप्त करना", "मतदान करना"], 2, "पेपर 2: प्रसार शिक्षा"),
+                q("विस्तार संचार में 'होमोजिली' (Homophily) का क्या अर्थ है?", ["विभिन्न संस्कृतियों के बीच संचार", "समान विशेषताओं (जैसे भाषा, विश्वास, सामाजिक स्थिति) वाले व्यक्तियों के बीच संचार (जिससे संचार अधिक प्रभावी होता है)", "टीवी के माध्यम से संचार", "समूह संचार"], 1, "पेपर 2: विकास संचार"),
+                q("एवरेट रोजर्स (Everett Rogers) के अनुसार किसी नवाचार के अपनाए जाने (Adoption rate) को प्रभावित करने वाले 5 मुख्य गुण कौन से हैं?", ["सस्ता, सुंदर, मजबूत, हल्का, रंगीन", "सापेक्ष लाभ (Relative Advantage), संगतता (Compatibility), जटिलता (Complexity), परीक्षण क्षमता (Trialability), अवलोकन क्षमता (Observability)", "टीवी, रेडियो, अखबार, पोस्टर, मोबाइल", "सरकार, बैंक, बाजार, पंचायत, एनजीओ"], 1, "पेपर 2: प्रसार शिक्षा"),
+                q("मनरेगा (MGNREGA) अधिनियम के तहत, यदि किसी आवेदक को 15 दिनों के भीतर रोजगार प्रदान नहीं किया जाता है, तो वह किसका हकदार है?", ["नया आवेदन", "दोगुनी मजदूरी", "दैनिक बेरोजगारी भत्ता (Unemployment Allowance)", "मुफ्त राशन"], 2, "पेपर 2: सामुदायिक विकास"),
+                q("विस्तार साहित्य में, एक विषय पर मुद्रित कागज की एक ही शीट (Single sheet) जो बिना मुड़ी हुई (Unfolded) हो सकती है या एक-दो बार मुड़ी हुई हो सकती है, उसे क्या कहते हैं?", ["बुकलेट", "लीफलेट या फोल्डर (Leaflet/Folder)", "बुलेटिन", "जर्नल"], 1, "पेपर 2: विकास संचार")
             ].map((item, index) => ({ id: index, ...item }));
         };
 
@@ -449,7 +432,96 @@
         let timeLeft = 180 * 60; // 180 minutes
         let timerId = null;
         let isReviewMode = false;
+        let currentView = 'home-view';
         const totalQ = questions.length;
+
+        // --- LOCAL STORAGE LOGIC ---
+        function saveState() {
+            const state = {
+                currentQ,
+                answers,
+                reviewMarks,
+                visited,
+                timeLeft,
+                isReviewMode,
+                currentView
+            };
+            localStorage.setItem('jet_mock_test_set5', JSON.stringify(state));
+        }
+
+        function loadStateVariables() {
+            const saved = localStorage.getItem('jet_mock_test_set5');
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
+                    currentQ = state.currentQ || 0;
+                    answers = state.answers || {};
+                    reviewMarks = state.reviewMarks || {};
+                    visited = state.visited || { 0: true };
+                    timeLeft = state.timeLeft !== undefined ? state.timeLeft : 180 * 60;
+                    isReviewMode = state.isReviewMode || false;
+                    currentView = state.currentView || 'home-view';
+                    return true;
+                } catch(e) {
+                    console.error("Local storage parse error", e);
+                }
+            }
+            return false;
+        }
+
+        function continueSavedTest() {
+            if (isReviewMode) {
+                startReview(true);
+            } else if (timeLeft <= 0 || currentView === 'result-view') {
+                submitTest(true);
+            } else {
+                resumeTest();
+            }
+        }
+
+        function updateHomeButtons() {
+            const heroBtn = document.getElementById('home-hero-btn');
+            const navBtn = document.getElementById('home-nav-btn');
+            if (!heroBtn || !navBtn) return;
+            
+            const hasSavedData = localStorage.getItem('jet_mock_test_set5') !== null;
+            
+            if (hasSavedData) {
+                heroBtn.innerHTML = `<i class="fas fa-play-circle text-2xl"></i> मॉक टेस्ट जारी रखें (Resume)`;
+                heroBtn.onclick = () => {
+                    loadStateVariables();
+                    continueSavedTest();
+                };
+                
+                navBtn.innerText = "टेस्ट जारी रखें";
+                navBtn.onclick = () => {
+                    loadStateVariables();
+                    continueSavedTest();
+                };
+
+                if (!document.getElementById('reset-btn')) {
+                    const resetBtn = document.createElement('button');
+                    resetBtn.id = 'reset-btn';
+                    resetBtn.className = "mt-6 text-rose-600 underline font-semibold block mx-auto hover:text-rose-800 transition-colors";
+                    resetBtn.innerText = "नया टेस्ट शुरू करें (Clear Progress)";
+                    resetBtn.onclick = () => {
+                        if (confirm("क्या आप सुनिश्चित हैं? आपका पिछला सारा डेटा और स्कोर मिटा दिया जाएगा।")) {
+                            localStorage.removeItem('jet_mock_test_set5');
+                            location.reload();
+                        }
+                    };
+                    heroBtn.parentNode.appendChild(resetBtn);
+                }
+            } else {
+                heroBtn.innerHTML = `<i class="fas fa-play-circle text-2xl"></i> 150 प्रश्नों का कठिन मॉक टेस्ट शुरू करें`;
+                heroBtn.onclick = () => showView('instructions-view');
+                navBtn.innerText = "मॉक टेस्ट दें";
+                navBtn.onclick = () => showView('instructions-view');
+                
+                const resetBtn = document.getElementById('reset-btn');
+                if (resetBtn) resetBtn.remove();
+            }
+        }
 
         // --- NAVIGATION ---
         function showView(viewId) {
@@ -460,6 +532,13 @@
             const view = document.getElementById(viewId);
             view.classList.remove('hidden');
             if (viewId === 'test-view') view.classList.add('flex');
+            
+            currentView = viewId;
+            saveState();
+
+            if (viewId === 'home-view') {
+                updateHomeButtons();
+            }
         }
 
         function formatTime(seconds) {
@@ -477,8 +556,11 @@
             visited = { 0: true };
             timeLeft = 180 * 60;
             isReviewMode = false;
+            resumeTest();
+        }
 
-            document.getElementById('test-title').innerHTML = "JET गृह विज्ञान - सेट 4";
+        function resumeTest() {
+            document.getElementById('test-title').innerHTML = "JET गृह विज्ञान (सेट 5 - कठिन)";
             document.getElementById('timer-badge').classList.remove('hidden');
             document.getElementById('back-to-score-btn').classList.add('hidden');
             document.getElementById('test-action-bar').classList.remove('hidden');
@@ -487,14 +569,16 @@
             document.getElementById('test-legend').classList.remove('hidden');
             document.getElementById('review-legend').classList.add('hidden');
 
+            document.getElementById('timer-display').innerText = formatTime(timeLeft);
+            
             renderQuestion();
-            renderPalette();
             showView('test-view');
 
             if (timerId) clearInterval(timerId);
             timerId = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer-display').innerText = formatTime(timeLeft);
+                saveState();
                 if (timeLeft <= 0) {
                     clearInterval(timerId);
                     submitTest();
@@ -530,8 +614,8 @@
                         iconHtml = `<div class="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs bg-slate-300"></div>`;
                     }
                 } else {
-                    if (isChecked) optionClass = "bg-indigo-50 border-indigo-500";
-                    iconHtml = `<input type="radio" name="q-${currentQ}" value="${i}" ${isChecked ? 'checked' : ''} onchange="handleSelect(${i})" class="w-5 h-5 text-indigo-600 border-gray-300 focus:ring-indigo-500 cursor-pointer">`;
+                    if (isChecked) optionClass = "bg-rose-50 border-rose-500";
+                    iconHtml = `<input type="radio" name="q-${currentQ}" value="${i}" ${isChecked ? 'checked' : ''} onchange="handleSelect(${i})" class="w-5 h-5 text-rose-600 border-gray-300 focus:ring-rose-500 cursor-pointer">`;
                 }
 
                 const textClass = isReviewMode && i === q.ans ? "text-emerald-800 font-medium" : "text-slate-700";
@@ -563,6 +647,7 @@
             // Scroll top
             optionsContainer.parentElement.scrollTop = 0;
             renderPalette();
+            saveState();
         }
 
         function handleSelect(optionIndex) {
@@ -633,7 +718,7 @@
 
             for (let i = 0; i < totalQ; i++) {
                 let colorClass = isReviewMode ? getReviewStatusColor(i) : getStatusColor(i);
-                let extraClass = (currentQ === i) ? 'ring-2 ring-offset-2 ring-indigo-500 scale-110' : 'hover:opacity-80';
+                let extraClass = (currentQ === i) ? 'ring-2 ring-offset-2 ring-rose-500 scale-110' : 'hover:opacity-80';
                 
                 grid.innerHTML += `
                     <button onclick="currentQ=${i}; renderQuestion();" class="h-10 rounded-lg font-medium text-sm flex items-center justify-center border transition-all ${colorClass} ${extraClass}">
@@ -665,10 +750,11 @@
             return { correct, incorrect, unattempted, score: correct * 2 };
         }
 
-        function submitTest() {
+        function submitTest(isResuming = false) {
             if (timerId) clearInterval(timerId);
-            toggleSubmitModal(false);
+            if (!isResuming) toggleSubmitModal(false);
 
+            isReviewMode = false;
             const stats = calculateScore();
             document.getElementById('score-val').innerText = stats.score;
             document.getElementById('correct-val').innerText = stats.correct;
@@ -681,11 +767,11 @@
             showView('result-view');
         }
 
-        function startReview() {
+        function startReview(isResuming = false) {
             isReviewMode = true;
-            currentQ = 0;
+            if (!isResuming) currentQ = 0;
 
-            document.getElementById('test-title').innerHTML = "JET गृह विज्ञान - उत्तर समीक्षा (सेट 4)";
+            document.getElementById('test-title').innerHTML = "JET गृह विज्ञान - उत्तर समीक्षा (सेट 5)";
             document.getElementById('timer-badge').classList.add('hidden');
             document.getElementById('back-to-score-btn').classList.remove('hidden');
             document.getElementById('test-action-bar').classList.add('hidden');
@@ -700,7 +786,17 @@
         }
 
         // Initialize display
-        showView('home-view');
+        document.addEventListener('DOMContentLoaded', () => {
+            if (loadStateVariables()) {
+                if (currentView === 'test-view' || currentView === 'result-view') {
+                    continueSavedTest();
+                } else {
+                    showView('home-view');
+                }
+            } else {
+                showView('home-view');
+            }
+        });
     </script>
 </body>
 </html>
