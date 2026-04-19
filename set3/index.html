@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JET Jharkhand 2026 - गृह विज्ञान मॉक टेस्ट 2</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to match React's conditional classes seamlessly */
+        .q-btn { transition: transform 0.1s, opacity 0.2s; }
+        .q-btn:hover { opacity: 0.8; }
+        .q-btn.current { box-shadow: 0 0 0 2px white, 0 0 0 4px #2563eb; transform: scale(1.1); z-index: 10; }
+        
+        .status-0 { background-color: #e5e7eb; color: #1f2937; border: 1px solid #d1d5db; }
+        .status-1 { background-color: #ef4444; color: white; border: 1px solid #dc2626; }
+        .status-2 { background-color: #22c55e; color: white; border: 1px solid #16a34a; }
+        .status-3 { background-color: #a855f7; color: white; border: 1px solid #9333ea; }
+        .status-4 { background-color: #4f46e5; color: white; border: 1px solid #4338ca; position: relative; }
+        .status-4::after { content: ""; position: absolute; top: 4px; right: 4px; width: 8px; height: 8px; background-color: #4ade80; border-radius: 50%; }
+
+        .hidden-view { display: none !important; }
+        
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 select-none overflow-hidden h-screen flex flex-col">
+
+    <!-- ICONS (SVG Strings used in JS) -->
+    <svg id="icon-clock" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <svg id="icon-play" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+    <svg id="icon-logout" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    <svg id="icon-check" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <svg id="icon-x" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <svg id="icon-alert" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+
+    <!-- VIEWS -->
+    
+    <!-- 1. Loading View -->
+    <div id="view-loading" class="flex-1 flex flex-col items-center justify-center bg-gray-50 h-full">
+        <div class="text-xl font-bold text-blue-600 animate-pulse" id="loading-text">लोड हो रहा है...</div>
+        <div class="mt-2 text-sm text-gray-500" id="loading-subtext">क्लाउड से कनेक्ट हो रहा है</div>
+    </div>
+
+    <!-- 2. Start Screen View -->
+    <div id="view-start" class="hidden-view flex-1 overflow-y-auto py-10 px-4">
+        <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="bg-blue-700 p-6 text-white text-center">
+                <h1 class="text-3xl font-bold mb-2">JET Jharkhand 2026</h1>
+                <h2 class="text-xl">विषय: गृह विज्ञान (Home Science) - मॉक टेस्ट 2</h2>
+            </div>
+            <div class="p-8">
+                <h3 class="text-2xl font-semibold mb-4 border-b pb-2">सामान्य निर्देश</h3>
+                <ul class="list-decimal pl-6 space-y-3 mb-8 text-lg">
+                    <li>इस परीक्षा में कुल <strong>100 प्रश्न</strong> हैं। सभी प्रश्न अनिवार्य हैं।</li>
+                    <li>परीक्षा की कुल अवधि <strong>180 मिनट (3 घंटे)</strong> है।</li>
+                    <li>प्रत्येक सही उत्तर के लिए <strong>2 अंक</strong> दिए जाएंगे।</li>
+                    <li>कोई नकारात्मक अंकन <strong>(No Negative Marking)</strong> नहीं है।</li>
+                    <li>आपका प्रगति डेटा सुरक्षित रूप से <strong>Firebase Cloud Storage</strong> में सहेजा जाता है। यदि आप पृष्ठ बंद भी कर देते हैं, तो आप वहीं से पुनः आरंभ कर सकते हैं।</li>
+                    <li>एक बार टेस्ट सबमिट करने के बाद, आप अपने विस्तृत परिणाम और सही उत्तर देख सकेंगे।</li>
+                </ul>
+                <div class="flex justify-center">
+                    <button id="btn-start-test" class="bg-green-600 hover:bg-green-700 text-white text-xl font-bold py-3 px-10 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        टेस्ट शुरू करें
+                    </button>
+                </div>
+                <div id="start-sync-status" class="mt-4 text-center text-sm text-gray-500"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Active Test View -->
+    <div id="view-test" class="hidden-view flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Header -->
+        <header class="bg-blue-800 text-white h-16 flex items-center justify-between px-4 sm:px-6 shadow-md shrink-0">
+            <div class="font-bold text-lg sm:text-xl truncate">JET Jharkhand 2026 - गृह विज्ञान (सेट 2)</div>
+            <div class="flex items-center gap-4 sm:gap-8">
+                <div class="hidden sm:flex flex-col text-right text-xs text-blue-200">
+                    <span id="test-sync-status">तैयार</span>
+                    <span id="test-user-id">ID: Guest</span>
+                </div>
+                <div class="flex items-center gap-2 bg-blue-900 px-3 py-1.5 rounded-lg border border-blue-700" id="timer-container">
+                    <svg class="text-white" id="timer-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span id="timer-text" class="font-mono text-xl">03:00:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Body -->
+        <div class="flex flex-1 overflow-hidden flex-col lg:flex-row">
+            <!-- Left Panel: Question Area -->
+            <div class="flex-1 flex flex-col bg-white overflow-hidden shadow-sm m-2 lg:m-4 rounded-lg border border-gray-200">
+                <div class="bg-gray-50 border-b p-3 sm:p-4 flex justify-between items-center shrink-0">
+                    <h2 class="font-bold text-lg text-gray-700" id="q-header">प्रश्न संख्या: 1</h2>
+                    <div class="flex gap-4 text-sm font-semibold">
+                        <span class="text-green-600 bg-green-100 px-2 py-1 rounded">+2 अंक</span>
+                        <span class="text-red-500 bg-red-100 px-2 py-1 rounded">-0 अंक</span>
+                    </div>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-4 sm:p-6 sm:text-lg">
+                    <p id="q-text" class="font-bold mb-6 text-gray-800 text-xl leading-relaxed"></p>
+                    <div id="q-options" class="space-y-3 sm:space-y-4 pl-1 sm:pl-4"></div>
+                </div>
+
+                <div class="bg-gray-50 border-t p-3 sm:p-4 flex flex-wrap gap-2 justify-between shrink-0">
+                    <div class="flex gap-2">
+                        <button id="btn-mark" class="bg-purple-100 hover:bg-purple-200 text-purple-800 border border-purple-300 px-3 sm:px-4 py-2 rounded font-semibold text-sm transition">मार्क फॉर रिव्यू & नेक्स्ट</button>
+                        <button id="btn-clear" class="bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 px-3 sm:px-4 py-2 rounded font-semibold text-sm transition">उत्तर हटाएं</button>
+                    </div>
+                    <div class="flex gap-2 mt-2 sm:mt-0">
+                        <button id="btn-prev" class="bg-gray-200 hover:bg-gray-300 disabled:opacity-50 text-gray-800 px-4 py-2 rounded font-semibold text-sm transition">पिछला</button>
+                        <button id="btn-save" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-bold text-sm shadow transition">सेव और नेक्स्ट</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Palette -->
+            <div class="w-full lg:w-80 bg-white m-2 lg:m-4 lg:ml-0 rounded-lg shadow-sm border border-gray-200 flex flex-col shrink-0">
+                <div class="p-4 border-b flex items-center gap-3 bg-gray-50 rounded-t-lg">
+                    <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center text-blue-700 font-bold text-xl">U</div>
+                    <div>
+                        <p class="font-bold text-sm text-gray-800">उम्मीदवार</p>
+                        <p class="text-xs text-gray-500">विषय: गृह विज्ञान</p>
+                    </div>
+                </div>
+
+                <div class="p-3 border-b text-xs grid grid-cols-2 gap-2 font-medium" id="palette-stats">
+                    <!-- Stats injected here -->
+                </div>
+
+                <div class="p-3 bg-blue-50/30 border-b">
+                    <p class="font-bold text-gray-700 text-sm mb-2">प्रश्न पैलेट:</p>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-3">
+                    <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-2">
+                        <!-- Buttons injected here -->
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50 border-t rounded-b-lg">
+                    <button id="btn-submit-test" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        टेस्ट सबमिट करें
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Result View -->
+    <div id="view-result" class="hidden-view flex-1 overflow-y-auto py-6 px-4">
+        <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="bg-blue-800 p-6 text-white text-center">
+                <h1 class="text-3xl font-bold">टेस्ट परिणाम (Result)</h1>
+                <p class="text-lg mt-2">JET Jharkhand 2026 - गृह विज्ञान (सेट 2)</p>
+            </div>
+            
+            <div class="p-6">
+                <div class="flex flex-wrap justify-center gap-6 mb-10" id="result-stats">
+                    <!-- Score cards injected here -->
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4 border-b pb-2">विस्तृत समीक्षा</h3>
+                <div id="result-details" class="space-y-6">
+                    <!-- Question reviews injected here -->
+                </div>
+                
+                <div class="mt-8 text-center">
+                   <button onclick="window.location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700">पुनः परीक्षण करें (Reset)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Modular v11) & Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- 100 NEW Home Science Questions (Set 2 - Hindi) ---
+        const questions = [
+            // आहार और पोषण (Food and Nutrition)
+            { id: 1, q: "पपीता और गाजर में मुख्य रूप से कौन सा विटामिन पाया जाता है?", o: ["विटामिन C", "विटामिन A", "विटामिन K", "विटामिन B12"], c: 1 },
+            { id: 2, q: "दालों में किस पोषक तत्व की प्रधानता होती है?", o: ["कार्बोहाइड्रेट", "वसा", "प्रोटीन", "खनिज लवण"], c: 2 },
+            { id: 3, q: "वसा में घुलनशील (Fat-soluble) विटामिनों का समूह कौन सा है?", o: ["B, C", "A, D, E, K", "केवल A", "B कॉम्प्लेक्स"], c: 1 },
+            { id: 4, q: "एक सामान्य वयस्क के शरीर में जल का प्रतिशत लगभग कितना होता है?", o: ["40-50%", "60-70%", "80-90%", "20-30%"], c: 1 },
+            { id: 5, q: "'ऑस्टियोपोरोसिस' (हड्डियों का कमजोर होना) बीमारी किसकी कमी से होती है?", o: ["आयरन", "सोडियम", "कैल्शियम", "पोटेशियम"], c: 2 },
+            { id: 6, q: "रक्त अल्पता (एनीमिया) को रोकने के लिए आहार में क्या आवश्यक है?", o: ["आयरन (लौह तत्व)", "आयोडीन", "विटामिन D", "कैल्शियम"], c: 0 },
+            { id: 7, q: "मानव शरीर में कार्बोहाइड्रेट का सबसे सरल और अवशोषित होने वाला रूप क्या है?", o: ["स्टार्च", "ग्लूकोज", "लैक्टोज", "सुक्रोज"], c: 1 },
+            { id: 8, q: "विटामिन B1 का रासायनिक नाम क्या है?", o: ["राइबोफ्लेविन", "नियासिन", "थायमिन", "एस्कॉर्बिक एसिड"], c: 2 },
+            { id: 9, q: "कोलेस्ट्रॉल मुख्य रूप से किन खाद्य पदार्थों में पाया जाता है?", o: ["वनस्पति तेलों में", "जंतु जगत के खाद्य पदार्थों में (जैसे मांस, अंडे, दूध)", "सभी प्रकार की दालों में", "ताजे फलों में"], c: 1 },
+            { id: 10, q: "भोजन पकाने की 'सिमरिंग' (Simmering) विधि में पानी का तापमान लगभग कितना होता है?", o: ["100°C", "82-99°C", "50-60°C", "120°C"], c: 1 },
+            { id: 11, q: "बच्चों में रिकेट्स (सूखा रोग) किस विटामिन की कमी के कारण होता है?", o: ["विटामिन D", "विटामिन E", "विटामिन C", "विटामिन B2"], c: 0 },
+            { id: 12, q: "एक संतुलित आहार में कुल ऊर्जा का मुख्य भाग (लगभग 50-60%) किससे प्राप्त होना चाहिए?", o: ["प्रोटीन", "वसा", "कार्बोहाइड्रेट", "विटामिन"], c: 2 },
+            { id: 13, q: "दूध का 'पाश्चुरीकरण' (Pasteurization) क्यों किया जाता है?", o: ["स्वाद बढ़ाने के लिए", "रंग सफेद करने के लिए", "हानिकारक जीवाणुओं को नष्ट करने के लिए", "मक्खन निकालने के लिए"], c: 2 },
+            { id: 14, q: "बीजों के अंकुरण (Sprouting) से खाद्य पदार्थों में किस विटामिन की उल्लेखनीय वृद्धि होती है?", o: ["विटामिन D", "विटामिन A", "विटामिन C और B-कॉम्प्लेक्स", "विटामिन K"], c: 2 },
+            { id: 15, q: "मानव शरीर में आयोडीन का मुख्य कार्य क्या है?", o: ["थायरॉयड ग्रंथि के हार्मोन (थायरोक्सिन) का निर्माण", "रक्त जमाना", "हड्डियां मजबूत करना", "पाचन में सहायता"], c: 0 },
+            { id: 16, q: "मानव शरीर में प्रोटीन का सबसे प्राथमिक कार्य क्या है?", o: ["ऊर्जा देना", "शरीर के ऊतकों की वृद्धि, निर्माण और मरम्मत", "वसा जमा करना", "तापमान नियंत्रित करना"], c: 1 },
+            { id: 17, q: "सोयाबीन में प्रोटीन का प्रतिशत लगभग कितना होता है?", o: ["10-15%", "20-25%", "40-43%", "70-80%"], c: 2 },
+            { id: 18, q: "उच्च रक्तचाप (Hypertension) के रोगी के आहार में किस खनिज की मात्रा कम कर देनी चाहिए?", o: ["पोटेशियम", "कैल्शियम", "आयरन", "सोडियम (नमक)"], c: 3 },
+            { id: 19, q: "लार (Saliva) में कौन सा एंजाइम पाया जाता है जो स्टार्च के पाचन में मदद करता है?", o: ["पेप्सिन", "टायलिन (Amylase)", "लाइपेज", "रेनिन"], c: 1 },
+            { id: 20, q: "खाद्य पदार्थों को सुरक्षित रखने के लिए घरेलू रेफ्रिजरेटर (फ्रिज) का आदर्श तापमान क्या होना चाहिए?", o: ["-10°C से नीचे", "1°C से 4°C के बीच", "10°C से 15°C के बीच", "25°C"], c: 1 },
+
+            // संसाधन प्रबंधन (Resource Management)
+            { id: 21, q: "पारिवारिक 'बजट' (Budget) बनाने का मुख्य उद्देश्य क्या है?", o: ["केवल बचत करना", "आय और व्यय के बीच संतुलन स्थापित करना", "अधिक खर्च करना", "बैंक से ऋण लेना"], c: 1 },
+            { id: 22, q: "निम्नलिखित में से 'मानवीय संसाधन' (Human Resource) का सटीक उदाहरण कौन सा है?", o: ["पैसा", "मकान", "ज्ञान और कौशल", "कार"], c: 2 },
+            { id: 23, q: "गृह प्रबंध में 'कार्य सरलीकरण' (Work Simplification) का मुख्य उद्देश्य है:", o: ["काम को टाल देना", "न्यूनतम समय और ऊर्जा में अधिकतम कार्य संपन्न करना", "दूसरों से काम करवाना", "महंगी मशीनों पर निर्भर रहना"], c: 1 },
+            { id: 24, q: "व्यवस्थापन प्रक्रिया (Management Process) के चार मुख्य चरण नियोजन, संगठन, ______ और मूल्यांकन हैं।", o: ["संप्रेषण", "नियंत्रण (Controlling)", "नेतृत्व", "आराम"], c: 1 },
+            { id: 25, q: "'समय योजना' (Time Plan) बनाते समय सबसे पहला और महत्वपूर्ण कदम क्या होता है?", o: ["विश्राम का समय तय करना", "किए जाने वाले सभी कार्यों की सूची बनाना", "अलार्म लगाना", "काम दूसरों को सौंपना"], c: 1 },
+            { id: 26, q: "कार्य करते समय उत्पन्न थकान को कम करने का सबसे प्रभावी उपाय क्या है?", o: ["तेजी से काम खत्म करना", "चाय-कॉफी अधिक पीना", "उचित कार्य मुद्रा (Posture) और बीच-बीच में विश्राम काल अपनाना", "काम छोड़ देना"], c: 2 },
+            { id: 27, q: "पारिवारिक जीवन चक्र (Family Life Cycle) की वह कौन सी अवस्था है जिसमें परिवार के खर्चे और जिम्मेदारियां अपने चरम (सबसे अधिक) पर होते हैं?", o: ["प्रारंभिक अवस्था", "विस्तृत अवस्था (Expanding Stage)", "संकुचित अवस्था", "सेवानिवृत्ति अवस्था"], c: 1 },
+            { id: 28, q: "जापानी पुष्प सज्जा कला 'इकेबाना' (Ikebana) का शाब्दिक अर्थ क्या है?", o: ["फूलों को काटना", "सूखे फूल", "फूलों को जीवित रखना (जीवित फूल)", "कागज़ के फूल"], c: 2 },
+            { id: 29, q: "भारत में उपभोक्ता संरक्षण अधिनियम (COPRA) के तहत निम्नलिखित में से कौन सा 'उपभोक्ता का अधिकार' नहीं है?", o: ["सुरक्षा का अधिकार", "सूचना पाने का अधिकार", "कालाबाजारी और जमाखोरी करने का अधिकार", "चयन का अधिकार"], c: 2 },
+            { id: 30, q: "निम्नलिखित में से कौन सा कला का 'मूलभूत तत्व' (Element of Art) है, न कि सिद्धांत?", o: ["संतुलन (Balance)", "लय (Rhythm)", "अनुपात (Proportion)", "रेखा (Line)"], c: 3 },
+            { id: 31, q: "आंतरिक सज्जा में 'संतुलन' (Balance) मुख्य रूप से कितने प्रकार का माना जाता है?", o: ["दो (औपचारिक और अनौपचारिक)", "तीन", "चार", "पाँच"], c: 0 },
+            { id: 32, q: "स्थान और कार्यकुशलता की दृष्टि से रसोईघर (Kitchen) की सबसे अच्छी व्यवस्था (Layout) कौन सी मानी जाती है?", o: ["एक-दीवार वाली (One-wall)", "एल-आकार (L-shaped)", "यू-आकार (U-shaped)", "गलियारा (Corridor)"], c: 2 },
+            { id: 33, q: "परिवार की भविष्य की अनिश्चित आवश्यकताओं को पूरा करने के लिए वर्तमान आय के एक हिस्से को सुरक्षित रखना क्या कहलाता है?", o: ["निवेश", "बचत (Saving)", "व्यय", "ऋण"], c: 1 },
+            { id: 34, q: "एल.आई.सी. (LIC - Life Insurance Corporation) मुख्य रूप से किस प्रकार की संस्था है?", o: ["बैंक", "सहकारी समिति", "बीमा (Insurance) संस्था", "शेयर बाजार"], c: 2 },
+            { id: 35, q: "'एगमार्क' (Agmark) प्रमाणन चिह्न मुख्य रूप से किन वस्तुओं की शुद्धता और गुणवत्ता सुनिश्चित करने के लिए लगाया जाता है?", o: ["स्वर्णाभूषण", "विद्युत उपकरण", "कृषि उत्पादों (मसाले, तेल, घी)", "सौंदर्य प्रसाधन"], c: 2 },
+            { id: 36, q: "गृह विज्ञान में कार्य व्यवस्थापन के संदर्भ में 'थकान' (Fatigue) मुख्य रूप से कितने प्रकार की बताई गई है?", o: ["केवल एक", "दो (शारीरिक और मनोवैज्ञानिक)", "तीन", "चार"], c: 1 },
+            { id: 37, q: "निर्णय लेने की प्रक्रिया (Decision Making Process) का सबसे पहला कदम क्या है?", o: ["विकल्पों का मूल्यांकन", "विकल्पों को खोजना", "समस्या की पहचान करना", "परिणाम को स्वीकार करना"], c: 2 },
+            { id: 38, q: "घर के नियोजन में 'कार्य त्रिकोण' (Work Triangle) का सिद्धांत मुख्य रूप से किस कमरे के लिए लागू होता है?", o: ["शयनकक्ष", "बैठक", "स्नानघर", "रसोईघर"], c: 3 },
+            { id: 39, q: "घर में उचित 'वायु संचार' (Cross Ventilation) के लिए क्या सबसे आवश्यक है?", o: ["केवल एक दरवाजा", "आमने-सामने खिड़कियां या रोशनदान", "एयर कंडीशनर", "बंद कमरे"], c: 1 },
+            { id: 40, q: "पारिवारिक आय (Family Income) को मुख्य रूप से कितने प्रकारों में वर्गीकृत किया जाता है?", o: ["दो", "तीन (मौद्रिक, वास्तविक और आत्मिक)", "चार", "पाँच"], c: 1 },
+
+            // मानव विकास (Human Development)
+            { id: 41, q: "जन्म के समय एक स्वस्थ नवजात शिशु की सामान्य हृदय गति (धड़कन) प्रति मिनट कितनी होती है?", o: ["60-70", "72-80", "120-140", "180-200"], c: 2 },
+            { id: 42, q: "जीन पियाजे के अनुसार, बच्चों में 'वस्तु स्थायित्व' (Object Permanence) का गुण किस अवस्था में विकसित होने लगता है?", o: ["संवेदी-गामक अवस्था (Sensorimotor)", "पूर्व-संक्रियात्मक अवस्था", "मूर्त संक्रियात्मक अवस्था", "औपचारिक संक्रियात्मक अवस्था"], c: 0 },
+            { id: 43, q: "मानव 'विकास' (Development) का क्या अर्थ है?", o: ["केवल वजन बढ़ना", "केवल ऊंचाई बढ़ना", "गुणात्मक परिवर्तन (शारीरिक, मानसिक, सामाजिक)", "स्थिर रहना"], c: 2 },
+            { id: 44, q: "शिशुओं में निकलने वाला सबसे पहला प्राथमिक दांत सामान्यतः कौन सा होता है?", o: ["ऊपरी दाढ़", "निचला मध्य कृंतक (Lower central incisor)", "रदनक (Canine)", "ऊपरी कृंतक"], c: 1 },
+            { id: 45, q: "मानव विकास की अवस्थाओं में 'शैशवावस्था' (Infancy) की अवधि क्या मानी जाती है?", o: ["जन्म से 2 सप्ताह", "जन्म से 2 वर्ष", "2 से 6 वर्ष", "6 से 12 वर्ष"], c: 1 },
+            { id: 46, q: "एक बालक का प्रथम शिक्षक (First Teacher) किसे माना जाता है?", o: ["विद्यालय का अध्यापक", "मित्र", "माता", "पड़ोसी"], c: 2 },
+            { id: 47, q: "एरिक एरिक्सन के मनोसामाजिक विकास सिद्धांत के अनुसार, जीवन की पहली अवस्था का मुख्य संकट (Crisis) क्या है?", o: ["पहल बनाम अपराधबोध", "स्वायत्तता बनाम शर्म", "पहचान बनाम भूमिका भ्रांति", "विश्वास बनाम अविश्वास (Trust vs. Mistrust)"], c: 3 },
+            { id: 48, q: "एक नवजात शिशु की जन्म के समय औसत ऊंचाई (लंबाई) लगभग कितनी होती है?", o: ["10-12 इंच", "18-20 इंच (45-50 सेमी)", "30-32 इंच", "40 इंच"], c: 1 },
+            { id: 49, q: "मानव विकास की किस अवस्था को 'स्वर्ण आयु' (Golden Age) या 'आंधी-तूफान की अवस्था' कहा जाता है?", o: ["बाल्यावस्था", "किशोरावस्था", "प्रौढ़ावस्था", "वृद्धावस्था"], c: 1 },
+            { id: 50, q: "बालकों में सामाजिक विकास (Social Development) की प्रक्रिया का प्रथम चरण कहाँ से शुरू होता है?", o: ["विद्यालय से", "खेल के मैदान से", "परिवार से", "आंगनवाड़ी से"], c: 2 },
+            { id: 51, q: "मनोविज्ञान में 'आई. क्यू.' (I.Q.) का पूर्ण रूप क्या है?", o: ["Intelligence Question", "Intelligence Quotient (बुद्धि लब्धि)", "Internal Quality", "Intellectual Quantity"], c: 1 },
+            { id: 52, q: "शिशुओं में भाषा विकास (Language Development) का सही प्रारंभिक क्रम क्या है?", o: ["रोना -> बबलाना (Babbling) -> हाव-भाव -> पहला शब्द", "शब्द -> वाक्य -> रोना", "बबलाना -> रोना -> शब्द", "हाव-भाव -> वाक्य -> रोना"], c: 0 },
+            { id: 53, q: "बच्चों को लगाया जाने वाला 'बी.सी.जी.' (BCG) का टीका किस भयंकर रोग से बचाव के लिए होता है?", o: ["पोलियो", "खसरा", "तपेदिक (T.B.)", "टिटनेस"], c: 2 },
+            { id: 54, q: "भारत में पल्स पोलियो अभियान के तहत पोलियो ड्रॉप पिलाने की अधिकतम आयु सीमा क्या है?", o: ["1 वर्ष", "3 वर्ष", "5 वर्ष", "7 वर्ष"], c: 2 },
+            { id: 55, q: "भारत में पहली बार बाल-विवाह रोकने के लिए 'बाल-विवाह निरोधक अधिनियम' (जिसे शारदा एक्ट भी कहा जाता है) कब पारित हुआ था?", o: ["1929", "1947", "1955", "1978"], c: 0 },
+            { id: 56, q: "माँ के प्रसव के तुरंत बाद निकलने वाले पहले गाढ़े पीले दूध को क्या कहते हैं जो शिशु के लिए अत्यधिक रोग प्रतिरोधक होता है?", o: ["लैक्टोज", "कोलस्ट्रम (Colostrum)", "ग्लोब्युलिन", "सीरम"], c: 1 },
+            { id: 57, q: "बच्चों में 'बिस्तर गीला करना' (Enuresis) 4-5 वर्ष की आयु के बाद भी जारी रहे, तो यह मुख्य रूप से किस प्रकार की समस्या मानी जाती है?", o: ["पाचन समस्या", "आनुवंशिक समस्या", "मनोवैज्ञानिक या व्यवहारात्मक समस्या", "दृष्टि समस्या"], c: 2 },
+            { id: 58, q: "एक पूर्ण परिपक्व (Full-term) शिशु का जन्म सामान्यतः कितने सप्ताह के गर्भकाल के बाद होता है?", o: ["28-30 सप्ताह", "32-34 सप्ताह", "37-40 सप्ताह", "42-45 सप्ताह"], c: 2 },
+            { id: 59, q: "किशोरों में होने वाले तीव्र शारीरिक और लैंगिक परिवर्तन मुख्य रूप से किन ग्रंथियों के स्राव (हार्मोन) के कारण होते हैं?", o: ["लार ग्रंथि", "पीयूष ग्रंथि (Pituitary) और जनन ग्रंथियां (Gonads)", "थायरॉयड ग्रंथि", "यकृत"], c: 1 },
+            { id: 60, q: "बच्चों को शारीरिक दंड देना या डराना-धमकाना किस प्रकार का अनुशासन (Discipline) कहलाता है?", o: ["सकारात्मक अनुशासन", "प्रजातांत्रिक अनुशासन", "कठोर/नकारात्मक (Authoritarian) अनुशासन", "स्वतंत्र अनुशासन"], c: 2 },
+
+            // वस्त्र एवं परिधान (Textiles and Clothing)
+            { id: 61, q: "सुंदरता और चमक के कारण किस प्राकृतिक रेशे को 'वस्त्रों की रानी' (Queen of Textiles) कहा जाता है?", o: ["कपास", "ऊन", "रेशम (Silk)", "रेयॉन"], c: 2 },
+            { id: 62, q: "लीनन (Linen) का मजबूत रेशा किस पौधे के तने से प्राप्त किया जाता है?", o: ["कपास", "सन (Hemp)", "फ्लैक्स (Flax)", "जूट"], c: 2 },
+            { id: 63, q: "नायलॉन (Nylon) किस प्रकार के रेशे का उदाहरण है?", o: ["प्राकृतिक रेशा", "वानस्पतिक रेशा", "संश्लेषित (Synthetic / रासायनिक) रेशा", "प्राणीज रेशा"], c: 2 },
+            { id: 64, q: "विभिन्न प्रकार के वस्त्र रेशों की प्रामाणिक पहचान के लिए प्रयोगशाला में सबसे विश्वसनीय परीक्षण कौन सा माना जाता है?", o: ["दहन (जलने का) परीक्षण", "स्पर्श परीक्षण", "सूक्ष्मदर्शी परीक्षण (Microscopic test)", "स्याही परीक्षण"], c: 2 },
+            { id: 65, q: "करघे (Loom) पर कपड़े की बुनाई (Weaving) करते समय जो धागे आड़े/क्षैतिज (Horizontal) दिशा में डाले जाते हैं, उन्हें क्या कहते हैं?", o: ["ताना (Warp)", "बाना (Weft)", "सेल्वेज (Kinari)", "रीड"], c: 1 },
+            { id: 66, q: "कपड़ों को कड़ा और चमकदार बनाने के लिए 'कलफ' (Starch) का उपयोग मुख्य रूप से किन वस्त्रों पर किया जाता है?", o: ["सूती (Cotton) कपड़ों पर", "रेशमी कपड़ों पर", "ऊनी कपड़ों पर", "नायलॉन पर"], c: 0 },
+            { id: 67, q: "कच्चे रेशों (Fibers) से धागा (Yarn) बनाने की प्रक्रिया को क्या कहा जाता है?", o: ["बुनाई (Weaving)", "कताई (Spinning)", "नीटिंग (Knitting)", "रंगाई (Dyeing)"], c: 1 },
+            { id: 68, q: "'बंधेज' (Tie and Dye) रंगाई की एक प्राचीन और प्रसिद्ध कला है, यह भारत के किस राज्य में विशेष रूप से प्रचलित है?", o: ["असम", "राजस्थान और गुजरात", "तमिलनाडु", "महाराष्ट्र"], c: 1 },
+            { id: 69, q: "महंगे और नाजुक ऊनी कपड़ों को धोने के लिए किसका प्रयोग करना सबसे सुरक्षित माना जाता है?", o: ["कठोर साबुन", "ब्लीच", "हल्के तरल डिटर्जेंट या रीठे का पानी", "गर्म पानी"], c: 2 },
+            { id: 70, q: "'ड्राई क्लीनिंग' (शुष्क धुलाई) में कपड़ों की सफाई के लिए जल के स्थान पर किसका प्रयोग होता है?", o: ["मिट्टी का तेल", "पेट्रोलियम सॉल्वेंट या रासायनिक विलायक", "नमक का पानी", "नींबू का रस"], c: 1 },
+            { id: 71, q: "वस्त्र उत्पाद पर लगा 'सिल्क मार्क' (Silk Mark) ग्राहकों को क्या गारंटी देता है?", o: ["कपड़े की मजबूती", "कपड़े का रंग पक्का होना", "100% शुद्ध रेशम होने की प्रामाणिकता", "सस्ते मूल्य की"], c: 2 },
+            { id: 72, q: "वह कौन सी बुनाई है जिसके कारण कपड़े की सतह पर तिरछी रेखाएं (Diagonal lines) दिखाई देती हैं (जैसे डेनिम में)?", o: ["सादी बुनाई (Plain Weave)", "साटिन बुनाई", "ट्विल बुनाई (Twill Weave)", "रिब बुनाई"], c: 2 },
+            { id: 73, q: "पारंपरिक कढ़ाई 'फुलकारी' (Phulkari) का संबंध मुख्य रूप से भारत के किस राज्य से है?", o: ["पश्चिम बंगाल", "पंजाब", "कर्नाटक", "ओडिशा"], c: 1 },
+            { id: 74, q: "कपड़ों पर लगे लोहे के 'जंग' (Rust) के ضिद्दी धब्बे को हटाने के लिए किसका प्रयोग अधिक प्रभावी है?", o: ["ठंडा पानी", "गर्म पानी और साबुन", "ऑक्जेलिक अम्ल या नींबू और नमक", "पेट्रोल"], c: 2 },
+            { id: 75, q: "छोटे बच्चों (शिशुओं) के लिए कपड़े खरीदते समय सबसे महत्वपूर्ण और प्राथमिक बात क्या ध्यान में रखनी चाहिए?", o: ["चटकीले रंग", "नवीनतम फैशन", "आराम (Comfort) और मुलायम कपड़ा", "कीमत"], c: 2 },
+            { id: 76, q: "एक समझदार व्यक्ति के लिए कपड़ों का चुनाव मुख्य रूप से किन बातों पर निर्भर करना चाहिए?", o: ["केवल दूसरों की नकल", "अवसर, मौसम और व्यक्ति के व्यक्तित्व पर", "केवल ब्रांड पर", "केवल सस्तेपन पर"], c: 1 },
+            { id: 77, q: "भारत में पैदा होने वाले किस प्राकृतिक रेशे को उसकी चमक के कारण 'सुनहरा रेशा' (Golden Fiber) भी कहा जाता है?", o: ["कपास", "सन", "जूट", "रेशम"], c: 2 },
+            { id: 78, q: "सिलाई मशीन चलाते समय सुई बार-बार टूटने का सबसे संभावित कारण क्या हो सकता है?", o: ["मशीन में तेल न होना", "सुई का टेढ़ा या गलत तरीके से लगा होना", "धागा कमजोर होना", "कपड़ा बहुत पतला होना"], c: 1 },
+            { id: 79, q: "मुनसेल के अनुसार, किसी रंग (Color) के तीन मुख्य आयाम (Dimensions) क्या होते हैं?", o: ["हल्का, गहरा, मध्यम", "ह्यू (Hue), वैल्यू (Value), और क्रोमा (Chroma)", "लाल, पीला, नीला", "प्राथमिक, द्वितीयक, तृतीयक"], c: 1 },
+            { id: 80, q: "शुद्ध सूती कपड़ा आग के संपर्क में आने पर कैसी लौ के साथ जलता है?", o: ["पीली लौ और कागज जलने जैसी गंध आती है", "काले धुएं के साथ पिघलता है", "बाल जलने जैसी गंध आती है", "बिल्कुल नहीं जलता"], c: 0 },
+
+            // प्रसार शिक्षा एवं अनुसंधान (Extension Education & Research)
+            { id: 81, q: "प्रसार शिक्षा (Extension Education) का अंतिम और सबसे महत्वपूर्ण उद्देश्य क्या है?", o: ["ग्रामीण लोगों का सर्वांगीण विकास और उनके व्यवहार में सकारात्मक परिवर्तन", "केवल कृषि उत्पादन बढ़ाना", "सरकारी योजनाएं बनाना", "किसानों को ऋण देना"], c: 0 },
+            { id: 82, q: "प्रसार शिक्षण की वह कौन सी विधि है जो 'करके सीखने' (Learning by doing) के सिद्धांत पर आधारित है?", o: ["भाषण", "प्रदर्शनी", "प्रदर्शन (Demonstration)", "रेडियो सुनना"], c: 2 },
+            { id: 83, q: "'संचार' (Communication) शब्द की उत्पत्ति किस भाषा के शब्द 'Communis' से हुई है?", o: ["ग्रीक", "लैटिन (Latin)", "फ्रेंच", "अंग्रेज़ी"], c: 1 },
+            { id: 84, q: "संचार प्रक्रिया में, निम्नलिखित में से कौन सा एक 'दृश्य-श्रव्य' (Audio-Visual) शिक्षण सामग्री का उदाहरण है?", o: ["रेडियो", "पोस्टर", "टेलीविज़न (TV)", "चार्ट"], c: 2 },
+            { id: 85, q: "किसी संदेश को लोगों तक पहुँचाने के लिए उपयोग किया जाने वाला 'पोस्टर' किस प्रकार की प्रसार शिक्षण सामग्री है?", o: ["केवल श्रव्य (Audio)", "केवल दृश्य (Visual)", "दृश्य-श्रव्य (Audio-Visual)", "मुद्रित पुस्तक"], c: 1 },
+            { id: 86, q: "स्वतंत्र भारत में ग्रामीण विकास के लिए 'सामुदायिक विकास कार्यक्रम' (Community Development Program - CDP) की शुरुआत कब की गई थी?", o: ["1947", "1950", "1952", "1960"], c: 2 },
+            { id: 87, q: "ग्रामीण क्षेत्रों में संदेश पहुँचाने का एक बहुत ही प्रभावी और पारंपरिक लोक माध्यम 'कठपुतली' (Puppetry) है, यह मुख्य रूप से क्या है?", o: ["मुद्रित माध्यम", "दृश्य-श्रव्य पारंपरिक माध्यम", "आधुनिक इलेक्ट्रॉनिक माध्यम", "केवल श्रव्य माध्यम"], c: 1 },
+            { id: 88, q: "भारत सरकार की कौन सी प्रमुख योजना देश में बालिकाओं की साक्षरता दर बढ़ाने और उनके सशक्तिकरण पर केंद्रित है?", o: ["मनरेगा", "बेटी बचाओ, बेटी पढ़ाओ", "प्रधानमंत्री आवास योजना", "आयुष्मान भारत"], c: 1 },
+            { id: 89, q: "शिक्षा के क्षेत्र में 'प्रसार' (Extension) शब्द का सर्वप्रथम प्रयोग कहाँ किया गया था?", o: ["भारत में", "अमेरिका के शिकागो विश्वविद्यालय में", "यूके (UK) के कैम्ब्रिज विश्वविद्यालय में", "जापान में"], c: 2 },
+            { id: 90, q: "किसी भी कार्यक्रम के नियोजन में 'SWOT' विश्लेषण किया जाता है, इसमें 'O' का क्या अर्थ है?", o: ["Organization (संगठन)", "Opportunity (अवसर)", "Objective (उद्देश्य)", "Outcome (परिणाम)"], c: 1 },
+            { id: 91, q: "प्रसार शिक्षण में 'परिणाम प्रदर्शन' (Result Demonstration) किसके खेत या घर पर और किसके द्वारा किया जाता है?", o: ["वैज्ञानिक द्वारा प्रयोगशाला में", "प्रसार कार्यकर्ता द्वारा कार्यालय में", "स्थानीय किसान या लाभार्थी द्वारा स्वयं के खेत/घर पर", "मंत्री द्वारा"], c: 2 },
+            { id: 92, q: "भारत में त्रिस्तरीय 'पंचायती राज व्यवस्था' में सबसे निचले स्तर की लोकतांत्रिक इकाई कौन सी है?", o: ["ग्राम पंचायत", "पंचायत समिति", "जिला परिषद", "राज्य सरकार"], c: 0 },
+            { id: 93, q: "विश्व स्वास्थ्य संगठन (WHO) की स्थापना किस तिथि को हुई थी (जिसे अब विश्व स्वास्थ्य दिवस के रूप में मनाया जाता है)?", o: ["15 अगस्त 1947", "7 अप्रैल 1948", "26 जनवरी 1950", "2 अक्टूबर 1952"], c: 1 },
+            { id: 94, q: "डीडब्ल्यूसीआरए (DWCRA - Development of Women and Children in Rural Areas) योजना का मुख्य फोकस क्या था?", o: ["सड़कों का निर्माण", "ग्रामीण महिलाओं की आय में वृद्धि कर उन्हें आत्मनिर्भर बनाना", "शहरों का विकास", "उच्च शिक्षा"], c: 1 },
+            { id: 95, q: "एक प्रभावी संचार (Communication) प्रक्रिया में 'फीडबैक' (Feedback/प्रतिपुष्टि) का क्या महत्व है?", o: ["यह समय बर्बाद करता है", "यह संदेश को रोक देता है", "यह प्रेषक को बताता है कि संदेश प्राप्तकर्ता को समझ आया या नहीं (प्रभावशीलता)", "इसकी कोई आवश्यकता नहीं है"], c: 2 },
+            { id: 96, q: "गाँवों में सफलता प्राप्त करने के लिए एक अच्छे 'प्रसार कार्यकर्ता' (Extension Worker) का सबसे महत्वपूर्ण गुण क्या होना चाहिए?", o: ["शहर में रहने वाला", "स्थानीय लोगों का विश्वासपात्र और उनके बीच घुलने-मिलने वाला", "बहुत अधिक पढ़ा-लिखा लेकिन अहंकारी", "अधिक धनवान"], c: 1 },
+            { id: 97, q: "प्रसार शिक्षण में 'फ्लेनोग्राफ' (Flannel Graph) का उपयोग मुख्य रूप से किस लिए किया जाता है?", o: ["फिल्म दिखाने के लिए", "रेडियो सुनने के लिए", "किसी कहानी या प्रक्रिया को चित्रों के माध्यम से क्रमानुसार दर्शाने के लिए", "किताब छापने के लिए"], c: 2 },
+            { id: 98, q: "किसी भी विषय में 'अनुसंधान' (Research) करने का प्राथमिक और मुख्य उद्देश्य क्या होता है?", o: ["केवल डिग्री प्राप्त करना", "नए तथ्यों की खोज करना और पुरानी मान्यताओं का वैज्ञानिक परीक्षण करना", "पुस्तक लिखना", "समय बिताना"], c: 1 },
+            { id: 99, q: "वैज्ञानिक अनुसंधान की प्रक्रिया में 'परिकल्पना' (Hypothesis) से क्या तात्पर्य है?", o: ["अंतिम निष्कर्ष", "समस्या का एक संभावित, परीक्षण योग्य समाधान या अनुमान", "डेटा संग्रह की विधि", "प्रकाशित रिपोर्ट"], c: 1 },
+            { id: 100, q: "अनुसंधान करते समय 'प्राथमिक डेटा' (Primary Data) इकट्ठा करने की सबसे आम विधि कौन सी है?", o: ["पुरानी किताबें पढ़ना", "इंटरनेट खोजना", "उत्तरदाताओं से सीधे प्रश्नावली भरवाना या साक्षात्कार लेना", "समाचार पत्र पढ़ना"], c: 2 }
+        ];
+
+        // --- Firebase Configuration ---
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const fbApp = Object.keys(firebaseConfig).length > 0 ? initializeApp(firebaseConfig) : null;
+        const auth = fbApp ? getAuth(fbApp) : null;
+        const db = fbApp ? getFirestore(fbApp) : null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // --- Application State ---
+        let state = {
+            user: null,
+            syncStatus: "क्लाउड से कनेक्ट हो रहा है...",
+            testStarted: false,
+            testSubmitted: false,
+            currentQIndex: 0,
+            timeLeft: 180 * 60, // 180 Minutes
+            answers: {},
+            visited: Array(100).fill(false),
+            markedForReview: Array(100).fill(false),
+            timerInterval: null
+        };
+
+        // --- DOM Elements ---
+        const views = {
+            loading: document.getElementById('view-loading'),
+            start: document.getElementById('view-start'),
+            test: document.getElementById('view-test'),
+            result: document.getElementById('view-result')
+        };
+        const els = {
+            loadingText: document.getElementById('loading-subtext'),
+            startSync: document.getElementById('start-sync-status'),
+            testSync: document.getElementById('test-sync-status'),
+            testUserId: document.getElementById('test-user-id'),
+            timerText: document.getElementById('timer-text'),
+            timerIcon: document.getElementById('timer-icon'),
+            qHeader: document.getElementById('q-header'),
+            qText: document.getElementById('q-text'),
+            qOptions: document.getElementById('q-options'),
+            paletteStats: document.getElementById('palette-stats'),
+            paletteGrid: document.getElementById('palette-grid'),
+            btnPrev: document.getElementById('btn-prev')
+        };
+
+        // --- Initialization & Firebase Auth ---
+        async function init() {
+            if (!auth) {
+                updateSyncStatus("स्थानीय मोड (Firebase कॉन्फ़िगर नहीं है)");
+                showView(state.testSubmitted ? 'result' : state.testStarted ? 'test' : 'start');
+                return;
+            }
+
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Auth Error:", error);
+                updateSyncStatus("प्रमाणीकरण विफल");
+                showView('start');
+            }
+
+            onAuthStateChanged(auth, async (u) => {
+                state.user = u;
+                if(u) els.testUserId.innerText = `ID: ${u.uid.substring(0,6)}`;
+                await loadProgress();
+                showView(state.testSubmitted ? 'result' : state.testStarted ? 'test' : 'start');
+                if(state.testStarted && !state.testSubmitted) startTimer();
+            });
+        }
+
+        // --- Storage (Load & Save) - Changed ID to homeScienceSet2 ---
+        async function loadProgress() {
+            if (!state.user || !db) return;
+            updateSyncStatus("डेटा लोड हो रहा है...");
+            const docRef = doc(db, 'artifacts', appId, 'users', state.user.uid, 'mockTests', 'homeScienceSet2');
+            try {
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.answers) state.answers = data.answers;
+                    if (data.visited) state.visited = data.visited;
+                    if (data.markedForReview) state.markedForReview = data.markedForReview;
+                    if (data.timeLeft !== undefined) state.timeLeft = data.timeLeft;
+                    if (data.testStarted !== undefined) state.testStarted = data.testStarted;
+                    if (data.testSubmitted !== undefined) state.testSubmitted = data.testSubmitted;
+                }
+                updateSyncStatus("तैयार");
+            } catch (e) {
+                console.error("Load Error:", e);
+                updateSyncStatus("डेटा लोड करने में त्रुटि");
+            }
+        }
+
+        async function saveProgress() {
+            if (!state.user || !db) return;
+            updateSyncStatus("सहेज रहा है...");
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'users', state.user.uid, 'mockTests', 'homeScienceSet2');
+                await setDoc(docRef, {
+                    answers: state.answers,
+                    visited: state.visited,
+                    markedForReview: state.markedForReview,
+                    timeLeft: state.timeLeft,
+                    testStarted: state.testStarted,
+                    testSubmitted: state.testSubmitted,
+                    lastUpdated: new Date()
+                });
+                updateSyncStatus("सुरक्षित (Saved)");
+            } catch (e) {
+                console.error(e);
+                updateSyncStatus("सहेजने में त्रुटि");
+            }
+        }
+
+        // --- Core UI Functions ---
+        function showView(viewName) {
+            Object.values(views).forEach(v => v.classList.add('hidden-view'));
+            views[viewName].classList.remove('hidden-view');
+            
+            if (viewName === 'test') {
+                renderTestScreen();
+            } else if (viewName === 'result') {
+                renderResultScreen();
+            }
+        }
+
+        function updateSyncStatus(msg) {
+            state.syncStatus = msg;
+            els.loadingText.innerText = msg;
+            els.startSync.innerText = `स्थिति: ${msg} ${state.user ? '| यूजर ID: ' + state.user.uid.substring(0,8) + '...' : ''}`;
+            els.testSync.innerText = msg;
+        }
+
+        // --- Test Logic ---
+        function startTimer() {
+            if(state.timerInterval) clearInterval(state.timerInterval);
+            updateTimerDisplay();
+            
+            state.timerInterval = setInterval(() => {
+                if (state.timeLeft <= 1) {
+                    clearInterval(state.timerInterval);
+                    handleAutoSubmit();
+                    return;
+                }
+                state.timeLeft--;
+                updateTimerDisplay();
+                
+                // Save every 30 seconds
+                if (state.timeLeft % 30 === 0) saveProgress();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const h = Math.floor(state.timeLeft / 3600);
+            const m = Math.floor((state.timeLeft % 3600) / 60);
+            const s = state.timeLeft % 60;
+            els.timerText.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            
+            const timerContainer = document.getElementById('timer-container');
+            if(state.timeLeft < 300) { // last 5 minutes
+                els.timerIcon.classList.remove('text-white');
+                els.timerIcon.classList.add('text-red-400', 'animate-pulse');
+                els.timerText.classList.add('text-red-400', 'font-bold');
+            } else {
+                els.timerIcon.classList.add('text-white');
+                els.timerIcon.classList.remove('text-red-400', 'animate-pulse');
+                els.timerText.classList.remove('text-red-400', 'font-bold');
+            }
+        }
+
+        function getQuestionStatus(idx) {
+            if (!state.visited[idx]) return 0; // Not Visited
+            const isAns = state.answers[idx] !== undefined;
+            const isMarked = state.markedForReview[idx];
+            
+            if (!isAns && !isMarked) return 1; // Not Answered
+            if (isAns && !isMarked) return 2;  // Answered
+            if (!isAns && isMarked) return 3;  // Marked
+            if (isAns && isMarked) return 4;   // Answered & Marked
+            return 0;
+        }
+
+        function calculateStats() {
+            let ans = 0, notAns = 0, marked = 0, ansMarked = 0, notVis = 0;
+            for (let i = 0; i < questions.length; i++) {
+                const s = getQuestionStatus(i);
+                if (s === 0) notVis++;
+                if (s === 1) notAns++;
+                if (s === 2) ans++;
+                if (s === 3) marked++;
+                if (s === 4) ansMarked++;
+            }
+            return { ans, notAns, marked, ansMarked, notVis };
+        }
+
+        function calculateScore() {
+            let correct = 0, incorrect = 0, unattempted = 0;
+            questions.forEach((q, i) => {
+                if (state.answers[i] !== undefined) {
+                    if (state.answers[i] === q.c) correct++;
+                    else incorrect++;
+                } else {
+                    unattempted++;
+                }
+            });
+            return { correct, incorrect, unattempted, score: correct * 2, max: questions.length * 2 };
+        }
+
+        // --- Rendering Test Screen ---
+        function renderTestScreen() {
+            renderCurrentQuestion();
+            renderPalette();
+        }
+
+        function renderCurrentQuestion() {
+            const q = questions[state.currentQIndex];
+            els.qHeader.innerText = `प्रश्न संख्या: ${state.currentQIndex + 1}`;
+            els.qText.innerText = q.q;
+            els.btnPrev.disabled = state.currentQIndex === 0;
+
+            let optionsHtml = '';
+            q.o.forEach((opt, idx) => {
+                const isSelected = state.answers[state.currentQIndex] === idx;
+                const baseClass = isSelected ? 'bg-blue-50 border-blue-500 shadow-sm' : 'hover:bg-gray-50 border-gray-300 bg-white';
+                
+                optionsHtml += `
+                    <label class="flex items-center p-3 sm:p-4 border rounded-lg cursor-pointer transition-colors ${baseClass}">
+                        <input type="radio" name="q-${state.currentQIndex}" value="${idx}" class="w-5 h-5 text-blue-600" ${isSelected ? 'checked' : ''}>
+                        <span class="ml-3 sm:ml-4 text-gray-700 font-medium">${opt}</span>
+                    </label>
+                `;
+            });
+            els.qOptions.innerHTML = optionsHtml;
+
+            // Attach event listeners to new radio inputs
+            const radios = els.qOptions.querySelectorAll('input[type="radio"]');
+            radios.forEach(r => r.addEventListener('change', (e) => handleOptionSelect(parseInt(e.target.value))));
+        }
+
+        function renderPalette() {
+            const stats = calculateStats();
+            els.paletteStats.innerHTML = `
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-green-500 text-white flex items-center justify-center">${stats.ans}</span> उत्तर दिया</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-red-500 text-white flex items-center justify-center">${stats.notAns}</span> उत्तर नहीं दिया</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-300 flex items-center justify-center">${stats.notVis}</span> देखा नहीं</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-purple-500 text-white flex items-center justify-center">${stats.marked}</span> समीक्षा के लिए मार्क</div>
+                <div class="flex items-center gap-1 col-span-2"><span class="w-4 h-4 rounded bg-indigo-600 text-white flex items-center justify-center relative after:content-[''] after:absolute after:top-0.5 after:right-0.5 after:w-1 after:h-1 after:bg-green-400 after:rounded-full">${stats.ansMarked}</span> उत्तर दिया & समीक्षा के लिए मार्क</div>
+            `;
+
+            let gridHtml = '';
+            for (let i = 0; i < questions.length; i++) {
+                const status = getQuestionStatus(i);
+                const isCurrent = state.currentQIndex === i;
+                gridHtml += `
+                    <button onclick="window.navigateToQuestion(${i})" class="q-btn w-10 h-10 flex items-center justify-center rounded font-semibold text-sm status-${status} ${isCurrent ? 'current' : ''}">
+                        ${i + 1}
+                    </button>
+                `;
+            }
+            els.paletteGrid.innerHTML = gridHtml;
+        }
+
+        // --- Actions ---
+        function handleOptionSelect(optIndex) {
+            state.answers[state.currentQIndex] = optIndex;
+            renderCurrentQuestion(); // update active class on options
+            renderPalette();
+            saveProgress();
+        }
+
+        window.navigateToQuestion = function(index) {
+            state.visited[index] = true;
+            state.currentQIndex = index;
+            renderTestScreen();
+            saveProgress();
+        }
+
+        function handleSaveAndNext() {
+            state.markedForReview[state.currentQIndex] = false;
+            if (state.currentQIndex < questions.length - 1) {
+                window.navigateToQuestion(state.currentQIndex + 1);
+            } else {
+                renderPalette();
+                saveProgress();
+            }
+        }
+
+        function handleMarkAndNext() {
+            state.markedForReview[state.currentQIndex] = true;
+            if (state.currentQIndex < questions.length - 1) {
+                window.navigateToQuestion(state.currentQIndex + 1);
+            } else {
+                renderPalette();
+                saveProgress();
+            }
+        }
+
+        function handleClearResponse() {
+            delete state.answers[state.currentQIndex];
+            state.markedForReview[state.currentQIndex] = false;
+            renderTestScreen();
+            saveProgress();
+        }
+
+        function handleAutoSubmit() {
+            state.testSubmitted = true;
+            if(state.timerInterval) clearInterval(state.timerInterval);
+            saveProgress();
+            showView('result');
+        }
+
+        // --- Result Screen Rendering ---
+        function renderResultScreen() {
+            const scoreData = calculateScore();
+            const resultStats = document.getElementById('result-stats');
+            const resultDetails = document.getElementById('result-details');
+            
+            const checkIcon = document.getElementById('icon-check').outerHTML.replace('style="display:none;"', '');
+            const xIcon = document.getElementById('icon-x').outerHTML.replace('style="display:none;"', '');
+            const alertIcon = document.getElementById('icon-alert').outerHTML.replace('style="display:none;"', '');
+
+            resultStats.innerHTML = `
+                <div class="bg-blue-50 p-6 rounded-lg text-center border border-blue-200 w-48 shadow-sm">
+                    <p class="text-gray-600 text-sm font-semibold uppercase">कुल प्राप्तांक</p>
+                    <p class="text-4xl font-bold text-blue-700 mt-2">${scoreData.score} / ${scoreData.max}</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg text-center border border-green-200 w-48 shadow-sm">
+                    <p class="text-gray-600 text-sm font-semibold uppercase">सही उत्तर</p>
+                    <p class="text-4xl font-bold text-green-600 mt-2">${scoreData.correct}</p>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg text-center border border-red-200 w-48 shadow-sm">
+                    <p class="text-gray-600 text-sm font-semibold uppercase">गलत उत्तर</p>
+                    <p class="text-4xl font-bold text-red-600 mt-2">${scoreData.incorrect}</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg text-center border border-gray-200 w-48 shadow-sm">
+                    <p class="text-gray-600 text-sm font-semibold uppercase">छोड़े गए</p>
+                    <p class="text-4xl font-bold text-gray-600 mt-2">${scoreData.unattempted}</p>
+                </div>
+            `;
+
+            let detailsHtml = '';
+            questions.forEach((q, i) => {
+                const userAns = state.answers[i];
+                const isCorrect = userAns === q.c;
+                const isAttempted = userAns !== undefined;
+
+                let cardClass = !isAttempted ? 'bg-gray-50 border-gray-400' : isCorrect ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500';
+                
+                let optsHtml = '';
+                q.o.forEach((opt, optIdx) => {
+                    let optClass = "p-2 rounded border ";
+                    if (optIdx === q.c) optClass += "bg-green-200 border-green-500 font-semibold";
+                    else if (optIdx === userAns) optClass += "bg-red-200 border-red-500 font-semibold";
+                    else optClass += "bg-white border-gray-300";
+                    
+                    optsHtml += `<div class="${optClass}">${String.fromCharCode(65 + optIdx)}. ${opt}</div>`;
+                });
+
+                let statusMsg = '';
+                if(!isAttempted) statusMsg = `<span class="text-gray-600 flex items-center gap-1">${alertIcon} आपने उत्तर नहीं दिया</span>`;
+                else if(isCorrect) statusMsg = `<span class="text-green-700 flex items-center gap-1">${checkIcon} आपका उत्तर सही है</span>`;
+                else statusMsg = `<span class="text-red-700 flex items-center gap-1">${xIcon} आपका उत्तर गलत है</span>`;
+
+                detailsHtml += `
+                    <div class="p-5 rounded-lg border-l-4 shadow-sm ${cardClass}">
+                        <p class="font-semibold text-lg text-gray-800 mb-3"><span class="mr-2">प्र. ${i + 1}.</span> ${q.q}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                            ${optsHtml}
+                        </div>
+                        <div class="text-sm font-medium">${statusMsg}</div>
+                    </div>
+                `;
+            });
+            resultDetails.innerHTML = detailsHtml;
+        }
+
+        // --- Event Listeners Setup ---
+        document.getElementById('btn-start-test').addEventListener('click', () => {
+            state.testStarted = true;
+            state.visited[0] = true;
+            saveProgress();
+            showView('test');
+            startTimer();
+        });
+
+        document.getElementById('btn-save').addEventListener('click', handleSaveAndNext);
+        document.getElementById('btn-mark').addEventListener('click', handleMarkAndNext);
+        document.getElementById('btn-clear').addEventListener('click', handleClearResponse);
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            if (state.currentQIndex > 0) window.navigateToQuestion(state.currentQIndex - 1);
+        });
+        document.getElementById('btn-submit-test').addEventListener('click', handleAutoSubmit);
+
+        // Boot the app
+        init();
+    </script>
+</body>
+</html>
